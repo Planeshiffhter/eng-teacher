@@ -4,6 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from eng_teacher.providers import OpenAITutorModel, Settings
+from eng_teacher.controls import explicit_control
 from eng_teacher.tutor import InterviewTutor, ModelDecision, risky_change
 
 
@@ -24,6 +25,10 @@ class FakeModel:
         self.result = result or decision()
         self.fail = fail
         self.inputs = []
+
+    async def explain_correction(self, corrected, explanation, language):
+        assert language == 'hi'
+        return 'भूतकाल के लिए इस क्रिया का इस्तेमाल करते हैं।'
 
     async def decide(self, original, question, history):
         self.inputs.append((original, question, history))
@@ -178,3 +183,69 @@ async def test_provider_rejects_malformed_or_empty_json(content):
     model = OpenAITutorModel("test-model", client=client)
     with pytest.raises((ValueError, ValidationError)):
         await model.decide("I work", "Tell me about your work", [])
+
+
+@pytest.mark.parametrize("input_text,expected", [
+    ("Please explain that in Hindi", ("explain", "hi")),
+    ("Can you repeat the correct sentence?", ("repeat", "en")),
+    ("One more try, please.", ("again", "en")),
+    ("Skip this question.", ("next", "en")),
+    ("हिंदी में समझाओ", ("explain", "hi")),
+    ("I explained the situation yesterday", None),
+])
+def test_voice_control_recognition(input_text, expected):
+    assert explicit_control(input_text) == expected
+
+
+async def test_explain_repeat_another_try_keeps_same_pending_correction():
+    model = FakeModel(decision(
+        action="correct",
+        corrected="I handled customer calls.",
+        explanation="Use past tense for finished work.",
+    ))
+    tutor = InterviewTutor(model)
+    initial = await tutor.turn("Maine customer calls handle kiye")
+    assert initial.action == "correct"
+    for command in (
+        "Please explain that in Hindi",
+        "Can you repeat the correct sentence?",
+        "One more try, please.",
+    ):
+        response = await tutor.turn(command)
+        assert response.action == "assist"
+        assert tutor.pending_retry == "I handled customer calls."
+        assert tutor.question_index == 0
+    assert "भूतकाल" in tutor.history[-3][1]
+    assert (await tutor.turn("I handled customer calls.")).action == "retry"
+    assert tutor.question_index == 1
+    assert tutor.pending_retry is None
+    assert len(model.inputs) == 1
+
+
+async def test_skip_explicitly_advances_and_clears_retry():
+    tutor = InterviewTutor(FakeModel(decision(
+        action="correct", corrected="I work.", explanation="Use base verb."
+    )))
+    await tutor.turn("I works.")
+    skipped = await tutor.turn("Skip this question.")
+    assert skipped.action == "continue"
+    assert tutor.question_index == 1
+    assert tutor.pending_retry is None
+    assert (await tutor.turn("Please explain that in Hindi")).action == "assist"
+    assert tutor.question_index == 1
+
+
+async def test_explanation_provider_failure_does_not_consume_retry():
+    class FailingModel(FakeModel):
+        async def explain_correction(self, corrected, explanation, language):
+            raise RuntimeError("provider failure secret payload")
+
+    tutor = InterviewTutor(FailingModel(decision(
+        action="correct", corrected="I worked.", explanation="Past tense."
+    )))
+    await tutor.turn("I work yesterday.")
+    result = await tutor.turn("Explain that in Hindi.")
+    assert result.action == "assist"
+    assert tutor.pending_retry == "I worked."
+    assert tutor.question_index == 0
+    assert "secret" not in result.model_dump_json()

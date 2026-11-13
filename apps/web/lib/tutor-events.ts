@@ -1,4 +1,4 @@
-export type FeedbackAction = 'correct' | 'clarify' | 'continue' | 'retry';
+export type FeedbackAction = 'correct' | 'clarify' | 'continue' | 'retry' | 'assist';
 export interface TutorFeedback {
   version: 1;
   turn_id: string;
@@ -32,7 +32,7 @@ export function parseTutorEvent(payload: Uint8Array, topic?: string): TutorEvent
     const value = data as Record<string, unknown>;
     if (topic === 'tutor.feedback' && text(value.turn_id, 200) && value.turn_id.length > 0 &&
       text(value.original) && optionalText(value.corrected) && optionalText(value.explanation) &&
-      text(value.spoken_response) && typeof value.action === 'string' && ['correct', 'clarify', 'continue', 'retry'].includes(value.action) &&
+      text(value.spoken_response) && typeof value.action === 'string' && ['correct', 'clarify', 'continue', 'retry', 'assist'].includes(value.action) &&
       (value.action !== 'correct' || (typeof value.corrected === 'string' && value.corrected.trim().length > 0))) {
       return { topic, data: value as unknown as TutorFeedback };
     }

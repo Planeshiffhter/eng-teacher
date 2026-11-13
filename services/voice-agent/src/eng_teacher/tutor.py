@@ -9,6 +9,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from .controls import explicit_control
+
 QUESTIONS = (
     "Tell me a little about yourself and the kind of job you want.",
     "What did you do in your most recent role or project?",
@@ -52,7 +54,7 @@ class Feedback(BaseModel):
     original: str
     corrected: str | None = None
     explanation: str | None = None
-    action: Literal["correct", "clarify", "continue", "retry"]
+    action: Literal["correct", "clarify", "continue", "retry", "assist"]
     spoken_response: str
 
 
@@ -60,6 +62,8 @@ class TutorModel(Protocol):
     async def decide(
         self, original: str, question: str, history: Sequence[tuple[str, str]]
     ) -> ModelDecision: ...
+
+    async def explain_correction(self, corrected: str, explanation: str, language: str) -> str: ...
 
 
 _NEGATION = re.compile(
@@ -112,6 +116,7 @@ class InterviewTutor:
         self.model = model
         self.question_index = 0
         self.pending_retry: str | None = None
+        self.pending_explanation: str | None = None
         self.history: list[tuple[str, str]] = []
         self.last_provider_failed = False
 
@@ -121,14 +126,56 @@ class InterviewTutor:
             return QUESTIONS[self.question_index]
         return "Tell me more about a specific example from your experience."
 
+
+    async def _assist(self, original: str, command: str, language: str) -> Feedback:
+        target = self.pending_retry
+        if command == "next":
+            self.pending_retry = None
+            self.pending_explanation = None
+            return Feedback(original=original, action="continue", spoken_response=self._next_question())
+        if command == "repeat":
+            reply = (
+                f"The corrected sentence is: {target}. Please try saying it when ready."
+                if target else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS)-1)]}"
+            )
+            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+        if command == "again":
+            reply = (
+                f"Of course, take another try. You can say: {target}."
+                if target else "Of course. Take your time answering the current question."
+            )
+            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+        if not target:
+            return Feedback(original=original, action="assist", spoken_response="Which sentence would you like me to explain?")
+        explanation = self.pending_explanation or "Let's practice this sentence."
+        if language == "hi":
+            try:
+                explanation = await self.model.explain_correction(target, explanation, "hi")
+                if not isinstance(explanation, str) or not explanation.strip():
+                    raise ValueError("Empty explanation")
+            except Exception:
+                # A failed explanation must not advance the question or end the paid call.
+                explanation = "माफ़ कीजिए, हिंदी में विस्तार से समझाने में समस्या हुई। सही वाक्य है: " + target
+        return Feedback(
+            original=original,
+            action="assist",
+            corrected=target,
+            explanation=explanation,
+            spoken_response=f"{explanation} Try saying: {target}",
+        )
+
     async def turn(self, original: str) -> Feedback:
         self.last_provider_failed = False
         # Bound provider input without altering what is displayed as the original.
         if not original.strip() or len(original) > 3000:
             return Feedback(original=original, action="clarify", spoken_response=CLARIFICATION)
-        if self.pending_retry:
+        control = explicit_control(original)
+        if control:
+            feedback = await self._assist(original, *control)
+        elif self.pending_retry:
             target = self.pending_retry
             self.pending_retry = None
+            self.pending_explanation = None
             normalize = lambda value: re.sub(r"[^\w]", "", value.casefold())  # noqa: E731
             if normalize(original) == normalize(target):
                 reply = "That matches the phrase we practiced. "
@@ -169,6 +216,7 @@ class InterviewTutor:
                 )
             elif decision.action == "correct":
                 self.pending_retry = decision.corrected
+                self.pending_explanation = decision.explanation
                 feedback = Feedback(
                     original=original,
                     action="correct",
