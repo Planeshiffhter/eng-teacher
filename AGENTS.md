@@ -4,7 +4,7 @@ This file applies to coding agents working in this repository.
 
 ## First read
 
-Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md, and **docs/CODEX_MASTER_BUILD_PROMPT.md**.
+Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md, **docs/IMPLEMENTATION_CHECKLIST.md**, and **docs/CODEX_MASTER_BUILD_PROMPT.md**.
 
 ## Core principles
 

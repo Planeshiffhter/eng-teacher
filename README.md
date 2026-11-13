@@ -21,6 +21,7 @@ The first slice is audio-only: live session controls, microphone publishing, con
 | [MVP and acceptance tests](docs/MVP_AND_ACCEPTANCE.md) | Exact first pilot and measurable quality gates |
 | [Architecture](docs/ARCHITECTURE.md) | How the web app, LiveKit voice agent, tutor engine, avatar and data fit together |
 | [Open-source reuse plan](docs/OPEN_SOURCE_STACK.md) | Candidate repositories, adoption decisions, licenses and verification |
+| [Full ordered implementation checklist](docs/IMPLEMENTATION_CHECKLIST.md) | Phase-by-phase tasks, acceptance gates, blockers, and dependencies |
 | [Roadmap](docs/ROADMAP.md) | Release sequence, priorities, cost controls and risks |
 | [Decision log](docs/DECISIONS.md) | Settled decisions versus open questions |
 | [Codex task brief](docs/CODEX_IMPLEMENTATION_BRIEF.md) | Ready-to-use phased engineering instructions |
