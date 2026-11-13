@@ -4,14 +4,14 @@ This file applies to coding agents working in this repository.
 
 ## First read
 
-Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md.
+Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md, and **docs/CODEX_MASTER_BUILD_PROMPT.md**.
 
 ## Core principles
 
 - One monorepo. Reuse proven, compatible open-source SDKs instead of recreating core infrastructure.
 - Do not copy entire unrelated apps, competitor brand assets or proprietary curriculum.
 - Audit **current** code, dependencies, license obligations (including model weights/assets) before importing external code.
-- Prioritize a working Hindi-English 10-minute mock-interview voice vertical slice over speculative full-platform scaffolding.
+- Prioritize a working Hindi-English 10-minute mock-interview voice vertical slice over speculative full-platform scaffolding, **but preserve the larger competitive product roadmap in the master prompt and deliver tested milestones beyond the interview**.
 - Make original utterance, correction, pronunciation score and teacher explanation distinct data fields.
 - Let the learner finish; if ASR/meaning is uncertain ask a clarification; correct at most one important issue per turn by default.
 - Never assume the software is complete because a mock API or screenshot works.
