@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eng-teacher-voice-agent"
+version = "0.1.0"
+description = "Hindi-English mock interview voice tutor built on the LiveKit Python starter"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "livekit-agents[openai,silero]~=1.8.0",
+  "python-dotenv>=1.0,<2",
+  "pydantic>=2.10,<3",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.14,<1"]
+
+[project.scripts]
+eng-teacher-agent = "eng_teacher.agent:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

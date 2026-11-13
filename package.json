@@ -1,0 +1,26 @@
+{
+  "name": "eng-teacher",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @eng-teacher/web",
+    "build": "npm run build --workspace @eng-teacher/web",
+    "start": "npm run start --workspace @eng-teacher/web",
+    "typecheck": "npm run typecheck --workspace @eng-teacher/web",
+    "test": "npm run test --workspace @eng-teacher/web",
+    "test:agent": "cd services/voice-agent && uv run --frozen pytest",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  },
+  "overrides": {
+    "postcss": "8.5.32"
+  }
+}

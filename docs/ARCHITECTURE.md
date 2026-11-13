@@ -1,6 +1,6 @@
 # Proposed Technical Architecture
 
-**Status:** proposed; no application services are implemented in this repository yet.
+**Status:** the target architecture below remains the product plan. The first audio-only slice now has `apps/web` (Next.js + LiveKit React) and `services/voice-agent` (LiveKit Python Agents, official OpenAI STT/TTS, Silero VAD, and a separate structured tutor-model adapter). Web tokens dispatch the named agent into a private room; versioned reliable data events carry correction cards. Both services enforce a fixed ten-minute lesson deadline. No database, avatar, mobile-native app or training service is implemented. Live-provider acceptance remains pending; see [development instructions](DEVELOPMENT.md) and [validation](VALIDATION.md).
 
 ## System flow
 

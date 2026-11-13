@@ -28,3 +28,13 @@
 - What commercial licensing obligations apply to every selected model weight, avatar asset and speech voice?
 
 When a decision changes, record the *reason, test evidence and date* here.
+
+
+## First implementation — 13 November 2026
+
+- Adopted the official LiveKit React and Python starter foundations in one monorepo, preserving MIT notices; exact upstream revisions and package license evidence are recorded in [DEPENDENCY_AUDIT.md](DEPENDENCY_AUDIT.md).
+- Implemented the voice slice with the official OpenAI recognition/synthesis plugins and an independently replaceable structured tutor adapter. Default multilingual recognition is `whisper-1`; Sarvam stays a future evaluated alternative. This reduces initial service credentials without claiming it wins a bilingual benchmark.
+- Corrections are schema-validated, limited to one at a time, and checked conservatively for changes to names, numbers and negation. Original recognized words are never replaced by model-generated text. These guards do not prove linguistic correctness.
+- Shipped an audio-only UI first; avatar integration is deferred until real voice acceptance succeeds. The recap and bounded conversation context remain in memory only. No recording or training dataset is created.
+- The token route requires a pilot access code, grants microphone publishing only, dispatches one named worker, and embeds the fixed lesson deadline. Public authentication, distributed quotas, durable progress and billing remain separate work.
+- Startup, test commands, known limitations and required live checks are in [DEVELOPMENT.md](DEVELOPMENT.md) and [VALIDATION.md](VALIDATION.md). No provider credentials were available for the initial implementation run.

@@ -1,10 +1,16 @@
 # Eng Teacher — AI English Speaking Tutor
 
-> **Status: Planning / documentation only (13 November 2026).** This repository does **not yet contain a working application**. Do not interpret the roadmap as implemented features.
+> **Status: First voice-tutor implementation (13 November 2026), awaiting live-provider validation.** This repository now includes a mobile-responsive Next.js client and a LiveKit Python voice agent. Automated checks use fake inputs where noted; a real microphone-to-provider call, Hindi–English quality, and avatar behavior have not been validated. The planning documents remain the product goals.
 
 **Vision:** Build an independently controlled, commercially viable AI English-speaking learning platform with a natural video-call-like teacher, accurate corrections, multilingual explanations, pronunciation practice, and personalized learning. The ambition is to compete on learning quality with Praktika, ELSA Speak, Speak, and Duolingo—not to copy their code, characters, brands, or content.
 
 **First product to prove:** A **10-minute Hindi–English mock interview on mobile web**. A learner speaks naturally, including code-switching; an interruptible speaking avatar listens, offers one helpful meaning-preserving correction, lets the learner repeat it, continues the interview, and provides a recap.
+
+## Run the implementation
+
+Read [installation and startup instructions](docs/DEVELOPMENT.md), [validation results and live test checklist](docs/VALIDATION.md), and the [focused dependency audit](docs/DEPENDENCY_AUDIT.md). The monorepo has `apps/web` and `services/voice-agent`; run `npm ci` and `uv sync --frozen --project services/voice-agent`, configure the ignored environment files from their examples, then start the worker and web server in separate terminals. LiveKit and OpenAI credentials are required for a live lesson. No GPU is required.
+
+The first slice is audio-only: live session controls, microphone publishing, configurable recognition/model/voice adapters, interruption handling, original/corrected sentence cards, speaking retries, subtitles, and a timed mock interview. No avatar or live-quality claim is made. See validation status before treating the acceptance gates as passed.
 
 ## Project links (start here)
 
@@ -20,7 +26,7 @@
 | [Codex task brief](docs/CODEX_IMPLEMENTATION_BRIEF.md) | Ready-to-use phased engineering instructions |
 | [AGENTS.md](AGENTS.md) | Repository instructions for Codex and other coding agents |
 
-## First milestone (not yet implemented)
+## First milestone (product requirements; live acceptance pending)
 
 Build a mobile-web interview with microphone permissions, real-time two-way voice, interruptible replies, browser avatar with audio-only fallback, live transcript, correction → retry, recap, and per-lesson cost logs. Preserve what the learner actually said separately from the suggested English. Test uncertain recognition instead of silently rewriting it.
 
@@ -38,9 +44,9 @@ Build a mobile-web interview with microphone permissions, real-time two-way voic
 - [x] Product research consolidated from earlier project discussions, including Astra feasibility review.
 - [x] Initial engineering documentation.
 - [ ] Architecture and license audit validated against current upstream repositories.
-- [ ] Functional application code.
+- [x] First client/agent source implementation; live speech acceptance remains pending.
 - [ ] Real-device voice and avatar testing.
 - [ ] Learner pilot and pronunciation evaluation.
 - [ ] Fine-tuned model and production deployment.
 
-**Suggested next action:** Read [Codex task brief](docs/CODEX_IMPLEMENTATION_BRIEF.md) and ask Codex to complete **Milestone 0 (audit)**, then **Milestone 1 (working voice MVP)**. Avoid implementing an entire competitive feature list in one run.
+**Next validation:** Configure the service credentials and run the live checklist in [docs/VALIDATION.md](docs/VALIDATION.md), including Hindi–English speech, interruption, meaning preservation and a full ten-minute lesson. The current slice is an invited pilot, not a production-ready platform.
