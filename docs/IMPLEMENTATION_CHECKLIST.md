@@ -1,6 +1,6 @@
 # Full Ordered Implementation Checklist — Eng Teacher
 
-**Last updated:** 13 Nov 2026. **Purpose:** a single prioritized source of truth for GitHub/Codex, from existing MVP to competitive product. **All checkboxes start unchecked until their acceptance criteria are independently verified.** Source code existing is not the same as a verified working live product.
+**Last updated:** 13 Nov 2026. **Purpose:** a single prioritized source of truth for GitHub/Codex, from existing MVP to competitive product. **Checkboxes reflect verified work, with evidence linked below.** Source code existing is not the same as a verified working live product.
 
 **Repository:** https://github.com/Planeshiffhter/eng-teacher. **Public** at checklist creation. Never store secrets or learner audio in this repository.
 
@@ -8,7 +8,7 @@
 
 - Source present: Next.js browser interface, LiveKit Python agent, correction cards, transcripts, access-code pilot session endpoint, ten-minute deadline and unit/browser tests.
 - No claim of verified real audio quality, Hindi-English comprehension, talking avatar, pronunciation scoring, user accounts, production billing or fine-tuned model.
-- P1 dialogue bug known from source: pending retry is consumed by explanation requests. Fix immediately, then run CI.
+- Explicit explanation/repeat/retry/skip commands now preserve correction state. **Important:** wider free-form intent detection and live speech remain unverified.
 
 ## Execution rules
 
@@ -19,12 +19,20 @@
 5. **Cost discipline:** track billable units, retries, model usage and latency. Do not self-host GPU services until quality and unit economics justify it.
 6. Completion statuses should be changed by a developer only with a commit/test/evidence link. The initial checks are intentionally conservative.
 
+## Verified progress — 13 November 2026
+
+- **P0.01** Repository inventory inspected.
+- **P0.02** Automated CI succeeded including frontend/Python tests, Ruff, Next.js build/type-check and Playwright browser checks: https://github.com/Planeshiffhter/eng-teacher/actions/runs/43471210303
+- **P1.06** Explicit assistance commands implemented and regression-tested: https://github.com/Planeshiffhter/eng-teacher/commit/aacc0e78a16ed0cb7bdaa6490e837f69ce6a9d82
+- **Next unblocked coding task:** P1.07 (broader intent classification, ambiguous turns, Hinglish controls and equivalent paraphrase handling), plus P2.16 (privacy-safe model-token usage metrics).
+- **External verification remains blocked:** P2.12–P2.15 require owner-managed service credentials, connectivity, consenting speakers and a physical Android test.
+
 ## P0: Foundation, safety and current baseline
 
-- [ ] **P0.01** Inventory current Next.js, Python, CI and tests
+- [x] **P0.01** Inventory current Next.js, Python, CI and tests
   - **Acceptance:** Repository tree + source inventory verified
   - **Dependency/blocker:** None
-- [ ] **P0.02** Run locked frontend/agent tests and CI
+- [x] **P0.02** Run locked frontend/agent tests and CI
   - **Acceptance:** CI green on current branch
   - **Dependency/blocker:** Actions runner / network for npm and uv
 - [ ] **P0.03** Verify licences of imported libraries and all voice/avatar/model assets
@@ -39,7 +47,7 @@
 
 ## P1: Dialogue engine — immediate coding
 
-- [ ] **P1.06** Fix Hindi explanations, repeat, retry-again and skip without accidental advancement
+- [x] **P1.06** Fix Hindi explanations, repeat, retry-again and skip without accidental advancement
   - **Acceptance:** Regression tests preserve pending correction/question index
   - **Dependency/blocker:** None
 - [ ] **P1.07** Differentiate genuine retry vs learner request; safe uncertainty fallback

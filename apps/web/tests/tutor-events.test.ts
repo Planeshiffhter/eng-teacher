@@ -23,6 +23,20 @@ describe('tutor room packets', () => {
     expect(parseTutorEvent(new Uint8Array([255]), 'tutor.feedback')).toBeNull();
     expect(parseTutorEvent(encode(feedback), 'other.topic')).toBeNull();
   });
+  it('accepts assistance feedback without treating it as a new correction', () => {
+    const assistance: TutorFeedback = {
+      ...feedback,
+      turn_id: 'turn-help',
+      original: 'Please explain that in Hindi',
+      action: 'assist',
+      explanation: 'भूतकाल के लिए इस क्रिया का इस्तेमाल करते हैं।',
+      spoken_response: 'भूतकाल के लिए इस क्रिया का इस्तेमाल करते हैं।',
+    };
+    expect(parseTutorEvent(encode(assistance), 'tutor.feedback')).toEqual({
+      topic: 'tutor.feedback',
+      data: assistance,
+    });
+  });
   it('allows clarification without fabricating a correction', () => {
     const data = { ...feedback, corrected: null, explanation: null, action: 'clarify' };
     expect(parseTutorEvent(encode(data), 'tutor.feedback')?.data).toEqual(data);
