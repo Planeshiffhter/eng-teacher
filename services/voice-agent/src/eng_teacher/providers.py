@@ -101,7 +101,6 @@ class OpenAITutorModel:
             raise ValueError("Tutor returned no decision")
         return ModelDecision.model_validate_json(content)
 
-
     async def explain_correction(self, corrected: str, explanation: str, language: str) -> str:
         """Provide a concise learner-facing Hindi explanation of a saved correction."""
         import json
@@ -191,7 +190,7 @@ class OpenAITutorModel:
             "Do not invent facts about this learner. No new interview question."
             if kind == "example"
             else "Translate the English sentence faithfully into natural simple Hindi in "
-                 "Devanagari. Preserve names, numbers, negation, and meaning. No extra claims."
+            "Devanagari. Preserve names, numbers, negation, and meaning. No extra claims."
         )
         result = await self.client.chat.completions.create(
             model=self.model,
