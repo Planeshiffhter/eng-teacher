@@ -38,3 +38,9 @@ When a decision changes, record the *reason, test evidence and date* here.
 - Shipped an audio-only UI first; avatar integration is deferred until real voice acceptance succeeds. The recap and bounded conversation context remain in memory only. No recording or training dataset is created.
 - The token route requires a pilot access code, grants microphone publishing only, dispatches one named worker, and embeds the fixed lesson deadline. Public authentication, distributed quotas, durable progress and billing remain separate work.
 - Startup, test commands, known limitations and required live checks are in [DEVELOPMENT.md](DEVELOPMENT.md) and [VALIDATION.md](VALIDATION.md). No provider credentials were available for the initial implementation run.
+
+## Additional reference and dialogue decisions — 16 November 2026
+
+- [Cadence / Talking Avatar pinned research](TWO_PRIMARY_REFERENCE_REPOS.md): reuse Cadence's **learning-flow design**, not its parallel Firebase/Torch/coach services. Defer full audio pronunciation scoring until consented human calibration. Trial Talking Avatar only in an isolated single-audio-owner browser adapter; do not attach it alongside the existing LiveKit RoomAudioRenderer, which would risk doubled sound.
+- [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1): prioritize preserving correction state through unrecognized questions and genuine text-only retry classification over avatar dependency installation. The new schema-based text evaluation is **not** a pronunciation grade.
+- Treat recoverable provider errors as in-session warnings; retain explicit fatal error shutdown. Continue requiring real audio validation for interruption and recovery behavior.
