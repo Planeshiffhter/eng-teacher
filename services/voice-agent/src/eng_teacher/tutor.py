@@ -76,7 +76,9 @@ class TutorModel(Protocol):
 
     async def help_with_correction(self, corrected: str, explanation: str, kind: str) -> str: ...
 
-    async def assess_retry(self, original: str, corrected: str, explanation: str) -> RetryDecision: ...
+    async def assess_retry(
+        self, original: str, corrected: str, explanation: str
+    ) -> RetryDecision: ...
 
 
 _NEGATION = re.compile(
@@ -151,25 +153,32 @@ class InterviewTutor:
             return QUESTIONS[self.question_index]
         return "Tell me more about a specific example from your experience."
 
-
     async def _assist(self, original: str, command: str, language: str) -> Feedback:
         target = self.pending_retry
         if command == "next":
             self.pending_retry = None
             self.pending_explanation = None
-            return Feedback(original=original, action="continue", spoken_response=self._next_question())
+            return Feedback(
+                original=original, action="continue", spoken_response=self._next_question()
+            )
         if command == "repeat":
             reply = (
                 f"The corrected sentence is: {target}. Please try saying it when ready."
-                if target else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS)-1)]}"
+                if target
+                else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS) - 1)]}"
             )
-            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+            return Feedback(
+                original=original, action="assist", corrected=target, spoken_response=reply
+            )
         if command == "again":
             reply = (
                 f"Of course, take another try. You can say: {target}."
-                if target else "Of course. Take your time answering the current question."
+                if target
+                else "Of course. Take your time answering the current question."
             )
-            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+            return Feedback(
+                original=original, action="assist", corrected=target, spoken_response=reply
+            )
         if command in {"example", "translate"}:
             if not target:
                 return Feedback(
@@ -197,7 +206,11 @@ class InterviewTutor:
                 spoken_response=explanation + " Try the corrected sentence when you're ready.",
             )
         if not target:
-            return Feedback(original=original, action="assist", spoken_response="Which sentence would you like me to explain?")
+            return Feedback(
+                original=original,
+                action="assist",
+                spoken_response="Which sentence would you like me to explain?",
+            )
         explanation = self.pending_explanation or "Let's practice this sentence."
         if language == "hi":
             try:
@@ -232,7 +245,8 @@ class InterviewTutor:
                 feedback = Feedback(
                     original=original,
                     action="retry",
-                    spoken_response="That matches the phrase we practiced. " + self._next_question(),
+                    spoken_response="That matches the phrase we practiced. "
+                    + self._next_question(),
                 )
             elif looks_like_question(original):
                 feedback = Feedback(
@@ -285,7 +299,8 @@ class InterviewTutor:
                     feedback = Feedback(
                         original=original,
                         action="retry",
-                        spoken_response="Thanks for trying. That expresses the idea. " + self._next_question(),
+                        spoken_response="Thanks for trying. That expresses the idea. "
+                        + self._next_question(),
                     )
         else:
             try:
