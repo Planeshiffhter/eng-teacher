@@ -45,6 +45,9 @@ describe('tutor room packets', () => {
     expect(parseTutorEvent(encode({ version: 1, state: 'started', deadline_ms: 1234 }), 'tutor.lesson')).not.toBeNull();
     expect(parseTutorEvent(encode({ version: 1, state: 'started', deadline_ms: 'later' }), 'tutor.lesson')).toBeNull();
     expect(parseTutorEvent(encode({ version: 1, message: 'Speech service is unavailable.' }), 'tutor.error')?.topic).toBe('tutor.error');
+    const recoverable = parseTutorEvent(encode({ version: 1, message: 'Retry later.', recoverable: true }), 'tutor.error');
+    expect(recoverable).toEqual({ topic: 'tutor.error', data: { version: 1, message: 'Retry later.', recoverable: true } });
+    expect(parseTutorEvent(encode({ version: 1, message: 'Invalid.', recoverable: 'yes' }), 'tutor.error')).toBeNull();
   });
 });
 
