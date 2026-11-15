@@ -167,7 +167,9 @@ async def interview(ctx: JobContext):
                 "tutor.error",
                 {
                     "version": 1,
-                    "message": "A speech service failed. Please try speaking again." if getattr(event.error, "recoverable", False) else "A speech service is unavailable. Please end the session and try again.",
+                    "message": "A speech service failed. Please try speaking again."
+                    if getattr(event.error, "recoverable", False)
+                    else "A speech service is unavailable. Please end the session and try again.",
                     "recoverable": bool(getattr(event.error, "recoverable", False)),
                 },
             )
