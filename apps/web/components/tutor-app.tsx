@@ -129,6 +129,7 @@ function LessonRoom({ feedback, onFeedback, onFinish }: { feedback: TutorFeedbac
   const transcriptions = useTranscriptions();
   const [remaining, setRemaining] = useState(LESSON_SECONDS);
   const [micError, setMicError] = useState('');
+  const [serviceError, setServiceError] = useState('');
   const [isTogglingMic, setTogglingMic] = useState(false);
   const deadline = useRef<number | null>(null);
   const transcriptEnd = useRef<HTMLDivElement>(null);
@@ -172,8 +173,11 @@ function LessonRoom({ feedback, onFeedback, onFinish }: { feedback: TutorFeedbac
     const receiveData = (payload: Uint8Array, participant?: RemoteParticipant, _kind?: unknown, topic?: string) => {
       if (!participant?.isAgent) return;
       const event = parseTutorEvent(payload, topic);
-      if (event?.topic === 'tutor.feedback') onFeedback(event.data);
-      if (event?.topic === 'tutor.error') endSession(event.data.message);
+      if (event?.topic === 'tutor.feedback') { setServiceError(''); onFeedback(event.data); }
+      if (event?.topic === 'tutor.error') {
+        if (event.data.recoverable) setServiceError(event.data.message);
+        else endSession(event.data.message);
+      }
       if (event?.topic === 'tutor.lesson') {
         deadline.current = lessonDeadline(deadline.current ?? Date.now() + LESSON_SECONDS * 1_000, event.data.deadline_ms);
         if (event.data.state === 'ended') endSession('Your lesson is complete. Keep practicing the phrases in your recap.');
@@ -203,6 +207,7 @@ function LessonRoom({ feedback, onFeedback, onFinish }: { feedback: TutorFeedbac
       <div className="active-presence"><SoundMark active={state === 'speaking'} /><h2 role="status">{stateLabel}</h2><p>Speak naturally. English and Hindi–English are welcome.</p><span className="audio-only">Audio only · You can interrupt at any time</span></div>
       <StartAudio className="button button-primary enable-audio" label="Enable tutor audio" />
       <div className="transcript-panel" aria-label="Live subtitles"><div className="section-title"><h3>Live subtitles</h3><span>Speech recognition may make mistakes</span></div><div className="transcript-scroll" role="log" aria-live="polite" aria-relevant="additions text">{visibleTranscripts.length ? visibleTranscripts.map((item) => <p key={item.streamInfo.id} className={item.participantInfo.identity === localParticipant.identity ? 'transcript-student' : 'transcript-tutor'}><span>{item.participantInfo.identity === localParticipant.identity ? 'You' : 'Tutor'}</span>{item.text}</p>) : <p className="transcript-placeholder">Your conversation will appear here as you speak.</p>}<div ref={transcriptEnd} /></div></div>
+      {serviceError && <p className="notice" role="alert">{serviceError}</p>}
       {micError && <p className="notice" role="alert">{micError}</p>}
       <div className="session-controls"><button className={`button button-mic ${!isMicrophoneEnabled ? 'is-muted' : ''}`} onClick={toggleMic} disabled={isTogglingMic} aria-pressed={!isMicrophoneEnabled}><MicIcon muted={!isMicrophoneEnabled} />{isMicrophoneEnabled ? 'Mute mic' : 'Unmute mic'}</button><button className="button button-end" onClick={() => endSession('Lesson ended. Your practice recap is below.')}><span aria-hidden="true">■</span> End lesson</button></div>
     </section>
