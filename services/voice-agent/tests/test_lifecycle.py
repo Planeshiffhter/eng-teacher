@@ -150,7 +150,6 @@ async def test_learner_disconnect_closes_paid_pipeline(worker):
         await callback()
 
 
-
 async def test_recoverable_speech_error_reports_warning_without_ending_call(worker):
     model, sessions = worker
     ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
