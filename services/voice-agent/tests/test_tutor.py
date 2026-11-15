@@ -279,6 +279,7 @@ async def test_help_followups_never_advance_or_consume_retry():
     ))
     tutor = InterviewTutor(model)
     await tutor.turn("I handle calls yesterday")
+    assist_responses = []
     for command in (
         "Please explain that in English",
         "Could you give me an example?",
@@ -288,11 +289,12 @@ async def test_help_followups_never_advance_or_consume_retry():
         "Could you give me an example?",
     ):
         result = await tutor.turn(command)
+        assist_responses.append(result)
         assert result.action == "assist"
         assert tutor.pending_retry == "I handled customer calls."
         assert tutor.question_index == 0
-    assert "For example" in tutor.history[-4][1]
-    assert "एक उदाहरण" in tutor.history[-3][1]
+    assert "For example" in assist_responses[1].spoken_response
+    assert "एक उदाहरण" in assist_responses[2].spoken_response
     assert not model.retry_inputs
     result = await tutor.turn("I handled customer calls.")
     assert result.action == "retry"
