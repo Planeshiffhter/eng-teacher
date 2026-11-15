@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from typing import Literal, Protocol
 from uuid import uuid4
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
 
 from .controls import explicit_control
 
@@ -35,8 +35,8 @@ class ModelDecision(BaseModel):
     corrected: str | None = Field(max_length=1200)
     explanation: str | None = Field(max_length=500)
     reply: str = Field(min_length=1, max_length=600)
-    uncertain: bool
-    meaning_preserved: bool
+    uncertain: StrictBool
+    meaning_preserved: StrictBool
 
     @model_validator(mode="after")
     def correction_is_complete(self):
@@ -52,8 +52,8 @@ class RetryDecision(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
     action: Literal["accept", "retry", "clarify"]
-    uncertain: bool
-    meaning_preserved: bool
+    uncertain: StrictBool
+    meaning_preserved: StrictBool
 
 
 class Feedback(BaseModel):
