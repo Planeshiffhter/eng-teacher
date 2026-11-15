@@ -1,0 +1,262 @@
+ENG TEACHER — OPEN-SOURCE REPOSITORIES WE DISCUSSED
+======================================================
+Updated: 2026-11-15
+Project: https://github.com/Planeshiffhter/eng-teacher
+Purpose: One reference inventory so Codex and other developers can find,
+evaluate, and selectively reuse existing public projects instead of
+rebuilding everything.
+
+VERIFICATION
+------------
+All 21 GitHub URLs below were checked against the GitHub API on
+2026-11-15 and existed as public repositories at that time. The license
+labels below summarize the visible repository metadata or LICENSE file.
+This is NOT a legal audit of dependencies, bundled assets, weights,
+characters, audio voices, or proprietary content. Read current LICENSE
+and third-party notices at the actual revision before commercial use.
+
+DECISION RULES
+--------------
+* Keep ONE main product repository: Planeshiffhter/eng-teacher.
+* Reuse official packages and minimal compatible modules, not complete
+  competing applications with overlapping frontends/backends.
+* "Study" means examine architecture and learn patterns. Do not copy
+  proprietary branding, premium content, character designs, or code
+  from noncommercial repositories into a commercial product.
+* If a component already works in the main repo, DO NOT rebuild it.
+* Integrate only after checking license, tests, latency, and maintainability.
+* An open-source library is not necessarily a free hosting service.
+
+A. CORE REAL-TIME VOICE / VIDEO (USE THE EXISTING FOUNDATION)
+-------------------------------------------------------------
+
+01. LIVEKIT REACT AGENT STARTER
+    URL: https://github.com/livekit-examples/agent-starter-react
+    GitHub license metadata: MIT
+    Purpose: Next.js frontend, real-time voice-room UI, captions, call
+             controls and reusable voice-agent interface.
+    Recommendation: CORE. Already forms part of this project. Continue
+                    the current implementation; do not restart it.
+
+02. LIVEKIT PYTHON AGENT STARTER
+    URL: https://github.com/livekit-examples/agent-starter-python
+    GitHub license metadata: MIT
+    Purpose: Live voice agent, two-way audio, interruptions, STT/LLM/TTS
+             pipeline and tests.
+    Recommendation: CORE. Already forms part of this project. Extend
+                    our custom teacher logic in the current repo.
+
+03. LIVEKIT SERVER
+    URL: https://github.com/livekit/livekit
+    GitHub license metadata: Apache-2.0
+    Purpose: Optional self-hosted real-time WebRTC infrastructure.
+    Recommendation: LATER. Use existing LiveKit connection initially;
+                    self-host only when operations/cost justify it.
+
+04. PIPECAT EXAMPLES
+    URL: https://github.com/pipecat-ai/pipecat-examples
+    GitHub license metadata: BSD-2-Clause
+    Purpose: Alternative real-time conversational voice-agent patterns.
+    Recommendation: STUDY ONLY as an alternative. Do not combine two
+                    real-time voice engines unnecessarily.
+
+B. AVATAR, FACE, EXPRESSIONS AND LIP SYNC
+---------------------------------------
+
+05. TALKING AVATAR
+    URL: https://github.com/InterviewFlowAI/talking-avatar
+    GitHub license metadata: MIT
+    Purpose: Browser talking avatar SDK; real-time lips/expressions.
+    Recommendation: PRIORITY TRIAL after voice quality is usable. Confirm
+                    assets and model weights have commercial rights and
+                    test on ordinary Android devices. Audio-only fallback.
+
+06. THREE-VRM
+    URL: https://github.com/pixiv/three-vrm
+    GitHub license metadata: MIT
+    Purpose: Render VRM-format 3D teacher characters in a web browser.
+    Recommendation: AVATAR ALTERNATIVE. It is not a full lip-sync/tutor
+                    product. Do not add unless the chosen avatar requires
+                    custom VRM rendering.
+
+C. SPEECH-TO-TEXT AND TEXT-TO-SPEECH
+-----------------------------------
+
+07. FASTER-WHISPER
+    URL: https://github.com/SYSTRAN/faster-whisper
+    GitHub license metadata: MIT
+    Purpose: Self-hosted multilingual speech transcription.
+    Recommendation: ALTERNATIVE STT PROVIDER. Benchmark code-switching,
+                    names and negative statements against current STT.
+
+08. KOKORO
+    URL: https://github.com/hexgrad/kokoro
+    GitHub license metadata: Apache-2.0
+    Purpose: Open voice-synthesis model / speech generation.
+    Recommendation: ALTERNATIVE TTS PROVIDER. Compare naturalness,
+                    latency, language support, hardware costs and the
+                    actual model/voice asset licenses.
+
+D. ALREADY-EXISTING AI ENGLISH / LANGUAGE LEARNING APPS
+-------------------------------------------------------
+
+09. CADENCE
+    URL: https://github.com/pstepanovum/Cadence
+    GitHub license metadata: MIT
+    Purpose: AI pronunciation coach; phoneme feedback, guided speaking
+             exercises, lessons, Next.js/Python code.
+    Recommendation: STUDY/SELECTIVELY ADAPT compatible speaking modules.
+                    Do not replace the LiveKit base with another app.
+
+10. SPRIGO
+    URL: https://github.com/ozerozdas/sprigo
+    GitHub license metadata: MIT
+    Purpose: Local-first desktop language learning, generated lessons,
+             conversation practice, tutor learning flows.
+    Recommendation: STUDY lesson design, roleplay, progression and tutor
+                    UX. Desktop-first approach differs from web SaaS.
+
+11. AI ENGLISH CONVERSATION TUTOR
+    URL: https://github.com/Yurikada/ai-english-conversation-tutor
+    GitHub license metadata: MIT
+    Purpose: FastAPI/Ollama English speaking practice with STT,
+             grammar feedback and voice responses.
+    Recommendation: STUDY simple local-model teacher/inference patterns.
+                    Avoid duplicate backend implementations.
+
+12. THIRTYTUTORS
+    URL: https://github.com/wiss84/thirtytutors
+    LICENSE verified: PolyForm Noncommercial 1.0.0
+    Purpose: Speech-to-speech tutor with multiple 3D avatars and voices.
+    Recommendation: STUDY CONCEPT ONLY. DO NOT COPY INTO OUR COMMERCIAL
+                    APP without separate valid permission/license.
+
+13. FREESURF LANGUAGE TUTOR
+    URL: https://github.com/freesurf-ecosystem/language-tutor
+    LICENSE verified: GNU GPL v3 or later, with additional terms.
+    Purpose: Mobile language tutor, English learning and model/speech
+             integration ideas.
+    Recommendation: STUDY/REVIEW LEGAL OBLIGATIONS. GPL copyleft and
+                    additional terms may require releasing derivative
+                    source when distributed. Do not blindly import.
+
+E. PRONUNCIATION SCORING AND LEARNING SCIENCE
+--------------------------------------------
+
+14. OPENPRONOUNCE
+    URL: https://github.com/Halleck45/OpenPronounce
+    GitHub license metadata: MIT
+    Purpose: Audio-based English phoneme-level assessment
+             (Wav2Vec2 + DTW).
+    Recommendation: TRIAL ONLY. Benchmark against qualified teacher
+                    judgments and varied accents/noise. Do not infer
+                    pronunciation scores from text alone.
+
+15. TS-FSRS
+    URL: https://github.com/open-spaced-repetition/ts-fsrs
+    GitHub license metadata: MIT
+    Purpose: Proven spaced-repetition scheduling for review phrases
+             and vocabulary.
+    Recommendation: ADD when learner-approved progress/history exists.
+                    Do not invent a custom scheduling algorithm.
+
+F. QUALITY, AUTHENTICATION, STORAGE
+----------------------------------
+
+16. PROMPTFOO
+    URL: https://github.com/promptfoo/promptfoo
+    GitHub license metadata: MIT
+    Purpose: Repeatable LLM/prompt evaluations and regression tests.
+    Recommendation: ADD to test false corrections, meaning preservation,
+                    explanations and language changes with consented
+                    held-out evaluation examples.
+
+17. SUPABASE
+    URL: https://github.com/supabase/supabase
+    GitHub license metadata: Apache-2.0 (repository metadata)
+    Purpose: PostgreSQL ecosystem, user authentication and developer
+             backend tooling.
+    Recommendation: CHOOSE ONLY ONE auth/database strategy. Deploy
+                    securely, respect row-level permissions and privacy.
+
+G. OUR OWN MODEL: TRAINING AND DEPLOYMENT
+----------------------------------------
+
+18. UNSLOTH
+    URL: https://github.com/unslothai/unsloth
+    GitHub license metadata: Apache-2.0 (core repository)
+    Purpose: Efficient Qwen/other open-weight fine-tuning with LoRA
+             and supported notebooks.
+    Recommendation: LATER, once we have teacher-reviewed training data,
+                    consent, baseline quality and GPU availability.
+    Warning: Optional separately distributed components may have
+             different licenses (e.g. Studio). Verify each component.
+
+19. VLLM
+    URL: https://github.com/vllm-project/vllm
+    GitHub license metadata: Apache-2.0
+    Purpose: High-throughput self-hosted language-model inference.
+    Recommendation: LATER, if concurrency and quality/cost studies
+                    justify serving a Qwen model on GPUs.
+
+H. NATIVE MOBILE STARTER ALTERNATIVES
+-------------------------------------
+
+20. LIVEKIT ANDROID STARTER
+    URL: https://github.com/livekit-examples/agent-starter-android
+    GitHub license metadata: MIT
+    Purpose: Native Android LiveKit AI voice frontend; README confirms
+             Android SDK and Android Studio workflow.
+    Recommendation: LATER, if we choose native Android development.
+    Note: GitHub API description was inconsistent (mentioned Apple
+          platforms); the actual README described Android.
+
+21. LIVEKIT REACT NATIVE STARTER
+    URL: https://github.com/livekit-examples/agent-starter-react-native
+    GitHub license metadata: MIT
+    Purpose: React Native / Expo voice assistant frontend for Android
+             and iOS (confirmed in README).
+    Recommendation: LATER. Prefer if shared JS/TypeScript architecture
+                    benefits cross-platform app development. Choose
+                    this OR native Android, not both by default.
+
+NON-GITHUB REFERENCES DISCUSSED
+-------------------------------
+These are NOT GitHub repositories and are NOT counted in the 21 URLs.
+
+* Qwen3.5-4B model (Hugging Face):
+  https://huggingface.co/Qwen/Qwen3.5-4B
+  Possible base model for future fine-tuning; verify model card,
+  weights license, VRAM and version before training/deployment.
+
+* Sarvam AI: https://www.sarvam.ai/
+  Hosted Indian-language speech service candidate. Verify language
+  coverage, pricing and privacy/retention terms before integrating.
+
+* Product feature benchmarks (NOT code to import):
+  Praktika — animated AI speaking tutors
+  ELSA Speak — detailed pronunciation feedback
+  Speak — personalized speaking conversations
+  Duolingo — structured curriculum and engagement
+  Supernova — Indian regional-language English-learning workflows
+
+RECOMMENDED ORDER FOR CODEX
+---------------------------
+1. READ current eng-teacher code and reuse working LiveKit integrations.
+2. Stabilize correction/retry/explanation state and regression tests.
+3. Test a real English/Hindi microphone-to-speaker lesson with
+   credentials configured securely outside Git.
+4. Add consent-safe usage/latency/cost monitoring.
+5. Integrate ONE avatar solution, keeping audio-only fallback.
+6. Add educator-reviewed exercises and audio pronunciation testing.
+7. Add learning accounts/history, then FSRS and personalized lessons.
+8. Add additional native languages after speaker testing.
+9. Fine-tune a Qwen adapter only after consented reviewed examples,
+   held-out evaluations and a proven baseline.
+10. Implement self-hosted inference/mobile/billing only when justified.
+
+CODEX HANDOFF:
+See AGENTS.md, docs/IMPLEMENTATION_CHECKLIST.md and
+docs/CODEX_MASTER_BUILD_PROMPT.md. Changes should be incremental,
+tested and documented. Never treat this reference list as a command
+to import all 21 repositories at once.
