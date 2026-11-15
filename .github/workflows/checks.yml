@@ -25,6 +25,7 @@ jobs:
       - run: npm test
       - run: npm run test:agent
       - run: uv run --frozen --project services/voice-agent ruff check services/voice-agent
+      - run: uv run --frozen --project services/voice-agent ruff format --check services/voice-agent
       - run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: '1'
