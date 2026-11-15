@@ -148,3 +148,39 @@ async def test_learner_disconnect_closes_paid_pipeline(worker):
     assert sessions[0].closed
     for callback in ctx.callbacks:
         await callback()
+
+
+
+async def test_recoverable_speech_error_reports_warning_without_ending_call(worker):
+    model, sessions = worker
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    callback = sessions[0].callbacks["error"]
+    callback(SimpleNamespace(error=SimpleNamespace(recoverable=True)))
+    for _ in range(20):
+        if any(topic == "tutor.error" for topic, _ in ctx.room.packets):
+            break
+        await asyncio.sleep(0.01)
+    warnings = [value for topic, value in ctx.room.packets if topic == "tutor.error"]
+    assert warnings and warnings[-1]["recoverable"] is True
+    assert ctx.reason is None
+    assert not sessions[0].closed
+    for shutdown in ctx.callbacks:
+        await shutdown()
+    model.aclose.assert_awaited_once()
+
+
+async def test_fatal_speech_error_ends_call(worker):
+    _, sessions = worker
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    sessions[0].callbacks["error"](SimpleNamespace(error=SimpleNamespace(recoverable=False)))
+    await asyncio.wait_for(ctx.stopped.wait(), timeout=1)
+    assert ctx.reason == "provider_error"
+    assert sessions[0].closed
+    assert any(
+        topic == "tutor.error" and packet["recoverable"] is False
+        for topic, packet in ctx.room.packets
+    )
+    for shutdown in ctx.callbacks:
+        await shutdown()
