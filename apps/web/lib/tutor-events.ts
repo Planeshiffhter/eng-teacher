@@ -17,7 +17,7 @@ export interface LessonEvent {
 export type TutorEvent =
   | { topic: 'tutor.feedback'; data: TutorFeedback }
   | { topic: 'tutor.lesson'; data: LessonEvent }
-  | { topic: 'tutor.error'; data: { version: 1; message: string } };
+  | { topic: 'tutor.error'; data: { version: 1; message: string; recoverable?: boolean } };
 
 const text = (value: unknown, max = 4_000): value is string =>
   typeof value === 'string' && value.length <= max;
@@ -41,8 +41,9 @@ export function parseTutorEvent(payload: Uint8Array, topic?: string): TutorEvent
       value.deadline_ms > 0 && (value.reason === undefined || text(value.reason, 500))) {
       return { topic, data: value as unknown as LessonEvent };
     }
-    if (topic === 'tutor.error' && text(value.message, 500) && value.message.length > 0) {
-      return { topic, data: { version: 1, message: value.message } };
+    if (topic === 'tutor.error' && text(value.message, 500) && value.message.length > 0 &&
+      (value.recoverable === undefined || typeof value.recoverable === 'boolean')) {
+      return { topic, data: { version: 1, message: value.message, ...(value.recoverable === undefined ? {} : { recoverable: value.recoverable }) } };
     }
   } catch { /* Invalid packets must never break the live audio session. */ }
   return null;
