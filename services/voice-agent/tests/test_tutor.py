@@ -32,12 +32,16 @@ class FakeModel:
         self.retry_inputs = []
 
     async def explain_correction(self, corrected, explanation, language):
-        assert language == 'hi'
-        return 'भूतकाल के लिए इस क्रिया का इस्तेमाल करते हैं।'
+        assert language == "hi"
+        return "भूतकाल के लिए इस क्रिया का इस्तेमाल करते हैं।"
 
     async def help_with_correction(self, corrected, explanation, kind):
         assert kind in ("example", "translate")
-        return "एक उदाहरण: मैं ग्राहकों से बात करता हूँ।" if kind == "translate" else "For example, I handled a call yesterday."
+        return (
+            "एक उदाहरण: मैं ग्राहकों से बात करता हूँ।"
+            if kind == "translate"
+            else "For example, I handled a call yesterday."
+        )
 
     async def assess_retry(self, original, corrected, explanation):
         self.retry_inputs.append((original, corrected, explanation))
@@ -200,28 +204,33 @@ async def test_provider_rejects_malformed_or_empty_json(content):
         await model.decide("I work", "Tell me about your work", [])
 
 
-@pytest.mark.parametrize("input_text,expected", [
-    ("Please explain that in Hindi", ("explain", "hi")),
-    ("Can you repeat the correct sentence?", ("repeat", "en")),
-    ("One more try, please.", ("again", "en")),
-    ("Skip this question.", ("next", "en")),
-    ("हिंदी में समझाओ", ("explain", "hi")),
-    ("Please explain that in English", ("explain", "en")),
-    ("Could you give me an example?", ("example", "en")),
-    ("Translate that into Hindi", ("translate", "hi")),
-    ("What is the Hindi meaning of that?", ("translate", "hi")),
-    ("I explained the situation yesterday", None),
-])
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("Please explain that in Hindi", ("explain", "hi")),
+        ("Can you repeat the correct sentence?", ("repeat", "en")),
+        ("One more try, please.", ("again", "en")),
+        ("Skip this question.", ("next", "en")),
+        ("हिंदी में समझाओ", ("explain", "hi")),
+        ("Please explain that in English", ("explain", "en")),
+        ("Could you give me an example?", ("example", "en")),
+        ("Translate that into Hindi", ("translate", "hi")),
+        ("What is the Hindi meaning of that?", ("translate", "hi")),
+        ("I explained the situation yesterday", None),
+    ],
+)
 def test_voice_control_recognition(input_text, expected):
     assert explicit_control(input_text) == expected
 
 
 async def test_explain_repeat_another_try_keeps_same_pending_correction():
-    model = FakeModel(decision(
-        action="correct",
-        corrected="I handled customer calls.",
-        explanation="Use past tense for finished work.",
-    ))
+    model = FakeModel(
+        decision(
+            action="correct",
+            corrected="I handled customer calls.",
+            explanation="Use past tense for finished work.",
+        )
+    )
     tutor = InterviewTutor(model)
     initial = await tutor.turn("Maine customer calls handle kiye")
     assert initial.action == "correct"
@@ -242,9 +251,9 @@ async def test_explain_repeat_another_try_keeps_same_pending_correction():
 
 
 async def test_skip_explicitly_advances_and_clears_retry():
-    tutor = InterviewTutor(FakeModel(decision(
-        action="correct", corrected="I work.", explanation="Use base verb."
-    )))
+    tutor = InterviewTutor(
+        FakeModel(decision(action="correct", corrected="I work.", explanation="Use base verb."))
+    )
     await tutor.turn("I works.")
     skipped = await tutor.turn("Skip this question.")
     assert skipped.action == "continue"
@@ -259,9 +268,9 @@ async def test_explanation_provider_failure_does_not_consume_retry():
         async def explain_correction(self, corrected, explanation, language):
             raise RuntimeError("provider failure secret payload")
 
-    tutor = InterviewTutor(FailingModel(decision(
-        action="correct", corrected="I worked.", explanation="Past tense."
-    )))
+    tutor = InterviewTutor(
+        FailingModel(decision(action="correct", corrected="I worked.", explanation="Past tense."))
+    )
     await tutor.turn("I work yesterday.")
     result = await tutor.turn("Explain that in Hindi.")
     assert result.action == "assist"
@@ -270,13 +279,14 @@ async def test_explanation_provider_failure_does_not_consume_retry():
     assert "secret" not in result.model_dump_json()
 
 
-
 async def test_help_followups_never_advance_or_consume_retry():
-    model = FakeModel(decision(
-        action="correct",
-        corrected="I handled customer calls.",
-        explanation="Use past tense for completed work.",
-    ))
+    model = FakeModel(
+        decision(
+            action="correct",
+            corrected="I handled customer calls.",
+            explanation="Use past tense for completed work.",
+        )
+    )
     tutor = InterviewTutor(model)
     await tutor.turn("I handle calls yesterday")
     assist_responses = []
@@ -318,7 +328,9 @@ async def test_unrelated_utterance_cannot_advance_pending_retry():
 
 async def test_acceptable_paraphrase_advances_after_semantic_validation():
     model = FakeModel(
-        decision(action="correct", corrected="I assisted customers.", explanation="Use past tense."),
+        decision(
+            action="correct", corrected="I assisted customers.", explanation="Use past tense."
+        ),
         retry_result=RetryDecision(action="accept", uncertain=False, meaning_preserved=True),
     )
     tutor = InterviewTutor(model)
@@ -370,7 +382,12 @@ async def test_retry_uncertainty_and_provider_failure_keep_correction():
     [
         {"action": "invalid", "uncertain": False, "meaning_preserved": True},
         {"action": "accept", "uncertain": "yes", "meaning_preserved": True},
-        {"action": "accept", "uncertain": False, "meaning_preserved": True, "pronunciation_score": 100},
+        {
+            "action": "accept",
+            "uncertain": False,
+            "meaning_preserved": True,
+            "pronunciation_score": 100,
+        },
     ],
 )
 def test_retry_decision_is_schema_strict(payload):
