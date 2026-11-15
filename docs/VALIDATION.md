@@ -17,7 +17,7 @@ Date: 13 November 2026. Branch: `feat/voice-tutor-mvp`.
 | `uv run --frozen pytest` in `services/voice-agent` | 33 tests passed | Tutor policy/adapter checks, installed SDK session routing with fake model and synthetic speech frames, correction → retry → continuation, immutable deadline validation, deadline expiry, room deletion and learner-disconnect lifecycle. |
 | `uv run --frozen ruff check .` and `ruff format --check .` in the agent | Passed | Python lint and formatting. |
 
-The SDK-session test uses the real LiveKit scheduler and a fake audio sink, but injects text instead of recognizing microphone audio and synthesizes silent frames instead of calling a voice provider. Worker lifecycle tests use fake room/session APIs. These results do not establish live speech acceptance. The GitHub Actions workflow is checked in; it has not been observed running remotely from this environment.
+The SDK-session test uses the real LiveKit scheduler and a fake audio sink, but injects text instead of recognizing microphone audio and synthesizes silent frames instead of calling a voice provider. Worker lifecycle tests use fake room/session APIs. These results do not establish live speech acceptance. GitHub Actions was subsequently observed passing on the latest main commit (88f600d, 15 Nov 2026): https://github.com/Planeshiffhter/eng-teacher/actions/runs/43712040973. These are still offline automated checks; the earlier local test counts above describe the Nov 13 baseline, not the new PR.
 
 ## Live acceptance still required
 
@@ -35,3 +35,9 @@ After securely configuring the examples described in [DEVELOPMENT.md](DEVELOPMEN
 8. Inspect private server aggregate usage and provider billing. Confirm no lesson recordings, database transcripts, cloud trace uploads or browser persistence were enabled. Review provider-side retention independently. Model token costs, exact total lesson cost and measured latency remain unvalidated.
 
 Run the full [MVP acceptance criteria](MVP_AND_ACCEPTANCE.md) before a learner pilot. Public rollout also requires individual authentication, distributed quotas/rate limiting, deployment operations and commercial artifact/voice review. These are recorded limitations rather than silently mocked features.
+
+## 16 November 2026 follow-up — PR #1
+
+The latest main baseline is CI green. [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1) adds deterministic coverage for assistance followups, text-only semantic retries, conservative meaning guards and recoverable error handling. The first PR CI attempt failed because the test exposed Pydantic's permissive boolean coercion; a subsequent commit uses StrictBool in both decision models. Refer to the final PR Actions run for authoritative new test/build/Playwright results. This is an offline-only engineering change, not evidence that speech or pronunciation has been validated.
+
+**Live blockers unchanged:** secure LiveKit and model/STT/TTS credentials, an actual connected Android device, consenting Hindi–English speakers, a bilingual evaluator and billing measurements. Verify interruptions, ASR errors, low bandwidth, session deadline and provider outages with real audio before claiming a usable commercial pilot.
