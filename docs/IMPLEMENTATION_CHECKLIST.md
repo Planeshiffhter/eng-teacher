@@ -19,6 +19,13 @@
 5. **Cost discipline:** track billable units, retries, model usage and latency. Do not self-host GPU services until quality and unit economics justify it.
 6. Completion statuses should be changed by a developer only with a commit/test/evidence link. The initial checks are intentionally conservative.
 
+## In-flight engineering update — 16 November 2026
+
+- [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1) targets the **remaining P1.07 gap**: pending corrections survive follow-up questions and example/translation requests; nonidentical retries use an explicit semantic decision and conservative entity guards. This is a focused implementation slice, not a claim that all free-form Hinglish intents or speech quality are validated.
+- The same PR separates recoverable speech/tutor errors from fatal room shutdowns, and adds regression tests. Check CI and real-device results before considering the full acceptance gate complete.
+- [Two selected research repos](TWO_PRIMARY_REFERENCE_REPOS.md): Cadence (adopt lesson-design patterns, defer scoring) and Talking Avatar (trial only after resolving LiveKit audio ownership).
+- **Next unblocked work after this PR:** privacy-safe model-token / failure counters (P2.16), then an operator-controlled ten-minute live bilingual validation (P2.12–P2.15).
+
 ## Verified progress — 13 November 2026
 
 - **P0.01** Repository inventory inspected.
