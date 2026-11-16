@@ -1,0 +1,60 @@
+{
+  "starting_commit": "98cfcd77b814848f5637b590b0e05843d69c8d84",
+  "backup_tag": "recovery/pre-consolidation-20261117-98cfcd7",
+  "files": [
+    {
+      "original_path": "services/voice-agent/src/eng_teacher/agent.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/agent.py",
+      "sha256": "aca6fd08ff5396163fa1c393f4344aa13853f347ca3d5606572083d05b41083e",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "services/voice-agent/src/eng_teacher/controls.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/controls.py",
+      "sha256": "b3a103ba59d95cc6c6545809ef33b99abfb001e7367e7cf79902000ee8ca6bf8",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "services/voice-agent/src/eng_teacher/providers.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/providers.py",
+      "sha256": "c639a1f3c7031afb24e8c06f967fe28700f9de5a5f85b0a56ff3c81d66883342",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "services/voice-agent/src/eng_teacher/tutor.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/tutor.py",
+      "sha256": "7af4fbecbe162d08c0a8db3c6317426514488317fb8072727e4c0cfa08ce7093",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "services/voice-agent/tests/test_tutor.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_tutor.py",
+      "sha256": "200385aaf3acc827ac4aaeaba518ae773ce6bbffef45ceb9424e5534d169b122",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "services/voice-agent/tests/test_lifecycle.py",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_lifecycle.py",
+      "sha256": "0d3b1420901f299aee9528b796e70ee5cd926063d90892d56898c50be1a11659",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "apps/web/components/tutor-app.tsx",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/components/tutor-app.tsx",
+      "sha256": "db6125ee9e44efaf834b96d3349a3d3732f803f29c3baf33f7c9ebd4754b5468",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "apps/web/lib/tutor-events.ts",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/lib/tutor-events.ts",
+      "sha256": "798579e2bec67c1836bdecb70c17348af3d7956569c642858d133f055227621a",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": "apps/web/tests/tutor-events.test.ts",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/tests/tutor-events.test.ts",
+      "sha256": "0459b33cf53b1913dfdc3876ebfd1e4379b88ffa23cfb063aa1143ca1c4e6db0",
+      "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    }
+  ]
+}

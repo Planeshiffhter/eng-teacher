@@ -1,0 +1,42 @@
+RECOVERY AND CONSOLIDATION PROGRESS
+Started: 17 November 2026 (Asia/Calcutta)
+Repository: Planeshiffhter/eng-teacher
+Starting main: 98cfcd77b814848f5637b590b0e05843d69c8d84
+Remote backup tag: recovery/pre-consolidation-20261117-98cfcd7
+
+COMPLETED DISCOVERY
+- Fetched all three advertised branch heads and tags; complete accessible history
+  contains 46 commits. No new feature branch or PR was created.
+- Read and classified all 1,535 starting tracked paths, including both uploaded
+  snapshots, active services, documentation, tests, configs and binary boundaries.
+- Reviewed active runtime and disconnected retry-branch behavior; older MVP has
+  no unique active feature absent from main.
+- Saved nine superseded active payloads from immutable starting Git blobs before
+  integration. Existing preservation manifests and all upstream snapshots remain.
+- Pushed a recoverable backup tag to GitHub before implementation.
+- Attempted GitHub metadata/permissions API: Forbidden. Branch-protection and
+  account-identity details cannot be verified through that API. Normal Git pushes
+  remain subject to server policy; no bypass or force push is authorized.
+
+CURRENT TASK
+Consolidate reviewed help/retry/recoverable-error behavior into the existing
+service; fix the reproduced punctuation/decimal meaning-loss regression before
+adoption. Create explicit active feature locations and root test boundaries.
+
+PENDING
+- Complete semantic/security reports for archived modules and reachable history.
+- Generate all requested recovery/feature/duplicate/roadmap/validation reports.
+- Validate recovered behavior, archive exclusion, build, startup and browser flow.
+- Update current docs/continuation guidance and final inventory, then push main.
+
+DECISIONS
+- Reuse current Next.js and Python LiveKit foundation, not a language rewrite.
+- Archived Cadence and avatar apps remain research snapshots, not installed apps.
+- Recover compatibility by responsibility; do not copy all third-party features.
+- Preserve initial versions and provenance; never execute archived setup scripts.
+
+VALIDATION
+Starting-main prior session: 14 JS /42 Python /6 browser checks, build/typecheck
+and Ruff passed. New consolidated implementation still requires its own checks.
+Live voice, native devices, provider teaching quality and account incident
+attribution are not established by local/offline tests.
