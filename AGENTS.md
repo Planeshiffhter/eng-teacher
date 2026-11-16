@@ -4,6 +4,8 @@ This file applies to coding agents working in this repository.
 
 ## First read
 
+**Continuity-first rule:** Read [docs/PROJECT_CONTINUITY_HANDOFF.md](docs/PROJECT_CONTINUITY_HANDOFF.md) **before** relying on any old chat prompt or rebuilding features. It includes previous project research, source map, implementation history, Mermaid diagrams, 21 study repositories, current-versus-PR distinction, live-test blockers and the next unblocked task. The handoff is a dated snapshot: inspect current GitHub main, PRs, CI and actual code before acting. Update it after significant changes without committing personal data, secrets or learner recordings.
+
 Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md, **docs/IMPLEMENTATION_CHECKLIST.md**, and **docs/CODEX_MASTER_BUILD_PROMPT.md**.
 
 ## Core principles
