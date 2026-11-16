@@ -1,0 +1,11 @@
+FUNCTIONAL REORGANIZATION — 17 NOVEMBER 2026
+Starting commit: 05269aec2449605756a6bfa2beadc98ce714b9a3
+Backup: recovery/pre-functional-sort-20261117-05269ae (pushed)
+All 1,567 starting tracked files read and mapped by purpose.
+1,525 payloads relocated; 42 conventional/functional locations retained.
+Teaching/provider/runtime modules and their fixture collections are grouped.
+Docs and recovery evidence are collected by role; original projects remain intact.
+Current task: repair navigation/script roots and write PROJECT_STRUCTURE.md.
+Validation policy: no tests, builds, installations, application imports or startup.
+Only static path/import syntax and payload preservation inspection is authorized.
+Commits use [skip ci] to avoid starting the existing GitHub test workflow.

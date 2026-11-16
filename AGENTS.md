@@ -4,19 +4,29 @@ This file applies to coding agents working in this repository.
 
 ## Current owner instructions
 
+- The current task is functional organization only: do not run tests, builds,
+  installations, application imports or startup. Use static file/path/import and
+  preservation analysis. Commit organization work with `[skip ci]` so pushing does
+  not start the existing test workflow. This task-specific constraint supersedes
+  older validation instructions for this organization task.
+- `PROJECT_STRUCTURE.md` is the current path/ownership guide. Documentation is
+  grouped by purpose under `docs`; earlier audit reports are grouped under
+  `AnalyseFuture/recovery` and retain their recorded historical paths.
+
+
 - Work directly on `main`; do not create feature branches or new PRs for this project unless the owner changes this instruction. Never force-push shared history.
 - Commit and push useful checkpoints at least every five minutes while editing when there are changes to save. Local commits alone do not protect against workspace loss.
 - Stay within the owner's requested task. Keep prior work; move material set aside for future analysis into `AnalyseFuture/` instead of deleting it. Never commit discovered credentials or private learner data there.
-- `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
-- Read `PROJECT_IDEA.txt` for the current product vision and `docs/REPOSITORY_STRUCTURE.md` for the active/archive layout. Historical feature-branch/PR suggestions in older handoffs are superseded by the owner's current workflow.
-- Read `AnalyseFuture/REPOSITORY_AUDIT.txt` and `NEXT_DEVELOPER_INSTRUCTIONS.txt` for the completed consolidation. Web lesson/session owners live under `apps/web/features`; root `pytest.ini` excludes archives. Run the existing scoped commands and preserve their exit status.
-- The retry/help/recoverable-error improvements from `da2796e` are integrated, with punctuation/decimal retry regressions repaired. Do not reimplement them from an older prompt. Current local counts are 14 JS / 71 Python / 6 browser tests; live voice/language/avatar quality remains unverified.
+- `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/original-projects/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
+- Read `docs/product/PROJECT_IDEA.txt` for the current product vision and `docs/architecture/REPOSITORY_STRUCTURE.md` for the active/archive layout. Historical feature-branch/PR suggestions in older handoffs are superseded by the owner's current workflow.
+- Read `AnalyseFuture/recovery/migration/REPOSITORY_AUDIT.txt` and the historical continuation report for the completed consolidation. Web lesson/session owners live under `apps/web/features`; root `pytest.ini` excludes archives. Run the existing scoped commands and preserve their exit status.
+- The retry/help/recoverable-error improvements from `da2796e` are integrated, with punctuation/decimal retry regressions repaired. Do not reimplement them from an older prompt. The preceding recovery task reported 14 JS / 71 Python / 6 browser tests; live voice/language/avatar quality remains unverified.
 
 ## First read
 
-**Continuity-first rule:** Read [docs/PROJECT_CONTINUITY_HANDOFF.md](docs/PROJECT_CONTINUITY_HANDOFF.md) **before** relying on any old chat prompt or rebuilding features. It includes previous project research, source map, implementation history, Mermaid diagrams, 21 study repositories, current-versus-PR distinction, live-test blockers and the next unblocked task. The handoff is a dated snapshot: inspect current GitHub main, PRs, CI and actual code before acting. Update it after significant changes without committing personal data, secrets or learner recordings.
+**Continuity-first rule:** Read [docs/continuity/PROJECT_CONTINUITY_HANDOFF.md](docs/continuity/PROJECT_CONTINUITY_HANDOFF.md) **before** relying on any old chat prompt or rebuilding features. It includes previous project research, source map, implementation history, Mermaid diagrams, 21 study repositories, current-versus-PR distinction, live-test blockers and the next unblocked task. The handoff is a dated snapshot: inspect current GitHub main, PRs, CI and actual code before acting. Update it after significant changes without committing personal data, secrets or learner recordings.
 
-Read README.md and docs/PRODUCT_VISION.md, docs/ASTRA_HANDOFF.md, docs/ARCHITECTURE.md, docs/OPEN_SOURCE_STACK.md, docs/MVP_AND_ACCEPTANCE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/CODEX_IMPLEMENTATION_BRIEF.md, **docs/IMPLEMENTATION_CHECKLIST.md**, and **docs/CODEX_MASTER_BUILD_PROMPT.md**.
+Read README.md and docs/product/PRODUCT_VISION.md, docs/research/ASTRA_HANDOFF.md, docs/architecture/ARCHITECTURE.md, docs/research/OPEN_SOURCE_STACK.md, docs/product/MVP_AND_ACCEPTANCE.md, docs/product/ROADMAP.md, docs/architecture/DECISIONS.md, docs/development/CODEX_IMPLEMENTATION_BRIEF.md, **docs/development/IMPLEMENTATION_CHECKLIST.md**, and **docs/development/CODEX_MASTER_BUILD_PROMPT.md**.
 
 ## Core principles
 

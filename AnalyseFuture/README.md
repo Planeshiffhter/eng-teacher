@@ -1,53 +1,56 @@
-# Material preserved for future analysis
+# Preserved work and future analysis
 
-This folder keeps the uploaded projects and original ZIPs available without mixing
-their applications into Eng Teacher's active source tree. Nothing here was removed
-because it appeared unnecessary, and placement here is not a finding of malicious
-code. Future use requires an explicit integration decision and appropriate review.
+This area separates complete reference projects, superseded implementations,
+future product ideas and dated recovery evidence from the active tutor. Placement
+here is not a claim that a file is malicious or useless. No preserved application
+is installed or executed by the normal active workspace.
 
-| Location | Contents |
+## Functional collections
+
+| Collection | Purpose |
 | --- | --- |
-| [reference-sources/Cadence-main](reference-sources/Cadence-main/) | Complete extracted Cadence snapshot: web, Python services, mobile, desktop, content and tests |
-| [reference-sources/talking-avatar-master](reference-sources/talking-avatar-master/) | Complete extracted Talking Avatar SDK, model, avatars and tests |
-| [Cadence-main.zip](Cadence-main.zip) | Original uploaded Cadence archive |
-| [talking-avatar-master.zip](talking-avatar-master.zip) | Original uploaded Talking Avatar archive |
-| [reference-sources/ARCHIVES.json](reference-sources/ARCHIVES.json) | Original archive hashes and extracted file counts |
-| [PRESERVATION_MANIFEST.json](PRESERVATION_MANIFEST.json) | Previous/new paths and SHA-256 for all 1,478 relocated files |
-| [historical-implementations/pre-consolidation-98cfcd7](historical-implementations/pre-consolidation-98cfcd7/) | Ten superseded code/test/CI payloads retained before consolidation |
-| [recovery-notes/CONSOLIDATION_BASELINE.json](recovery-notes/CONSOLIDATION_BASELINE.json) | Original paths and SHA-256 for those ten payloads |
-| [repository-inventory](repository-inventory/) | Detailed semantic review and no-value security scan evidence |
+| [original-projects](original-projects/) | Original ZIPs and complete extracted Cadence/Talking Avatar projects |
+| [historical-implementations](historical-implementations/) | Ten superseded source/test/CI payloads preserved before recovery |
+| [future-ideas](future-ideas/) | [Detailed vision and roadmap](future-ideas/PROJECT_VISION_AND_FUTURE_ROADMAP.txt) |
+| [recovery/inventory](recovery/inventory/) | Earlier inventories, archive manifests and preservation hashes |
+| [recovery/features](recovery/features/) | Feature ownership, duplicate analysis and semantic source review |
+| [recovery/security](recovery/security/) | Security findings and recorded no-value scan results |
+| [recovery/migration](recovery/migration/) | Recovery decisions, consolidation baseline, migration history and debt |
+| [recovery/validation](recovery/validation/) | Earlier executed validation evidence, retained by date/commit |
+| [recovery/continuation](recovery/continuation/) | Earlier progress and continuation records |
 
-## Complete recovery records
+Read [PROJECT_STRUCTURE.md](../PROJECT_STRUCTURE.md) for the current architecture.
+The complete mapping for this organization is
+[FILE_RELOCATION_MAP.json](recovery/migration/functional-sort-2026-11-17/FILE_RELOCATION_MAP.json),
+with [progress](recovery/migration/functional-sort-2026-11-17/WORK_PROGRESS.txt).
+The current per-file collection index is
+[FUNCTIONAL_FILE_INVENTORY.txt](recovery/inventory/FUNCTIONAL_FILE_INVENTORY.txt).
 
-Begin with [REPOSITORY_AUDIT.txt](REPOSITORY_AUDIT.txt) and
-[WORK_PROGRESS.txt](WORK_PROGRESS.txt). The full
-[file inventory](COMPLETE_FILE_INVENTORY.txt) covers every current tracked path;
-the [feature inventory](FEATURE_INVENTORY.txt) records 77 scoped implementation
-and responsibility groups, including overlapping archived client variants.
+## How to read historical records
 
-- [Duplicate analysis](DUPLICATE_ANALYSIS.txt)
-- [Security audit](SECURITY_AUDIT.txt)
-- [Original/new path mapping](ORIGINAL_TO_NEW_PATH_MAPPING.txt)
-- [Consolidation report](CONSOLIDATION_REPORT.txt)
-- [Archived files manifest](ARCHIVED_FILES_MANIFEST.txt)
-- [Future vision and roadmap](PROJECT_VISION_AND_FUTURE_ROADMAP.txt)
-- [Technical debt](TECHNICAL_DEBT.txt)
-- [Test and validation report](TEST_AND_VALIDATION_REPORT.txt)
-- [Migration summary](MIGRATION_SUMMARY.txt)
-- [Next developer instructions](NEXT_DEVELOPER_INSTRUCTIONS.txt)
+Earlier audit/feature/validation reports are preserved as snapshots of their
+recorded commits. Paths and counts inside them refer to those snapshots. Their
+original bodies are retained so evidence is not silently rewritten. Use the new
+relocation map to find the payloads today, and use the root structure document
+for current operational instructions. Earlier passing tests do not validate this
+new layout: the owner requested that no tests be run during this organization.
 
-The ZIPs stay at this level so the original snapshot README's relative links keep
-working. All relocated payloads, including the snapshot README and original
-manifest, match their pre-move bytes. Upstream licenses, notices, model files,
-assets and credits remain intact. Do not run archived install or deployment scripts
-as part of the active app's setup merely because they are present here.
+The original preservation manifest is now
+[recovery/inventory/PRESERVATION_MANIFEST.json](recovery/inventory/PRESERVATION_MANIFEST.json).
+Its 1,478 payloads are unchanged; its older location fields can be resolved through
+the new map. The ten historical copies and their hashes are recorded in
+[CONSOLIDATION_BASELINE.json](recovery/migration/CONSOLIDATION_BASELINE.json).
 
-The active project remains in `../apps/web` and `../services/voice-agent`, with
-cross-component browser tests in `../tests/browser`. See the
-[repository audit and structure](../docs/REPOSITORY_STRUCTURE.md) for the findings
-and the [product idea](../PROJECT_IDEA.txt) for planned features and limitations.
+## Original-project integrity
 
-Active web responsibilities now live in `apps/web/features/lesson` and
-`apps/web/features/session`. Root `pytest.ini` prevents ordinary default test
-collection from importing the archived Python modules. Explicitly running an
-archived command is still possible; this folder is not a security sandbox.
+[Original import navigation](original-projects/reference-sources/README.md) remains
+beside the original project structure. Both ZIPs are one level above it, preserving
+its relative links. Source, data, fixtures, model binaries, assets, licenses and
+credits inside both extracted projects remain unchanged. Each complete project is
+kept as a functional unit; it is not flattened into extension-based folders.
+
+Archived installers have known review prerequisites. Existing workspace, package,
+TypeScript, browser and Python discovery boundaries exclude these projects. This
+is operational separation, not a sandbox against explicitly executing a command.
+Never place discovered live credentials or private learner recordings in this
+public archive; preserve such evidence through an appropriate private mechanism.
