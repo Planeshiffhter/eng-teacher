@@ -6,6 +6,8 @@
 
 **First product to prove:** A **10-minute Hindi–English mock interview on mobile web**. A learner speaks naturally, including code-switching; an interruptible speaking avatar listens, offers one helpful meaning-preserving correction, lets the learner repeat it, continues the interview, and provides a recap.
 
+**Continuing this project in a new ChatGPT/Codex conversation?** Start with [the project continuity, research and chat handoff](docs/PROJECT_CONTINUITY_HANDOFF.md). It contains the available prior discussion summary, 21 study repositories, architecture diagrams, pinned research findings, current PR/test evidence, blockers and a copy-paste resume prompt. Verify the live GitHub state before changing code.
+
 ## Run the implementation
 
 Read [installation and startup instructions](docs/DEVELOPMENT.md), [validation results and live test checklist](docs/VALIDATION.md), and the [focused dependency audit](docs/DEPENDENCY_AUDIT.md). The monorepo has `apps/web` and `services/voice-agent`; run `npm ci` and `uv sync --frozen --project services/voice-agent`, configure the ignored environment files from their examples, then start the worker and web server in separate terminals. LiveKit and OpenAI credentials are required for a live lesson. No GPU is required.
