@@ -278,15 +278,15 @@ Hosted LiveKit and OpenAI services, model access and generated speech are subjec
 ## Preserved uploaded project archives
 
 At the owner's request, the uploaded Cadence and Talking Avatar ZIPs are also
-preserved as extracted snapshots under [reference-sources](reference-sources/README.md).
+preserved as extracted snapshots under [AnalyseFuture/reference-sources](AnalyseFuture/reference-sources/README.md).
 Their bundled source, content, model artifacts and avatar assets are retained for
 future owner-directed work; they are not integrated into the running voice tutor.
 
-- Cadence: [LICENSE](reference-sources/Cadence-main/LICENSE),
-  [NOTICE](reference-sources/Cadence-main/NOTICE), and
-  [CREDITS.md](reference-sources/Cadence-main/CREDITS.md).
-- Talking Avatar: [LICENSE](reference-sources/talking-avatar-master/LICENSE) and
-  Microsoft Rocketbox [avatar license](reference-sources/talking-avatar-master/avatars/LICENSE).
+- Cadence: [LICENSE](AnalyseFuture/reference-sources/Cadence-main/LICENSE),
+  [NOTICE](AnalyseFuture/reference-sources/Cadence-main/NOTICE), and
+  [CREDITS.md](AnalyseFuture/reference-sources/Cadence-main/CREDITS.md).
+- Talking Avatar: [LICENSE](AnalyseFuture/reference-sources/talking-avatar-master/LICENSE) and
+  Microsoft Rocketbox [avatar license](AnalyseFuture/reference-sources/talking-avatar-master/avatars/LICENSE).
 
 These upstream notices remain unchanged. Project-level license declarations do not
 replace review of the selected dependencies, models, assets and content before

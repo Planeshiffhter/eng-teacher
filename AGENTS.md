@@ -2,6 +2,14 @@
 
 This file applies to coding agents working in this repository.
 
+## Current owner instructions
+
+- Work directly on `main`; do not create feature branches or new PRs for this project unless the owner changes this instruction. Never force-push shared history.
+- Commit and push useful checkpoints at least every five minutes while editing when there are changes to save. Local commits alone do not protect against workspace loss.
+- Stay within the owner's requested task. Keep prior work; move material set aside for future analysis into `AnalyseFuture/` instead of deleting it. Never commit discovered credentials or private learner data there.
+- `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
+- Read `PROJECT_IDEA.txt` for the current product vision and `docs/REPOSITORY_STRUCTURE.md` for the active/archive layout. Historical feature-branch/PR suggestions in older handoffs are superseded by the owner's current workflow.
+
 ## First read
 
 **Continuity-first rule:** Read [docs/PROJECT_CONTINUITY_HANDOFF.md](docs/PROJECT_CONTINUITY_HANDOFF.md) **before** relying on any old chat prompt or rebuilding features. It includes previous project research, source map, implementation history, Mermaid diagrams, 21 study repositories, current-versus-PR distinction, live-test blockers and the next unblocked task. The handoff is a dated snapshot: inspect current GitHub main, PRs, CI and actual code before acting. Update it after significant changes without committing personal data, secrets or learner recordings.

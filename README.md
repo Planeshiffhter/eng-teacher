@@ -2,6 +2,20 @@
 
 > **Status: First voice-tutor implementation (13 November 2026), awaiting live-provider validation.** This repository now includes a mobile-responsive Next.js client and a LiveKit Python voice agent. Automated checks use fake inputs where noted; a real microphone-to-provider call, Hindi–English quality, and avatar behavior have not been validated. The planning documents remain the product goals.
 
+## Project idea and repository map
+
+Read [PROJECT_IDEA.txt](PROJECT_IDEA.txt) for the detailed vision: a friendly male or
+female on-screen AI English tutor, gentle corrections and alternatives, Bengali
+and other language assistance, realistic limitations, and future phases. These are
+product goals, not a claim that all features already work.
+
+The active application stays in `apps/web` and `services/voice-agent`, with browser
+tests in `tests/browser`. Earlier research and implementation history stay in
+`docs/`. Uploaded projects and original ZIPs are preserved in
+[AnalyseFuture](AnalyseFuture/README.md). The
+[repository audit and structure](docs/REPOSITORY_STRUCTURE.md) explains every
+directory's role and the byte-for-byte preservation checks.
+
 **Vision:** Build an independently controlled, commercially viable AI English-speaking learning platform with a natural video-call-like teacher, accurate corrections, multilingual explanations, pronunciation practice, and personalized learning. The ambition is to compete on learning quality with Praktika, ELSA Speak, Speak, and Duolingo—not to copy their code, characters, brands, or content.
 
 **First product to prove:** A **10-minute Hindi–English mock interview on mobile web**. A learner speaks naturally, including code-switching; an interruptible speaking avatar listens, offers one helpful meaning-preserving correction, lets the learner repeat it, continues the interview, and provides a recap.

@@ -1,0 +1,384 @@
+ENG TEACHER — A FRIENDLY AI ENGLISH SPEAKING COMPANION
+Detailed product idea and realistic development direction
+Prepared: 17 November 2026 (Asia/Calcutta)
+Status: Product proposal. Planned features are not claims of completed work.
+
+1. THE IDEA IN ONE SENTENCE
+
+A learner opens a friendly, video-call-style English practice session with an
+AI teacher, speaks naturally in English or a supported home language, and gets
+patient conversation, useful English alternatives, and a chance to try again.
+
+The teacher can eventually appear as an original female or male animated
+character, with a chosen licensed voice. It should feel approachable and calm.
+It must clearly identify itself as AI; it must not pretend to be a real person.
+An audio-only experience remains available when the learner prefers it, the
+connection is weak, or the avatar fails. The learner's camera is optional and
+is not needed for the first product.
+
+The central promise is: "Say what you mean. We will help you express it in
+English, without making you feel embarrassed."
+
+2. THE PROBLEM AND THE PEOPLE WE WANT TO HELP
+
+Many learners know vocabulary and grammar exercises but hesitate when speaking.
+They translate in their heads, fear mistakes, lose confidence when interrupted,
+or cannot find a patient practice partner. Some understand English but find it
+hard to answer an interview question or explain a simple problem at work.
+
+Start with consenting adult Hindi-English learners because this repository
+already has that foundation. Bengali/Bangla-English is a priority expansion,
+with separate review by fluent speakers. Later language choices should follow
+demonstrated learner demand, speech-provider coverage, and local evaluation.
+
+Useful early situations include job interviews, introducing yourself, customer
+calls, workplace updates, shopping, asking directions, and everyday friendship.
+The product should help someone communicate clearly, rather than pressure them
+to erase their accent or imitate a single national identity.
+
+3. WHAT A GOOD SESSION SHOULD FEEL LIKE
+
+The learner chooses a goal, explanation language, correction preference, and
+short session length. A beginner might select "Everyday English, Bangla help,
+gentle corrections." An intermediate learner might select "Job interview,
+English explanations, feedback after I finish."
+
+The teacher opens with a simple question, listens, and allows pauses. It replies
+to the meaning of the answer before offering one important improvement. It
+might say: "I understand. A natural way to say that is ... Would you like to
+try it once?" It should not sound like an examiner correcting every word.
+
+If the learner asks for a translation, slower speech, another example, or a
+repeat, the teacher stays with the same practice target. It advances only
+after an appropriate retry, a completed answer, or an explicit skip. If the
+learner interrupts, the teacher stops speaking and listens.
+
+The learner can mute, end, skip, ask for help, or switch to audio-only at any
+time. Captions, readable correction cards, keyboard controls, and clear status
+indicators make the experience usable without relying on facial animation.
+
+At the end, the learner sees a small recap: a few useful sentences, what was
+practiced, and one next step. Saving these items should be optional. A lesson
+should end with a concrete success, not an invented fluency percentage.
+
+4. EXAMPLES OF THE TEACHER'S BEHAVIOR
+
+A. Gentle correction of an English sentence
+
+Learner: "Yesterday I go market."
+Teacher: "You can say, 'Yesterday, I went to the market.' Because it happened
+yesterday, use 'went.' Would you like to try that?"
+Learner: "Please explain in Bangla."
+Teacher, when Bangla support has been validated: "গতকালের ঘটনা বোঝাতে 'go'-এর
+পরিবর্তে 'went' ব্যবহার করি।" It then repeats the same target sentence and waits.
+
+This exchange is a proposed behavior example, not evidence of tested Bangla
+speech quality. A bilingual teacher must review the explanation and voice.
+
+B. Helping a learner express a Bangla thought
+
+Learner: "আমি আজ অফিসে যেতে পারব না।"
+Intended English: "I won't be able to go to the office today."
+Teacher: "You could say, 'I won't be able to go to the office today.' In a
+message to your manager, 'I won't be able to come to work today' may fit too."
+
+The teacher should explain that "go" versus "come" depends on the speaker's
+and listener's perspective. It must not add an illness, family emergency, or
+other reason that the learner did not give.
+
+C. Preserving negation, names, and numbers
+
+Learner: "আমি টাকা দিইনি।"
+Teacher: "You can say, 'I didn't pay the money.'"
+It must never silently turn this into "I paid the money."
+
+Learner: "My name is Aditi. I worked there for twelve months."
+The teacher must preserve Aditi and twelve. If recognition is uncertain, it
+asks whether it heard the name or number correctly before building feedback.
+
+D. Accepting correct English
+
+Learner: "I handled customer calls at my previous job."
+Teacher: "That is clear. What kind of questions did customers usually ask?"
+An optional polished alternative can be labeled as a style choice, not an error.
+
+E. Offering alternatives without changing the learner's identity
+
+Learner: "I want improve my English for office."
+Teacher: "You can say, 'I want to improve my English for work.' Another option
+is, 'I want to communicate more confidently at work.' The second option adds
+an emphasis on confidence; choose it only if that is what you mean."
+
+F. Recognizing uncertainty
+
+If audio is unclear, the teacher says: "Did you say you can attend or cannot
+attend?" Asking once is better than confidently teaching the opposite meaning.
+
+5. THE TEACHING RULES
+
+Keep four things distinct: the recognized original words, the proposed English
+sentence, the teacher's explanation, and any audio-based pronunciation result.
+The recognized transcript is an estimate of what was said, not perfect truth.
+
+Correct at most one important issue per turn by default. Prioritize errors that
+affect meaning or the learner's current goal. Let the learner finish. Accept
+natural equivalent retries, while checking that names, quantities, tense, and
+negation still express the intended message. Do not demand verbatim repetition
+when another correct sentence works.
+
+Provide gentle, balanced, and intensive modes later. Even in intensive mode,
+corrections should be useful, respectful, and controllable. Never manufacture
+mistakes, shame an accent, or confuse informal English with incorrect English.
+
+The teacher should ask a relevant follow-up question so the interaction remains
+a conversation. Repeating a sentence once is practice; using the same pattern
+on a different question tomorrow is stronger evidence of learning.
+
+6. LANGUAGE SUPPORT: A ROADMAP, NOT AN "ALL LANGUAGES" CLAIM
+
+There are separate capabilities for each language: recognizing speech,
+understanding mixed-language sentences, translating meaning into English,
+explaining grammar, and speaking a clear explanation aloud. A provider listing
+a language does not prove that every one of these tasks works well.
+
+The product should publish an honest support matrix: experimentally available,
+human-reviewed pilot, supported for a defined workflow, or unavailable. Test
+Bengali/Bangla with varied speakers, regional vocabulary, English words inside
+Bangla sentences, names, slow speech, and ordinary phone microphones.
+
+Start with the existing Hindi-English slice, then validate Bengali-English.
+Expand to other languages only after provider trials and native-speaker review.
+Low-resource languages and dialects may need different models or paid reviewers.
+When support is weak, say so and offer English-only or typed help instead of
+inventing a translation. Universal perfect language support is not a credible
+launch promise.
+
+7. THE ON-SCREEN TEACHER
+
+The initial visual experience can be an original, clearly animated teacher
+with listening, thinking, speaking, and idle states. Offer female and male
+character options without suggesting one teaches better. Additional appearances
+and voices can follow if users find them helpful and the assets are licensed.
+
+Lip movement should follow the teacher's actual audio. One component must own
+audio playback; the avatar and LiveKit renderer must not both play the same
+voice. Interruption, mute, reconnect, cleanup, and audio-only fallback must work
+before visual realism becomes a priority.
+
+A highly realistic generated human video is a possible research direction, but
+it adds inference cost, latency, asset rights, device load, and uncanny results.
+Do not copy a real person's likeness or clone a voice without the required
+permission and rights. A simple reliable character is a useful product already.
+
+8. WHAT ALREADY EXISTS IN THIS PROJECT
+
+This is not a blank repository. The active foundation contains a responsive
+Next.js/React web client, a Python LiveKit voice worker, configurable OpenAI
+recognition/model/speech adapters, CPU voice-activity detection, interview
+questions, correction/retry logic, captions, separate original/suggested cards,
+session controls, a ten-minute deadline, and a temporary in-page recap.
+
+Server-side session code issues restricted room tokens and uses a pilot access
+code. It is an invited-pilot access mechanism, not finished individual account
+authentication or production billing. The app does not intentionally persist
+lesson recordings. External providers still process audio/text under their own
+terms, which need separate review.
+
+Earlier cloud onboarding verified dependency installation, build/type checks,
+14 JavaScript tests, 42 Python tests, six synthetic Chromium browser checks,
+Python linting, the agent CLI, and CPU voice-activity inference. Those were
+local/offline checks in that environment; they are not proof of a real paid
+speech lesson, Bengali support, Android hardware performance, or avatar quality.
+Current changes require their own appropriate validation.
+
+The Cadence and Talking Avatar archives are preserved as reference material.
+Their presence does not mean their features are integrated. Existing research,
+the 21-repository inventory, prior decisions, and continuity notes must remain
+available. Historical PR descriptions must not be treated as merged code without
+checking current Git state. Build on verified work rather than replacing it.
+
+9. PRACTICAL TECHNICAL APPROACH
+
+Keep one monorepo with clear boundaries. TypeScript is suitable for the website,
+browser audio controls, events, and avatar. Python is suitable for the existing
+voice agent, speech adapters, evaluation, and later audio/ML experiments. One
+product does not require one programming language. Rewriting everything into
+one language now would consume effort without proving better teaching.
+
+The main path is: microphone -> LiveKit transport -> speech recognition ->
+meaning and tutor policy -> validated teaching response -> speech generation ->
+teacher audio, captions, and optional avatar. Preserve replaceable provider
+interfaces so a later model comparison does not require a new application.
+
+Use versioned event schemas between browser and worker. Treat browser events,
+provider responses, and stored lesson data as untrusted input. Validate structured
+decisions and preserve session state when a provider fails. Measure recognition,
+model, synthesis, network, and rendering delays separately before optimizing.
+
+Add one original lesson definition and one tested feature at a time. Reuse
+licensed SDKs selectively. Do not merge an unrelated full application, duplicate
+authentication systems, or introduce several competing audio pipelines merely
+because a reference repository includes them.
+
+10. PRONUNCIATION, PROGRESS, AND PERSONALIZATION
+
+Initially the teacher can model a sentence, slow it down, and let the learner
+repeat it. A transcript match establishes neither accurate pronunciation nor a
+native accent. Reliable pronunciation coaching needs the actual audio, a defined
+target, a suitable model, and calibration against human judgments across accents,
+noise levels, and devices. If uncertain, offer practice rather than a score.
+
+Later, learners may opt to save useful phrases, goals, recurring mistakes, and
+completed practice. A small placement activity can propose an approximate level;
+it should not present an official examination result. Spaced review can bring
+back a phrase in a new situation instead of repeating the same prompt forever.
+
+Memory must be visible and editable. The teacher should say "You chose to save
+this phrase" rather than imply hidden surveillance. Personalization should use
+the minimum necessary information. Friend-like conversation means warmth and
+patience, not pressure to depend on the AI or disclose private experiences.
+
+11. PRIVACY, TRUST, AND OPERATIONS
+
+Recording stays off by default. Saving practice history, retaining audio for
+evaluation, and using data for training require distinct choices. Provide clear
+retention, export, and deletion behavior before offering stored personal history.
+Do not log learner utterances or credentials as routine diagnostics. Review
+provider processing, retention, region, and contractual terms explicitly.
+
+Before opening a paid public service, add individual authentication, authorization,
+distributed quotas, spending caps, abuse controls, sanitized monitoring, backups,
+and recovery procedures. Provider keys stay server-side. Dependency and asset
+licenses need review for the exact distribution, not only the upstream README.
+
+Start with adult volunteers. A child-focused product requires a separate privacy,
+consent, age-appropriate teaching, and safeguarding design. The language teacher
+is not a substitute for professional medical, legal, or mental-health advice.
+
+Repository structure recovery cannot establish that an account is secure. If
+account compromise is suspected, the owner must separately review GitHub access,
+sessions, integrations, keys, and recovery settings. Preserve history and classify
+unexpected files from evidence; do not label an author malicious without proof.
+
+12. A REALISTIC DELIVERY PATH
+
+The periods below are planning horizons, not delivery commitments. Each phase
+depends on evidence, funding, maintainers, reviewers, and the previous gates.
+
+First 0-3 months: prove the existing voice foundation.
+- Complete real provider setup and desktop/physical Android voice validation.
+- Exercise Hindi-English speech, interruptions, help/retry, reconnect, and the
+  complete ten-minute deadline. Fix observed failures rather than guessed ones.
+- Measure all provider usage and retry costs, latency, and failure rates.
+- Trial one Bengali-English workflow with bilingual review; label it experimental.
+- Add one original everyday or interview exercise and a small teacher-reviewed set.
+- Trial one optional avatar only after audio is reliable; preserve fallback.
+
+Months 3-12: turn the proven slice into a useful controlled product.
+- Improve robust help/retry intent handling and meaning-preserving alternatives.
+- Build reviewed lesson content, learner-controlled progress, accounts, and deletion.
+- Expand Bengali support only when its defined acceptance checks pass.
+- Run an adult learner pilot and evaluate next-day transfer and willingness to pay.
+- Trial audio-based pronunciation feedback and keep uncertain outcomes unscored.
+- Harden operations and assess whether subscriptions cover real service costs.
+
+Years 1-2: expand from evidence.
+- Add languages selected by demand and native-speaker evaluation, not a checkbox.
+- Develop adaptive courses, educator tools, accessible practice, and better review.
+- Compare avatar approaches and ordinary Android hardware performance.
+- Consider a native mobile client when browser limitations justify its maintenance.
+- Benchmark appropriately licensed open models against hosted models using the
+  same held-out tasks, total operating cost, and quality measures.
+
+Beyond two years: research options, not promises.
+- Explore efficient on-device/offline practice for selected devices and languages.
+- Consider permissioned model adaptation, richer pronunciation feedback, and
+  controlled group roleplays if evaluation shows a learning benefit.
+- Reassess realistic interactive video teachers as models and hardware improve.
+- Offer educator partnerships and additional language pairs only with quality,
+  rights, support, and economics that the team can maintain.
+
+The people responsible are the owner/product lead, application and voice
+engineers, bilingual teachers/reviewers, a designer, test learners, and later
+security/operations and ML specialists where needed. AI coding tools can help
+implement and test work; they cannot replace account ownership, consent,
+native-speaker judgment, device testing, or evidence of learning outcomes.
+
+13. WHAT CANNOT BE PROMISED, AND WHAT TO DO INSTEAD
+
+Perfect understanding of every language, dialect, accent, and noisy utterance:
+not achievable as an unconditional promise. Publish supported conditions, test
+them, ask clarifying questions, and improve known weak cases.
+
+Knowing the learner's true intention when speech is ambiguous: not possible
+without more information. Ask a short question rather than invent a fact.
+
+Exact pronunciation scoring from text alone: the needed acoustic information
+is absent. Use consented audio and a validated assessor, or provide no score.
+
+Zero latency, zero failures, and unlimited high-quality AI at zero operating
+cost: not realistic. Measure, optimize, limit usage, and communicate failures.
+
+Guaranteed fluency, a job offer, an exam result, or a native accent within a
+fixed number of days: not supportable. Offer a practice plan and measure specific
+skills over time. Results depend on the learner and many external factors.
+
+A photorealistic teacher on every cheap phone with no network or processing
+tradeoffs: not established. Offer lightweight avatars/audio-only first, and
+evaluate heavier rendering separately. Full offline multilingual voice remains
+device-, model-, and language-dependent even if future technology improves.
+
+A real human friend who understands and feels everything: the system is AI.
+Make it friendly while explaining its nature and keeping the learner in control.
+
+Owning all underlying AI technology just because the app code is ours: not true.
+SDKs, models, voices, assets, and hosted services retain their licenses and terms.
+Increase independence by maintaining adapters and evaluating licensed alternatives.
+
+Future AI progress may make some expensive features cheaper or more accurate.
+It does not remove ambiguity, data rights, consent, or the need for validation.
+Review research options after one year, two years, and later without assuming
+that the calendar alone will solve them.
+
+14. HOW WE WILL KNOW THE PRODUCT IS HELPING
+
+Begin with the existing proposed evaluation: 30 teacher-reviewed mixed-language
+turns and 20 already-acceptable English turns, with separate sets per language
+when expanding. Earlier provisional targets were at least 27/30 meaning-preserved
+mixed turns and no more than 1/20 false corrections. These are small initial
+gates, not statistical proof of broad quality and not achieved results.
+
+Measure p50 and p90 end-of-speech-to-first-audible-response latency, interruption
+success, session completion, recovery, and device failures. The earlier median
+under-two-second goal is aspirational until real measurements support it.
+
+For learning, check whether a learner can reuse a practiced pattern on a new
+question the next day, with consent and a fair comparison. Track confidence,
+voluntary return, teacher-rated correctness, and useful practice completed.
+Do not substitute time in app, an avatar screenshot, or an artificial score for
+evidence of improvement.
+
+Calculate total cost per completed lesson: recognition minutes, model input/output,
+speech generation, LiveKit/media, hosting, retries, support, and taxes where
+applicable. Old illustrative provider prices are not current quotations. Begin
+with a small adult pilot; choose prices and spending limits after observing
+real cost and willingness to pay. Avoid selling unlimited usage before testing
+its economics.
+
+15. THE NEXT PRACTICAL PRODUCT STEP
+
+Preserve the working foundation, reference material, and project history. Keep
+unexpected or deferred material in the documented AnalyseFuture area rather
+than silently deleting it. Complete the repository organization and save this
+idea first, as requested by the owner.
+
+In a subsequent owner-directed implementation task, choose one measurable next
+increment: complete privacy-safe usage/error metrics or validate one real
+Hindi-English voice lesson. Then address observed conversation failures and
+run a small Bengali-English experiment. Add visual polish after the speech
+and teaching loop work reliably.
+
+The long-term product is a patient speaking companion that helps learners move
+from "I know it in my language" to "I can say it clearly in English." Its success
+will come from reliable conversation, respectful teaching, and demonstrated
+learning—not from claiming every possible AI feature on the first day.
