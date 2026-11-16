@@ -1,8 +1,8 @@
 COMPLETE TRACKED FILE INVENTORY
 
 Starting recovery commit: 98cfcd77b814848f5637b590b0e05843d69c8d84 (1,535 paths)
-Inventory source: 98cfcd77b814848f5637b590b0e05843d69c8d84
-Tracked paths classified: 1535
+Inventory source: current tracked index paths; current working payloads
+Tracked paths classified: 1566
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
 Binary assets are byte-inventoried, not claims of model/media semantic verification.
 Imports are static, partial evidence; dynamic references require component review.
@@ -13,7 +13,7 @@ PATH: .github/workflows/checks.yml
   Owner: Continuous integration
   Purpose: Component resource/configuration: checks.yml
   Use/status: active root workflow
-  Format: UTF-8 text; bytes=874; sha256=a20e47f503a1b8ab6bb436f423e336f3c07c53cd67db854eb18a7c8349d95843
+  Format: UTF-8 text; bytes=975; sha256=bbea51c8218c20199d8b69268badd7f1376975e7d6996ddcdb860d8a7a25ea74
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: explicit active-project targets only
@@ -40,16 +40,88 @@ PATH: AGENTS.md
   Owner: Project research and specification
   Purpose: Documentation: Agent Instructions — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=3887; sha256=d9034d3c9d5d72f4d3447b687ecdb2c233ee5bbb7594876b3513833d9479501b
+  Format: UTF-8 text; bytes=4457; sha256=2fb3887eaec562b74d0dc4cb25985ca6d0d3e42e3613eb182a16f18e9e37ae8f
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
+
+PATH: AnalyseFuture/ARCHIVED_FILES_MANIFEST.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: ARCHIVED FILES MANIFEST
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/COMPLETE_FILE_INVENTORY.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: COMPLETE TRACKED FILE INVENTORY
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/CONSOLIDATION_REPORT.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: CONSOLIDATION AND ARCHITECTURE REPORT
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
 
 PATH: AnalyseFuture/Cadence-main.zip
   Owner: Recovery evidence and future work
   Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
   Use/status: documentation/data; not application execution
   Format: binary; bytes=20584244; sha256=4283248ff73eceaf117adde7e67e58bd957f17811d8972cfc8916eaf78f613a0
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/DUPLICATE_ANALYSIS.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: DUPLICATE AND OVERLAPPING IMPLEMENTATION ANALYSIS
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/FEATURE_INVENTORY.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: COMPLETE FEATURE INVENTORY
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/MIGRATION_SUMMARY.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: MIGRATION SUMMARY
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/NEXT_DEVELOPER_INSTRUCTIONS.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: ENG TEACHER — NEXT DEVELOPER INSTRUCTIONS
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/ORIGINAL_TO_NEW_PATH_MAPPING.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: ORIGINAL TO NEW PATH MAPPING
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain audit provenance
@@ -63,11 +135,164 @@ PATH: AnalyseFuture/PRESERVATION_MANIFEST.json
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain audit provenance
 
+PATH: AnalyseFuture/PROJECT_VISION_AND_FUTURE_ROADMAP.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: ENG TEACHER — PROJECT VISION AND FUTURE ROADMAP
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
 PATH: AnalyseFuture/README.md
   Owner: Recovery evidence and future work
   Purpose: Documentation: Material preserved for future analysis
   Use/status: documentation/data; not application execution
-  Format: UTF-8 text; bytes=1859; sha256=cd5988e36d8575eccff0ed456356ad1f4aa67a62a75a6ad91f252b3cf284789b
+  Format: UTF-8 text; bytes=3518; sha256=83775d25b4c7eace293a02f778c6a9e09609e040269d0ca9213776e34e799c90
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/REPOSITORY_AUDIT.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: REPOSITORY RECOVERY AUDIT
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/SECURITY_AUDIT.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: Security and history audit — Eng Teacher recovery
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/TECHNICAL_DEBT.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: ENG TEACHER — TECHNICAL DEBT AND VALIDATION GAPS
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/TEST_AND_VALIDATION_REPORT.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: TEST AND VALIDATION REPORT
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/WORK_PROGRESS.txt
+  Owner: Recovery evidence and future work
+  Purpose: Documentation: RECOVERY WORK PROGRESS
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; generated report (digest/size omitted)
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/.github/workflows/checks.yml
+  Owner: Pre-consolidation tutor
+  Purpose: Component resource/configuration: checks.yml
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=874; sha256=a20e47f503a1b8ab6bb436f423e336f3c07c53cd67db854eb18a7c8349d95843
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/components/tutor-app.tsx
+  Owner: Pre-consolidation tutor
+  Purpose: Defines RemoteParticipant, TutorFeedback, ConnectionDetails, MicIcon, ArrowIcon, SoundMark, TutorApp, startLesson, LessonRoom, toggleMic, FeedbackCard
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=16347; sha256=db6125ee9e44efaf834b96d3349a3d3732f803f29c3baf33f7c9ebd4754b5468
+  Dependencies: @/lib/tutor-events, @livekit/components-react, livekit-client, react
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/lib/tutor-events.ts
+  Owner: Pre-consolidation tutor
+  Purpose: Defines FeedbackAction, TutorFeedback, LessonEvent, TutorEvent, parseTutorEvent, lessonDeadline, secondsRemaining, mergeFeedback
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=3196; sha256=798579e2bec67c1836bdecb70c17348af3d7956569c642858d133f055227621a
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/tests/tutor-events.test.ts
+  Owner: Pre-consolidation tutor
+  Purpose: Test/fixture for tutor-events.test
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=3848; sha256=0459b33cf53b1913dfdc3876ebfd1e4379b88ffa23cfb063aa1143ca1c4e6db0
+  Dependencies: ../lib/tutor-events, vitest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/agent.py
+  Owner: Pre-consolidation tutor
+  Purpose: Defines lesson_deadline_ms, InterviewAgent, interview, configure_private_logging, main
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=9337; sha256=aca6fd08ff5396163fa1c393f4344aa13853f347ca3d5606572083d05b41083e
+  Dependencies: __future__, asyncio, collections.abc, contextlib, dotenv, json, livekit, livekit.agents, livekit.plugins, logging, providers, time, tutor
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/controls.py
+  Owner: Pre-consolidation tutor
+  Purpose: Defines explicit_control
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=1615; sha256=b3a103ba59d95cc6c6545809ef33b99abfb001e7367e7cf79902000ee8ca6bf8
+  Dependencies: re
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/providers.py
+  Owner: Pre-consolidation tutor
+  Purpose: Defines Settings, OpenAITutorModel, create_model, create_stt, create_tts, create_llm
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=6774; sha256=c639a1f3c7031afb24e8c06f967fe28700f9de5a5f85b0a56ff3c81d66883342
+  Dependencies: __future__, collections.abc, dataclasses, json, livekit.plugins, openai, os, tutor
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/tutor.py
+  Owner: Pre-consolidation tutor
+  Purpose: Defines ModelDecision, Feedback, TutorModel, risky_change, InterviewTutor
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=9920; sha256=7af4fbecbe162d08c0a8db3c6317426514488317fb8072727e4c0cfa08ce7093
+  Dependencies: __future__, collections.abc, controls, pydantic, re, typing, uuid
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_lifecycle.py
+  Owner: Pre-consolidation tutor
+  Purpose: Test/fixture for test_lifecycle
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=4714; sha256=0d3b1420901f299aee9528b796e70ee5cd926063d90892d56898c50be1a11659
+  Dependencies: asyncio, eng_teacher, json, logging, pytest, time, types, unittest.mock
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_tutor.py
+  Owner: Pre-consolidation tutor
+  Purpose: Test/fixture for test_tutor
+  Use/status: archived baseline; superseded
+  Format: UTF-8 text; bytes=9302; sha256=200385aaf3acc827ac4aaeaba518ae773ce6bbffef45ceb9424e5534d169b122
+  Dependencies: eng_teacher.controls, eng_teacher.providers, eng_teacher.tutor, pydantic, pytest, types
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: compare with recovered active tutor
+
+PATH: AnalyseFuture/recovery-notes/CONSOLIDATION_BASELINE.json
+  Owner: Recovery evidence and future work
+  Purpose: Structured configuration/content/fixture: CONSOLIDATION_BASELINE.json
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; bytes=4473; sha256=c11d0714cfac15c394e70be0d7a0a297b1f49d9e103f60dc047ccda0adfa4c32
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain audit provenance
@@ -13356,6 +13581,24 @@ PATH: AnalyseFuture/reference-sources/talking-avatar-master/vite.config.ts
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain SDK/model/assets with notices
 
+PATH: AnalyseFuture/repository-inventory/CADENCE_WEB_SEMANTIC_AUDIT.json
+  Owner: Recovery evidence and future work
+  Purpose: Structured configuration/content/fixture: CADENCE_WEB_SEMANTIC_AUDIT.json
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; bytes=89132; sha256=0f004643c53a8b8c3bcf7e228a76e7219f864edfe06df8db8ec69e694954406b
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
+PATH: AnalyseFuture/repository-inventory/CLIENTS_AND_AVATAR_SEMANTIC_AUDIT.json
+  Owner: Recovery evidence and future work
+  Purpose: Structured configuration/content/fixture: CLIENTS_AND_AVATAR_SEMANTIC_AUDIT.json
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; bytes=83655; sha256=a3a2e502e242cc99c85375ccfc117a157834458958eb0b44e1c417433e5ede10
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
 PATH: AnalyseFuture/talking-avatar-master.zip
   Owner: Recovery evidence and future work
   Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
@@ -13387,7 +13630,7 @@ PATH: README.md
   Owner: Project research and specification
   Purpose: Documentation: Eng Teacher — AI English Speaking Tutor
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=6633; sha256=2eded97153ee508879dc9c1756d3b7ba997ab4ba78b3ba83a408cd582c460340
+  Format: UTF-8 text; bytes=7565; sha256=b9becf5fbff3d6cdc9e4805dc8d92ecc1973c04753946c172f200ec32a603b02
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13423,8 +13666,8 @@ PATH: apps/web/app/api/session/route.ts
   Owner: Session admission and token signing
   Purpose: Defines POST
   Use/status: active server feature
-  Format: UTF-8 text; bytes=1037; sha256=45e1cab7a670233d587c9a7bdd64cf369c9a08d801c9108e341d58fc6524d016
-  Dependencies: ../../../lib/server/session, next/server
+  Format: UTF-8 text; bytes=1050; sha256=fa1b09502da25bfc69edab464cb394c5fd336c09f7e6a60aebf9d7a13c9d4af0
+  Dependencies: ../../../features/session/server/session, next/server
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: feature module with thin Next.js API route
 
@@ -13450,21 +13693,39 @@ PATH: apps/web/app/page.tsx
   Owner: Web shell/build configuration
   Purpose: Defines Page
   Use/status: active web application
-  Format: UTF-8 text; bytes=110; sha256=36c97500eeb296cee0bddd50ef9a7046572f4bf168d0fcd92643fa83c62a3f62
-  Dependencies: @/components/tutor-app
+  Format: UTF-8 text; bytes=126; sha256=12d13904a53fd98841dd7c04a7b52e31a6455f451df82b02ba29f0b11f276266
+  Dependencies: @/features/lesson/components/tutor-app
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: keep framework conventions
 
-PATH: apps/web/components/tutor-app.tsx
+PATH: apps/web/features/lesson/components/tutor-app.tsx
   Owner: Live lesson UI and events
   Purpose: Defines RemoteParticipant, TutorFeedback, ConnectionDetails, MicIcon, ArrowIcon, SoundMark, TutorApp, startLesson, LessonRoom, toggleMic, FeedbackCard
   Use/status: active web feature
-  Format: UTF-8 text; bytes=16347; sha256=db6125ee9e44efaf834b96d3349a3d3732f803f29c3baf33f7c9ebd4754b5468
-  Dependencies: @/lib/tutor-events, @livekit/components-react, livekit-client, react
+  Format: UTF-8 text; bytes=16614; sha256=fb0fe740b6fdbe93043e41e8ebb2fd242ff43b13340249e8ada848efd0605530
+  Dependencies: @/features/lesson/tutor-events, @livekit/components-react, livekit-client, react
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: apps/web/features/lesson
 
-PATH: apps/web/lib/server/session.ts
+PATH: apps/web/features/lesson/tests/tutor-events.test.ts
+  Owner: Live lesson UI and events
+  Purpose: Test/fixture for tutor-events.test
+  Use/status: active web feature
+  Format: UTF-8 text; bytes=4213; sha256=9b218c5653ce74686291caf968eb498ab2eb0df08fbaa37c4e9148860bf18052
+  Dependencies: ../tutor-events, vitest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: apps/web/features/lesson
+
+PATH: apps/web/features/lesson/tutor-events.ts
+  Owner: Live lesson UI and events
+  Purpose: Defines FeedbackAction, TutorFeedback, LessonEvent, TutorEvent, parseTutorEvent, lessonDeadline, secondsRemaining, mergeFeedback
+  Use/status: active web feature
+  Format: UTF-8 text; bytes=3384; sha256=6a8d20a42583c5230fd291167bc5c537053a5c63ad89f8c81ecb52f44a38a4ed
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: apps/web/features/lesson
+
+PATH: apps/web/features/session/server/session.ts
   Owner: Session admission and token signing
   Purpose: Defines SessionConfig, SessionError, readConfig, secureEqual, RequestBudget, boundedJson, issueSession
   Use/status: active server feature
@@ -13473,14 +13734,14 @@ PATH: apps/web/lib/server/session.ts
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: feature module with thin Next.js API route
 
-PATH: apps/web/lib/tutor-events.ts
-  Owner: Live lesson UI and events
-  Purpose: Defines FeedbackAction, TutorFeedback, LessonEvent, TutorEvent, parseTutorEvent, lessonDeadline, secondsRemaining, mergeFeedback
-  Use/status: active web feature
-  Format: UTF-8 text; bytes=3196; sha256=798579e2bec67c1836bdecb70c17348af3d7956569c642858d133f055227621a
-  Dependencies: no static imports found / see containing component manifest
+PATH: apps/web/features/session/tests/session.test.ts
+  Owner: Session admission and token signing
+  Purpose: Test/fixture for session.test
+  Use/status: active server feature
+  Format: UTF-8 text; bytes=3924; sha256=09bc648cfa0eb958dbe488160e22ef9f6aba98aa1bbdbc2f785e907e2b660526
+  Dependencies: ../server/session, livekit-server-sdk, vitest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: apps/web/features/lesson
+  Recommendation/location: feature module with thin Next.js API route
 
 PATH: apps/web/next-env.d.ts
   Owner: Web shell/build configuration
@@ -13509,24 +13770,6 @@ PATH: apps/web/package.json
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: keep framework conventions
 
-PATH: apps/web/tests/server-session.test.ts
-  Owner: Session admission and token signing
-  Purpose: Test/fixture for server-session.test
-  Use/status: active server feature
-  Format: UTF-8 text; bytes=3928; sha256=c256029396e79a778264a25d2c1f701f84c7ce16020dcfa994d15faa05595553
-  Dependencies: ../lib/server/session, livekit-server-sdk, vitest
-  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: feature module with thin Next.js API route
-
-PATH: apps/web/tests/tutor-events.test.ts
-  Owner: Live lesson UI and events
-  Purpose: Test/fixture for tutor-events.test
-  Use/status: active web feature
-  Format: UTF-8 text; bytes=3848; sha256=0459b33cf53b1913dfdc3876ebfd1e4379b88ffa23cfb063aa1143ca1c4e6db0
-  Dependencies: ../lib/tutor-events, vitest
-  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: apps/web/features/lesson
-
 PATH: apps/web/tsconfig.json
   Owner: Web shell/build configuration
   Purpose: Structured configuration/content/fixture: tsconfig.json
@@ -13540,7 +13783,7 @@ PATH: docs/ARCHITECTURE.md
   Owner: Project research and specification
   Purpose: Documentation: Proposed Technical Architecture
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=4158; sha256=62b59f8fc613e09c0a47770fdea675e7179ea40f29c302a93dd7acfdc2ba8a96
+  Format: UTF-8 text; bytes=5088; sha256=8e2b124b6d7263dad24cb86336355065a6d78b48618d60c15e2e232526a4cffe
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13567,7 +13810,7 @@ PATH: docs/CODEX_MASTER_BUILD_PROMPT.md
   Owner: Project research and specification
   Purpose: Documentation: MASTER BUILD DIRECTIVE FOR CODEX — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=11735; sha256=764fd09d1ba570e114e014e8f52269806d35caeed22f5bd79e2b0ddec4314851
+  Format: UTF-8 text; bytes=12183; sha256=b73faf80daad01c6aabb1bdc4151da74f6d0b54efc0483eebdfd283aa787eb50
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13576,7 +13819,7 @@ PATH: docs/DECISIONS.md
   Owner: Project research and specification
   Purpose: Documentation: Decisions and Open Questions
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=3922; sha256=55d52b9b41a0075356692fe464f8a6c16d55ad3c7aea4ef6d348261117d73dcb
+  Format: UTF-8 text; bytes=4793; sha256=92b36b95a5f90f7c914323deed7ebe0a155ce0695aa01f2ac3c00c299573210a
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13594,7 +13837,7 @@ PATH: docs/DEVELOPMENT.md
   Owner: Project research and specification
   Purpose: Documentation: Run the first voice-tutor implementation
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=6117; sha256=e14f549ff50eb66703316979264f33056e096c7fe10921ef167b721dfb433d73
+  Format: UTF-8 text; bytes=7453; sha256=0db00945226fafc98aa813f7ca67a17bceaba460540cc2e78b5ce44615d339de
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13603,7 +13846,7 @@ PATH: docs/IMPLEMENTATION_CHECKLIST.md
   Owner: Project research and specification
   Purpose: Documentation: Full Ordered Implementation Checklist — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=15266; sha256=6d3c9a08504187f87f26e98f89bcff311df1a2962d4eceb4d380396a275fae25
+  Format: UTF-8 text; bytes=15831; sha256=e5f587ff2b305a2c5b0c4cd3dc1fdef6b25f962bd7e00a33ebda75afc9269ba6
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13662,11 +13905,20 @@ PATH: docs/ROADMAP.md
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
 
+PATH: docs/TWO_PRIMARY_REFERENCE_REPOS.md
+  Owner: Project research and specification
+  Purpose: Documentation: Two primary reference repositories for Eng Teacher
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=9288; sha256=085e4788a8ec05cb3223a0381d2f2669018ffeb5f3169d3a34c5e78cfc689d49
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain canonical history and evidence
+
 PATH: docs/VALIDATION.md
   Owner: Project research and specification
   Purpose: Documentation: Validation record — first voice-tutor slice
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=6177; sha256=bda3facf74474bb4372a611b24973587194ac67a604fe67496f86c6b8a408756
+  Format: UTF-8 text; bytes=7158; sha256=f1c95c18acbe88c08f734f88982af5c9af5f3bf6dcc50839f27b0706399dcce1
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13697,6 +13949,33 @@ PATH: playwright.config.ts
   Dependencies: @playwright/test, node:fs
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain supported tool entrypoint
+
+PATH: pytest.ini
+  Owner: Workspace/build configuration
+  Purpose: Component resource/configuration: pytest.ini
+  Use/status: root configuration
+  Format: UTF-8 text; bytes=168; sha256=37bbe91d3b240512c6a167792a08dbddf94ffb4f5091caf62e1552328f217dc3
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain supported tool entrypoint
+
+PATH: scripts/repository_inventory.py
+  Owner: Repository maintenance
+  Purpose: Defines git, ownership, describe, main
+  Use/status: explicit maintenance command
+  Format: UTF-8 text; bytes=8735; sha256=90a1212032ab8a7d74da6c0492a1d7288f59e02fb237b2de6df05ed13def8c53
+  Dependencies: __future__, argparse, ast, collections, hashlib, pathlib, re, subprocess
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: scripts
+
+PATH: scripts/security_history_scan.py
+  Owner: Repository maintenance
+  Purpose: Defines git, scan
+  Use/status: explicit maintenance command
+  Format: UTF-8 text; bytes=3162; sha256=7d64f0d6f358001c6c47deaf13474924460f1e68dbaf4158572b8f03a586cc4b
+  Dependencies: argparse, collections, io, json, pathlib, re, subprocess, zipfile
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: scripts
 
 PATH: services/voice-agent/.env.example
   Owner: Voice tutor: .env
@@ -13747,7 +14026,7 @@ PATH: services/voice-agent/src/eng_teacher/agent.py
   Owner: Voice tutor: agent
   Purpose: Defines lesson_deadline_ms, InterviewAgent, interview, configure_private_logging, main
   Use/status: active Python service
-  Format: UTF-8 text; bytes=9337; sha256=aca6fd08ff5396163fa1c393f4344aa13853f347ca3d5606572083d05b41083e
+  Format: UTF-8 text; bytes=9608; sha256=8589ebcb9027387d44939558a1ae0003a99ab422805300cec7816f871058ec99
   Dependencies: __future__, asyncio, collections.abc, contextlib, dotenv, json, livekit, livekit.agents, livekit.plugins, logging, providers, time, tutor
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -13756,7 +14035,7 @@ PATH: services/voice-agent/src/eng_teacher/controls.py
   Owner: Voice tutor: controls
   Purpose: Defines explicit_control
   Use/status: active Python service
-  Format: UTF-8 text; bytes=1615; sha256=b3a103ba59d95cc6c6545809ef33b99abfb001e7367e7cf79902000ee8ca6bf8
+  Format: UTF-8 text; bytes=2496; sha256=1fc2be51b498cd288a9f880c7bbe33c3dcb517e36c47c496aa26d4de831bba1c
   Dependencies: re
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -13765,16 +14044,16 @@ PATH: services/voice-agent/src/eng_teacher/providers.py
   Owner: Voice tutor: providers
   Purpose: Defines Settings, OpenAITutorModel, create_model, create_stt, create_tts, create_llm
   Use/status: active Python service
-  Format: UTF-8 text; bytes=6774; sha256=c639a1f3c7031afb24e8c06f967fe28700f9de5a5f85b0a56ff3c81d66883342
+  Format: UTF-8 text; bytes=10597; sha256=c01455c2fb87a4e05cf3016961ce7c21b0952de8ed63b7ec89f473657a0ecec3
   Dependencies: __future__, collections.abc, dataclasses, json, livekit.plugins, openai, os, tutor
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
 
 PATH: services/voice-agent/src/eng_teacher/tutor.py
   Owner: Voice tutor: tutor
-  Purpose: Defines ModelDecision, Feedback, TutorModel, risky_change, InterviewTutor
+  Purpose: Defines ModelDecision, RetryDecision, Feedback, TutorModel, risky_change, looks_like_question, normalized_retry, InterviewTutor
   Use/status: active Python service
-  Format: UTF-8 text; bytes=9920; sha256=7af4fbecbe162d08c0a8db3c6317426514488317fb8072727e4c0cfa08ce7093
+  Format: UTF-8 text; bytes=14972; sha256=7abd1629a36b5e800db1d8bdedf74187691d3767390ae14d8d0c23751efc78bf
   Dependencies: __future__, collections.abc, controls, pydantic, re, typing, uuid
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -13792,7 +14071,7 @@ PATH: services/voice-agent/tests/test_lifecycle.py
   Owner: Voice tutor: test_lifecycle
   Purpose: Test/fixture for test_lifecycle
   Use/status: active Python service
-  Format: UTF-8 text; bytes=4714; sha256=0d3b1420901f299aee9528b796e70ee5cd926063d90892d56898c50be1a11659
+  Format: UTF-8 text; bytes=6149; sha256=222a480852754426ea1d5e8dc64015c13754814125e6f5d012201bf7e79dd132
   Dependencies: asyncio, eng_teacher, json, logging, pytest, time, types, unittest.mock
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -13801,7 +14080,7 @@ PATH: services/voice-agent/tests/test_tutor.py
   Owner: Voice tutor: test_tutor
   Purpose: Test/fixture for test_tutor
   Use/status: active Python service
-  Format: UTF-8 text; bytes=9302; sha256=200385aaf3acc827ac4aaeaba518ae773ce6bbffef45ceb9424e5534d169b122
+  Format: UTF-8 text; bytes=17788; sha256=1ebc1d55d01811f07981fa0f1eaa19c2886fa71abf5faf0af8688903495ac81d
   Dependencies: eng_teacher.controls, eng_teacher.providers, eng_teacher.tutor, pydantic, pytest, types
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -13825,7 +14104,7 @@ PATH: tests/browser/lesson.spec.ts
   Recommendation/location: tests/browser
 
 SUMMARY
-UTF-8 text: 1490
+UTF-8 text: 1521
 binary: 45
 
 ADDITIONAL ACCESSIBLE BRANCH-HEAD PATHS AT DISCOVERY

@@ -1,0 +1,87 @@
+# Security and history audit — Eng Teacher recovery
+
+Audit baseline: `98cfcd77b814848f5637b590b0e05843d69c8d84` (main before consolidation). The parent agent is separately consolidating branches, so counts below refer to this immutable Git baseline, not an assertion that later commits have automatically been scanned. This investigation was read-only with respect to the repository; no archived application/install scripts were executed.
+
+## Scope and evidence
+
+- Examined the 1,535 tracked baseline files: 1,491 UTF-8 files and 44 non-UTF-8 assets. Of the tracked files, 1,480 were under AnalyseFuture, 15 under apps, 15 under docs, 13 under services, 10 top-level files, one active workflow, and one browser test.
+- Examined all locally reachable history after the parent's origin fetch: 46 unique commits across origin/main, origin/feat/voice-tutor-mvp and origin/feat/tutor-retry-intents-and-reference-audit. The local main and recovery/pre-consolidation-20261117-98cfcd7 tag point into the same reachable history. No claim is made about unreachable/deleted remote objects, inaccessible refs, or historical GitHub logs.
+- Enumerated 2,168 reachable Git objects, including 1,548 unique file blobs totaling 61,647,200 bytes. Read every unique blob, including binary bytes. Also opened both committed ZIP payloads and scanned all 1,474 embedded non-directory members. No read/decompression errors occurred. This yielded 2,940 UTF-8 and 82 non-UTF-8 scan inputs including archive members.
+- Searched nine explicit secret-pattern classes: private-key PEM markers, GitHub tokens, OpenAI-style keys, AWS access identifiers, Google API keys, live Stripe secret/restricted keys, Slack tokens, literal JWT-shaped bearer tokens, and credentials embedded in HTTP URL userinfo. None matched. Additional commit metadata checks for private-key/GitHub/OpenAI/AWS patterns found no match in the 46 commits.
+- Reviewed 49 literal assignments to secret/key/token/password/credential-like identifiers in the current tracked text. Candidates were source identifiers, error messages, environment references, or explicit test/example placeholders. No usable credential was identified. Values are deliberately omitted from this report and scan output.
+- Read active CI, package manifests, lockfile registry/integrity metadata, server session boundaries, worker/provider configuration, archive lifecycle hooks, archive workflows, desktop runtime downloader and representative model loading/subprocess paths. Pattern-scanned source for eval/dynamic execution, subprocess spawning, base64 decoding, disabled TLS verification, pipe-to-shell downloads and excessive permissions; matches were inspected in context.
+
+## Findings and actions
+
+### 1. Archive isolation works for the documented commands; generic root Python discovery needs a guard
+
+The active root npm workspace is explicitly only apps/web. TypeScript include patterns are relative to apps/web; there is no path mapping to AnalyseFuture. Browser tests are explicitly confined to tests/browser. The documented npm run test:agent changes directory to services/voice-agent before pytest, while the documented Ruff command explicitly targets services/voice-agent. These commands do not install, import or execute archived projects.
+
+There is no root pytest configuration at the audit baseline. A bare pytest at repository root, or uv run --project services/voice-agent pytest without changing directory or giving a test target, may recursively discover the three Python test modules in AnalyseFuture/reference-sources/Cadence-main/src/backend/ai-engine/tests. Test collection imports module code. This was identified statically; archive tests were not executed. Recommend an explicit root pytest boundary (testpaths = services/voice-agent/tests and norecursedirs = AnalyseFuture, with the active asyncio options as needed), or always use the documented scoped command. Root-wide Ruff likewise scans more than the active worker unless scoped or excluded.
+
+The nested upstream .github/workflows files are ordinary preserved files; GitHub only activates the repository-root .github/workflows directory. Archived Dockerfiles/compose manifests have no active root invocation, and npm workspaces do not include them. This is operational isolation, not a sandbox: a person or tool can still explicitly run archived files.
+
+### 2. Archived installers are future integration targets, not approved setup commands
+
+Active root and apps/web package manifests declare no preinstall/install/postinstall/prepare hooks. The archived Cadence desktop manifest contains postinstall = electron-builder install-app-deps. The archived Talking Avatar manifest has prepublishOnly that runs its own typecheck/tests/build. These hooks were read but not run.
+
+The archived Cadence desktop/scripts/prepare-python-runtime.mjs fetches pinned-name Python runtime archives over HTTPS from the official astral-sh/python-build-standalone release path, then extracts them, but does not check an independent expected checksum before extraction. It also accepts an existing cached archive. That is a concrete verification gap if this downloader is ever adopted; it is currently outside the active application/setup. Preserve the uploaded snapshot unchanged and add supported checksum verification in a separately reviewed integration before executing/adopting it.
+
+Archived Python requirements include ranges and a Git URL dependency; they are not equivalent to the active frozen uv environment. Some archived Hugging Face model loading uses default revisions and models may be downloaded. Do not represent preserved source/assets as verified executable artifacts or install them as part of this recovery.
+
+### 3. Active CI uses read-only permissions and has no detected secret-export path
+
+The baseline active workflow has contents: read, ordinary push/pull_request triggers, frozen npm/uv dependency setup, scoped worker tests/lint, Next build/typecheck and Playwright checks. It has no pull_request_target trigger, no privileged deploy/release job, no explicit secret injection and no detected curl-to-shell/credential upload step.
+
+GitHub Actions use version tags rather than full commit SHA pins. Full SHA pinning is an optional supply-chain hardening item; the scan does not establish that current action tags are malicious.
+
+Historical branch workflow commit 2bf1868 temporarily printed six source files as JSON for formatting handoff. The enumerated files were application/test source, not environment or credential files; no credential pattern was found in those blobs. Commit da2796e removed the source-export step. This audit did not access old CI logs and cannot establish their retention or content beyond the checked-in workflow.
+
+### 4. Existing invited-pilot boundaries remain; no production-security claim
+
+The active session route requires configuration and a pilot code, hashes values before a constant-time comparison, checks request origin and JSON content type, caps the request body, creates server-generated room/participant names and signs short-lived room-scoped tokens with microphone-only publishing and no participant data publishing. API responses are no-store and SDK/environment exceptions are not returned to clients. Provider credentials remain in server/worker paths.
+
+The worker selects its peer, disables recording/cloud session trace uploads via record=False, suppresses verbose SDK/plugin logging and bounds lesson lifetime. Provider processing of learner audio/text is intended behavior and is not proof of provider-side zero retention. The shared pilot code and process-local request budget are expressly not per-user auth, distributed abuse control or billing authorization. Production rollout still needs those controls and a real deployment review. The audit did not perform paid/live provider calls, attack a deployed service, or assert that all application behavior is bug-free.
+
+### 5. No detected native executable, Git-hook, submodule or LFS surprise
+
+Every tracked current file is Git mode 100644. Across all 46 historical trees, all 6,753 enumerated file entries were also 100644. No symlink or gitlink entries were found. No historical .gitmodules or .gitattributes paths were found. Current files contain no Git LFS pointer documents. The local config has an LFS format marker but no detected hooksPath or executable non-sample Git hooks. These are inspection results, not an assurance about future clones or user-local global hook configuration.
+
+The 44 non-UTF-8 files comprise 20 PNGs, six WAVs, three M4As, three WebMs, two ZIPs, two TTFs, two GLBs, and one each ICNS, ICO, MP3, OGG, BIN and F32. The extra audio/video files are named test/server audio fixtures; the six WAVs are packaged UI sounds. The BIN is the avatar viseme model and F32 is test model data. No current tracked file starts with an ELF, PE/MZ or Mach-O native executable header. All 22 .cpack files parse as JSON. No binary was executed or malware-scanned, and names/magic do not prove benign behavior or asset rights. The largest file is the original Cadence ZIP (~20.6 MB); no tracked file is >=50 MiB.
+
+## Dependency and network observations
+
+- The active npm lock has 160 HTTPS registry.npmjs.org resolved package records plus a local workspace record; all HTTPS package records have integrity hashes. Its only hasInstallScript markers are the platform-specific fsevents packages. Hash presence establishes expected-byte verification by the package manager, not an independent package safety audit.
+- The active uv lock has 86 packages (85 pypi.org source records plus the local application). All enumerated wheel/sdist artifacts for those registry packages have hashes. No active Git dependency was found.
+- The active web makes its local session API request and connects to the configured LiveKit URL. The worker uses official OpenAI/LiveKit SDK adapters. Credentials and the exact LiveKit hostname were absent during earlier onboarding; real media/provider access remains a separate unverified prerequisite.
+- Static archive source URLs include the upstream Cadence deployment/domain, Firebase/Google/Gemini/TTS, Stripe, RevenueCat, Brevo, Brandfetch, Apple/Expo, GitHub, Hugging Face, Tatoeba/Wikimedia and jsDelivr, plus local/emulator/test domains. The avatar SDK can fetch model/assets from a versioned jsDelivr package CDN. A URL in source or a test is not evidence that a connection ran. No detected source path adds these archived services to the active root workflow.
+- No obvious eval/new Function/dynamic base64 execution, disabled TLS-verification switch, chmod 777 or pipe-to-shell install was identified in the scoped scan. Archive subprocess usage includes ffmpeg/TTS/model/dev/release/build tooling with argument arrays; Torch .eval() matches are normal model evaluation mode, not Python eval. Long source lines were generated SVG illustrations rather than detected encoded executable payloads. This is pattern/context review, not exhaustive malware proof or a decompiler analysis.
+
+## False positives and exclusions
+
+No credential files were moved/deleted and no source content was silently excluded. Existing environment examples use empty values, descriptive placeholders, ellipses, repeated Xs or all-zero IDs. Secret-like test constants occur in archived Firebase/playwright/auth/billing/e2e fixtures and active session tests; they were not treated as live secrets. Device-token prefixes and the desktop user-agent marker are protocol identifiers, not credentials. Token values are not reproduced here.
+
+The parent separately reported a GitHub API Forbidden response while querying repository/branch-protection state. This audit did not bypass it and cannot claim branch protections, repository security settings, remote Actions status or inaccessible API metadata were verified. Native Git read/write capability and API capability are distinct.
+
+## Limits and refresh requirement
+
+This is a focused static recovery/security investigation plus repository metadata and history scans, not a formal penetration test, a complete dependency advisory database scan, antivirus certification, asset/license clearance or proof that no secret exists in an unrecognized format. Private runtime values, ignored files, unrelated global configuration, inaccessible remotes, deleted objects, remote logs/artifacts, production deployment behavior and provider retention were not dumped or certified. No suspicious value was printed.
+
+The raw scan summary (without credential values) is in /tmp/history-security-results.json and the reproducible scanner is /tmp/history-security-scan.py. Before calling consolidation complete, rerun the scanner after the parent's final merge/hardening commit and report the resulting HEAD/counts, because the checked-out worktree changed during this parallel audit.
+
+
+POST-DISCOVERY REMEDIATION / CURRENT CODE UPDATE
+The root-discovery finding is repaired in pytest.ini. Actual root collection via
+uv run --frozen --project services/voice-agent pytest --collect-only -q found71
+active tests, all under services/voice-agent/tests, and no AnalyseFuture paths.
+The recovered source was checked before adoption; no archived installer was run.
+Internal-punctuation retry bypass was reproduced and repaired with regressions.
+Fresh npm audit of the unchanged active lock reported0 known advisories. This
+does not cover Python advisories or archived dependency manifests.
+The inventory tool treats UTF-8-decodable NUL-containing fixture data as binary:
+its1,490 text/45 binary partition therefore differs from the decoder-only security
+scan's1,491/44. Both account for all1,535 starting files, not missing coverage.
+Current ordinary Git pushes succeed; branch-protection/account API state remains
+unavailable. Checkpoints and both recovery tags were pushed without force/bypass.
+Final reachable-object scan results are appended from the reproducible scanner
+after source/docs are committed; it emits no matching credential values.

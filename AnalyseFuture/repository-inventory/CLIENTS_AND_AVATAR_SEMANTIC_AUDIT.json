@@ -1,0 +1,1652 @@
+{
+  "scope": "Read-only comprehensive client/desktop/store/release plus complete talking-avatar snapshot review",
+  "scope_counts": {
+    "mobile": {
+      "files": 366,
+      "text_files": 356,
+      "binary_files": 10,
+      "bytes": 13406484
+    },
+    "desktop": {
+      "files": 35,
+      "text_files": 33,
+      "binary_files": 2,
+      "bytes": 906604
+    },
+    "store": {
+      "files": 33,
+      "text_files": 25,
+      "binary_files": 8,
+      "bytes": 2352792
+    },
+    "release": {
+      "files": 1,
+      "text_files": 1,
+      "binary_files": 0,
+      "bytes": 256
+    },
+    "avatar": {
+      "files": 31,
+      "text_files": 26,
+      "binary_files": 5,
+      "bytes": 3227302
+    }
+  },
+  "total_files": 466,
+  "all_466_paths_confirmed_tracked": true,
+  "inspection_method": "All 466 file byte streams read, SHA-256 and UTF-8 detection recorded. All 441 UTF-8 source/config/tests/docs/content files traversed in full to collect imports,exports,comments,test declarations and JSON shapes, with targeted full reads of primary architecture and modules; 25 binary assets had boundary/metadata inspection. This is source review, not runtime verification.",
+  "execution_status": {
+    "archive_scripts_executed": false,
+    "dependencies_installed": false,
+    "archived_tests_run": false,
+    "repo_files_modified": false,
+    "native_devices_or_gpu_tested": false
+  },
+  "feature_records": [
+    {
+      "id": "M01",
+      "name": "Native mobile application shell",
+      "purpose": "Expo Router stack/tab navigation, dark theme, loading splash, safe area, haptics, app-state restoration, deep links and accessibility.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/package.json",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/app.json",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/app.config.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/_layout.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/(tabs)/_layout.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/theme/theme.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/LaunchSplash.tsx"
+      ],
+      "dependencies": [
+        "Expo ~57.0.31",
+        "React Native 0.86.3",
+        "React 19.2.3",
+        "Expo Router",
+        "React Query",
+        "react-native-svg",
+        "Funnel Display/Sour Gummy fonts"
+      ],
+      "existing_test_evidence": [
+        "mobile/e2e/01-own-server-onboarding.yaml",
+        "mobile/e2e/09-auth-screens.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep native adapters as future client; do not activate complete mobile app during core web consolidation.",
+      "overlap": "Duplicates web visual shell, theme tokens, app navigation; distinct native lifecycle.",
+      "limitations": "Native builds need exact SDK compatibility and separate iOS/Android evidence; generated ios/ absent by design."
+    },
+    {
+      "id": "M02",
+      "name": "Resumable onboarding and goals",
+      "purpose": "One step per screen: goals, CEFR self-level or adaptive placement, daily minutes/reminder, local-vs-cloud choice, optional/local or required/cloud account, optional Plus.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/onboarding/OnboardingFlow.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/onboarding/flow.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/onboarding/store.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/onboarding/placement.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/placement/PlacementTest.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/placement.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/goals.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/levels.ts"
+      ],
+      "dependencies": [
+        "AsyncStorage",
+        "content packs",
+        "Expo notifications",
+        "account/auth contexts"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/onboarding.test.ts",
+        "tests/platform/adaptive-placement.test.ts",
+        "mobile/e2e/01-own-server-onboarding.yaml",
+        "mobile/e2e/06-cloud-onboarding.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep workflow/rules in shared product planning; adapt to Hindi-English goals with user direction.",
+      "overlap": "Goals, levels and placement rules mirror web shared platform layer.",
+      "limitations": "Placement is an algorithmic estimate, not validated CEFR certification; archived IELTS/TOEFL approximations are content claims."
+    },
+    {
+      "id": "M03",
+      "name": "Own-computer pairing and rediscovery",
+      "purpose": "QR/manual pairing, 12-character two-minute one-use code, version negotiation, keychain device token, last-known/mDNS/original-IP reconnection, identity guard, retry/backoff/offline/revoked states.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/protocol.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/client.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/discovery.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/context.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/storage.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/address.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/pairing/errors.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/connect/scan.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/connect/manual.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/pair.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/+native-intent.tsx"
+      ],
+      "dependencies": [
+        "expo-secure-store",
+        "expo-camera",
+        "expo-network",
+        "server pairing API",
+        "same LAN and Bonjour .local resolution"
+      ],
+      "existing_test_evidence": [
+        "tests/pairing/protocol.test.ts",
+        "tests/pairing/address.test.ts",
+        "tests/pairing/discovery.test.ts",
+        "tests/pairing/errors.test.ts",
+        "tests/pairing/token-exchange.test.ts",
+        "mobile/e2e/04-pair-link.yaml",
+        "mobile/e2e/05-offline.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique optional self-hosted deployment capability; retain protocols/adapters and tests as source.",
+      "overlap": "Server/client pairing contracts intentionally duplicated with header-only path differences.",
+      "limitations": "HTTP local-network threat model in docs; serverId is continuity check, not cryptographic TLS identity. No real LAN pairing performed."
+    },
+    {
+      "id": "M04",
+      "name": "Cloud/native authentication and account lifecycle",
+      "purpose": "Firebase email/password, Apple/Google sign-in, linking/removing methods, cached profile restore, sign-out, password reset, newsletter consent, account export/deletion.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/context/auth.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/firebase.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/firebase-env.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/firebase-providers.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/auth/SignInOptions.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/sign-in-methods.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/settings/sign-in.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/account.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/account.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/copy/auth-errors.ts"
+      ],
+      "dependencies": [
+        "Firebase 12.19",
+        "expo-apple-authentication",
+        "react-native-google-signin",
+        "secure persistence",
+        "server account API"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/firebase-env.test.ts",
+        "mobile/tests/auth-errors.test.ts",
+        "mobile/tests/account.test.ts",
+        "mobile/tests/profile.test.ts",
+        "tests/platform/sign-in-methods.test.ts",
+        "mobile/e2e/08-account.yaml",
+        "mobile/e2e/09-auth-screens.yaml",
+        "mobile/e2e/10-apple-google.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Retain native auth and account concepts; choose one coherent auth system before adoption.",
+      "overlap": "Overlap with Cadence web Firebase and existing project future auth roadmap.",
+      "limitations": "No actual login, provider setup, deletion or cloud data-export behavior verified."
+    },
+    {
+      "id": "M05",
+      "name": "App Attest / Firebase App Check",
+      "purpose": "Native iOS challenge hashing/signing and REST App Check exchange; debug token only in development; cloud AI/sync/newsletter headers with one refresh strategy.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/modules/cadence-app-attest/ios/CadenceAppAttestModule.swift",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/modules/cadence-app-attest/ios/CadenceAppAttest.podspec",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/app-check.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/app-check-rest.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/client.ts"
+      ],
+      "dependencies": [
+        "Apple DeviceCheck/App Attest",
+        "ExpoModulesCore",
+        "CryptoKit",
+        "Firebase App Check REST",
+        "real signed iOS device/project registration"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/app-check.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique native adapter; retain separately from product domain logic.",
+      "overlap": "No Python/LiveKit counterpart; complements server validation.",
+      "limitations": "Simulator debug stubs are not device attestation evidence; no attestation executed."
+    },
+    {
+      "id": "M06",
+      "name": "Billing entitlement and local/cloud AI routing",
+      "purpose": "RevenueCat native purchase/restore, server-authoritative Plus entitlement, per-account data tier, own-computer-first AI route and cloud fallback with quotas/circuit breaker.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/billing/purchases.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/billing/plans.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/billing/PlusPaywall.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/context/account.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/engine-routing.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/engine/useEngineRoute.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/transport.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/copy/ai-offer.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/AiOffer.tsx"
+      ],
+      "dependencies": [
+        "RevenueCat react-native-purchases",
+        "verified server /api/me and webhooks",
+        "paired engine readiness"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/account.test.ts",
+        "mobile/tests/ai-offer.test.ts",
+        "tests/platform/engine-routing.test.ts",
+        "mobile/e2e/07-paywall.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep routing/entitlement boundaries; defer billing until product has chosen accounts and economics.",
+      "overlap": "Shared routing/quota models mirror web; UI paywall overlaps web checkout.",
+      "limitations": "Purchase stub explicitly supported only for simulator flows; no store or paid API actions performed."
+    },
+    {
+      "id": "M07",
+      "name": "Offline content-pack catalog",
+      "purpose": "Bundled .cpack JSON assets, lazy loading, optional C1/C2/update download with per-file SHA-256, version/schema guards, remove downloaded versions, generated-artifact drift checks.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/packs.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/catalog.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/useContent.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/bundled.generated.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/articulation.generated.json",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/scripts/sync-content.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/metro.config.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/"
+      ],
+      "dependencies": [
+        "expo-asset",
+        "expo-file-system",
+        "expo-crypto",
+        "AsyncStorage",
+        "root public/packs and content/articulation source"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/content.test.ts",
+        "mobile npm run content:check",
+        "tests/platform/content-model.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep native disk adapter and content manifest rules; generate asset copies from one authoritative catalog.",
+      "overlap": "11 bundled content.cpack files are exact byte duplicates of web public/packs content.json; 21 platform modules are twins.",
+      "limitations": "All cpack assets are UTF-8 JSON and were read, not opaque binaries; bundled-source fallback to fixtures exists until source pipeline built."
+    },
+    {
+      "id": "M08",
+      "name": "Locally graded lessons and grammar practice",
+      "purpose": "CEFR hubs, lesson queues, quiz/matching/sentence builder/rewrite/gap-fill/dictation/flashcards, grammar reference/search, per-exercise grading, session summary and unlock/pass logic.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/content-model.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/exercises/ExerciseView.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/exercises/SessionRunner.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/(tabs)/learn/index.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/(tabs)/learn/modules.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/lesson/[lessonId].tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/practice/[mode].tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/grammar/index.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/grammar/[pointId].tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/progression.ts"
+      ],
+      "dependencies": [
+        "content packs",
+        "shared deterministic grading",
+        "native UI/AsyncStorage"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/content.test.ts",
+        "mobile/tests/progression.test.ts",
+        "mobile/tests/learning-state.test.ts",
+        "mobile/e2e/02-practice.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep feature definitions and deterministic rules; adapt selected flows in active app instead of importing duplicate application shell.",
+      "overlap": "Substantial web equivalents; future shared domain model can feed separate clients.",
+      "limitations": "Written deterministic grading does not verify spoken grammar/pronunciation; content is third-party authored and must retain applicable notice."
+    },
+    {
+      "id": "M09",
+      "name": "Pronunciation recording and assessment loop",
+      "purpose": "Reusable recorder lifecycle with minimum 600ms, maximum 30s, warning, record/play/submit/cancel/error states; WAV on iOS, AAC/M4A on Android, server assessment with phoneme display.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/audio/take-machine.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/audio/recorder.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/useTakeRecorder.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/practice/RecorderPanel.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/practice/AssessmentView.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/practice/ResultSummary.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/scoring.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/endpoints.ts"
+      ],
+      "dependencies": [
+        "expo-audio",
+        "expo-file-system",
+        "ai-engine scoring/ffmpeg for Android",
+        "microphone permissions"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/take-machine.test.ts",
+        "mobile/tests/scoring.test.ts",
+        "mobile/e2e/02-practice.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique robust native recorder adapter; keep separate audio scoring data from existing tutor text corrections.",
+      "overlap": "Overlap with web assessment UI; complements rather than replaces existing LiveKit streaming mic.",
+      "limitations": "Score thresholds (70/50) are display rules, not human calibration evidence; no real audio scored."
+    },
+    {
+      "id": "M10",
+      "name": "Speech playback and configurable coach voice",
+      "purpose": "Reference speech cache keyed by text/voice, authenticated download validation, pruning, speech playback, narration chunks, voice gender/age/pitch/accent instructions, per-app audio cues.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/audio/reference-audio.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/audio/feedback.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/useCoachVoice.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/usePlayback.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/useSpeech.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/usePracticeVoice.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/narration.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/settings/voice.tsx"
+      ],
+      "dependencies": [
+        "expo-audio",
+        "expo-file-system",
+        "reference-audio/TTS endpoint",
+        "AsyncStorage"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/narration.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep native audio/cache adapter; consolidate one configurable tutor voice provider boundary.",
+      "overlap": "Coach voice module is an AsyncStorage port of web useCoachVoice; duplicated reference-audio controls.",
+      "limitations": "No generated speech or voice quality validation; completion WAV alone is 5.15MB at 96kHz stereo/24-bit and can be optimized later without losing source provenance."
+    },
+    {
+      "id": "M11",
+      "name": "Guided conversation scenarios",
+      "purpose": "Coach prompt audio, learner take/retry, per-turn scoring and pass/unlock progression, next scenario and summary.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/(tabs)/conversation.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/conversation/[slug].tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/progression.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/endpoints.ts"
+      ],
+      "dependencies": [
+        "paired/cloud coach and assessment backends",
+        "native recorder/playback"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/progression.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep scenario semantics; reconcile with existing interview state-machine rather than parallel competing conversation engines.",
+      "overlap": "Overlap with current LiveKit interview and Cadence web conversation.",
+      "limitations": "Archive uses request/response takes; existing app uses live two-way voice. Live Hindi-English quality unverified."
+    },
+    {
+      "id": "M12",
+      "name": "Freeform AI coach and device history",
+      "purpose": "Target-repeat or freedom mode, transcription/assessment/coach turn, retry per reply, end summary, locally stored history.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/(tabs)/coach.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/coach/session.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/coach-storage.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/endpoints.ts"
+      ],
+      "dependencies": [
+        "coach-engine",
+        "ASR/scoring/TTS",
+        "AsyncStorage"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/progression.test.ts",
+        "mobile/e2e/screenshots/coach.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Preserve modes/error/retry requirements; adopt through existing provider interfaces only after product direction.",
+      "overlap": "Duplicates Cadence web AI coach and overlaps current InterviewTutor; do not activate second voice stack.",
+      "limitations": "No cloud/model or transcript retention behavior verified."
+    },
+    {
+      "id": "M13",
+      "name": "Word games and spaced review",
+      "purpose": "Flashcards, Meaning Match combo quiz, Spelling Bee with hints/lives, letter-tile Scramble, minimal-pair Sound Match; seeded question construction and per-account game progress.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/game/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/games/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/data/vocabulary.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/data/minimal-pairs.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/data/pair-sounds.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/games/"
+      ],
+      "dependencies": [
+        "AsyncStorage",
+        "reference audio server for audio games",
+        "shared trimmed SM-2 scheduler"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/quiz.test.ts",
+        "mobile/tests/text.test.ts",
+        "mobile/tests/progress.test.ts",
+        "mobile/e2e/02-practice.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep distinct game mechanics as candidates; one shared scheduler and vocabulary/content catalog.",
+      "overlap": "mobile/src/games/srs.ts only reexports shared platform SRS; web has equivalent games/content; no need second scheduler.",
+      "limitations": "SM-2 is implemented here; do not label FSRS or validated learning effectiveness."
+    },
+    {
+      "id": "M14",
+      "name": "Mouth map, accent variants and sound drill ladder",
+      "purpose": "Animated sagittal vocal tract and front-lip SVG for English sounds, articulator overlays/airflow/voicebox, General American vs RP targets, minimal-pair comparison, personal weak sounds, six-stage drill and scheduled review.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/mouth-map/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/sounds.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/practice/sound-coach.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/hooks/useAccent.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/sounds/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/content/articulation.ts"
+      ],
+      "dependencies": [
+        "react-native-svg",
+        "Reanimated",
+        "shared Maeda-based vocal-tract geometry",
+        "assessment phoneme scores",
+        "articulation content"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/sound-coach.test.ts",
+        "tests/platform/vocal-tract.test.ts",
+        "mobile/e2e/03-mouth-map.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Retain as unique pedagogical visualization candidate, separate from avatar lip sync.",
+      "overlap": "Vocal-tract domain files mirror web; mobile SVG components are platform-specific; Talking Avatar face model has different purpose.",
+      "limitations": "No teacher validation or low-end device animation measurements; drill requires 3 scores >=80 per step, a rule not educational validation."
+    },
+    {
+      "id": "M15",
+      "name": "Advanced phrases, slang and plateau correction",
+      "purpose": "B2-C2 phrase-bank search/filter/drills, contextual slang dictionary/quiz, 10-12 week fossilized-error diagnostic/retest track, own sentence bank, advanced daily practice.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/phrase-bank.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/fossilization.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/practice-day.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/advanced-content.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/advanced-state.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/advanced-store.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/advanced/"
+      ],
+      "dependencies": [
+        "advanced .cpack content",
+        "shared scheduler",
+        "local learner store",
+        "optional coach/assessment"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/advanced.test.ts",
+        "tests/platform/phrase-bank.test.ts",
+        "tests/platform/fossilization.test.ts",
+        "tests/platform/practice-day.test.ts",
+        "mobile/e2e/11-advanced.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep differentiated advanced practice domain; consolidate shared rules/content, adapt scenarios to project goals.",
+      "overlap": "Shared platform twin modules; web contains equivalents; do not count separate screen ports as separate algorithms.",
+      "limitations": "Study schedule and thresholds are implementation rules, not demonstrated longitudinal learning outcomes."
+    },
+    {
+      "id": "M16",
+      "name": "Opt-in personal recordings library and A/B comparison",
+      "purpose": "Save take to app Documents, compare target/learner/back-to-back, group by item/day, per-item/global retention limits, export/delete, optional own iCloud Drive copy off by default.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/recordings/RecordCompare.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/recordings/store.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/recordings/icloud.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/recordings.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/modules/cadence-icloud/ios/CadenceICloudModule.swift",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/plugins/with-icloud-recordings.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/advanced/recordings.tsx"
+      ],
+      "dependencies": [
+        "expo-file-system",
+        "expo-sharing",
+        "Expo native Swift iCloud module",
+        "optional iCloud Documents entitlement"
+      ],
+      "existing_test_evidence": [
+        "tests/platform/recordings.test.ts",
+        "mobile/e2e/11-advanced.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep unique native storage/export adapters and explicit consent boundaries; do not enable automatic recordings in current LiveKit app.",
+      "overlap": "Shared index rules mirror web; native iCloud adapter has no browser equivalent.",
+      "limitations": "Limits: 10 takes/item, 1000 total, 30s/take. Not uploaded by default; iCloud opt-in is a separate data path requiring platform entitlement. No actual recording saved here."
+    },
+    {
+      "id": "M17",
+      "name": "Per-account progress, sync and daily plan",
+      "purpose": "Local learner detail/summary, activity queues, first Plus import then push/pull, free summary-only sync, inbox assigned flashcards, due/new/weak-item recommendation and daily minutes.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/state.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/store.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/sync.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/deck.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/learning/level-store.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/progress-model.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/daily-plan.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/api/account.ts"
+      ],
+      "dependencies": [
+        "AsyncStorage",
+        "React useSyncExternalStore",
+        "server sync APIs/App Check",
+        "content catalog"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/learning-state.test.ts",
+        "tests/mobile/sync-contract.test.ts",
+        "tests/platform/progress-model.test.ts",
+        "tests/platform/daily-plan.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep deterministic state/merge/queue rules; define one consented progress model for all project clients.",
+      "overlap": "Web domain mirrors; current active app intentionally memory-only, so adding persistence requires explicit scope/consent design.",
+      "limitations": "No actual multi-device sync or data retention/deletion verification; full detail policy expires 90 days after Plus lapse in shared model."
+    },
+    {
+      "id": "M18",
+      "name": "Streaks, freezes, badges and local reminders",
+      "purpose": "Local-day streak, freeze each 7 active days capped at 2, daily goal, badges computed from actual state, new-achievement celebration/share, reminder/quiet-hours/due-card/weekly plans and push-device registration.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/engagement/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/EngagementWatcher.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/BadgeCelebration.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/app/badges.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/notifications/",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/TimePicker.tsx"
+      ],
+      "dependencies": [
+        "expo-notifications",
+        "expo-haptics",
+        "expo-sharing",
+        "learner progress/content",
+        "optional Expo EAS push token"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/engagement.test.ts",
+        "mobile/tests/notifications.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep pure engagement rules as optional future features; prioritize authentic lesson activity over invented progress.",
+      "overlap": "Concepts overlap web engagement while native scheduled notification adapter is unique.",
+      "limitations": "No delivered push notification, timing or timezone behavior validated on device."
+    },
+    {
+      "id": "M19",
+      "name": "iOS home and lock-screen widgets",
+      "purpose": "App Group JSON snapshot with streak/goal ring/word-of-day, midnight timeline rollover and deep links; SwiftUI small/medium/circular/inline widgets.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/widget/snapshot.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/widget/sync.ios.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/widget/sync.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/CadenceWidget.swift",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/Snapshot.swift",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/expo-target.config.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/PrivacyInfo.xcprivacy"
+      ],
+      "dependencies": [
+        "WidgetKit",
+        "SwiftUI",
+        "@bacons/apple-targets",
+        "App Group entitlement",
+        "Funnel Display SIL OFL fonts"
+      ],
+      "existing_test_evidence": [
+        "mobile/tests/widget.test.ts"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique native extension; retain source/entitlement/privacy/font notice together; optional later project scope.",
+      "overlap": "No browser/LiveKit counterpart.",
+      "limitations": "Requires signed iOS native build and App Group setup; no widget render tested."
+    },
+    {
+      "id": "M20",
+      "name": "Mobile release safeguards, updates and performance",
+      "purpose": "Xcode archive/upload/build bump, refuse emulator/demo/stub/LAN public release values, verify bundled settings, optional pairing-only build, App Store identity, update banner/minimum-build gate; icon import and bundle optimizations.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/scripts/ios-release.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/scripts/bump-ios-build.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/app.config.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/app.json",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/ExportOptions.plist",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/lib/version-check.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/src/components/UpdateNotice.tsx",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/babel.config.js",
+        "AnalyseFuture/reference-sources/Cadence-main/mobile/metro.config.js"
+      ],
+      "dependencies": [
+        "macOS Xcode 27/iOS 27 SDK per archived README",
+        "Apple signing/App Store Connect credentials",
+        "root release tooling",
+        "native Expo build"
+      ],
+      "existing_test_evidence": [
+        "mobile/e2e/run.sh",
+        "mobile/e2e/config.yaml",
+        "mobile/e2e/01-own-server-onboarding.yaml through 11-advanced.yaml"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep unique release safeguards and native config; replace upstream app IDs/branding only under deliberate future adoption.",
+      "overlap": "Archived release IDs and Cadence app icon/branding are not our product identity.",
+      "limitations": "No iOS native build/upload occurred. Linux environment cannot establish App Store readiness; archived README notes App Store app record not yet registered. Expo exact version docs required before editing native code."
+    },
+    {
+      "id": "D01",
+      "name": "Electron secure desktop shell",
+      "purpose": "Windows/macOS app wrapper around bundled/private Next standalone server; window/menu/startup UI, media permissions, navigation/open-link guard, isolated renderer IPC, devtools and teardown.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/browser-window.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/next-server.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/menu.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/constants.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/preload.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/setup-ipc.ts"
+      ],
+      "dependencies": [
+        "Electron ^33.4.0",
+        "TypeScript",
+        "Next standalone server",
+        "OS packaging"
+      ],
+      "existing_test_evidence": [
+        "desktop/scripts/smoke.mjs"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep native shell/adapters for optional desktop; reuse one web app rather than second product UI.",
+      "overlap": "Bundles same web app; separate shell is not separate learning domain.",
+      "limitations": "No Electron window or executable launched; hardening code presence is not security certification."
+    },
+    {
+      "id": "D02",
+      "name": "Native Python sidecar setup and health diagnostics",
+      "purpose": "Packaged Python detection, per-engine venv/install markers, writable runtime/models/logs, speech/ASR/TTS/coach model health, progress state, retries, CPU threads, service ownership/cleanup, OOM/service-exit diagnosis.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/setup-manager.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/setup/support.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/setup/types.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/setup/constants.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/INSTALLER_ARCHITECTURE.md"
+      ],
+      "dependencies": [
+        "Python >=3.10 per detector; bundled 3.11.15",
+        "pip requirements for ai-engine/coach-engine",
+        "Hugging Face model cache",
+        "native acceleration/CPU",
+        "20-minute setup timeout"
+      ],
+      "existing_test_evidence": [
+        "desktop/scripts/smoke.mjs"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep installer architecture/reference, but never start archived Torch services as part of current hosted LiveKit setup.",
+      "overlap": "Overlaps environment installation duties; native sidecar unique deployment adapter.",
+      "limitations": "Defaults Wav2Vec2 XLSR, whisper-base.en, OmniVoice, Qwen2.5-0.5B. English-only ASR default unsuitable as assumed Hinglish parity. No models downloaded or run."
+    },
+    {
+      "id": "D03",
+      "name": "Desktop packaging, runtime bundle and reset tooling",
+      "purpose": "Bundle matching Python platforms, Next standalone/static/catalog, native engine sources; macOS DMG/ZIP x64+arm64 and Windows NSIS/MSI x64; cleanup/reset preserving optional model cache, signing/notarization hooks.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/electron-builder.yml",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/prepare-python-runtime.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/prepare-build.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/prepare-release.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/fix-standalone.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/run-electron-builder.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/reset-runtime.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/clean-test.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/assets/entitlements.mac.plist"
+      ],
+      "dependencies": [
+        "electron-builder ^25.1.8",
+        "Astral python-build-standalone release 20260325 / CPython 3.11.15",
+        "macOS/Windows signing credentials"
+      ],
+      "existing_test_evidence": [
+        ".github/workflows/desktop-release.yml",
+        "desktop/scripts/smoke.mjs"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep as optional deployment tooling; one build config/source of truth and exclude secrets from resources.",
+      "overlap": "Duplicates root Next build/dependencies only as packaging; do not add generated vendor runtimes to product source.",
+      "limitations": "Python archive downloader uses HTTPS but no checksum/signature check found in its source; independently verify before any future execution/adoption. Packaging excludes .env files from standalone and engines."
+    },
+    {
+      "id": "D04",
+      "name": "Desktop automatic updates and release policy",
+      "purpose": "Detect Mac/NSIS/MSI install type, delayed then six-hour update checks, download/progress/ready persistent state, user-controlled restart, MSI release-page link, loopback-only test-feed override.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/update-policy.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/updater.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/preload.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/test-update-feed.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/scripts/test-update-install.mjs"
+      ],
+      "dependencies": [
+        "electron-updater 6.8.11",
+        "GitHub releases/latest*.yml",
+        "OS installer/signing"
+      ],
+      "existing_test_evidence": [
+        "tests/desktop/update-policy.test.ts",
+        "desktop/scripts/test-update-feed.mjs",
+        "desktop/scripts/test-update-install.mjs"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique desktop deployment feature; preserve until desktop roadmap decision.",
+      "overlap": "Release paths currently target pstepanovum/Cadence, not this repo.",
+      "limitations": "No update feed/download/install or signed artifact validated; test scripts present do not mean passed."
+    },
+    {
+      "id": "D05",
+      "name": "Desktop phone pairing UI",
+      "purpose": "Native Phone menu/window connects web pairing management and LAN address behavior for computer-to-phone operation.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/pairing.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/desktop/src/main/menu.ts"
+      ],
+      "dependencies": [
+        "root pairing endpoints",
+        "Electron BrowserWindow",
+        "LAN accessibility"
+      ],
+      "existing_test_evidence": [
+        "root tests/pairing/ suites"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep only if own-computer mobile mode adopted.",
+      "overlap": "Shares pairing protocol with mobile; not a second backend.",
+      "limitations": "No device discovered or paired."
+    },
+    {
+      "id": "S01",
+      "name": "App Store listing and capture runbook",
+      "purpose": "Store copy/privacy/subscription submission instructions, simulator demo staging/capture flow and eight preserved raw captures.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/store/APP_STORE.md",
+        "AnalyseFuture/reference-sources/Cadence-main/store/README.md",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/"
+      ],
+      "dependencies": [
+        "Apple App Store Connect",
+        "Maestro/iOS simulator",
+        "root screenshot/demo scripts"
+      ],
+      "existing_test_evidence": [
+        "Documented capture/export checks only; not executed"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Preserve as reference/artifact evidence; author original product copy/assets for actual launch.",
+      "overlap": "Screenshots show Cadence; do not present as current Eng Teacher feature validation.",
+      "limitations": "8 PNGs parsed as 1320x2868 RGBA; not visually reviewed or used as own assets in this task."
+    },
+    {
+      "id": "S02",
+      "name": "Screenshot studio and exact-size export",
+      "purpose": "Editable slide dashboard, saved captions/device layouts/themes, genuine raw-image discovery, render readiness wait, Playwright export to App Store sizes, RGB/no-alpha enforcement and missing/wrong-size refusal.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/src/",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/config/slides.config.json",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/scripts/export.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/scripts/png.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/scripts/raw-files.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/scripts/copy-assets.mjs",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/vite.config.ts",
+        "AnalyseFuture/reference-sources/Cadence-main/store/screenshot-studio/package.json"
+      ],
+      "dependencies": [
+        "React 18.3.1",
+        "Vite 6",
+        "TypeScript 5.7",
+        "Playwright 1.63",
+        "pngjs",
+        "font files from mobile packages"
+      ],
+      "existing_test_evidence": [
+        "npm run typecheck",
+        "export script explicit PNG size/color assertions; no dedicated suite present"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique marketing tooling worth retaining separately from active app; do not install a third frontend framework runtime in core development.",
+      "overlap": "Reuses Cadence fonts/logo/illustrations; metadata/layout logic reusable after original branding.",
+      "limitations": "No rendering/export executed; no screenshot implies a tested feature."
+    },
+    {
+      "id": "R01",
+      "name": "Cross-client version manifest",
+      "purpose": "Single archived declaration of web version, desktop latest/minimum/release link, iOS latest/minimumBuild/App Store URL.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/Cadence-main/release/manifest.json"
+      ],
+      "dependencies": [
+        "web /api/version",
+        "desktop updater",
+        "mobile version notice"
+      ],
+      "existing_test_evidence": [
+        "root release checks and mobile version source; unrun"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep one future release registry with project-owned identities.",
+      "overlap": "Desktop package 0.1.26 vs manifest latest 0.1.25; iOS app version 1.0.0 build 8 vs minimumBuild 1 and null store URL.",
+      "limitations": "Difference may be pending release, not proven defect; no published releases verified."
+    },
+    {
+      "id": "AV01",
+      "name": "Provider-independent browser talking-avatar SDK",
+      "purpose": "TypeScript ESM class accepting remote MediaStream or audio clips, self-hostable model/avatar URLs, status/error API, one browser audio owner and lifecycle disposal.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/package.json",
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/TalkingAvatar.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/index.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/README.md"
+      ],
+      "dependencies": [
+        "three >=0.160 peer",
+        "Web Audio AudioWorklet",
+        "WebGL2",
+        "MediaStream",
+        "optional React >=18"
+      ],
+      "existing_test_evidence": [
+        "4 node:test source suites, 11 explicit test calls; not executed"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Strong candidate for isolated browser package/adapter, gated by user approval and audio-only fallback.",
+      "overlap": "Existing LiveKit RoomAudioRenderer already owns teacher sound; avatar attachStream plays audio itself.",
+      "limitations": "Use only selected agent remote track, never learner mic; avoid double playback. Requires user gesture, blob: CSP allowance and CORS/connect-src for assets; default stream delay 150ms; no Android performance validation."
+    },
+    {
+      "id": "AV02",
+      "name": "Clip playback, streaming capture and sync timeline",
+      "purpose": "Live AudioWorklet captures 1024-sample blocks; muted media element unlocks Chrome remote stream feeding; DelayNode aligns stream; clip decode/downmix/full analysis with yielding; heard-time correction/event history/gap reset and cancellation tokens.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/TalkingAvatar.ts"
+      ],
+      "dependencies": [
+        "AudioContext",
+        "AudioWorklet",
+        "getOutputTimestamp",
+        "fetch/decodeAudioData"
+      ],
+      "existing_test_evidence": [
+        "No browser integration/playback/disposal suite found; lower pure model tests only"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep lifecycle/timing implementation in SDK; expose narrow existing app adapter.",
+      "overlap": "Same teacher audio must have one output; stream and clip can overlap despite one attached stream.",
+      "limitations": "No runtime proof of interruptions/reconnect/disposal/autoplay; source permits clip/stream overlap, so app must define single teacher-output policy."
+    },
+    {
+      "id": "AV03",
+      "name": "In-browser speech-to-viseme inference",
+      "purpose": "Log-mel features, FFT/filterbank, normalized causal residual conv net, 22 viseme IDs each 10ms, binary model parser, no WASM/Python ML runtime.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/visemeModel.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/model/viseme-model.bin",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/visemeModel.test.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/helpers.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/fixtures/parity-audio.f32",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/fixtures/parity-visemes.u8"
+      ],
+      "dependencies": [
+        "bundled 1,040,276-byte model",
+        "float arrays/plain JS",
+        "three-second TTS parity fixture and saved PyTorch labels"
+      ],
+      "existing_test_evidence": [
+        "test/visemeModel.test.ts frame-by-frame stored-reference parity"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Unique SDK model/inference candidate; preserve binary/fixtures/provenance together.",
+      "overlap": "Lip sync shapes are not pronunciation assessment or learner scores.",
+      "limitations": "Parsed binary header/tensor metadata only; weights not inferred/executed. Training uses LibriTTS-R/CC BY4.0 per README, SDK/model declared MIT. Upstream accuracy 82% and CPU claims are not reproduced measurements."
+    },
+    {
+      "id": "AV04",
+      "name": "Sample-rate conversion and stable viseme timing",
+      "purpose": "Streaming windowed-sinc/Blackman resampler with phase kernels; min-two-frame viseme hold/backdating, lookahead compensation, initial p/b/m exception, silence flush.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/resampler.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/visemeDetector.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/resampler.test.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/visemeDetector.test.ts"
+      ],
+      "dependencies": [
+        "plain TypeScript",
+        "viseme model"
+      ],
+      "existing_test_evidence": [
+        "2 resampler tests; 3 detector tests; stored-reference timeline and 16/48kHz parity"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep as inseparable audio core, do not replace with transcript/phoneme guesses.",
+      "overlap": "No overlap with LiveKit transport; consumes decoded output audio.",
+      "limitations": "Test source inspected only; no sample-rate/device validation performed."
+    },
+    {
+      "id": "AV05",
+      "name": "Coarticulation and natural expressive face",
+      "purpose": "English-viseme to Oculus mapping, vowel borrowing for tongue-only consonants, anticipatory smooth ramps, lip-closure override, speech-vs-idle status; Three.js close-up framing, material refinement, blinks/brows, custom morph maps, resize/resource disposal.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/coarticulation.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/renderer.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/test/coarticulation.test.ts"
+      ],
+      "dependencies": [
+        "Three.js GLTFLoader/MeshoptDecoder/RoomEnvironment",
+        "GLB Oculus visemes/optional ARKit morphs",
+        "ResizeObserver/requestAnimationFrame"
+      ],
+      "existing_test_evidence": [
+        "5 pure coarticulation tests; no GPU/rendering suite found"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Keep SDK renderer; maintain separate pedagogical vocal-tract visualization feature.",
+      "overlap": "Cadence mouth map illustrates articulation, while this renderer follows teacher audio; these are distinct useful features.",
+      "limitations": "Face only: no gaze/head/body motion. English-trained nearest visemes for Hindi and other languages; no live Hinglish/speaker teaching-quality validation."
+    },
+    {
+      "id": "AV06",
+      "name": "React wrapper and bundling/CI",
+      "purpose": "ForwardRef TalkingAvatarView with avatar/status/stream props, instance disposal, model/delay-driven recreation, URL swap; Vite ESM external peers and TS declarations; Node 20/22/24 CI check/test/build/pack dry run.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/src/react.tsx",
+        "AnalyseFuture/reference-sources/talking-avatar-master/vite.config.ts",
+        "AnalyseFuture/reference-sources/talking-avatar-master/tsconfig.json",
+        "AnalyseFuture/reference-sources/talking-avatar-master/tsconfig.build.json",
+        "AnalyseFuture/reference-sources/talking-avatar-master/.github/workflows/ci.yml",
+        "AnalyseFuture/reference-sources/talking-avatar-master/CONTRIBUTING.md",
+        "AnalyseFuture/reference-sources/talking-avatar-master/SECURITY.md",
+        "AnalyseFuture/reference-sources/talking-avatar-master/CHANGELOG.md"
+      ],
+      "dependencies": [
+        "React >=18 optional peer",
+        "Vite ^5.4.9",
+        "TypeScript ~5.6.2",
+        "tsx node:test",
+        "Node >=18 package floor"
+      ],
+      "existing_test_evidence": [
+        "CI source runs npm ci/typecheck/test/build/npm pack --dry-run on Node 20/22/24"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Prefer packaged SDK dependency or project-owned narrowly scoped package after pinned validation; retain tests/docs.",
+      "overlap": "Compatible React peer with existing frontend; no need migrate whole project to Next16 or Python.",
+      "limitations": "Version 0.3.0 contains only free browser 3D SDK. Paid realistic avatar server/live clients were removed to a separate @talkingavatar/sdk; historical CHANGELOG entries are not features in this snapshot."
+    },
+    {
+      "id": "AV07",
+      "name": "Bundled avatar/model asset provenance",
+      "purpose": "Female/male Rocketbox GLBs with Oculus and ARKit morphs; SDK/model MIT notice and separate Microsoft avatar MIT notice; deterministic small parity fixtures.",
+      "related_paths": [
+        "AnalyseFuture/reference-sources/talking-avatar-master/avatars/female.glb",
+        "AnalyseFuture/reference-sources/talking-avatar-master/avatars/male.glb",
+        "AnalyseFuture/reference-sources/talking-avatar-master/avatars/LICENSE",
+        "AnalyseFuture/reference-sources/talking-avatar-master/LICENSE",
+        "AnalyseFuture/reference-sources/talking-avatar-master/model/viseme-model.bin",
+        "AnalyseFuture/reference-sources/talking-avatar-master/README.md"
+      ],
+      "dependencies": [
+        "Microsoft Rocketbox assets",
+        "glTF-Transform 4.5-generated GLB",
+        "EXT_meshopt_compression",
+        "EXT_texture_webp",
+        "KHR_mesh_quantization"
+      ],
+      "existing_test_evidence": [
+        "GLB metadata parsed read-only; each exposes 67 morph names including 15 visemes; no visual rendering"
+      ],
+      "current_status": "archived source inspected; not installed, executed, integrated or validated in this task",
+      "consolidation_candidate": "Preserve separate asset notices and model provenance; self-host model/avatars for controlled network when adopted.",
+      "overlap": "Original project character/branding choice remains separate; included third-party avatars are not bespoke Eng Teacher art.",
+      "limitations": "Female 821360 bytes, male 1021288 bytes; mesh/texture buffers not visually or semantically verified. Model training-data attribution/training rights require review before redistribution claims beyond supplied notices."
+    }
+  ],
+  "shared_domain_twins": [
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/content-model.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/content-model.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/daily-plan.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/daily-plan.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/engine-routing.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/engine-routing.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/fossilization.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/fossilization.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/goals.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/goals.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/levels.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/levels.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/phrase-bank.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/phrase-bank.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/placement.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/placement.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/practice-day.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/practice-day.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/progress-model.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/progress-model.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/recordings.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/recordings.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/sign-in-methods.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/sign-in-methods.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/srs.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/srs.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/animate.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/animate.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/articulation.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/articulation.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/codebook.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/codebook.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/fit.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/fit.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/geometry.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/geometry.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/index.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/index.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/maeda.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/maeda.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    },
+    {
+      "mobile": "AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/svg-path.ts",
+      "web": "AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/svg-path.ts",
+      "identical_after_only_FILE_Twin_header_comments_removed": true
+    }
+  ],
+  "binary_boundaries": [
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/favicon.png",
+      "bytes": 1129,
+      "width": 48,
+      "height": 48,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/icon.png",
+      "bytes": 12398,
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/ios-icon.png",
+      "bytes": 46696,
+      "width": 1024,
+      "height": 1024,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/splash-mark-dark.png",
+      "bytes": 21063,
+      "width": 600,
+      "height": 324,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/splash-mark.png",
+      "bytes": 20671,
+      "width": 600,
+      "height": 324,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/complete.wav",
+      "bytes": 5149920,
+      "channels": 2,
+      "sample_width": 3,
+      "sample_rate": 96000,
+      "frames": 852651,
+      "seconds": 8.88178125
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/correct.wav",
+      "bytes": 292586,
+      "channels": 2,
+      "sample_width": 3,
+      "sample_rate": 44100,
+      "frames": 48742,
+      "seconds": 1.1052607709750566
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/incorrect.wav",
+      "bytes": 193442,
+      "channels": 2,
+      "sample_width": 3,
+      "sample_rate": 44100,
+      "frames": 32218,
+      "seconds": 0.7305668934240362
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/FunnelDisplay_500Medium.ttf",
+      "bytes": 33968
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/FunnelDisplay_700Bold.ttf",
+      "bytes": 33916
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/desktop/assets/icon.icns",
+      "bytes": 565431
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/desktop/assets/icon.png",
+      "bytes": 87079,
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/coach.png",
+      "bytes": 308582,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/flashcards.png",
+      "bytes": 185075,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/grammar-builder.png",
+      "bytes": 165090,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/mouth-map.png",
+      "bytes": 332966,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/own-server.png",
+      "bytes": 276681,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/plus.png",
+      "bytes": 344360,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/sounds-to-fix.png",
+      "bytes": 298792,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/Cadence-main/store/screenshots/raw/streaks.png",
+      "bytes": 318738,
+      "width": 1320,
+      "height": 2868,
+      "bit_depth": 8,
+      "color_type": 6
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/talking-avatar-master/avatars/female.glb",
+      "bytes": 821360,
+      "version": 2,
+      "total_bytes": 821360,
+      "mesh_count": 1,
+      "materials": 3,
+      "extensions": [
+        "EXT_meshopt_compression",
+        "EXT_texture_webp",
+        "KHR_mesh_quantization"
+      ],
+      "asset": {
+        "generator": "glTF-Transform v4.5.0",
+        "version": "2.0"
+      },
+      "morph_names": [
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "mouthClose",
+        "mouthDimpleLeft",
+        "mouthDimpleRight",
+        "mouthFrownLeft",
+        "mouthFrownRight",
+        "mouthFunnel",
+        "mouthLeft",
+        "mouthLowerDownLeft",
+        "mouthLowerDownRight",
+        "mouthPressLeft",
+        "mouthPressRight",
+        "mouthPucker",
+        "mouthRight",
+        "mouthRollLower",
+        "mouthRollUpper",
+        "mouthShrugLower",
+        "mouthShrugUpper",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "mouthUpperUpLeft",
+        "mouthUpperUpRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "tongueOut",
+        "viseme_CH",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_FF",
+        "viseme_I",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_RR",
+        "viseme_SS",
+        "viseme_TH",
+        "viseme_U",
+        "viseme_aa",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_sil"
+      ]
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/talking-avatar-master/avatars/male.glb",
+      "bytes": 1021288,
+      "version": 2,
+      "total_bytes": 1021288,
+      "mesh_count": 1,
+      "materials": 3,
+      "extensions": [
+        "EXT_meshopt_compression",
+        "EXT_texture_webp",
+        "KHR_mesh_quantization"
+      ],
+      "asset": {
+        "generator": "glTF-Transform v4.5.0",
+        "version": "2.0"
+      },
+      "morph_names": [
+        "browDownLeft",
+        "browDownRight",
+        "browInnerUp",
+        "browOuterUpLeft",
+        "browOuterUpRight",
+        "cheekPuff",
+        "cheekSquintLeft",
+        "cheekSquintRight",
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "eyeLookDownLeft",
+        "eyeLookDownRight",
+        "eyeLookInLeft",
+        "eyeLookInRight",
+        "eyeLookOutLeft",
+        "eyeLookOutRight",
+        "eyeLookUpLeft",
+        "eyeLookUpRight",
+        "eyeSquintLeft",
+        "eyeSquintRight",
+        "eyeWideLeft",
+        "eyeWideRight",
+        "jawForward",
+        "jawLeft",
+        "jawOpen",
+        "jawRight",
+        "mouthClose",
+        "mouthDimpleLeft",
+        "mouthDimpleRight",
+        "mouthFrownLeft",
+        "mouthFrownRight",
+        "mouthFunnel",
+        "mouthLeft",
+        "mouthLowerDownLeft",
+        "mouthLowerDownRight",
+        "mouthPressLeft",
+        "mouthPressRight",
+        "mouthPucker",
+        "mouthRight",
+        "mouthRollLower",
+        "mouthRollUpper",
+        "mouthShrugLower",
+        "mouthShrugUpper",
+        "mouthSmileLeft",
+        "mouthSmileRight",
+        "mouthStretchLeft",
+        "mouthStretchRight",
+        "mouthUpperUpLeft",
+        "mouthUpperUpRight",
+        "noseSneerLeft",
+        "noseSneerRight",
+        "tongueOut",
+        "viseme_CH",
+        "viseme_DD",
+        "viseme_E",
+        "viseme_FF",
+        "viseme_I",
+        "viseme_O",
+        "viseme_PP",
+        "viseme_RR",
+        "viseme_SS",
+        "viseme_TH",
+        "viseme_U",
+        "viseme_aa",
+        "viseme_kk",
+        "viseme_nn",
+        "viseme_sil"
+      ]
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/talking-avatar-master/model/viseme-model.bin",
+      "bytes": 1040276,
+      "header": {
+        "SR": 16000,
+        "WIN": 400,
+        "HOP": 160,
+        "NFFT": 512,
+        "N_MELS": 80,
+        "FMIN": 20.0,
+        "FMAX": 8000.0,
+        "LOG_FLOOR": 1e-06,
+        "channels": 128,
+        "kernel": 3,
+        "dilations": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "lookahead": 2,
+        "classes": 22,
+        "tensors": [
+          {
+            "name": "mean",
+            "shape": [
+              80
+            ],
+            "offset": 0
+          },
+          {
+            "name": "std",
+            "shape": [
+              80
+            ],
+            "offset": 80
+          },
+          {
+            "name": "inp.weight",
+            "shape": [
+              128,
+              80,
+              1
+            ],
+            "offset": 160
+          },
+          {
+            "name": "inp.bias",
+            "shape": [
+              128
+            ],
+            "offset": 10400
+          },
+          {
+            "name": "blocks.0.weight",
+            "shape": [
+              128,
+              128,
+              3
+            ],
+            "offset": 10528
+          },
+          {
+            "name": "blocks.0.bias",
+            "shape": [
+              128
+            ],
+            "offset": 59680
+          },
+          {
+            "name": "blocks.1.weight",
+            "shape": [
+              128,
+              128,
+              3
+            ],
+            "offset": 59808
+          },
+          {
+            "name": "blocks.1.bias",
+            "shape": [
+              128
+            ],
+            "offset": 108960
+          },
+          {
+            "name": "blocks.2.weight",
+            "shape": [
+              128,
+              128,
+              3
+            ],
+            "offset": 109088
+          },
+          {
+            "name": "blocks.2.bias",
+            "shape": [
+              128
+            ],
+            "offset": 158240
+          },
+          {
+            "name": "blocks.3.weight",
+            "shape": [
+              128,
+              128,
+              3
+            ],
+            "offset": 158368
+          },
+          {
+            "name": "blocks.3.bias",
+            "shape": [
+              128
+            ],
+            "offset": 207520
+          },
+          {
+            "name": "blocks.4.weight",
+            "shape": [
+              128,
+              128,
+              3
+            ],
+            "offset": 207648
+          },
+          {
+            "name": "blocks.4.bias",
+            "shape": [
+              128
+            ],
+            "offset": 256800
+          },
+          {
+            "name": "out.weight",
+            "shape": [
+              22,
+              128,
+              1
+            ],
+            "offset": 256928
+          },
+          {
+            "name": "out.bias",
+            "shape": [
+              22
+            ],
+            "offset": 259744
+          }
+        ]
+      },
+      "payload_bytes": 1039064
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/talking-avatar-master/test/fixtures/parity-audio.f32",
+      "bytes": 192000,
+      "float32_samples": 48000,
+      "seconds_at_16khz": 3.0
+    },
+    {
+      "path": "AnalyseFuture/reference-sources/talking-avatar-master/test/fixtures/parity-visemes.u8",
+      "bytes": 298,
+      "frames": 298,
+      "minimum": 0,
+      "maximum": 21
+    }
+  ],
+  "unique_work_to_preserve": [
+    "Native recorder lifecycle/format adapters and deterministic take-machine regressions",
+    "Own-computer pairing/discovery, native secure tokens and dual local/cloud transport boundaries",
+    "Native App Attest and optional iCloud adapters with entitlements/notices",
+    "Swift WidgetKit extension and native notification scheduling",
+    "Offline .cpack storage/download/checksum adapters and original source generation pipeline",
+    "Desktop sidecar installer, health/diagnostic state and user-controlled updater tests",
+    "Mobile/platform domain tests and workflow regression cases even when UI is consolidated",
+    "Screenshot exporter readiness/exact-size/RGB checks as separate tooling",
+    "Browser viseme model, inference/timing/coarticulation, render lifecycle, assets and separate MIT notices"
+  ],
+  "low_value_duplicates_for_future_consolidation": [
+    "21 web/mobile platform twin modules differ only FILE/Twin header comments; eventual shared TypeScript package is preferable to two hand-edited copies. Keep archived snapshots intact as evidence.",
+    "11 mobile content.cpack payloads duplicate authoritative public/packs content.json exactly; retain generator/manifest rules, do not independently edit copies.",
+    "Mobile logo/illustration/SFX copies mirror root assets; use one asset source and platform-specific generated copies. Existing source stays archived.",
+    "mobile/src/games/srs.ts is only a reexport; do not implement another scheduler alongside platform/srs.ts or mislabel it FSRS.",
+    "Desktop duplicates web UI only as a shell; do not build a second independent learning backend for it.",
+    "Native/screenshot-studio React versions are separate build tools/client boundaries; do not merge their manifests into active web app.",
+    "Complete Cadence auth/billing/coach stack would compete with existing active tutor; select capabilities through explicit adapter boundaries rather than activating two products."
+  ],
+  "uninspectable_boundaries": [
+    "25 binary assets are not ordinary readable code: five mobile PNG icons/splashes, three WAV SFX, two TTF fonts, desktop ICNS/PNG, eight raw store PNG captures, two GLB avatars, viseme model binary, and two numeric parity fixtures. Header/format metadata inspected for PNG/WAV/GLB/model/fixtures; ICNS and font byte hashes/boundaries recorded without renderer/font semantic validation.",
+    "No source for model training or PyTorch reference generator is in this avatar snapshot; saved numeric fixture parity can establish implementation equivalence only if later executed.",
+    "No generated iOS/Android project or vendor Python runtimes were present in scoped tracked source; shipping native artifacts cannot be evaluated from source alone.",
+    "No existing archive test execution, simulator run, cloud credential operation, real microphone assessment, desktop installer, updater install, or published artifact has been validated in this review."
+  ],
+  "licensing_notes": [
+    "Cadence root and mobile declare MIT; preserve author copyright/source provenance when selecting substantive code. Competitor brand assets/store captures should stay reference-only unless user chooses rebranding/adoption.",
+    "Talking Avatar 0.3.0 SDK and model declare MIT (InterviewFlowAI), built-in GLBs carry separate Microsoft Rocketbox MIT copyright (2020). README attributes LibriTTS-R training data CC BY4.0 and MFA; no model training performed here.",
+    "Widget bundled Funnel Display TTFs have accompanying SIL Open Font License notice (mobile/targets/widget/FunnelDisplay-OFL.txt). Screenshot studio copies Funnel Display/Sour Gummy from font packages; preserve relevant font notices if redistributed."
+  ],
+  "recommended_language_boundary": "One product/monorepo with shared TypeScript domain rules, TypeScript browser/avatar and optional React Native/Electron adapters, Python speech/ML/LiveKit service, and small necessary Swift native modules. A single-language rewrite is not implied by consolidation and requires explicit user authorization.",
+  "auxiliary_evidence_files": [
+    "/tmp/cadence-clients-avatar-text-index.json",
+    "/tmp/cadence-clients-avatar-binary-metadata.json"
+  ]
+}

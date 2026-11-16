@@ -1,0 +1,54 @@
+TEST AND VALIDATION REPORT
+17 November 2026 (Asia/Calcutta); consolidated code checkpoint8f1c988
+
+PASSED — COMMANDS EXECUTED FOR THIS RECOVERY
+1. npm ci --cache /workspace/.cache/npm --no-audit --no-fund
+   Frozen JS install:104 packages installed; dependency/lockfile unchanged.
+2. UV_CACHE_DIR=/workspace/.cache/uv uv sync --frozen --project services/voice-agent
+   Checked83 installed packages; no dependency or lockfile update.
+3. npm test:14 tests across2 Vitest files in relocated feature test directories.
+4. uv run --frozen pytest -q in service, and root project invocation:
+   71 Python tests passed. Source branch had56; this recovery adds15 parametrized
+   regression/schema cases, including decimal quantities and semantic punctuation.
+5. uv run --frozen ruff check services/voice-agent: passed.
+6. uv run --frozen ruff format --check services/voice-agent:8 files formatted.
+7. NEXT_TELEMETRY_DISABLED=1 npm run build: optimized Next production build passed.
+8. npm run typecheck: passed after repaired feature imports and API route paths.
+9. CI=1 NEXT_TELEMETRY_DISABLED=1 npm run test:browser:6 tests passed using system
+   Chromium, desktop/mobile viewports, synthetic microphone and failure paths.
+10. Root pytest --collect-only:exactly71 tests, allservices/voice-agent/tests;
+    no archived Cadence module imported. Root config fixes accidental discovery.
+11. Production npm start on3000: GET / ->200 with expected learner heading;
+    POST /api/session ->503,no-store,no participant token when unconfigured.
+12. npm audit --json:0 known vulnerabilities reported for active npm lock.
+13. SHA256 checks for all1,478 previously relocated payloads and10 superseded
+    baseline copies; ZIP-entry comparison for1,474 extracted upstream payloads.
+14. Git diff whitespace, path/feature ownership inventory, and normal pushed refs.
+
+PRE/POST COMPARISON
+Starting known main:14JS/42Python/6browser from earlier exact-state validation.
+Final active checks:14JS/71Python/6browser. Added tests exercise recovered behavior;
+existing token, original/correction, deadline and browser recovery checks remain.
+Raw installed-run counts, not old PR descriptions, determine reported outcomes.
+
+FAILED OR SKIPPED
+No active test/build/lint check remains failed. No runner reported skipped tests.
+GitHub API metadata/permissions query returned Forbidden; account settings,
+branch-protection details, remote Actions run results and security logs unavailable.
+Normal Git fetch/push and backup-tag pushes succeeded without force or bypass.
+
+NOT RUN / NOT APPLICABLE
+No live microphone->LiveKit->OpenAI conversation, actual Hindi/Bengali evaluation,
+physical Android test, ten-minute paid-call/billing run, or integrated avatar test.
+No archived app build/test/install or model/GLB inference/rendering. Binary bytes
+and metadata were inspected only. No standalone database migration exists in the
+active project; archived Firebase/Stripe/etc are outside active deployment scope.
+No actionlint executable, full dependency penetration test or Python advisory
+database scan was performed. Active Actions YAML/scopes were reviewed statically;
+its underlying active commands were executed locally, not remote CI certified.
+No TLS, package hashes or signatures were disabled. No credentials were invented.
+
+LIMITS
+Fake provider/room fixtures and silent/synthetic audio establish code behavior,
+not recognition/teaching/pronunciation quality. Pattern scans cannot prove absence
+of all malware/secrets or attribute account compromise. SeeSECURITY_AUDIT.txt.

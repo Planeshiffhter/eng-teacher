@@ -1,0 +1,58 @@
+ORIGINAL TO NEW PATH MAPPING
+
+This recovery task: 5 active web files moved with git mv.
+API path /api/session and room event version1 remain unchanged.
+
+apps/web/components/tutor-app.tsx -> apps/web/features/lesson/components/tutor-app.tsx
+  Reason: group component, contract, server logic and tests by responsibility.
+  Imports repaired in Next page/API route and relative feature tests.
+apps/web/lib/tutor-events.ts -> apps/web/features/lesson/tutor-events.ts
+  Reason: group component, contract, server logic and tests by responsibility.
+  Imports repaired in Next page/API route and relative feature tests.
+apps/web/tests/tutor-events.test.ts -> apps/web/features/lesson/tests/tutor-events.test.ts
+  Reason: group component, contract, server logic and tests by responsibility.
+  Imports repaired in Next page/API route and relative feature tests.
+apps/web/lib/server/session.ts -> apps/web/features/session/server/session.ts
+  Reason: group component, contract, server logic and tests by responsibility.
+  Imports repaired in Next page/API route and relative feature tests.
+apps/web/tests/server-session.test.ts -> apps/web/features/session/tests/session.test.ts
+  Reason: group component, contract, server logic and tests by responsibility.
+  Imports repaired in Next page/API route and relative feature tests.
+
+CONSOLIDATED FROM DISCONNECTED BRANCH da2796e
+Python src/eng_teacher/{agent,controls,providers,tutor}.py and tests/{test_tutor,test_lifecycle}.py -> same canonical service paths, with punctuation regression fix.
+Web tutor component, event schema and event test -> lesson feature paths above.
+.github/workflows/checks.yml -> same path; retained read-only workflow plus Ruff format gate.
+docs/TWO_PRIMARY_REFERENCE_REPOS.md -> same canonical docs path; recovered unique pinned research.
+
+PRESERVED SUPERSEDED VERSIONS
+services/voice-agent/src/eng_teacher/agent.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/agent.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+services/voice-agent/src/eng_teacher/controls.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/controls.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+services/voice-agent/src/eng_teacher/providers.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/providers.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+services/voice-agent/src/eng_teacher/tutor.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/tutor.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+services/voice-agent/tests/test_tutor.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_tutor.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+services/voice-agent/tests/test_lifecycle.py @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_lifecycle.py
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+apps/web/components/tutor-app.tsx @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/components/tutor-app.tsx
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+apps/web/lib/tutor-events.ts @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/lib/tutor-events.ts
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+apps/web/tests/tutor-events.test.ts @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/tests/tutor-events.test.ts
+  Reason: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+.github/workflows/checks.yml @98cfcd7 -> AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/.github/workflows/checks.yml
+  Reason: Original CI before recovered Ruff formatting gate; retained for comparison.
+
+EARLIER ORGANIZATION, RETAINED UNCHANGED THIS TASK
+reference-sources/** -> AnalyseFuture/reference-sources/**
+Cadence-main.zip -> AnalyseFuture/Cadence-main.zip
+talking-avatar-master.zip -> AnalyseFuture/talking-avatar-master.zip
+All 1,478 old/new paths and SHA256 values are in PRESERVATION_MANIFEST.json.
+Those were earlier moves, not counted again as this task's 5 moves.
+
+All other initial paths remain present or are intentional documentation edits.
+No old branch/tag was deleted; no shared history was reset or force-pushed.

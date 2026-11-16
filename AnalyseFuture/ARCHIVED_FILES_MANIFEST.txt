@@ -1,0 +1,71 @@
+ARCHIVED FILES MANIFEST
+
+A. Existing uploaded snapshots and ZIPs
+1,478 payloads preserved byte for byte by the earlier relocation.
+Includes1,443 Cadence files,31 avatar files,original README/ARCHIVES.json,
+and2 uploaded ZIPs. Exact paths/hashes: PRESERVATION_MANIFEST.json.
+
+B. This task:10 superseded active payloads preserved before adoption
+Original commit98cfcd7; replacement is the consolidated feature/service
+implementation at8f1c988, with further regression repair described above.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/agent.py
+Original: services/voice-agent/src/eng_teacher/agent.py
+SHA256: aca6fd08ff5396163fa1c393f4344aa13853f347ca3d5606572083d05b41083e
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/controls.py
+Original: services/voice-agent/src/eng_teacher/controls.py
+SHA256: b3a103ba59d95cc6c6545809ef33b99abfb001e7367e7cf79902000ee8ca6bf8
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/providers.py
+Original: services/voice-agent/src/eng_teacher/providers.py
+SHA256: c639a1f3c7031afb24e8c06f967fe28700f9de5a5f85b0a56ff3c81d66883342
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/src/eng_teacher/tutor.py
+Original: services/voice-agent/src/eng_teacher/tutor.py
+SHA256: 7af4fbecbe162d08c0a8db3c6317426514488317fb8072727e4c0cfa08ce7093
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_tutor.py
+Original: services/voice-agent/tests/test_tutor.py
+SHA256: 200385aaf3acc827ac4aaeaba518ae773ce6bbffef45ceb9424e5534d169b122
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/services/voice-agent/tests/test_lifecycle.py
+Original: services/voice-agent/tests/test_lifecycle.py
+SHA256: 0d3b1420901f299aee9528b796e70ee5cd926063d90892d56898c50be1a11659
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/components/tutor-app.tsx
+Original: apps/web/components/tutor-app.tsx
+SHA256: db6125ee9e44efaf834b96d3349a3d3732f803f29c3baf33f7c9ebd4754b5468
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/lib/tutor-events.ts
+Original: apps/web/lib/tutor-events.ts
+SHA256: 798579e2bec67c1836bdecb70c17348af3d7956569c642858d133f055227621a
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/tests/tutor-events.test.ts
+Original: apps/web/tests/tutor-events.test.ts
+SHA256: 0459b33cf53b1913dfdc3876ebfd1e4379b88ffa23cfb063aa1143ca1c4e6db0
+Reason/replacement: Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison.
+
+Path: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/.github/workflows/checks.yml
+Original: .github/workflows/checks.yml
+SHA256: a20e47f503a1b8ab6bb436f423e336f3c07c53cd67db854eb18a7c8349d95843
+Reason/replacement: Original CI before recovered Ruff formatting gate; retained for comparison.
+
+C. History retained without duplicate checkout exports
+Backup tag recovery/pre-consolidation-20261117-98cfcd7 retains starting main.
+Backup tag recovery/retry-source-20261117-da2796e retains recovered source.
+Existing branches/tags stay intact. This task archives10 copies; total
+preserved original payloads across both manifests =1,488. Reports/metadata
+are maintenance evidence, not additional archived implementations.
+
+No live credentials or private learner records were identified for copying.
+Binary bytes were hashed; model/media semantics and malware certification
+are not implied. Normal build/test commands exclude archived code.

@@ -1,0 +1,111 @@
+DUPLICATE AND OVERLAPPING IMPLEMENTATION ANALYSIS
+
+No duplicate was removed merely because its name/content matched another.
+Counts below refer to the starting 1,535-path tree, not report artifacts.
+Exact byte-duplicate groups: 38; participating files: 77.
+Many are licensed notices, fixtures or client asset/content copies. A matching
+blob is evidence of matching bytes, not proof that runtime owners can be merged.
+
+1. ACTIVE TUTOR VERSUS DISCONNECTED RETRY BRANCH
+Common foundation: existing Next15/React19 client and LiveKit Python1.8 worker.
+da2796e improves explicit examples/translation, pending-question help, semantic
+retry and recoverable errors; it changes no runtime dependency or lockfile.
+Recovered 10 compatible code/test/CI files into main, retaining later owner
+docs and archive organization rather than replacing main with an older tree.
+Fixed the branch-only punctuation-stripping bypass: 1.2 and12, contractions,
+hyphens and word boundaries must not silently match. Meaning remains guarded
+and nonidentical retries use the structured semantic check. Added regressions.
+The older fa600a6 MVP is an ancestor and supplies no unique missing active
+capability; it remains recoverable through its remote ref and Git history.
+
+2. CADENCE WEB/MOBILE DOMAIN TWINS
+21 paired modules are identical after removing only FILE/Twin header comments.
+They cover content models, placement, levels, routing, goals, daily practice,
+SRS, phrases/slang, fossilization/plateau, recordings and vocal-tract logic.
+Future adoption should create one tested TypeScript domain package and keep
+native storage/audio/auth adapters in their clients. Current archived copies
+remain intact: changing them now would break snapshot preservation without an
+active consumer or validated integration benefit.
+
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/content-model.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/content-model.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/daily-plan.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/daily-plan.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/engine-routing.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/engine-routing.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/fossilization.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/fossilization.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/goals.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/goals.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/levels.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/levels.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/phrase-bank.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/phrase-bank.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/placement.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/placement.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/practice-day.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/practice-day.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/progress-model.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/progress-model.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/recordings.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/recordings.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/sign-in-methods.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/sign-in-methods.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/srs.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/srs.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/animate.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/animate.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/articulation.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/articulation.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/codebook.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/codebook.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/fit.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/fit.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/geometry.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/geometry.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/index.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/index.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/maeda.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/maeda.ts
+  AnalyseFuture/reference-sources/Cadence-main/src/lib/platform/vocal-tract/svg-path.ts <-> AnalyseFuture/reference-sources/Cadence-main/mobile/src/platform/vocal-tract/svg-path.ts
+
+3. CONTENT/ASSET COPIES
+11 mobile .cpack payloads exactly duplicate web public/packs content.json.
+Preserve the generators, manifests/checksums and native download adapters;
+use one content source plus generated client payloads in any later active port.
+Mobile logo/illustration/SFX copies serve separate bundles; retain provenance.
+The mobile games SRS reexport is not a separate FSRS implementation.
+
+4. WHOLE APPLICATIONS ARE NOT INTERCHANGEABLE FEATURES
+Cadence Next16/React19.2/Firebase/billing/ML stack is an archived alternative,
+not a replacement for the working Next15/React19.0/LiveKit tutor. Auth, cloud
+sync, lesson packs, pronunciation and desktop/mobile services need separate
+rights, credentials, build and behavior acceptance. Do not merge manifests.
+Cadence mouth articulation illustration and avatar teacher lip sync have
+different purposes; combining them as one pronunciation score would be wrong.
+Talking Avatar owns its output audio; active RoomAudioRenderer already does.
+A later adapter must choose one owner instead of running both audio paths.
+
+5. EXACT-IDENTITY GROUPS (STARTING TREE)
+  .nvmrc <-> AnalyseFuture/reference-sources/Cadence-main/.nvmrc
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/images/icon.png <-> AnalyseFuture/reference-sources/Cadence-main/public/favicon/web-app-manifest-512x512.png
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/core-a1/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a1/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/core-a2/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a2/v2/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/core-b1/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b1/v2/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/core-b2/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b2/v2/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/fossilization/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/fossilization/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/phrases-b2/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/phrases-b2/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/phrases-c1/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/phrases-c1/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/phrases-c2/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/phrases-c2/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/placement/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/placement/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/slang/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/slang/v2/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/packs/sounds/content.cpack <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/sounds/v1/content.json
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/complete.wav <-> AnalyseFuture/reference-sources/Cadence-main/public/sound/complete.wav
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/correct.wav <-> AnalyseFuture/reference-sources/Cadence-main/public/sound/correct.wav
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/sounds/incorrect.wav <-> AnalyseFuture/reference-sources/Cadence-main/public/sound/incorrect.wav
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/communication-1.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/illustration/communication-1.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/following-your-dreams-1.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/illustration/following-your-dreams-1.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/icon-dark.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/icon-dark.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/icon-green-dark.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/icon-green-dark.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/icon-green-white.svg <-> AnalyseFuture/reference-sources/Cadence-main/mobile/targets/widget/Assets.xcassets/CadenceMark.imageset/CadenceMark.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/icon-green-white.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/logo-dark.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/logo-dark.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/logo-green-dark.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/logo-green-dark.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/logo-green-white.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/logo/logo-green-white.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/progress-1.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/illustration/progress-1.svg
+  AnalyseFuture/reference-sources/Cadence-main/mobile/assets/svg/success-1.svg <-> AnalyseFuture/reference-sources/Cadence-main/public/illustration/success-1.svg
+  AnalyseFuture/reference-sources/Cadence-main/public/favicon/favicon.svg <-> AnalyseFuture/reference-sources/Cadence-main/src/app/favicon.svg
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a2/v1/scenarios.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a2/v2/scenarios.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a2/v1/sentences.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-a2/v2/sentences.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b1/v1/scenarios.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b1/v2/scenarios.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b1/v1/sentences.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b1/v2/sentences.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b2/v1/scenarios.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b2/v2/scenarios.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b2/v1/sentences.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-b2/v2/sentences.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c1/v1/scenarios.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c1/v2/scenarios.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c1/v1/sentences.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c1/v2/sentences.json
+  AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c2/v1/sentences.json <-> AnalyseFuture/reference-sources/Cadence-main/public/packs/core-c2/v2/sentences.json
+  AnalyseFuture/reference-sources/Cadence-main/scripts/email/package.json <-> AnalyseFuture/reference-sources/Cadence-main/scripts/webhooks/package.json
+  apps/web/LICENSE <-> services/voice-agent/LICENSE
+
+DECISION: consolidate compatible active retry behavior now; preserve upstream
+duplicate clients/content unchanged and document selective future ports. No
+empty shared package or second engine was created to make a diagram look tidy.

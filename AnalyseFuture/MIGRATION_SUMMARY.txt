@@ -1,0 +1,47 @@
+MIGRATION SUMMARY
+Starting commit: 98cfcd77b814848f5637b590b0e05843d69c8d84
+Delivery: directly to main, without a new PR or feature branch.
+
+SCOPE
+Starting tracked files: 1,535.
+Feature records: 77 (20 active/recovered and 57 archived client/service variants).
+Files moved in this task: 5 active web files.
+Compatible files consolidated: 10 code/test/CI files from da2796e.
+Superseded payloads archived in this task: 10.
+The earlier 1,478 preserved reference payloads are not counted again as new moves.
+The final inventory also lists new reports, maintenance scripts, the root pytest
+boundary and recovered research. No valuable implementation was discarded.
+
+COMPATIBILITY
+Public /api/session and version 1 tutor packets remain. The internal TutorModel
+protocol now requires assess_retry and help_with_correction. The OpenAI adapter
+and fake implementations were updated together. Any out-of-tree custom adapter
+must implement those asynchronous methods with validated retry/help output; no
+such additional adapter was found in this repository.
+Recoverable error packets accept an optional recoverable flag. Absent/false
+retains fatal legacy behavior. Web imports now target features/lesson or
+features/session. Next page/API entrypoints keep their framework locations.
+
+UPDATING A CHECKOUT
+Preserve user changes and ignored configuration before fetching main. Use a
+normal fast-forward or merge workflow suited to those changes; never reset
+blindly. npm ci and frozen uv sync reproduce the unchanged dependency locks.
+Rebuild after path changes, then run the documented checks. Root pytest.ini
+narrows default discovery; archived suites require a separate explicit task.
+
+RECOVERY
+The pre-consolidation backup tag retains the starting tree. The retry-source tag
+retains source-branch history. Ten original payload copies and hashes are recorded
+in recovery-notes/CONSOLIDATION_BASELINE.json. Use reviewable reverts or forward
+fixes rather than a force push or shared-history rewrite.
+
+CHECKPOINTS
+7666576: inventory, progress and baseline preservation.
+8f1c988: recovered tutor behavior, regression fix, feature layout and test boundary.
+Subsequent commits save final evidence and documentation; the delivery response
+records the exact final commit verified against GitHub main.
+
+REMAINING EXTERNAL WORK
+Real voice acceptance, credentials/media connectivity, complete private usage
+metrics, production authentication/quotas, language evaluation, asset review and
+physical-device measurements. See TECHNICAL_DEBT.txt for priorities and gates.

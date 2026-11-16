@@ -1,0 +1,97 @@
+ENG TEACHER — TECHNICAL DEBT AND VALIDATION GAPS
+Updated after consolidation, 17 November 2026
+
+Status: Evidence-backed planning, not a claim that all listed work is defective.
+Consolidated checkpoint8f1c988; current offline checks14JS/71Python/6browser pass.
+
+P0 — LIVE WORKFLOW HAS NOT BEEN ACCEPTED
+Evidence: docs/VALIDATION.md distinguishes fake/offline tests from real speech.
+Need: operator-owned LiveKit/OpenAI credentials, exact host/media connectivity,
+real desktop/Android microphone tests, interruption/reconnect/deadline evidence.
+Acceptance: one documented ten-minute call, observed audio/captions/cleanup, and
+complete sanitized usage totals. No fabricated success from synthetic fixtures.
+
+P0 BEFORE PUBLIC ACCESS — PILOT ACCESS AND PROCESS-LOCAL BUDGET
+Evidence: apps/web/features/session/server/session.ts uses a pilot code and in-process budget.
+Need: per-user authentication/authorization, distributed quotas and spending caps,
+deployment origin review, monitoring and recovery. Current invited-pilot scope
+can remain bounded while this work is designed; do not call it SaaS-ready.
+
+RESOLVED IN THIS TASK — RETRY BRANCH RECONCILIATION
+Ten compatible files from da2796e were recovered with later owner work retained.
+Punctuation/decimal bypass repaired; current71 Python tests pass. Live semantic
+quality remains a separate acceptance item, not a reason to redo this recovery.
+
+P1 — INCOMPLETE MODEL COST/FAILURE METRICS
+Evidence: worker's existing aggregate usage tracks STT duration and TTS characters;
+repository handoff identifies model token and error totals as the next increment.
+Need: actual model input/output tokens, provider failures/retries, total session
+usage and cost method; no transcripts, raw audio or provider payload logs.
+Acceptance: meaningful injected-event tests and correlation with real provider use.
+
+P1 — HEURISTIC MEANING AND HELP RECOGNITION
+Evidence: tutor.py has name/number/negation guards; controls.py uses explicit
+patterns; recovered branch adds model retry assessment. These are conservative
+policies, not proof of intent, multilingual fidelity, or comprehensive semantics.
+Need: held-out reviewed cases for names, numeric words, negation, help and slow
+mixed speech. Never replace uncertain intent with an unsupported pronunciation
+or grammar judgment. Preserve pending correction on help/error/uncertainty.
+
+P1 — ARCHIVE PROVENANCE VERSUS ACTIVE SOURCE
+Evidence: AnalyseFuture contains complete uploaded applications and ZIPs with
+different Next.js/React/runtime requirements and licenses. Existing manifests
+keep them outside active npm/Python/browser discovery.
+Need: maintain provenance/hash/decision reports and clear reference navigation;
+audit exact selected assets, weights and dependencies before future adoption.
+Acceptance: archived scripts do not run as active CI/setup; no unexplained loss.
+
+P2 — NO ORIGINAL GENERAL LESSON SCHEMA
+Evidence: active tutor is an interview question sequence; future documents
+propose structured exercises, broader scenarios, and adaptive progression.
+Need: one small typed original lesson definition and state-transition tests,
+with educator review, before creating a broad content management platform.
+
+P2 — AVATAR AUDIO OWNERSHIP UNRESOLVED
+Evidence: active RoomAudioRenderer already plays teacher audio; archived Talking
+Avatar attachStream plays it too. No integration is currently proven.
+Need: isolate teacher track, select one playback owner, test interruption/autoplay,
+mute, reconnect and fallback on actual devices. Avoid learner-mic attachment.
+
+P2 — ACCOUNTS, RETENTION AND LEARNER MEMORY NOT IMPLEMENTED
+Evidence: recap is bounded in page memory and lost on refresh; active code has
+no durable learner history/account service. This is deliberate pilot scope.
+Need: opt-in storage, authorization, consent/retention, export/delete and backup
+design before persistence. Separate recording/training permissions.
+
+P2 — PRONUNCIATION AND ADDITIONAL LANGUAGES UNVALIDATED
+Evidence: docs explicitly defer phoneme scoring; Bengali is an owner priority,
+not an implemented quality claim. Recognition text is not acoustic assessment.
+Need: per-language capability matrix, native reviewers, permitted held-out audio,
+calibrated scoring and honest uncertainty. No transcript-only pronunciation score.
+
+ONGOING — HISTORY AND DOCUMENTATION CAN DRIFT
+Need: keep original dated evidence while placing current commit/test status above
+it. Update stale path/PR assumptions when actual changes land. Record direct-main
+owner workflow and normal pushed checkpoints; never force-push as recovery.
+
+Not debt by itself: two programming languages, retained historical docs, ignored
+node_modules/.venv/.next, or preserved reference snapshots. Change them only for
+a demonstrated maintenance, safety or learner-value reason.
+
+P1 — PROVIDER ADAPTER / RESOURCE LIFECYCLE GAPS
+Structured retry/help outputs need additional adapter-level malformed-output
+coverage. Help/explanation fallback does not consistently set last_provider_failed;
+future counters must account for those failures. Provider/model/VAD construction
+precedes lifecycle cleanup registration; review cleanup on startup exceptions.
+
+P2 — ARCHIVED ML AND INSTALLER ADOPTION GATES
+Cadence Whisper default is English-only; phoneme scores are heuristic, uncalibrated.
+Its text-only JustSpeak feedback must not claim acoustic pronunciation evidence.
+Archived Python logs include text/previews and Git-HEAD/unpinned ML dependencies;
+desktop runtime download lacks independent checksum verification. Never adopt
+those paths unchanged as active secure/provider-independent infrastructure.
+
+OPTIONAL — SUPPLY-CHAIN / ACCESS OBSERVABILITY
+Pin Actions to reviewed full SHAs if desired; do not guess SHAs. Python advisory
+scanning and remote Actions/account security APIs were not available in this task.
+Owner reviews account sessions/tokens/keys/apps/collaborators separately.

@@ -1,0 +1,75 @@
+REPOSITORY RECOVERY AUDIT
+Repository: Planeshiffhter/eng-teacher
+URL: https://github.com/Planeshiffhter/eng-teacher
+Default and working branch: main
+Starting commit: 98cfcd77b814848f5637b590b0e05843d69c8d84
+Audit date: 17 November 2026 (Asia/Calcutta)
+
+DISCOVERY AND COVERAGE
+All 1,535 starting tracked paths were read and classified before restructuring.
+The inventory treats 1,490 as UTF-8 text and 45 as binary or NUL-containing data.
+Cadence review covered 1,009 web/backend/content/configuration/test paths. The
+client/avatar review covered another 466 paths. Active runtime, root files,
+documentation and preservation metadata were reviewed by responsibility.
+Definitions, imports, ownership, API routes and test evidence are recorded in the
+file inventory and 77 scoped feature records. Binary assets were byte-inventoried
+and selected headers parsed; they were not played, rendered, inferred or certified
+as malware-free. Static reads are distinguished from executed validation.
+
+HISTORY AND REFERENCES
+Fetched all three advertised branches and tags. Starting accessible history has
+46 commits. Main matched the previous verified commit. The older MVP branch at
+fa600a6 has no unique missing active capability. The retry branch at da2796e had
+useful disconnected policy/error behavior and one unique research document.
+All reachable versions were scanned for credential patterns. Deleted/unreachable
+remote objects, GitHub security events and CI logs were not available.
+No submodule, symlink, LFS pointer, native executable header or active Git hook
+surprise was found. All 6,753 entries across the original 46 historical trees use
+mode 100644. Existing remote branches and tags remain intact.
+
+SECURITY AND RECOVERABILITY
+Before implementation, pushed recovery/pre-consolidation-20261117-98cfcd7.
+Also pushed recovery/retry-source-20261117-da2796e to retain recovered history.
+The GitHub metadata/permission API returned Forbidden. Protection and account
+settings cannot be certified, although normal Git pushes succeed under server
+policy. No force push, protection bypass, new feature branch or PR was used.
+Ten original code/test/CI payloads were copied from immutable Git blobs before
+replacement. All 1,478 previously preserved ZIP/snapshot payloads remain intact.
+
+IMPLEMENTED RECOVERY
+Checkpoint 7666576 saved the inventory and baseline evidence. Checkpoint 8f1c988
+consolidated 10 compatible code/test/CI files, fixed the reproduced decimal and
+punctuation retry bypass, added 15 Python test cases, moved five web files by
+feature, repaired imports and restored unique reference research. The root
+pytest.ini now excludes archived modules from default test discovery.
+No arbitrary packages, language rewrite, database migration, public API change
+or event-version change was introduced. See CONSOLIDATION_REPORT.txt and the
+path mapping for exact responsibilities and compatibility details.
+
+ARCHITECTURE
+Next app entrypoints delegate to features/session (server admission and tests)
+and features/lesson (browser room, events and tests). The Python eng_teacher
+package owns controls, tutor policy, provider adapters and worker lifecycle.
+Cross-component browser checks stay in tests/browser; canonical documentation
+stays in docs; explicit maintenance tools live in scripts. AnalyseFuture holds
+inert uploaded references, superseded versions, evidence and future reports.
+
+WORK DELIBERATELY NOT ACTIVATED
+Cadence accounts, billing, lessons, native clients and ML services, plus the
+avatar SDK, were deeply inspected as references. They were not installed as
+competing applications. Twenty-one matching domain-module pairs and eleven
+content-pack duplicates are documented for a future selected port. No active
+consumer justifies rewriting the byte-preserved upstream snapshots now.
+
+VALIDATION AND LIMITS
+14 JavaScript, 71 Python and 6 browser tests passed, together with frozen installs,
+lint, formatting, build, typecheck, root collection isolation and real HTTP startup.
+The npm audit reports zero known advisories. Live provider/media behavior,
+physical devices, archived runtimes, model quality, asset rights and account
+incident attribution remain unverified. No confirmed active compromise was
+established. Archived checksum/logging/ML concerns are recorded without execution.
+
+CONTINUATION
+Read the feature, duplicate, security, debt, validation and continuation reports.
+COMPLETE_FILE_INVENTORY.txt records the final tracked paths after intended delivery
+files are staged. The starting count is retained separately for comparison.

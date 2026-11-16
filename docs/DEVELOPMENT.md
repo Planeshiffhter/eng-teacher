@@ -1,5 +1,28 @@
 # Run the first voice-tutor implementation
 
+## Current code ownership after recovery
+
+Next.js pages and the `/api/session` route are thin framework entrypoints. The web
+room UI, event parser and their tests are grouped in `apps/web/features/lesson`;
+server admission/token policy and its tests are in `apps/web/features/session`.
+Python controls, provider adapters, policy and lifecycle stay in the existing
+`services/voice-agent/src/eng_teacher` package. See
+[the consolidation report](../AnalyseFuture/CONSOLIDATION_REPORT.txt) for contracts
+and compatibility. Public session URL and event version remain unchanged.
+
+Root `pytest.ini` restricts default collection to the active worker. Prefer the
+scoped commands below; do not install or collect tests from `AnalyseFuture` as part
+of normal setup. The model adapter now implements `assess_retry` and
+`help_with_correction`; any separately maintained adapter must follow that
+validated protocol. No additional adapter was found here.
+
+Current local validation is **14 JavaScript / 71 Python / 6 browser tests**, plus
+build, typecheck, Ruff lint and formatting. Add
+`uv run --frozen ruff format --check .` from `services/voice-agent` to the Python
+checks. Refresh the inventory explicitly with
+`python3 scripts/repository_inventory.py --output AnalyseFuture/COMPLETE_FILE_INVENTORY.txt`
+after staging intended new tracked files.
+
 This branch contains a real LiveKit browser/agent integration. Automated tests use explicitly fake tutor/speech inputs; live provider calls and human speech quality have not been validated without credentials. The existing product and acceptance documents remain requirements, not proof of acceptance.
 
 ## Prerequisites

@@ -1,0 +1,105 @@
+ENG TEACHER — NEXT DEVELOPER INSTRUCTIONS
+Recovery-aware working guide, 17 November 2026
+
+1. Start from the existing /workspace/eng-teacher checkout. Read AGENTS.md,
+   README.md, the current recovery report and manifests, docs/DEVELOPMENT.md,
+   docs/VALIDATION.md, docs/PROJECT_CONTINUITY_HANDOFF.md, and PROJECT_IDEA.txt.
+   Read AnalyseFuture/PROJECT_VISION_AND_FUTURE_ROADMAP.txt for future scope.
+   Treat older handoff/PR status as dated history, not current source truth.
+
+2. Inspect git status, HEAD, remote main, all refs relevant to the task, and
+   existing user changes before editing. This owner's workflow is direct main,
+   no feature branch or new PR, normal fast-forward commits and pushes at least
+   every five minutes while editing when there is work to save. Do not reset,
+   force-push, or discard uncertain files. An isolated cloud task needs no worktree
+   unless the owner explicitly requests one.
+
+3. Retry/help/recoverable-error changes from da2796e are integrated at8f1c988.
+   Verify current source before changing them further. Inspect current
+   controls.py, tutor.py, providers.py, agent.py, event schemas, UI and tests;
+   do not reimplement the older Hindi-help fix or trust a historical PR count.
+   Preserve original/correction separation and pending-retry semantics through
+   help, examples, translation, repeat, uncertain input and provider errors.
+
+4. Web lesson code/tests live in apps/web/features/lesson, session admission
+   in apps/web/features/session; Next app/ contains thin framework entrypoints.
+   Keep voice code in services/voice-agent, active
+   browser checks in tests/browser, and canonical project docs in docs. Material
+   in AnalyseFuture is retained evidence/reference, not another active app.
+   Do not execute archived setup/scripts, merge whole reference applications,
+   import their dependencies, or edit preserved snapshots without a scoped task.
+   Retain licenses/notices and record provenance for anything selected later.
+
+5. Use Node 24 and Python 3.12/uv. Reuse installed dependencies when valid.
+   If refresh is needed, use npm ci and uv sync --frozen --project
+   services/voice-agent. Do not upgrade dependencies or rewrite lockfiles as an
+   incidental part of another task. Keep TLS/checksum verification enabled.
+
+6. Required active checks for code changes, scaled to the affected workflow:
+   From repository root:
+     npm test
+     UV_CACHE_DIR=/workspace/.cache/uv npm run test:agent
+     UV_CACHE_DIR=/workspace/.cache/uv uv run --frozen --project
+       services/voice-agent ruff check services/voice-agent
+     NEXT_TELEMETRY_DISABLED=1 npm run build
+     npm run typecheck
+     CI=1 NEXT_TELEMETRY_DISABLED=1 npm run test:browser
+   The wrapped Ruff command is one shell command. Use the repository's actual
+   current workflow if it adds required checks such as ruff format --check.
+   Preserve command exit status and verify tests executed rather than reporting
+   a zero-test run as validation. Do not run archived suites by accident.
+
+7. Never run next dev concurrently with next build, next start or browser tests:
+   they share apps/web/.next. Stop only services you started; rebuild after dev
+   before production/browser checks. Browser tests use a production server on
+   3100 with deliberately empty voice credentials and system Chromium when
+   available. Synthetic microphone/failed-room tests are not live voice evidence.
+
+8. Web startup from repository root:
+     NEXT_TELEMETRY_DISABLED=1 npm run dev --workspace @eng-teacher/web
+   Worker startup with cwd services/voice-agent:
+     UV_CACHE_DIR=/workspace/.cache/uv uv run --frozen eng-teacher-agent dev
+   Its cwd matters because it loads .env.local relative to that directory.
+   Production-style startup uses the documented build/start commands. Preserve
+   existing local environment files and do not expose loopback URLs as previews.
+
+9. Before asking for credentials, inspect variable names/presence and supported
+   bindings without values. Both services need LIVEKIT_URL, LIVEKIT_API_KEY and
+   LIVEKIT_API_SECRET; web also needs PILOT_ACCESS_CODE; worker needs
+   OPENAI_API_KEY. APP_ORIGIN depends on deployment. Local JWT signing requires
+   a usable signing secret, not merely a proxy placeholder. Use secure settings
+   or ignored local files. Never print/paste values, commit keys, dump the process
+   environment, or extract platform-proxy authentication. GitHub uses existing
+   HTTPS Git access; test a needed operation before requesting a token.
+
+10. Live testing requires api.openai.com, the actual LiveKit project hostname,
+    supported WebSocket/WebRTC/TURN connectivity, provider access, headphones,
+    and real browsers/devices. A PID or open port proves little. Confirm teacher
+    greeting, two-way speech, captions, help/retry, interruption, reconnect,
+    end/deadline cleanup, and aggregate usage on an explicitly started lesson.
+    Follow docs/VALIDATION.md; record unrun checks and missing prerequisites.
+
+11. Next useful engineering work, subject to the owner's chosen task: add
+    privacy-safe model-token and error/retry totals, then validate one real
+    Hindi-English lesson. Author one original structured exercise after that.
+    Bengali-English deserves a separate native-reviewed trial; do not advertise
+    all-language support. Keep avatar/pronunciation experiments separate until
+    the actual teaching and audio flow are reliable.
+
+12. Report actual files/behavior changed, commits pushed, executed checks and
+    limits. Keep offline passing tests, real provider validation, planned features,
+    experimental behavior and speculative research distinct. Do not claim account
+    recovery from source reorganization or assign blame without evidence.
+
+CURRENT CONTINUATION CHECKPOINT
+- New code has14JS/71Python/6browser tests passing, build/typecheck/lint/format.
+- pytest.ini limits default root discovery; do not bypass it to run archives.
+- scripts/repository_inventory.py generates tracked-path ownership/import/hash
+  evidence; reports omit their own digests to avoid self-reference. Stage intended
+  new files first, then regenerate the final inventory and commit it.
+- scripts/security_history_scan.py scans all reachable blobs/ZIP members without
+  printing credential values. Review findings privately; patterns are not proof.
+- Reverify PRESERVATION_MANIFEST.json (1,478) and recovery baseline manifest(10)
+  rather than editing preserved payloads. Keep both remote recovery tags.
+- Next smallest authorized product task: privacy-safe model usage/failure metrics
+  or one real voice acceptance run. Do not restart the recovered state machine.

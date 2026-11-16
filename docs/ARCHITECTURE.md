@@ -1,5 +1,21 @@
 # Proposed Technical Architecture
 
+## Current ownership after consolidation
+
+The active web app has two feature owners: `features/session` owns server-side
+admission/signing and tests; `features/lesson` owns call UI, event parsing and
+tests. Next `app/page.tsx` and `app/api/session/route.ts` delegate to those owners.
+The existing Python package owns controls, tutor policy and provider adapters,
+with the worker coordinating SDK audio and lifecycle. Version 1 room packets
+remain the cross-runtime contract; there is no new public API or database.
+
+Retry/help/recoverable-error work from `da2796e` is now consolidated, with an
+additional number/punctuation preservation fix. The target architecture below
+still contains future modules that are not implemented. See the
+[current structure](REPOSITORY_STRUCTURE.md),
+[feature inventory](../AnalyseFuture/FEATURE_INVENTORY.txt) and
+[consolidation report](../AnalyseFuture/CONSOLIDATION_REPORT.txt) for actual code.
+
 **Status:** the target architecture below remains the product plan. The first audio-only slice now has `apps/web` (Next.js + LiveKit React) and `services/voice-agent` (LiveKit Python Agents, official OpenAI STT/TTS, Silero VAD, and a separate structured tutor-model adapter). Web tokens dispatch the named agent into a private room; versioned reliable data events carry correction cards. Both services enforce a fixed ten-minute lesson deadline. No database, avatar, mobile-native app or training service is implemented. Live-provider acceptance remains pending; see [development instructions](DEVELOPMENT.md) and [validation](VALIDATION.md).
 
 ## System flow

@@ -1,5 +1,12 @@
 # MASTER BUILD DIRECTIVE FOR CODEX — Eng Teacher
 
+> **Current recovery note (17 November 2026):** The immediate retry/help/error
+> work described below is now recovered and tested on `main`; do not rebuild it
+> from this older directive. Read AGENTS.md and
+> [NEXT_DEVELOPER_INSTRUCTIONS.txt](../AnalyseFuture/NEXT_DEVELOPER_INSTRUCTIONS.txt)
+> for actual feature paths, 14/71/6 local checks and the next scoped task. Broader
+> release sections below remain product goals, not completed features.
+
 **Status:** current development directive; do not mistake aspirations for shipped features.
 **Repository:** https://github.com/Planeshiffhter/eng-teacher
 **Last known implementation when this was prepared:** commit `fa600a6` on `main`, with a Next.js LiveKit web MVP, Python voice-agent, tutor policy, correction cards, captions and automated test files. Always inspect the latest actual files before changing anything.

@@ -1,42 +1,41 @@
-RECOVERY AND CONSOLIDATION PROGRESS
-Started: 17 November 2026 (Asia/Calcutta)
-Repository: Planeshiffhter/eng-teacher
+RECOVERY WORK PROGRESS
+17 November 2026 (Asia/Calcutta)
 Starting main: 98cfcd77b814848f5637b590b0e05843d69c8d84
-Remote backup tag: recovery/pre-consolidation-20261117-98cfcd7
+Remote backup tags:
+  recovery/pre-consolidation-20261117-98cfcd7
+  recovery/retry-source-20261117-da2796e
+Checkpoints: 7666576 inventory/baseline; 8f1c988 active consolidation.
 
-COMPLETED DISCOVERY
-- Fetched all three advertised branch heads and tags; complete accessible history
-  contains 46 commits. No new feature branch or PR was created.
-- Read and classified all 1,535 starting tracked paths, including both uploaded
-  snapshots, active services, documentation, tests, configs and binary boundaries.
-- Reviewed active runtime and disconnected retry-branch behavior; older MVP has
-  no unique active feature absent from main.
-- Saved nine superseded active payloads from immutable starting Git blobs before
-  integration. Existing preservation manifests and all upstream snapshots remain.
-- Pushed a recoverable backup tag to GitHub before implementation.
-- Attempted GitHub metadata/permissions API: Forbidden. Branch-protection and
-  account-identity details cannot be verified through that API. Normal Git pushes
-  remain subject to server policy; no bypass or force push is authorized.
+COMPLETED
+- All 1,535 starting paths read and classified; all three branch heads, tags and
+  46 starting reachable commits inspected. Meaningful source/configuration review
+  and history/ZIP credential-pattern scans were completed.
+- 77 scoped feature records, dependencies, tests and limitations documented.
+  Twenty-one domain twin pairs, eleven content-pack duplicates and exact hash
+  groups evaluated. No arbitrary whole-application adoption.
+- Ten compatible code/test/CI files recovered; number/punctuation retry bug fixed.
+  Five web paths grouped by feature with import repairs; root pytest guard added.
+- Ten superseded source/test/CI versions preserved with hashes. The existing
+  1,478 preserved payloads remain. No branch/tag deletion or force push.
+- Required recovery reports and future plain-text vision generated. Earlier
+  research is retained and continuation guidance describes the actual code.
+- 14 JS, 71 Python and 6 browser tests, lint, formatting, build, typecheck, frozen
+  installs, root collection, startup/API request and npm advisory audit passed.
 
-CURRENT TASK
-Consolidate reviewed help/retry/recoverable-error behavior into the existing
-service; fix the reproduced punctuation/decimal meaning-loss regression before
-adoption. Create explicit active feature locations and root test boundaries.
+CURRENT FINALIZATION
+Refresh the final tracked-path inventory and linked preservation evidence, run
+security scans against reachable objects and intended working files, commit and
+push all reports, then verify remote SHA and a clean working tree.
 
-PENDING
-- Complete semantic/security reports for archived modules and reachable history.
-- Generate all requested recovery/feature/duplicate/roadmap/validation reports.
-- Validate recovered behavior, archive exclusion, build, startup and browser flow.
-- Update current docs/continuation guidance and final inventory, then push main.
+LIMITATIONS / OUTSIDE PREREQUISITES
+The GitHub metadata/security/protection API was Forbidden; normal Git pushes work.
+No live media/provider acceptance, physical Android, language-quality evaluation,
+avatar runtime or archived application/ML execution was performed. Binary semantics
+and deleted/unreachable history cannot be certified. No credentials or private
+learner data were identified for copying into the preserved material.
 
-DECISIONS
-- Reuse current Next.js and Python LiveKit foundation, not a language rewrite.
-- Archived Cadence and avatar apps remain research snapshots, not installed apps.
-- Recover compatibility by responsibility; do not copy all third-party features.
-- Preserve initial versions and provenance; never execute archived setup scripts.
-
-VALIDATION
-Starting-main prior session: 14 JS /42 Python /6 browser checks, build/typecheck
-and Ruff passed. New consolidated implementation still requires its own checks.
-Live voice, native devices, provider teaching quality and account incident
-attribution are not established by local/offline tests.
+NEXT AUTHORIZED IMPLEMENTATION
+Choose complete private model-usage/failure counters or one real voice acceptance
+run. Then select an original exercise and a reviewed Bengali experiment. Preserve
+the recovered tutor, tests, boundaries, notices and backup tags. Follow the owner's
+scope and NEXT_DEVELOPER_INSTRUCTIONS.txt rather than rebuilding existing work.

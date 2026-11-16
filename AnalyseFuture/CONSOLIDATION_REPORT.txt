@@ -1,0 +1,66 @@
+CONSOLIDATION AND ARCHITECTURE REPORT
+17 November 2026 (Asia/Calcutta)
+
+IMPLEMENTED, NOT ONLY RECOMMENDED
+10 compatible files recovered from retry-source da2796e: 4 Python modules, 2 Python
+test files, browser component/event contract/event test and CI formatting gate.
+The integration checkpoint is 8f1c988. Five web paths were grouped into lesson and
+session features; imports and the thin framework API/page entrypoints were repaired.
+The original10 pre-recovery payloads are retained under historical-implementations.
+Recovery is selective Git-blob consolidation, not a history merge or new PR. This
+avoids overwriting later owner docs, archive manifests and source organization.
+
+ONE OWNER PER RESPONSIBILITY
+apps/web/app: Next page/layout/styles and thin /api/session entrypoint.
+apps/web/features/session/server: admission, origin/code/budget and JWT policy.
+apps/web/features/session/tests: real local signing and boundary tests.
+apps/web/features/lesson/components: browser room/audio/captions/cards/recap UI.
+apps/web/features/lesson/tutor-events.ts: packet validation, bounds and deadlines.
+apps/web/features/lesson/tests: contract and state helper tests.
+services/voice-agent/src/eng_teacher: controls, tutor policy, provider adapters and
+  worker lifecycle remain one coherent Python package, with existing service tests.
+tests/browser: cross-component synthetic browser acceptance.
+scripts: explicit, read-only repository inventory/security tooling.
+AnalyseFuture: inert snapshots, superseded source and evidence/future reports.
+
+DATA FLOW AND DEPENDENCIES
+Browser form -> thin Next POST /api/session -> session policy -> server-generated
+scoped token/named agent dispatch -> browser LiveKit microphone -> Python STT/VAD
+-> explicit controls and InterviewTutor -> structured model/RetryDecision -> TTS
+-> remote teacher audio. Version1 data events separately drive original/correction
+cards, errors and recap. The browser imports its event module; server policy is
+imported only by the API route/tests. No feature imports another whole client or
+archived service. Provider keys remain server-side; no new storage/schema/API was
+introduced. TypeScript and Python are deliberate runtime boundaries, not a defect.
+
+RECOVERED/REPAIRED BEHAVIOR
+Help questions, examples and Hindi translations keep corrections pending. Exact
+safe retries or accepted equivalent meanings advance once; unrelated/uncertain
+input remains in practice. Strict booleans reject truthy strings in model output.
+Recoverable tutor/speech errors report without ending the call; fatal errors close
+it. Internal decimal/apostrophe/hyphen/word boundaries survive exact normalization;
+numeric guards run before acceptance. These are text/fixture results, not proof of
+live recognition, pronunciation or unrestricted semantic correctness.
+
+ARCHIVE EXECUTION BOUNDARIES
+Active npm workspace is apps/web only, TS includes are app-local, Python packaging
+finds src/eng_teacher only, and Playwright uses tests/browser only. New root
+pytest.ini pins default test discovery to services/voice-agent/tests and excludes
+AnalyseFuture; the tested root collection finds71 active tests and no archive.
+Archived workflows are below the root .github and do not become active Actions.
+This prevents normal accidental discovery; it is not a sandbox against an explicit
+human command to execute an archived installer. Do not run those installers.
+
+WHY OTHER DUPLICATES REMAIN PRESERVED
+Cadence web/mobile share21 domain modules and11 content payloads, but no active
+consumer currently uses them. Modifying byte-preserved upstream copies or adopting
+whole auth/billing/ML/client stacks without prerequisites would introduce competing
+systems. FEATURE_INVENTORY documents unique work and selective future ports.
+No arbitrary dependency, language rewrite, database migration or duplicate engine
+was added. Public /api/session and event version1 remain compatible.
+
+VALIDATION
+14 JavaScript tests,71 Python tests,6 browser tests, lint, formatting, TypeScript,
+production build, root collection isolation and real HTTP startup passed. Frozen
+installs succeeded. npm advisory audit reports0 known vulnerabilities. Meaning and
+recovery tests use fake models/rooms/synthetic audio; no live speech claim is made.

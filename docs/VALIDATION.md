@@ -1,5 +1,21 @@
 # Validation record — first voice-tutor slice
 
+## Consolidation validation — 17 November 2026
+
+Starting at `98cfcd7`, reviewed retry/help/recoverable-error work from `da2796e`
+was selectively recovered at `8f1c988`, with a punctuation/decimal retry repair.
+Web source and tests moved into lesson/session features. **14 JavaScript tests,
+71 Python tests and 6 browser tests passed**, together with frozen installs,
+Ruff lint/format, build, typecheck and real local HTTP startup. Root pytest
+collection found only the 71 active tests after the archive-discovery guard.
+The active npm advisory audit returned zero known vulnerabilities.
+
+The earlier 14/42/6 organization-only record below remains historical evidence.
+The current [validation report](../AnalyseFuture/TEST_AND_VALIDATION_REPORT.txt)
+records commands, recovered regressions and unexecuted checks. No live voice,
+physical Android, Bengali quality, pronunciation or integrated-avatar result is
+claimed. Remote Actions/account/protection API access was unavailable.
+
 ## Repository organization check — 17 November 2026
 
 The source-preservation and product-idea task moved uploaded projects and ZIPs

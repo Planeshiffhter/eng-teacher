@@ -1,0 +1,297 @@
+ENG TEACHER — PROJECT VISION AND FUTURE ROADMAP
+Evidence-based recovery planning document
+Prepared: 17 November 2026 (Asia/Calcutta)
+
+This document extends PROJECT_IDEA.txt. It separates existing code, offline test
+evidence, externally dependent validation, and future ideas. Time horizons are
+planning scenarios, not promises. The repository audit records final recovered
+HEADs and checks; a branch, ZIP, screenshot, or passing fake does not prove a
+production feature.
+
+01. WHAT THE PROJECT IS TODAY
+
+Eng Teacher is one monorepo for an AI English-speaking tutor. Its active product
+is a Next.js/React web client and a Python LiveKit voice agent. The initial
+workflow is a ten-minute Hindi-English mock interview with captions, correction
+cards, retries, and a temporary recap. This is a first implementation awaiting
+real-provider and physical-device acceptance, not a complete commercial platform.
+
+At discovery, main was 98cfcd7, with earlier organization checkpoints a1457a3 and
+38e9d00. It preserved uploaded Cadence and Talking Avatar snapshots under
+AnalyseFuture. The remote retry/reference branch at da2796e also contains useful
+work. Ten compatible files were consolidated into main at8f1c988, with a
+new punctuation/decimal meaning-preservation repair and feature organization.
+
+02. ORIGINAL PURPOSE AND THE OWNER'S EXPANDED IDEA
+
+Help learners who can think in a home language but hesitate in English. A
+friendly AI teacher listens patiently, preserves what the learner meant, and
+suggests natural English without embarrassment. Eventually an original male or
+female animated teacher appears in a video-call-style interface. Clearly label
+it as AI, and retain audio-only access. The learner's camera remains optional.
+
+If a learner says "আমি আজ অফিসে যেতে পারব না।", a useful English model is "I
+won't be able to go to the office today." Do not invent an illness or change
+the negation. The learner can request Bangla help, a repeat, an example, or a
+slower explanation before trying again. Bangla examples are product requirements
+for review, not claims of validated Bengali speech support today.
+
+03. WHAT HAS BEEN IMPLEMENTED
+
+The active source includes restricted session tokens, pilot-code/origin checks,
+microphone publishing, named-agent dispatch, CPU voice-activity detection, OpenAI
+speech/text adapters, tutor policy, separate original and suggested sentences,
+interruption configuration, session controls, and a fixed ten-minute deadline.
+Offline tests exercise browser, schema, tutor, scheduler, and lifecycle behavior.
+
+The last completed main organization checks reported 14 JavaScript, 42 Python,
+and six synthetic Chromium tests, plus build, TypeScript, and Ruff. Those numbers
+describe that exact earlier run. Recovery changes need fresh evidence. The
+recovered retry branch adds meaning-aware retry classification, example/Hindi
+translation assistance, question preservation, and recoverable error packets;
+these are now recovered on main. Current local validation is14JS/71Python/6
+browser checks, build/typecheck/lint/format; provider speech remains unverified.
+
+04. USEFUL WORK AND ASSETS TO RETAIN
+
+Retain the existing voice foundation, tests, lockfiles, provider interfaces,
+continuity history, product research, 21-repository inventory, dependency audit,
+and preserved snapshots. Cadence contributes structured-exercise design ideas;
+Talking Avatar contributes a candidate browser animation SDK. Neither is an
+additional running Eng Teacher application merely because its files are present.
+
+Preserve licenses, credits, model/asset notices, and old/new path manifests.
+Uploaded branch history and archived material provide recovery evidence. Study
+selected components before adoption; do not equate a broad reference application
+with permission or need to merge every service and content asset into this app.
+
+05. WHAT IS MISSING OR NOT YET PROVEN
+
+Missing product capabilities include integrated avatar animation, validated
+audio-based pronunciation, individual accounts, durable learner-controlled
+progress, reviewed lesson catalog, subscriptions, and production operations.
+Bengali and other languages lack the required end-to-end acceptance evidence.
+
+Real microphone-to-provider speech, mixed-language quality, natural explanations,
+barge-in latency, reconnect, physical Android performance, and billed session
+cost remain unverified. Offline passing checks do not close these gaps. Pilot
+access code and process-local request limits are not public-service authentication
+or distributed quotas. A file audit also cannot prove account security or who
+changed a repository.
+
+06. IMMEDIATE IMPROVEMENTS AFTER RECOVERY
+
+Recovery has now preserved the starting versions and consolidated useful retry
+changes, with current offline checks recorded in the validation report. Next add
+privacy-safe
+model-token, provider-failure, and retry totals; avoid transcript or key logging.
+
+Next configure operator-owned credentials securely and complete one real
+Hindi-English voice lesson with the documented controls and deadline. Record
+observed failures, device, provider/model versions, latency, and aggregate cost.
+This is high-value work of small-to-medium engineering scope, with paid service
+access and a human tester as prerequisites; it is more useful than another UI
+scaffold. Reassess remaining changes after that evidence.
+
+07. THE NEXT PRODUCT INCREMENTS
+
+Author one original everyday conversation exercise with a goal, examples,
+practice target, ordered turns, help transitions, and teacher-reviewed acceptance.
+Use the existing agent and typed events. Then trial one Bengali-English scenario
+with fluent reviewers and real audio, including names, numbers, negation, and
+mixed sentences. Do not enable an "all languages" switch.
+
+Trial one optional avatar after the speech loop is stable. Select only remote
+teacher audio and one playback owner; Talking Avatar plays audio itself, so
+leaving LiveKit playback active would duplicate sound. Check interruption,
+autoplay, mute, disconnect, and fallback. These are medium-effort increments;
+their costs include content review and ordinary phone testing.
+
+08. ADVANCED AI FEATURES WITH PRACTICAL VALUE
+
+Possible later additions are adaptive lesson selection, meaning-aware feedback,
+retrieval of learner-approved saved phrases, spaced review, bounded conversational
+memory, multilingual explanations, and provider selection using measured quality
+and cost. Each feature needs clear inputs, expected behavior, failure fallback,
+and evaluation separate from the model's own opinion.
+
+Audio-based pronunciation may provide word/phoneme practice when calibrated
+against teachers. Ask for consent and explain uncertainty. An automatic score
+must not become a disguised transcript-similarity grade. More autonomy or a larger
+model is useful only if learning quality, reliability, or operating cost improves.
+
+09. RESEARCH QUESTIONS TO ANSWER
+
+Which recognition/synthesis combination best handles the target Hindi-English
+and Bengali-English tasks? What causes wrong negation or name changes? Does a
+visual teacher improve return use or distract from listening? What endpointing
+settings accommodate slow speakers without excessive delay? Which pronunciation
+errors can reviewers consistently identify across accents?
+
+Compare candidates on the same consented, held-out samples. Separate development
+and evaluation speakers. Record failures as well as averages. The initial 30
+mixed-language plus 20 already-acceptable utterances per trial is a useful small
+gate, not evidence of population-level reliability. Expand samples before making
+broader claims, and retain only data whose permissions cover the purpose.
+
+10. WHAT IS FEASIBLE WITH PRESENT TECHNOLOGY
+
+Today a small team can build the bounded voice lesson, original structured
+exercises, warm turn-taking, selectable licensed voices, clear correction cards,
+experimental multilingual help, simple animated characters, and secure opt-in
+practice history. Existing hosted services reduce initial infrastructure work.
+
+Feasible does not mean implemented or free. A web and voice engineer can deliver
+small increments; educators and learners must validate whether the teacher is
+right and useful. Start narrow enough that failures are understandable. Keep
+audio-only and text alternatives so rendering or microphone failures do not
+erase every useful route through the product.
+
+11. FEATURES NEEDING MORE RESOURCES
+
+Production accounts, deletion/export, distributed spending limits, monitoring,
+backups, and billing require backend/operations expertise and an ongoing hosting
+budget. Reliable multilingual content requires paid native-speaker and educator
+time. Physical device testing needs actual devices and networks, not viewports.
+
+Pronunciation research needs permitted audio, human labeling, suitable models,
+and possibly GPU evaluation. Self-hosted recognition, synthesis, or language
+models add deployment, concurrency, maintenance, and license review costs.
+Fine-tuning needs a quality dataset and baseline comparisons before GPU spend.
+Cost estimates should be measured in service usage and staff effort; no old
+illustrative per-lesson price should be presented as a current quotation.
+
+12. EXPERIMENTAL FEATURES
+
+Treat rich Bangla code-switching, meaning-aware correction across dialects,
+phoneme scores, personalized model adaptation, automatic lesson-level selection,
+and cross-provider recovery as controlled experiments until tested. Some can
+work well on selected tasks while failing outside them. Show an experimental
+label and a safe escape path rather than quietly treating a model output as truth.
+
+Reproducible experiments need pinned models, test fixtures, a baseline, budget,
+human review, stop conditions, and rollback. Review upstream component/model
+terms independently. A declared project-level MIT license does not settle every
+weight, voice, dataset, content pack, or dependent library obligation.
+
+13. SPECULATIVE DIRECTIONS
+
+Photorealistic interactive video, comprehensive offline multilingual tutoring on
+cheap phones, fully automatic educational personalization, and emotion-aware
+teaching may become more capable over time. They should remain research options,
+not release commitments. Webcam emotion or intent inference is especially
+uncertain and may introduce privacy burden without improving learning.
+
+Review such directions annually against real device performance, independent
+evaluation, user demand, rights, and total cost. Future model progress may reduce
+cost or error; it does not remove ambiguity, consent requirements, or the need
+to test with the actual learners this product intends to serve.
+
+14. WHAT IS INFEASIBLE AS AN UNCONDITIONAL PROMISE
+
+Perfect understanding of every language/accent/noisy utterance; knowing true
+intent when audio is ambiguous; exact pronunciation grades from text alone;
+zero latency and failures; unlimited high-quality inference at zero cost; or
+guaranteed fluency, jobs, exam results, and accent changes on a fixed schedule.
+
+Use supported-language boundaries, clarification, audio-grounded assessment,
+measured performance, quotas, and specific learning goals instead. AI is not a
+real human friend and should not impersonate one. Real-person likeness or voice
+cloning without appropriate rights is not an acceptable shortcut. Ownership of
+the app also does not imply ownership of every underlying model or service.
+
+15. ONE-YEAR DIRECTION
+
+Aim to prove one reliable adult-learner voice workflow, then a reviewed Bengali
+pilot and a small original course. Deliver robust help/retry and recoverable
+errors, account controls before durable history, spending safeguards before
+public access, and an optional tested lightweight avatar.
+
+Success depends on educator acceptance, real session completion, reproducible
+device checks, meaning preservation, and evidence of practice transfer. Earlier
+targets such as 27/30 preserved meanings or at most 1/20 false corrections are
+starting hypotheses, not achieved results. Refine thresholds with reviewers.
+Do not spend the year collecting unrelated reference applications or rebuilding
+the transport in a new language.
+
+16. TWO-YEAR DIRECTION
+
+If the core shows learner value and sustainable economics, expand selected
+language pairs and levels, learner-controlled spaced review, educator tools,
+accessibility, and an operations-supported service. Compare a native mobile
+client only when browser constraints or user behavior justify its maintenance.
+
+Benchmark licensed open models against hosted models on equal quality, latency,
+and concurrency conditions. Introduce independent hosting or adaptation only
+where results justify the staff and compute. Better control of the teaching
+policy, content, tests, and provider interfaces is already useful independence;
+owning a GPU fleet is not a prerequisite for owning the product.
+
+17. THREE-TO-FIVE-YEAR OPTIONS
+
+With demonstrated demand, consider broader languages, educator partnerships,
+calibrated pronunciation tools, richer roleplays, and selected offline practice.
+Investigate interactive video only if it provides measured benefit at acceptable
+cost. Continue annual checks of models, asset rights, privacy, and accessibility.
+
+The responsible team may grow from owner, application engineer, voice engineer,
+designer, and bilingual reviewers to include ML evaluation and operations
+specialists. Timelines depend on those resources. Do not promise a future
+breakthrough date, an exhaustive global language list, or autonomous teaching
+that removes the need for educators and human outcome evaluation.
+
+18. WHAT NOT TO PURSUE NOW
+
+Do not replace the working Next.js/LiveKit/Python foundation just to use one
+programming language. Do not wire in whole Cadence services, a second voice
+transport, several avatar engines, a new mobile stack, payments, and training
+at once. Do not copy competitor branding or curricula. Avoid fabricated
+pronunciation/fluency scores, unconstrained subscriptions, hidden recording,
+surveillance-based personalization, and unsupported "all languages" marketing.
+
+Do not treat archived material as executable setup instructions. Do not delete
+uncertain versions or force-push shared history as a recovery method. Clear
+ownership of active code, explicit provenance, and narrow validated improvements
+are more valuable than making the repository appear smaller through data loss.
+
+19. THE LONG-TERM PRODUCT ADVANTAGE
+
+The strongest potential advantage is evidence of respectful, meaning-preserving
+teaching for specific learners: fewer false corrections, useful home-language
+help, preservation of regional English, and next-day use of practiced patterns.
+A reviewed curriculum and permissioned evaluation corpus are harder to replace
+than a generic avatar or a prompt around a commodity model.
+
+Build trust through visible uncertainty, correct data handling, reproducible
+quality tests, stable calling, and reliable cost controls. Durable advantage
+comes from accumulated learning research and execution, not proprietary claims
+over upstream code or data collected without permission.
+
+20. DEPENDENCIES, EFFORT, COST, VALUE, AND DECISION RULES
+
+Near-term fixes and metrics: small/medium effort; application/voice engineer;
+limited service spend; high diagnostic and reliability value. Gate: existing
+regressions pass and real failures are observable without exposing learner data.
+
+Original exercise and language pilot: medium effort; educator, native reviewer,
+engineer, adult testers; service/review costs; high teaching value. Gate: reviewed
+meaning and correction outcomes on held-out tasks, plus usable real calls.
+
+Avatar: medium integration and ongoing device-support effort; browser/audio
+engineer and asset review; download/GPU/battery costs. Gate: one sound owner,
+fallback, interruption, and mobile acceptance, with an observed learner benefit.
+
+Accounts/retention/operations: medium/high effort; backend, security/operations,
+product owner; ongoing hosting/support costs. Gate: authorization, export/delete,
+quotas, spending limits, monitoring, and clear provider retention responsibilities.
+
+Pronunciation/self-hosted models: high or uncertain effort; ML evaluator,
+educators, permitted data, compute, and operations. Gate: better held-out results
+or sustainable total cost than the baseline, with a documented rollback route.
+
+Before each increment, choose a learner problem, a measurable outcome, owner,
+budget cap, dependencies, and stop condition. Measure p50/p90 speech latency,
+session failures, complete per-lesson cost including retries, and next-day use of
+learned patterns. Save evidence and update the roadmap. An AI coding tool can
+help implement checks; it cannot substitute for credentials, consent, real
+devices, native-speaker judgment, or demonstrated learning.

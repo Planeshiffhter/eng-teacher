@@ -1,5 +1,13 @@
 # Full Ordered Implementation Checklist — Eng Teacher
 
+> **17 November 2026 recovery update:** The retry/help/recoverable-error behavior
+> formerly isolated on `da2796e` is consolidated on `main` at `8f1c988`, with
+> additional punctuation/number regressions repaired. Current local checks are
+> 14 JS / 71 Python / 6 browser tests plus build/typecheck/lint/format. Read the
+> [recovery inventory](../AnalyseFuture/FEATURE_INVENTORY.txt) before implementing
+> an older unchecked item. Historical live acceptance gates below remain open;
+> preserved third-party features are not integrated simply because source exists.
+
 **Last updated:** 13 Nov 2026. **Purpose:** a single prioritized source of truth for GitHub/Codex, from existing MVP to competitive product. **Checkboxes reflect verified work, with evidence linked below.** Source code existing is not the same as a verified working live product.
 
 **Repository:** https://github.com/Planeshiffhter/eng-teacher. **Public** at checklist creation. Never store secrets or learner audio in this repository.

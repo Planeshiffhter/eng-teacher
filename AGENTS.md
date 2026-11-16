@@ -9,6 +9,8 @@ This file applies to coding agents working in this repository.
 - Stay within the owner's requested task. Keep prior work; move material set aside for future analysis into `AnalyseFuture/` instead of deleting it. Never commit discovered credentials or private learner data there.
 - `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
 - Read `PROJECT_IDEA.txt` for the current product vision and `docs/REPOSITORY_STRUCTURE.md` for the active/archive layout. Historical feature-branch/PR suggestions in older handoffs are superseded by the owner's current workflow.
+- Read `AnalyseFuture/REPOSITORY_AUDIT.txt` and `NEXT_DEVELOPER_INSTRUCTIONS.txt` for the completed consolidation. Web lesson/session owners live under `apps/web/features`; root `pytest.ini` excludes archives. Run the existing scoped commands and preserve their exit status.
+- The retry/help/recoverable-error improvements from `da2796e` are integrated, with punctuation/decimal retry regressions repaired. Do not reimplement them from an older prompt. Current local counts are 14 JS / 71 Python / 6 browser tests; live voice/language/avatar quality remains unverified.
 
 ## First read
 

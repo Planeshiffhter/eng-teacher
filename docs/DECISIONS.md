@@ -1,5 +1,19 @@
 # Decisions and Open Questions
 
+## Recovery decisions — 17 November 2026
+
+- Recover compatible retry/help/error behavior from `da2796e`, with no dependency
+  changes; repair the reproduced punctuation/decimal bypass before adoption.
+- Group web lesson UI/events/tests and session server/tests by feature while
+  keeping Next entrypoints and the existing Python service boundary.
+- Keep uploaded snapshots immutable. Their 21 domain-module twin pairs and
+  11 duplicated content packs inform future selective ports, not a whole-stack
+  replacement. Root pytest discovery must exclude their code.
+- Preserve ten superseded source/test/CI payloads, all earlier archives, and both
+  remote recovery tags. Direct `main` checkpoints follow the owner's instruction.
+- See [the consolidation report](../AnalyseFuture/CONSOLIDATION_REPORT.txt) for
+  evidence and remaining compatibility/security limitations.
+
 | Item | Decision as of 13 Nov 2026 | Status |
 |---|---|---|
 | Product | Independent AI English-speaking teaching platform with avatar calls, corrections, personalization | Vision agreed |

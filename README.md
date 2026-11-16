@@ -16,6 +16,21 @@ tests in `tests/browser`. Earlier research and implementation history stay in
 [repository audit and structure](docs/REPOSITORY_STRUCTURE.md) explains every
 directory's role and the byte-for-byte preservation checks.
 
+**Recovery update — 17 November 2026:** Reviewed retry/help and recoverable-error
+work from the previously disconnected branch is now consolidated on `main`, with
+an additional fix for decimal and punctuation changes in retries. Web lesson code
+and tests live in `apps/web/features/lesson`; session admission code and tests
+live in `apps/web/features/session`. The page and API route remain thin Next.js
+entrypoints. Current local checks: **14 JavaScript, 71 Python and 6 browser tests**,
+build, typecheck, lint and formatting passed. Real speech remains unverified.
+
+Start the complete recovery record at
+[REPOSITORY_AUDIT.txt](AnalyseFuture/REPOSITORY_AUDIT.txt), then the
+[feature inventory](AnalyseFuture/FEATURE_INVENTORY.txt),
+[security findings](AnalyseFuture/SECURITY_AUDIT.txt),
+[validation report](AnalyseFuture/TEST_AND_VALIDATION_REPORT.txt) and
+[future roadmap](AnalyseFuture/PROJECT_VISION_AND_FUTURE_ROADMAP.txt).
+
 **Vision:** Build an independently controlled, commercially viable AI English-speaking learning platform with a natural video-call-like teacher, accurate corrections, multilingual explanations, pronunciation practice, and personalized learning. The ambition is to compete on learning quality with Praktika, ELSA Speak, Speak, and Duolingo—not to copy their code, characters, brands, or content.
 
 **First product to prove:** A **10-minute Hindi–English mock interview on mobile web**. A learner speaks naturally, including code-switching; an interruptible speaking avatar listens, offers one helpful meaning-preserving correction, lets the learner repeat it, continues the interview, and provides a recap.
