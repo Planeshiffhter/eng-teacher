@@ -110,8 +110,8 @@ extracted upstream trees with the original ZIP entries. The path mapping is stor
 in `AnalyseFuture/PRESERVATION_MANIFEST.json`, with baseline commit and SHA-256.
 The baseline tree can be recovered from Git without relying on a local workspace.
 
-Active workflow checks for this reorganization are recorded in the final task
-update below. The existing meaningful checks are JavaScript unit tests, Python
+Active workflow checks for this reorganization are recorded in the results
+below. The existing meaningful checks are JavaScript unit tests, Python
 pytest, Ruff, Next.js production build, TypeScript and browser smoke tests. Browser
 fixtures use synthetic microphone input and expected missing-config/failed-room
 paths. They do not demonstrate a live voice conversation or Bengali translation.
@@ -146,5 +146,22 @@ credentials or permissions were changed in this task.
 
 ## Current task validation
 
-Pending execution after the relocation; results will be updated before the final
-push. Preservation verification has already passed for all 1,478 moved files.
+All of the following checks completed after the relocation:
+
+| Check | Result |
+| --- | --- |
+| SHA-256 for every relocated file | 1,478 passed |
+| Extracted payload compared with original ZIP entries | 1,443 Cadence + 31 Talking Avatar files matched |
+| Active source/tests/manifests/CI compared with baseline | Unchanged |
+| Git deletion audit | No deletion without a preserved rename |
+| `npm test` | 14 tests passed across 2 files |
+| `uv run --frozen pytest -q` from `services/voice-agent` | 42 tests passed |
+| `uv run --frozen ruff check .` from `services/voice-agent` | Passed |
+| `NEXT_TELEMETRY_DISABLED=1 npm run build` | Passed |
+| `npm run typecheck` | Passed |
+| `CI=1 NEXT_TELEMETRY_DISABLED=1 npm run test:browser` | 6 tests passed |
+
+Python checks used `UV_CACHE_DIR=/workspace/.cache/uv`. Existing installed
+dependencies and system Chromium were reused; no archived dependencies were
+installed. These results validate organization and the active offline workflow,
+not new product features or real speech quality.

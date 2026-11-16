@@ -1,12 +1,18 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
-**Snapshot date:** 16 November 2026  
+**Latest organization update:** 17 November 2026 (Asia/Calcutta)
+
+**Historical research snapshot:** 16 November 2026
 **Main repository:** https://github.com/Planeshiffhter/eng-teacher  
 **Purpose:** A self-contained, GitHub-readable continuity document for a future human engineer, ChatGPT, or GPT Codex session when the original chat is unavailable or too long.  
 **Read order:** This file → AGENTS.md → latest GitHub tree/PRs/CI → relevant code → canonical docs.  
 **Scope:** Consolidates the project-relevant facts and available earlier conversation summaries, implementation evidence, research findings, GitHub links, diagrams and decisions. It is **not a complete verbatim export of every prior private chat**. Anything not independently verified must be checked before acting.
 
-> **IMPORTANT STATUS SNAPSHOT:** At the time this file was written, the most recent main commit was [88f600d3176a943d355deb9db4490a6387523fad](https://github.com/Planeshiffhter/eng-teacher/commit/88f600d3176a943d355deb9db4490a6387523fad) (15 Nov 2026). [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1) was OPEN, **not merged**, at head [da2796ebaca461c7ac0551182bfb7534f8498551](https://github.com/Planeshiffhter/eng-teacher/commit/da2796ebaca461c7ac0551182bfb7534f8498551). Its [final CI run 43749668384](https://github.com/Planeshiffhter/eng-teacher/actions/runs/43749668384) succeeded. Never assume these references remain current: inspect the GitHub repository again on every new work session.
+> **CURRENT ORGANIZATION UPDATE:** The owner requested a structure audit, preservation of deferred material in `AnalyseFuture/`, and a detailed product idea. Work began from verified local/remote `main` at `38e9d0034ba613052b3e7d37f902ed635eae8d9c`; no newer tracked changes established an attack. The organization checkpoint is [`a1457a3`](https://github.com/Planeshiffhter/eng-teacher/commit/a1457a3). All 1,478 moved files are byte-identical. Active source remains in `apps/web` and `services/voice-agent`. Read [the structure audit](REPOSITORY_STRUCTURE.md), [current validation](VALIDATION.md), and [PROJECT_IDEA.txt](../PROJECT_IDEA.txt), including the owner's Bengali-English and friendly on-screen teacher goals. Current local checks passed: 14 JavaScript tests, 42 Python tests, 6 browser tests, build, typecheck and Ruff. This is preservation/planning work, not a new voice/translation/avatar implementation or an account-security investigation.
+
+> **CURRENT OWNER WORKFLOW:** Work directly on `main`, without a feature branch or new PR; commit and push useful checkpoints at least every five minutes while editing when changes exist. Keep prior work and preserve material set aside for future analysis in `AnalyseFuture/`. These instructions supersede historical branch/PR suggestions below. Do not force-push shared history. No historical PR was merged as part of this organization task.
+
+> **HISTORICAL STATUS SNAPSHOT:** At the time the original research snapshot was written, the most recent audited main commit was [88f600d3176a943d355deb9db4490a6387523fad](https://github.com/Planeshiffhter/eng-teacher/commit/88f600d3176a943d355deb9db4490a6387523fad) (15 Nov 2026). [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1) was OPEN, **not merged**, at head [da2796ebaca461c7ac0551182bfb7534f8498551](https://github.com/Planeshiffhter/eng-teacher/commit/da2796ebaca461c7ac0551182bfb7534f8498551). Its [final CI run 43749668384](https://github.com/Planeshiffhter/eng-teacher/actions/runs/43749668384) succeeded. These are dated historical observations, not a new verification of PR or remote CI status.
 
 ## 1. For a new GPT/Codex session: start here, not from scratch
 
@@ -386,10 +392,15 @@ flowchart TD
 
 Copy the following into a new ChatGPT Work/Codex conversation if the original chat history cannot be loaded:
 
-> Work on https://github.com/Planeshiffhter/eng-teacher as the principal engineer for our original Hindi-English AI speaking tutor. Start by reading docs/PROJECT_CONTINUITY_HANDOFF.md, AGENTS.md, README.md, OPEN_SOURCE_REPOSITORIES.txt, docs/IMPLEMENTATION_CHECKLIST.md, docs/VALIDATION.md and docs/TWO_PRIMARY_REFERENCE_REPOS.md if present; inspect the actual current branch, open PRs, CI and relevant source before coding. The existing LiveKit React/Python foundation is the product; **do not rebuild it**. Verify whether PR #1 for safer retries and recoverable errors has merged. Choose the highest-priority unblocked code improvement (next: privacy-safe LLM token/error usage metrics), implement and test it, preserve credentials/privacy, and push to a feature branch with a PR. Do not claim real Hindi-English speech quality without real credentials, phones and speakers. Keep the handoff/checklist/validation accurate with commit and CI links. Prioritize proven learning effectiveness over decorative demos and unnecessary dependencies.
+> Work on https://github.com/Planeshiffhter/eng-teacher within the owner's current requested scope. Start by reading AGENTS.md, PROJECT_IDEA.txt, docs/REPOSITORY_STRUCTURE.md, this handoff, README.md, OPEN_SOURCE_REPOSITORIES.txt, docs/IMPLEMENTATION_CHECKLIST.md and docs/VALIDATION.md. Inspect current main, history, prior PR status and relevant source before coding. The existing LiveKit React/Python foundation is the product; **do not rebuild it** or execute archived project scripts as normal setup. Work directly on main, without a feature branch or new PR, and push useful checkpoints at least every five minutes while editing when changes exist; never force-push. Preserve deferred material in AnalyseFuture rather than deleting it. For an authorized next implementation task, consider privacy-safe usage/error metrics and real voice validation before a Bengali-English experiment or optional avatar. Do not claim real speech, translation, pronunciation or avatar quality without the appropriate service, speaker and device evidence. Keep historical results distinct from current validation.
 
 ## 16. How to update this file responsibly
 
 When you finish meaningful work, amend **the snapshot first**: date, main SHA, open/merged PRs, latest CI, proven implemented features, unverified features, current blockers, next smallest task. Append a short changelog line with links; do not delete old historical evidence just because status advances. Keep secrets, user identities, recordings, private conversations unrelated to the product and raw transcripts **out of this public repo**.
 
 **Living handoff creation:** 16 Nov 2026 — consolidated available Eng Teacher project conversation summaries, 21 reference repos, two pinned research investigations, code map, test evidence, architecture diagrams, stage gates and continuation instructions. **This document is documentation, not a new implementation or live test.**
+
+**17 Nov 2026 organization update:** Added the owner-requested detailed product idea,
+documented the repository audit, moved the original ZIPs and complete upstream
+snapshots into `AnalyseFuture/` without changing their bytes, retained the active
+application and earlier research, and verified the offline checks recorded above.

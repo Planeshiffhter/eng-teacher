@@ -1,5 +1,27 @@
 # Validation record — first voice-tutor slice
 
+## Repository organization check — 17 November 2026
+
+The source-preservation and product-idea task moved uploaded projects and ZIPs
+into `AnalyseFuture/`. It did not change active application source, tests, runtime
+configuration, dependency declarations or lockfiles. The baseline before this task
+was `38e9d0034ba613052b3e7d37f902ed635eae8d9c`; the initial organization checkpoint is
+[`a1457a3`](https://github.com/Planeshiffhter/eng-teacher/commit/a1457a3).
+
+After the move: **14 JavaScript tests, 42 Python tests and 6 Chromium browser
+checks passed**, together with Ruff, the production build and TypeScript. All
+1,478 relocated files retained their SHA-256 hashes; all 1,474 extracted upstream
+payloads matched their original ZIP entries. See
+[the repository audit](REPOSITORY_STRUCTURE.md) for commands, paths and limits.
+
+These are current local/offline results, separate from the older record below and
+the historical PR test counts. No real provider lesson, Bengali quality, avatar
+integration or physical Android behavior was validated in this task. Existing
+live acceptance work remains necessary. The detailed new idea is in
+[`PROJECT_IDEA.txt`](../PROJECT_IDEA.txt); it describes planned features.
+
+## Original implementation record
+
 Date: 13 November 2026. Branch: `feat/voice-tutor-mvp`.
 
 ## Verified locally
