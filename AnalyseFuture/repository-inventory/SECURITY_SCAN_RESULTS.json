@@ -1,0 +1,25 @@
+{
+  "commits": 49,
+  "objects": 2252,
+  "unique_blobs": 1587,
+  "blob_bytes": 64140236,
+  "zip_blobs": 2,
+  "zip_members_scanned": 1474,
+  "utf8_scans": 2979,
+  "non_utf8_scans": 82,
+  "patterns": [
+    "private_key",
+    "github_token",
+    "openai_style",
+    "aws_access_id",
+    "google_api",
+    "stripe_live",
+    "slack_token",
+    "jwt_literal",
+    "url_userinfo"
+  ],
+  "findings": [],
+  "errors": [],
+  "head": "9536cc04559459d46692f9400978738cc4eaf6e2",
+  "worktree_paths_scanned": 1567
+}

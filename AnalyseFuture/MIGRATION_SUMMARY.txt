@@ -9,8 +9,8 @@ Files moved in this task: 5 active web files.
 Compatible files consolidated: 10 code/test/CI files from da2796e.
 Superseded payloads archived in this task: 10.
 The earlier 1,478 preserved reference payloads are not counted again as new moves.
-The final inventory also lists new reports, maintenance scripts, the root pytest
-boundary and recovered research. No valuable implementation was discarded.
+Final tracked paths: 1,567 (32 net additions, including reports, scripts, the
+root pytest boundary, recovered research, evidence and preserved originals). No valuable implementation was discarded.
 
 COMPATIBILITY
 Public /api/session and version 1 tutor packets remain. The internal TutorModel

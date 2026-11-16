@@ -32,8 +32,8 @@ Inspect:
 - `services/voice-agent/src/eng_teacher/providers.py`
 - `services/voice-agent/src/eng_teacher/agent.py`
 - `services/voice-agent/tests/test_tutor.py`
-- `apps/web/components/tutor-app.tsx`
-- `apps/web/lib/tutor-events.ts`
+- `apps/web/features/lesson/components/tutor-app.tsx`
+- `apps/web/features/lesson/tutor-events.ts`
 - `docs/DEVELOPMENT.md`, `docs/VALIDATION.md`, and `AGENTS.md`.
 
 A previously reproduced bug: after correction, the tutor treats **every next utterance** as the retry. If the learner asks “Please explain that in Hindi,” it clears pending retry and advances the question. That is a real correctness bug and **the next coding change**, but not the end of the project.

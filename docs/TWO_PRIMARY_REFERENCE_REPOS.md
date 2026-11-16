@@ -32,7 +32,7 @@ The [21-repo inventory](../OPEN_SOURCE_REPOSITORIES.txt) includes two official L
 
 ## Prioritized next actions
 
-1. Keep the current stateful teacher and make help questions, genuine retries and failures safe, with deterministic regression tests (the code change in this PR).
+1. Keep the stateful teacher: reviewed help/retry/recoverable-error changes are consolidated on main at `8f1c988`, with additional punctuation regressions. Do not repeat this completed recovery.
 2. Add privacy-safe model-token and failure counters, then validate real Hindi/English speech and interruption with service credentials.
 3. Implement one ORIGINAL structured learning exercise using Cadence-style metadata, with educator review.
 4. On physical Android and desktop, trial a single-owner teacher-audio avatar adapter and audio-only fallback before committing avatar dependencies.

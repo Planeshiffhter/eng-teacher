@@ -9,7 +9,8 @@ DISCOVERY AND COVERAGE
 All 1,535 starting tracked paths were read and classified before restructuring.
 The inventory treats 1,490 as UTF-8 text and 45 as binary or NUL-containing data.
 Cadence review covered 1,009 web/backend/content/configuration/test paths. The
-client/avatar review covered another 466 paths. Active runtime, root files,
+client/avatar review covered 466 paths (release/manifest.json was reviewed in
+both scopes; their union covers all 1,474 uploaded snapshot files). Active runtime, root files,
 documentation and preservation metadata were reviewed by responsibility.
 Definitions, imports, ownership, API routes and test evidence are recorded in the
 file inventory and 77 scoped feature records. Binary assets were byte-inventoried
@@ -71,5 +72,5 @@ established. Archived checksum/logging/ML concerns are recorded without executio
 
 CONTINUATION
 Read the feature, duplicate, security, debt, validation and continuation reports.
-COMPLETE_FILE_INVENTORY.txt records the final tracked paths after intended delivery
-files are staged. The starting count is retained separately for comparison.
+COMPLETE_FILE_INVENTORY.txt records all 1,567 final tracked paths after intended
+delivery files were staged (32 net additions). The starting count remains 1,535.

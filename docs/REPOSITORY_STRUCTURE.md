@@ -1,167 +1,130 @@
-# Repository audit and working structure
+# Repository structure and ownership
 
-Audit date: **17 November 2026 (Asia/Calcutta)**.
+Updated: **17 November 2026 (Asia/Calcutta)**.
 
-## What the inspection establishes
+## Scope and provenance
 
-At the start of this work, the local checkout, fetched `origin/main`, and GitHub's
-advertised `main` all pointed to
-`38e9d0034ba613052b3e7d37f902ed635eae8d9c`, the last commit verified in the preceding
-session. The working tree was clean. There were **1,531 tracked files**, including
-**1,476 files under `reference-sources`**, two uploaded ZIPs, and 53 other files.
+The complete consolidation started from local and remote `main` at
+`98cfcd77b814848f5637b590b0e05843d69c8d84`, with a clean working tree and 1,535
+tracked paths. All advertised branches/tags were fetched. The starting 46 reachable
+commits and all tracked payloads were read or byte-inventoried. This is repository
+recovery evidence; it does not establish account ownership, deleted history, or
+who made an unauthorized change.
 
-The two archives and extracted snapshots were added during the owner's previous
-explicit preservation request. Their presence alone is not evidence of an attack.
-No newer tracked changes were found relative to that verified commit. This is a
-repository-tree inspection, not an investigation of GitHub login history, account
-permissions, deleted remote history, credentials, or attribution. It neither proves
-nor disproves the owner's report of earlier unauthorized access.
+The earlier organization checkpoint moved 1,478 uploaded snapshot/ZIP payloads
+into `AnalyseFuture/`; their bytes remain unchanged. This task recovered compatible
+work from the disconnected retry branch, repaired a reproduced meaning-loss bug,
+and grouped five web files by feature. No active framework, language, dependency
+lockfile, public API, event version or database schema was replaced.
 
-The active package scripts, manifests, workflow, source layout and test discovery
-were inspected before executing checks. The root npm workspace includes only
-`apps/web`; Python runs from `services/voice-agent`; Playwright uses `tests/browser`.
-The inspected active manifests have no preinstall/postinstall lifecycle hooks or
-unexpected shell execution steps. No archived scripts were executed in this task.
-
-## Final directory responsibilities
+## Active architecture
 
 ```text
 eng-teacher/
-  README.md                         Entry point and development links
-  PROJECT_IDEA.txt                   Detailed product idea, feasibility and future phases
-  AGENTS.md                         Current owner/agent working rules
-  OPEN_SOURCE_REPOSITORIES.txt       Existing 21-repository research inventory
-  THIRD_PARTY_NOTICES.md             Existing and preserved-source notices
-  package.json / package-lock.json   Active npm workspace and pinned dependencies
-  .nvmrc                            Node 24 requirement
-  .gitignore                        Local/generated file exclusions
-  playwright.config.ts              Active browser-test configuration
-  .github/workflows/checks.yml       Active CI
-  apps/
-    web/
-      app/                          Next.js pages, styles and API route
-      components/                   Learner call and correction UI
-      lib/                          Tutor events and server token signing
-      tests/                        Web unit tests
-      .env.example                  Credential names/placeholders, no real values
-      package.json / tsconfig.json   Web build/type configuration
-  services/
-    voice-agent/
-      src/eng_teacher/              Agent lifecycle, tutor policy, controls, providers
-      tests/                        Offline tutor, scheduler and lifecycle tests
-      pyproject.toml / uv.lock       Python project and locked dependencies
-      .python-version               Python 3.12 pin
-      .env.example                  Worker configuration example
-  tests/
-    browser/                        Desktop/mobile viewport browser smoke tests
-  docs/                             Existing research, architecture, plans and evidence
-    REPOSITORY_STRUCTURE.md         This audit and navigation map
-    PROJECT_CONTINUITY_HANDOFF.md   Existing project history and continuation guide
-    DEVELOPMENT.md                 Install/start commands
-    VALIDATION.md                  Historical results and real-provider checklist
-    ...                            All earlier specifications and research retained
+  README.md / PROJECT_IDEA.txt       Project entry and owner product idea
+  AGENTS.md                         Current working agreement
+  OPEN_SOURCE_REPOSITORIES.txt       Existing research inventory
+  THIRD_PARTY_NOTICES.md             Licenses and preserved-source notices
+  package.json / package-lock.json   Explicit apps/web workspace and lock
+  .nvmrc / .gitignore                Runtime pin and local-output exclusions
+  playwright.config.ts              Scoped browser checks
+  pytest.ini                        Scoped default root Python collection
+  .github/workflows/checks.yml       Active read-only CI
+  apps/web/
+    app/                            Next layout/styles/page and thin API route
+      api/session/route.ts          Public admission entrypoint remains here
+    features/
+      lesson/
+        components/tutor-app.tsx    Room, mic, audio, subtitles, cards and recap
+        tutor-events.ts             Versioned parser, bounds, deadlines
+        tests/tutor-events.test.ts  Contract/state helper tests
+      session/
+        server/session.ts           Pilot code, origin/budget, JWT and dispatch
+        tests/session.test.ts       Local signing and security boundary tests
+    package.json / tsconfig.json    Existing web tool configuration
+    .env.example / LICENSE          Configuration example and attribution
+  services/voice-agent/
+    src/eng_teacher/
+      agent.py                      SDK pipeline, privacy and room lifecycle
+      controls.py                   Explicit help/repeat/example/skip intents
+      tutor.py                      Interview and pending-retry policy
+      providers.py                  Validated OpenAI speech/text adapters
+    tests/                          Tutor, SDK scheduling and lifecycle checks
+    pyproject.toml / uv.lock         Existing Python package and frozen lock
+    .python-version / .env.example   Python 3.12 and credential names
+  tests/browser/                    Cross-component desktop/mobile smoke
+  scripts/
+    repository_inventory.py         Static tracked-path ownership/import inventory
+    security_history_scan.py        No-value history/worktree/ZIP pattern scan
+  docs/                             Existing research, setup and actual status
   AnalyseFuture/
-    README.md                       Preservation purpose and navigation
-    PRESERVATION_MANIFEST.json      Old/new paths and SHA-256 of every moved file
-    Cadence-main.zip                Original uploaded ZIP
-    talking-avatar-master.zip      Original uploaded ZIP
-    reference-sources/
-      README.md                     Original snapshot navigation, retained unchanged
-      ARCHIVES.json                 Original archive hashes and counts
-      Cadence-main/                 Full uploaded upstream snapshot
-      talking-avatar-master/        Full uploaded upstream snapshot
+    *.txt                           Requested audit, feature and future reports
+    PRESERVATION_MANIFEST.json      Earlier 1,478 original/new path hashes
+    Cadence-main.zip                 Original uploaded archive
+    talking-avatar-master.zip       Original uploaded archive
+    reference-sources/              Complete immutable uploaded source snapshots
+    historical-implementations/
+      pre-consolidation-98cfcd7/     Ten superseded source/test/CI payloads
+    recovery-notes/                 Baseline mapping and hashes
+    repository-inventory/           Semantic review and security evidence
 ```
 
-`node_modules`, `.next`, `.venv`, test results and caches are local generated state,
-not project source. They remain ignored. No empty placeholder services, replacement
-framework, database, mobile application or additional dependency workspace was
-introduced during this reorganization.
+Generated dependencies/builds/caches (`node_modules`, `.next`, `.venv`, test
+outputs) remain ignored local state. No unrelated replacement service, empty
+shared package, new database, or additional active native client was created.
 
-## What was preserved and moved
+## Feature and data ownership
 
-| Previous location | Current location | Reason |
-| --- | --- | --- |
-| `reference-sources/` | `AnalyseFuture/reference-sources/` | Keep full research snapshots available without competing active applications at the root |
-| `Cadence-main.zip` | `AnalyseFuture/Cadence-main.zip` | Preserve original upload alongside its extracted snapshot |
-| `talking-avatar-master.zip` | `AnalyseFuture/talking-avatar-master.zip` | Preserve original upload alongside its extracted snapshot |
+The Next page imports the lesson component. The API route delegates admission to
+its session feature. Session policy generates microphone-only room tokens and a
+fixed deadline. Browser audio travels through LiveKit to the existing Python
+worker, whose controls/tutor/provider modules preserve original recognition and
+corrections separately. Version 1 data packets drive feedback, status and recap.
+Provider credentials stay in server/worker processes.
 
-All **1,478 relocated files** were hashed before and after moving; their bytes are
-unchanged. This includes all 1,474 extracted upstream files, both original snapshot
-navigation/manifest files, and both ZIPs. The active application source, tests,
-dependency declarations and lockfiles were retained in their existing locations.
-Navigation and ownership documents are updated separately.
+Examples, Hindi translations and help questions preserve a pending correction.
+Semantic retry decisions cannot advance on unrelated or uncertain text. Internal
+punctuation and numbers survive exact matching. Recoverable error events leave
+the call open, while fatal failures terminate it. Those behaviors have local
+regression coverage; they are not a live speech-quality benchmark.
 
-The ZIPs sit directly under `AnalyseFuture` so the unchanged original snapshot
-README's relative links still resolve. Root notices now link to the new paths.
-Original archives remain recoverable both as ZIP files and as ordinary Git files.
-Moving material into this folder does not label it malicious, defective or approved
-for production use.
+## Preservation and execution boundaries
 
-Cadence contains a complete separate web product, Python speech/coaching services,
-mobile and desktop clients, content, deployment files and tests. Talking Avatar
-contains a browser SDK, model, GLB avatars and tests. Those are useful references,
-not additional running Eng Teacher services. Their nested `.github` directories do
-not become root GitHub workflows. Their licenses, notices and credits are retained.
+The active npm workspace is explicitly `apps/web`. TypeScript includes are local
+to that app, Python packaging finds only the worker source, and Playwright uses
+`tests/browser`. Root `pytest.ini` restricts ordinary collection to the 71 active
+worker tests and excludes `AnalyseFuture`. Nested archived Actions workflows are
+not root workflows. These boundaries prevent ordinary accidental discovery; they
+are not a sandbox against explicitly running an archived command.
 
-## Verification and its limits
+All ten superseded payloads are copied from immutable starting Git blobs, with
+hashes in `AnalyseFuture/recovery-notes/CONSOLIDATION_BASELINE.json`. The earlier
+1,478 preserved files and both uploaded ZIPs remain byte-identical. The snapshot
+README's relative ZIP links still work because the ZIPs remain directly under
+`AnalyseFuture`. Original branches and both remote backup tags are retained.
 
-Preservation checks verify hashes for every relocated file and compare the two
-extracted upstream trees with the original ZIP entries. The path mapping is stored
-in `AnalyseFuture/PRESERVATION_MANIFEST.json`, with baseline commit and SHA-256.
-The baseline tree can be recovered from Git without relying on a local workspace.
+Do not execute archived installers as normal setup. The archived desktop runtime
+downloader lacks an independent checksum check; archived ML/logging paths require
+review before any selected port. The archive is evidence and future reference,
+not a second production application or a finding that every file is unsafe.
 
-Active workflow checks for this reorganization are recorded in the results
-below. The existing meaningful checks are JavaScript unit tests, Python
-pytest, Ruff, Next.js production build, TypeScript and browser smoke tests. Browser
-fixtures use synthetic microphone input and expected missing-config/failed-room
-paths. They do not demonstrate a live voice conversation or Bengali translation.
+## Current validation and continuation
 
-No archived application was installed or validated as a complete running product.
-No real microphone-to-provider lesson, language-quality evaluation, Android device
-test, avatar integration or pronunciation benchmark was performed by moving files.
-Those remain separate acceptance tasks in the existing development documents.
+Passed: 14 JavaScript tests, 71 Python tests, 6 browser checks, production build,
+TypeScript, Ruff lint/format, frozen install refresh, root collection isolation,
+HTTP startup/API checks and active npm advisory audit (zero known advisories).
+Preservation and ZIP comparisons passed. See the detailed
+[validation report](../AnalyseFuture/TEST_AND_VALIDATION_REPORT.txt).
 
-## Development boundaries and next work
+Not established: successful provider/media call, physical Android, teaching or
+Bengali quality, integrated avatar, pronunciation model quality, archived runtime,
+remote Actions status, account incident attribution or branch-protection API
+metadata. The metadata API returned Forbidden; normal Git pushes succeeded.
 
-Keep TypeScript for the web UI and Python for the existing voice worker. They form
-one application through LiveKit audio and versioned event contracts. A language
-rewrite does not improve folder organization and is outside this task.
-
-The owner's new product idea gives Bengali-English learning explicit priority
-alongside the existing Hindi-English research. This changes the intended roadmap,
-not a claim that Bengali speech/translation is implemented or validated. Read
-`../PROJECT_IDEA.txt` before choosing the next feature. Do not reimplement existing
-correction controls from an outdated prompt or treat archived code as integrated.
-
-Work directly on `main`, without a feature branch or new PR. Push normal fast-forward
-checkpoints at least every five minutes while editing when changes are available;
-do not force-push or reset shared history. Preserve unexpected files for analysis,
-and investigate credentials privately rather than committing them into an archive.
-
-If the owner suspects GitHub account compromise, repository organization alone
-cannot restore account security. The account owner should review active sessions,
-SSH keys, tokens, installed applications, collaborator access and recent account
-security events, and revoke unfamiliar access through GitHub settings. No account
-credentials or permissions were changed in this task.
-
-## Current task validation
-
-All of the following checks completed after the relocation:
-
-| Check | Result |
-| --- | --- |
-| SHA-256 for every relocated file | 1,478 passed |
-| Extracted payload compared with original ZIP entries | 1,443 Cadence + 31 Talking Avatar files matched |
-| Active source/tests/manifests/CI compared with baseline | Unchanged |
-| Git deletion audit | No deletion without a preserved rename |
-| `npm test` | 14 tests passed across 2 files |
-| `uv run --frozen pytest -q` from `services/voice-agent` | 42 tests passed |
-| `uv run --frozen ruff check .` from `services/voice-agent` | Passed |
-| `NEXT_TELEMETRY_DISABLED=1 npm run build` | Passed |
-| `npm run typecheck` | Passed |
-| `CI=1 NEXT_TELEMETRY_DISABLED=1 npm run test:browser` | 6 tests passed |
-
-Python checks used `UV_CACHE_DIR=/workspace/.cache/uv`. Existing installed
-dependencies and system Chromium were reused; no archived dependencies were
-installed. These results validate organization and the active offline workflow,
-not new product features or real speech quality.
+Read [REPOSITORY_AUDIT.txt](../AnalyseFuture/REPOSITORY_AUDIT.txt),
+[FEATURE_INVENTORY.txt](../AnalyseFuture/FEATURE_INVENTORY.txt),
+[SECURITY_AUDIT.txt](../AnalyseFuture/SECURITY_AUDIT.txt) and
+[NEXT_DEVELOPER_INSTRUCTIONS.txt](../AnalyseFuture/NEXT_DEVELOPER_INSTRUCTIONS.txt).
+The owner directs work on `main`, without new branches or PRs, using normal pushed
+checkpoints. Preserve earlier work and keep actual test evidence distinct from
+future product goals.

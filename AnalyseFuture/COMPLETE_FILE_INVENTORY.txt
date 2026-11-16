@@ -2,7 +2,7 @@ COMPLETE TRACKED FILE INVENTORY
 
 Starting recovery commit: 98cfcd77b814848f5637b590b0e05843d69c8d84 (1,535 paths)
 Inventory source: current tracked index paths; current working payloads
-Tracked paths classified: 1566
+Tracked paths classified: 1567
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
 Binary assets are byte-inventoried, not claims of model/media semantic verification.
 Imports are static, partial evidence; dynamic references require component review.
@@ -13599,6 +13599,15 @@ PATH: AnalyseFuture/repository-inventory/CLIENTS_AND_AVATAR_SEMANTIC_AUDIT.json
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain audit provenance
 
+PATH: AnalyseFuture/repository-inventory/SECURITY_SCAN_RESULTS.json
+  Owner: Recovery evidence and future work
+  Purpose: Structured configuration/content/fixture: SECURITY_SCAN_RESULTS.json
+  Use/status: documentation/data; not application execution
+  Format: UTF-8 text; bytes=501; sha256=f3c364b4235e0d274a0240efb679de6926b4c428b0f61d38df48545ecdcf298f
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain audit provenance
+
 PATH: AnalyseFuture/talking-avatar-master.zip
   Owner: Recovery evidence and future work
   Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
@@ -13810,7 +13819,7 @@ PATH: docs/CODEX_MASTER_BUILD_PROMPT.md
   Owner: Project research and specification
   Purpose: Documentation: MASTER BUILD DIRECTIVE FOR CODEX — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=12183; sha256=b73faf80daad01c6aabb1bdc4151da74f6d0b54efc0483eebdfd283aa787eb50
+  Format: UTF-8 text; bytes=12211; sha256=201d7e165198c141e425e08d50ea7d24498f488fd6ab0cbc87965a357da81fbb
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13882,16 +13891,16 @@ PATH: docs/PROJECT_CONTINUITY_HANDOFF.md
   Owner: Project research and specification
   Purpose: Documentation: ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=47791; sha256=c4d5c30a306fb09e849d3a2af6f03d57a508a6583917f8ec4f8b23d1f5b06919
+  Format: UTF-8 text; bytes=48903; sha256=ca04b7e27c70769c51ed4b2f3301172b6fc12c24e41d6d63deae03c25ca227af
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
 
 PATH: docs/REPOSITORY_STRUCTURE.md
   Owner: Project research and specification
-  Purpose: Documentation: Repository audit and working structure
+  Purpose: Documentation: Repository structure and ownership
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=9599; sha256=9f38b242a9bdbca3529da2f6a9765f1545cf5d140ccfc119532cf635d9a04785
+  Format: UTF-8 text; bytes=7372; sha256=e3220cc806e09b61a8e39b4abb6107a61e8d461aae35a9d7b82ed037ea91d059
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13909,7 +13918,7 @@ PATH: docs/TWO_PRIMARY_REFERENCE_REPOS.md
   Owner: Project research and specification
   Purpose: Documentation: Two primary reference repositories for Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=9288; sha256=085e4788a8ec05cb3223a0381d2f2669018ffeb5f3169d3a34c5e78cfc689d49
+  Format: UTF-8 text; bytes=9320; sha256=c3a029dade9725970d0cddd9ac5682fea43d46d1bbe288d1dc135628ed76d341
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain canonical history and evidence
@@ -13963,7 +13972,7 @@ PATH: scripts/repository_inventory.py
   Owner: Repository maintenance
   Purpose: Defines git, ownership, describe, main
   Use/status: explicit maintenance command
-  Format: UTF-8 text; bytes=8735; sha256=90a1212032ab8a7d74da6c0492a1d7288f59e02fb237b2de6df05ed13def8c53
+  Format: UTF-8 text; bytes=10916; sha256=d9dcce328b497cc3c9684aef3b5dadffd4826e77c91bdee31ed754f6bada4a41
   Dependencies: __future__, argparse, ast, collections, hashlib, pathlib, re, subprocess
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: scripts
@@ -13972,8 +13981,8 @@ PATH: scripts/security_history_scan.py
   Owner: Repository maintenance
   Purpose: Defines git, scan
   Use/status: explicit maintenance command
-  Format: UTF-8 text; bytes=3162; sha256=7d64f0d6f358001c6c47deaf13474924460f1e68dbaf4158572b8f03a586cc4b
-  Dependencies: argparse, collections, io, json, pathlib, re, subprocess, zipfile
+  Format: UTF-8 text; bytes=4532; sha256=1ecc91737135216d3f4cb353b35b03a12946d504587b27c6b6dfbabf5ea85d10
+  Dependencies: argparse, io, json, pathlib, re, subprocess, zipfile, zlib
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: scripts
 
@@ -14104,7 +14113,7 @@ PATH: tests/browser/lesson.spec.ts
   Recommendation/location: tests/browser
 
 SUMMARY
-UTF-8 text: 1521
+UTF-8 text: 1522
 binary: 45
 
 ADDITIONAL ACCESSIBLE BRANCH-HEAD PATHS AT DISCOVERY

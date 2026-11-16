@@ -2,6 +2,21 @@
 
 **Latest organization update:** 17 November 2026 (Asia/Calcutta)
 
+**Current consolidation update:** Starting from `98cfcd7`, all advertised branches
+and reachable history were reviewed. Compatible retry/help/recoverable-error work
+from `da2796e` is now selectively integrated at `8f1c988`, with a new repair for
+number/punctuation changes in retries. The old PR branch remains intact; this was
+not a PR merge or a reset to its older tree. Current local checks are **14 JS /
+71 Python / 6 browser tests**, build, typecheck, lint, formatting and real local
+HTTP startup. Web owners are now `apps/web/features/lesson` and
+`apps/web/features/session`; root `pytest.ini` isolates archived tests. Read
+[the complete recovery audit](../AnalyseFuture/REPOSITORY_AUDIT.txt),
+[feature inventory](../AnalyseFuture/FEATURE_INVENTORY.txt),
+[validation](../AnalyseFuture/TEST_AND_VALIDATION_REPORT.txt) and
+[continuation guide](../AnalyseFuture/NEXT_DEVELOPER_INSTRUCTIONS.txt).
+Historical organization-only 14/42/6 results and old PR states below are retained
+as dated evidence, not current implementation instructions.
+
 **Historical research snapshot:** 16 November 2026
 **Main repository:** https://github.com/Planeshiffhter/eng-teacher  
 **Purpose:** A self-contained, GitHub-readable continuity document for a future human engineer, ChatGPT, or GPT Codex session when the original chat is unavailable or too long.  
@@ -19,7 +34,7 @@
 1. Read this document, [AGENTS.md](../AGENTS.md), [README.md](../README.md), the latest [implementation checklist](IMPLEMENTATION_CHECKLIST.md), and [validation](VALIDATION.md).
 2. Inspect **actual current** branch/head, open PRs and CI before coding. Source and running tests override stale prompts or checkboxes.
 3. Examine existing Next.js/LiveKit and Python agent code; **do not rebuild the voice foundation** or copy another whole tutor app.
-4. Check whether [PR #1](https://github.com/Planeshiffhter/eng-teacher/pull/1) was merged. If yes, consider its state-machine changes already implemented. If still open, base further work carefully on the right branch and avoid duplicate fixes.
+4. The retry/help/error behavior formerly on PR #1 is now selectively recovered on main; inspect current code rather than reimplementing it from the historical PR status. The branch itself was not merged by this task.
 5. Preserve an **honest separation** between offline passing tests, real browser/device/provider tests and unimplemented features.
 6. Change one useful vertical slice at a time, with focused regression tests, no secrets and measured status.
 7. Update this handoff's snapshot and the existing checklist/validation whenever a milestone materially changes. Add a commit and PR link.
@@ -118,9 +133,9 @@ flowchart LR
 
 | Path (GitHub main unless indicated) | Responsibility and important constraint |
 | --- | --- |
-| [apps/web/components/tutor-app.tsx](../apps/web/components/tutor-app.tsx) | Next.js React room UI, microphone permission, join/end, mute, presence waveform, live captions, correction/recap cards; **audio-only**, not actual face animation. |
-| [apps/web/lib/tutor-events.ts](../apps/web/lib/tutor-events.ts) | Versioned room packet schema, feedback/action validation, replay deduplication, bounded history and browser time caps. PR #1 extends recoverable error packets. |
-| [apps/web/lib/server/session.ts](../apps/web/lib/server/session.ts) | Server-only LiveKit token signing, restricted mic publishing, named worker dispatch, strong pilot code/origin checks, process-local request budget and signed deadline. **Not public SaaS auth.** |
+| [apps/web/features/lesson/components/tutor-app.tsx](../apps/web/features/lesson/components/tutor-app.tsx) | Next.js React room UI, microphone permission, join/end, mute, presence waveform, live captions, correction/recap cards; **audio-only**, not actual face animation. |
+| [apps/web/features/lesson/tutor-events.ts](../apps/web/features/lesson/tutor-events.ts) | Versioned room packet schema, feedback/action validation, replay deduplication, bounded history and browser time caps. Recovered recoverable-error packets are now integrated. |
+| [apps/web/features/session/server/session.ts](../apps/web/features/session/server/session.ts) | Server-only LiveKit token signing, restricted mic publishing, named worker dispatch, strong pilot code/origin checks, process-local request budget and signed deadline. **Not public SaaS auth.** |
 | [apps/web/app/api/session/route.ts](../apps/web/app/api/session/route.ts) | POST endpoint issues bounded, no-store, room-specific join token; provider secrets remain server-side. |
 | [services/voice-agent/src/eng_teacher/agent.py](../services/voice-agent/src/eng_teacher/agent.py) | LiveKit AgentServer / AgentSession, greeting, no-recording flags, VAD, interruption, deadline cleanup and room deletion, usage metrics; PR #1 adds recoverable error handling. |
 | [services/voice-agent/src/eng_teacher/tutor.py](../services/voice-agent/src/eng_teacher/tutor.py) | Provider-independent interview questions, correction state, validated feedback, meaning/name/number/negation guard, retry logic; **main vs PR #1 differs materially**. |

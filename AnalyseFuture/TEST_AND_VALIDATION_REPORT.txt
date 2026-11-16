@@ -43,8 +43,8 @@ physical Android test, ten-minute paid-call/billing run, or integrated avatar te
 No archived app build/test/install or model/GLB inference/rendering. Binary bytes
 and metadata were inspected only. No standalone database migration exists in the
 active project; archived Firebase/Stripe/etc are outside active deployment scope.
-No actionlint executable, full dependency penetration test or Python advisory
-database scan was performed. Active Actions YAML/scopes were reviewed statically;
+Actionlint, a full dependency penetration test and Python advisory database
+scanning were not run. Active Actions YAML/scopes were reviewed statically;
 its underlying active commands were executed locally, not remote CI certified.
 No TLS, package hashes or signatures were disabled. No credentials were invented.
 
@@ -52,3 +52,18 @@ LIMITS
 Fake provider/room fixtures and silent/synthetic audio establish code behavior,
 not recognition/teaching/pronunciation quality. Pattern scans cannot prove absence
 of all malware/secrets or attribute account compromise. SeeSECURITY_AUDIT.txt.
+
+ADDITIONAL FINAL EVIDENCE
+- Both maintenance scripts passed Ruff lint and formatting after review and were
+  exercised against real tracked data. The scanner batches immutable Git blobs,
+  records its starting HEAD and returns nonzero on findings/read errors.
+- Active Actions YAML parsed with the installed PyYAML BaseLoader: expected
+  push/pull_request triggers, contents:read, scoped active commands and format gate.
+- Installed worker CLI --help succeeded. ONNX emitted an in-memory telemetry-ID
+  persistence warning; it did not prevent imports or the CLI command.
+- All 14 required reports/progress files exist with substantive content. Current
+  local Markdown navigation resolved. Final hashes matched 1,478 earlier payloads
+  plus 10 superseded baseline copies.
+- Final intended delivery inventory contains 1,567 tracked paths. The secret scan
+  covered all those worktree paths plus 49 reachable commits/1,587 unique blobs
+  and 1,474 embedded ZIP members, with zero findings and zero read errors.

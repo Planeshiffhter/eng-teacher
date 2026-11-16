@@ -67,7 +67,12 @@ The parent separately reported a GitHub API Forbidden response while querying re
 
 This is a focused static recovery/security investigation plus repository metadata and history scans, not a formal penetration test, a complete dependency advisory database scan, antivirus certification, asset/license clearance or proof that no secret exists in an unrecognized format. Private runtime values, ignored files, unrelated global configuration, inaccessible remotes, deleted objects, remote logs/artifacts, production deployment behavior and provider retention were not dumped or certified. No suspicious value was printed.
 
-The raw scan summary (without credential values) is in /tmp/history-security-results.json and the reproducible scanner is /tmp/history-security-scan.py. Before calling consolidation complete, rerun the scanner after the parent's final merge/hardening commit and report the resulting HEAD/counts, because the checked-out worktree changed during this parallel audit.
+The durable no-value scan summary is in repository-inventory/SECURITY_SCAN_RESULTS.json;
+the reproducible tool is ../scripts/security_history_scan.py relative to the
+repository root's AnalyseFuture directory. It captures its starting HEAD, scans
+reachable immutable blobs and ZIP members, then current tracked payloads. A
+finding/read error causes a nonzero exit for manual review, without printing the
+matching value. Generated reports are not proof of a formal penetration test.
 
 
 POST-DISCOVERY REMEDIATION / CURRENT CODE UPDATE
@@ -83,5 +88,30 @@ its1,490 text/45 binary partition therefore differs from the decoder-only securi
 scan's1,491/44. Both account for all1,535 starting files, not missing coverage.
 Current ordinary Git pushes succeed; branch-protection/account API state remains
 unavailable. Checkpoints and both recovery tags were pushed without force/bypass.
-Final reachable-object scan results are appended from the reproducible scanner
-after source/docs are committed; it emits no matching credential values.
+The final scan records the consolidated source checkpoint plus intended delivery
+worktree, and its exact counts are stored in the JSON artifact. It does not claim
+to scan its own future commit object; later generated inventory/scan metadata are
+derived from these inspected payloads. No matching credential values are emitted.
+
+OWNER ACCOUNT REMEDIATION OUTSIDE THIS REPOSITORY TASK
+No recognized live credential exposure or malicious active workflow was confirmed,
+so no secret was copied to the archive or silently rotated. If the owner observed
+unauthorized account access, review GitHub security events, active sessions,
+collaborators, SSH/deploy keys, personal tokens, installed Apps/OAuth grants,
+Actions secrets and deployment integrations through trusted account settings.
+Revoke unfamiliar access and rotate credentials that were exposed or usable by
+that access, including provider/deployment keys where affected. Enable/review
+strong account recovery and multi-factor protection. Preserve relevant private
+security logs; do not paste tokens or logs with credentials into public reports.
+Repository folder cleanup and a successful Git push do not secure the account.
+
+FINAL REFRESH EVIDENCE
+Starting scan HEAD: 9536cc04559459d46692f9400978738cc4eaf6e2
+Reachable commits scanned: 49
+Unique reachable file blobs: 1587; bytes read: 64140236
+ZIP payloads: 2; embedded files scanned: 1474
+Current intended tracked worktree payloads scanned: 1567
+Recognizable credential-pattern findings: 0; read errors: 0
+The final report/inventory commit contains generated metadata derived from this
+scan. Its own future Git object is not included in the scanned commit count.
+This result does not establish absence of unknown secret formats or compromise.
