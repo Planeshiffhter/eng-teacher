@@ -1,0 +1,340 @@
+/* FILE: src/app/globals.css */
+@import "tailwindcss";
+
+:root {
+  --hunter-green: #386641;
+  --sage-green: #6a994e;
+  --yellow-green: #a7c957;
+  --vanilla-cream: #f2e8cf;
+  /* The page. Greyscale is the frame: a cool grey page with white surfaces.
+     Cream is a brand accent now (the account screens keep it). */
+  --page: #f1f3f5;
+  --blushed-brick: #bc4749;
+  --bright-snow: #f8f9fa;
+  --platinum: #e9ecef;
+  --alabaster-grey: #dee2e6;
+  --pale-slate: #ced4da;
+  --pale-slate-2: #adb5bd;
+  --slate-grey: #5a636b;
+  --iron-grey: #495057;
+  --gunmetal: #343a40;
+  --carbon-black: #212529;
+  /* Sage green for text: the fill colour is too light for small type (AA). */
+  --sage-text: #466c32;
+  color-scheme: light;
+}
+
+/* Mouth map: soft fills, clear outlines, on the grey frame. */
+:root {
+  --mm-bg: #f8f9fa;
+  --mm-tissue: #f3d9c9;
+  --mm-tissue-line: #b98a74;
+  --mm-palate: #e9c3ae;
+  --mm-tongue: #e59a95;
+  --mm-tongue-line: #a55451;
+  --mm-teeth: #ffffff;
+  --mm-teeth-line: #9aa3a0;
+  --mm-airway: #f8f9fa;
+  --mm-highlight: #a7c957;
+  --mm-highlight-line: #386641;
+  --mm-air: #6a994e;
+  --mm-label: #386641;
+}
+
+/* ── Dark mode ────────────────────────────────────────────────────────────
+   The palette keeps its names; dark mode redefines what they hold. Neutral
+   surfaces (cream, snow, white) turn the neutral greys and hunter green turns
+   into the light text colour. Coloured surfaces re-scope the variables for
+   their own subtree, so white text on a green card stays white and green
+   text on a lime chip stays dark. The system setting applies unless the
+   person picked a theme (data-theme on <html>, from the cadence_theme cookie). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --vanilla-cream: #16191c;
+    --page: #16191c;
+    --bright-snow: #212529;
+    --color-white: #212529;
+    --platinum: #2b3035;
+    --alabaster-grey: #343a40;
+    --pale-slate: #495057;
+    --pale-slate-2: #6c757d;
+    --slate-grey: #adb5bd;
+    --iron-grey: #ced4da;
+    --gunmetal: #dee2e6;
+    --carbon-black: #f8f9fa;
+    --hunter-green: #dbe9cf;
+    --sage-green: #a3cb86;
+    --sage-text: #a9d18c;
+    --blushed-brick: #e88486;
+    --mm-bg: #1b1f23;
+    --mm-tissue: #4a3a34;
+    --mm-tissue-line: #b48f7e;
+    --mm-palate: #5a453c;
+    --mm-tongue: #b4605d;
+    --mm-tongue-line: #f0b2ae;
+    --mm-teeth: #e9ecef;
+    --mm-teeth-line: #6c757d;
+    --mm-airway: #1b1f23;
+    --mm-highlight: #a7c957;
+    --mm-highlight-line: #dbe9cf;
+    --mm-air: #a3cb86;
+    --mm-label: #dbe9cf;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --mm-bg: #1b1f23;
+  --mm-tissue: #4a3a34;
+  --mm-tissue-line: #b48f7e;
+  --mm-palate: #5a453c;
+  --mm-tongue: #b4605d;
+  --mm-tongue-line: #f0b2ae;
+  --mm-teeth: #e9ecef;
+  --mm-teeth-line: #6c757d;
+  --mm-airway: #1b1f23;
+  --mm-highlight: #a7c957;
+  --mm-highlight-line: #dbe9cf;
+  --mm-air: #a3cb86;
+  --mm-label: #dbe9cf;
+  --vanilla-cream: #16191c;
+  --page: #16191c;
+  --bright-snow: #212529;
+  --color-white: #212529;
+  --platinum: #2b3035;
+  --alabaster-grey: #343a40;
+  --pale-slate: #495057;
+  --pale-slate-2: #6c757d;
+  --slate-grey: #adb5bd;
+  --iron-grey: #ced4da;
+  --gunmetal: #dee2e6;
+  --carbon-black: #f8f9fa;
+  --hunter-green: #dbe9cf;
+  --sage-green: #a3cb86;
+  --sage-text: #a9d18c;
+  --blushed-brick: #e88486;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.bg-hunter-green, .bg-sage-green, .bg-blushed-brick, .bg-yellow-green, .on-color) {
+    --bright-snow: #f8f9fa;
+    --color-white: #ffffff;
+    --iron-grey: #495057;
+    --slate-grey: #5c656d;
+  }
+  :root:not([data-theme="light"]) .bg-hunter-green { --hunter-green: #2a4630; }
+  :root:not([data-theme="light"]) .bg-sage-green { --sage-green: #4c7438; }
+  :root:not([data-theme="light"]) .bg-blushed-brick { --blushed-brick: #a33f41; }
+  :root:not([data-theme="light"]) :is(.bg-yellow-green, .on-lime) { --hunter-green: #1a2f1f; --sage-text: #2f4f22; }
+  :root:not([data-theme="light"]) .theme-light-only { display: none !important; }
+  :root:not([data-theme="light"]) .theme-dark-only { display: revert !important; }
+}
+
+:root[data-theme="dark"] :is(.bg-hunter-green, .bg-sage-green, .bg-blushed-brick, .bg-yellow-green, .on-color) {
+  --bright-snow: #f8f9fa;
+  --color-white: #ffffff;
+  --iron-grey: #495057;
+  --slate-grey: #5c656d;
+}
+:root[data-theme="dark"] .bg-hunter-green { --hunter-green: #2a4630; }
+:root[data-theme="dark"] .bg-sage-green { --sage-green: #4c7438; }
+:root[data-theme="dark"] .bg-blushed-brick { --blushed-brick: #a33f41; }
+:root[data-theme="dark"] :is(.bg-yellow-green, .on-lime) { --hunter-green: #1a2f1f; --sage-text: #2f4f22; }
+:root[data-theme="dark"] .theme-light-only { display: none !important; }
+:root[data-theme="dark"] .theme-dark-only { display: revert !important; }
+
+.theme-dark-only {
+  display: none;
+}
+
+/* Text on coloured surfaces, light mode (dark mode re-scopes these above):
+   green text on lime is the deeper ink, and lime text on hunter green is the
+   paler lime, so small type stays AA. A lime button inside a green card
+   keeps its own lime. */
+:is(.bg-yellow-green, .on-lime) { --hunter-green: #244a2c; }
+.bg-hunter-green { --yellow-green: #d4e7a6; }
+.bg-hunter-green :is(.bg-white\/10, .bg-white\/12) { --yellow-green: #eef5dc; }
+.bg-hunter-green .bg-yellow-green { --yellow-green: #a7c957; }
+
+/* Illustrations are drawn for a light page; soften them on dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) img[src^="/illustration/"] { filter: brightness(0.86) saturate(0.9); }
+}
+:root[data-theme="dark"] img[src^="/illustration/"] { filter: brightness(0.86) saturate(0.9); }
+
+@theme inline {
+  --color-hunter-green: var(--hunter-green);
+  --color-sage-green: var(--sage-green);
+  --color-sage-text: var(--sage-text);
+  --color-yellow-green: var(--yellow-green);
+  --color-vanilla-cream: var(--vanilla-cream);
+  --color-page: var(--page);
+  --color-blushed-brick: var(--blushed-brick);
+  --color-bright-snow: var(--bright-snow);
+  --color-platinum: var(--platinum);
+  --color-alabaster-grey: var(--alabaster-grey);
+  --color-pale-slate: var(--pale-slate);
+  --color-pale-slate-2: var(--pale-slate-2);
+  --color-slate-grey: var(--slate-grey);
+  --color-iron-grey: var(--iron-grey);
+  --color-gunmetal: var(--gunmetal);
+  --color-carbon-black: var(--carbon-black);
+  --font-display: var(--font-funnel-display);
+  --font-sans: var(--font-funnel-display);
+  --font-kicker: var(--font-sour-gummy);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--page);
+}
+
+/* Account screens sit on a white page in light mode, as on the phone, and on
+   the page grey in dark. Apple's button turns white on dark. */
+.auth-page { background-color: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .auth-page { background-color: var(--page); }
+  :root:not([data-theme="light"]) .apple-button { background-color: #ffffff; color: #000000; }
+}
+:root[data-theme="dark"] .auth-page { background-color: var(--page); }
+:root[data-theme="dark"] .apple-button { background-color: #ffffff; color: #000000; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--page);
+  color: var(--carbon-black);
+  line-height: 1.42;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+::selection {
+  background: var(--yellow-green);
+  color: var(--hunter-green);
+}
+
+@layer base {
+  html {
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  body {
+    @apply font-display text-carbon-black antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-kicker), sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 650;
+    font-variation-settings: "wdth" 100;
+    line-height: 1.16;
+  }
+}
+
+@layer utilities {
+  .font-kicker {
+    font-family: var(--font-kicker), sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 650;
+    font-variation-settings: "wdth" 100;
+    line-height: 1.16;
+  }
+
+  .eyebrow {
+    font-family: var(--font-kicker), sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 650;
+    font-variation-settings: "wdth" 100;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .leading-8 {
+    line-height: 1.62rem;
+  }
+
+  .leading-7 {
+    line-height: 1.46rem;
+  }
+
+  .leading-7\.5 {
+    line-height: 1.54rem;
+  }
+
+  .animate-trusted-logo-scroll {
+    animation: trusted-logo-scroll 42s linear infinite;
+  }
+}
+
+@keyframes trusted-logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-trusted-logo-scroll {
+    animation: none;
+    transform: translateX(0);
+  }
+}
+
+/* ── Desktop (Electron) scrollbar ─────────────────────────────────────────
+   The .electron class is added to <html> synchronously by preload.ts before
+   first paint, so there is no flash of the default browser scrollbar.      */
+
+.electron ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.electron ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.electron ::-webkit-scrollbar-thumb {
+  background: rgba(56, 102, 65, 0.25);   /* hunter-green at low opacity */
+  border-radius: 9999px;
+}
+
+.electron ::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 102, 65, 0.5);
+}
+
+.electron ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@keyframes mm-flow {
+  to { stroke-dashoffset: -24; }
+}
+.mm-flow { animation: mm-flow 1.2s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .mm-flow { animation: none; }
+}

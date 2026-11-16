@@ -1,0 +1,17 @@
+{
+  "purpose": "Preserved ZIP snapshots; not integrated into the running Eng Teacher application.",
+  "archives": [
+    {
+      "archive": "Cadence-main.zip",
+      "sha256": "4283248ff73eceaf117adde7e67e58bd957f17811d8972cfc8916eaf78f613a0",
+      "directory": "Cadence-main",
+      "files": 1443
+    },
+    {
+      "archive": "talking-avatar-master.zip",
+      "sha256": "4ab3f6385415c873e8e019a4b5e1cad870ae8efcaf41152dffc1611a8c5da6cd",
+      "directory": "talking-avatar-master",
+      "files": 31
+    }
+  ]
+}

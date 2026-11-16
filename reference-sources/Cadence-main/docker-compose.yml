@@ -1,0 +1,120 @@
+services:
+  web:
+    env_file:
+      - .env.local
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_FIREBASE_API_KEY: ${NEXT_PUBLIC_FIREBASE_API_KEY:-}
+        NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN:-}
+        NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${NEXT_PUBLIC_FIREBASE_PROJECT_ID:-}
+        NEXT_PUBLIC_FIREBASE_APP_ID: ${NEXT_PUBLIC_FIREBASE_APP_ID:-}
+        NEXT_PUBLIC_BRANDFETCH_CLIENT_ID: ${NEXT_PUBLIC_BRANDFETCH_CLIENT_ID:-}
+        AI_ENGINE_URL: http://ai-engine:8000
+        AI_COACH_ENGINE_URL: http://coach-engine:8001
+    environment:
+      NEXT_PUBLIC_FIREBASE_API_KEY: ${NEXT_PUBLIC_FIREBASE_API_KEY:-}
+      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN:-}
+      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${NEXT_PUBLIC_FIREBASE_PROJECT_ID:-}
+      NEXT_PUBLIC_FIREBASE_APP_ID: ${NEXT_PUBLIC_FIREBASE_APP_ID:-}
+      NEXT_PUBLIC_BRANDFETCH_CLIENT_ID: ${NEXT_PUBLIC_BRANDFETCH_CLIENT_ID:-}
+      AI_ENGINE_URL: http://ai-engine:8000
+      AI_COACH_ENGINE_URL: http://coach-engine:8001
+      BREVO_SMTP_HOST: ${BREVO_SMTP_HOST}
+      BREVO_SMTP_PORT: ${BREVO_SMTP_PORT}
+      BREVO_SMTP_USER: ${BREVO_SMTP_USER}
+      BREVO_SMTP_PASSWORD: ${BREVO_SMTP_PASSWORD}
+      BREVO_API_KEY: ${BREVO_API_KEY}
+      # --- Phone pairing over the LAN ---
+      # The container only sees its bridge address, which no phone can reach,
+      # so the host tells it the address to print in the QR. scripts/serve.mjs
+      # fills these in; `docker compose up` on its own still works, it just
+      # cannot guess the Wi-Fi address.
+      CADENCE_LAN_HOST: ${CADENCE_LAN_HOST:-}
+      CADENCE_SERVER_NAME: ${CADENCE_SERVER_NAME:-}
+      CADENCE_PUBLIC_PORT: ${CADENCE_PUBLIC_PORT:-3000}
+      CADENCE_IN_CONTAINER: "1"
+      # Your own Cadence: AI runs on these engines, free and ungated.
+      CADENCE_DEPLOYMENT: self-hosted
+      CADENCE_DATA_DIR: /data
+      CADENCE_PAIRING_ADMIN_TOKEN: ${CADENCE_PAIRING_ADMIN_TOKEN:-}
+    volumes:
+      # Pairing state and paired-device progress live on the host so they
+      # survive `docker compose down` and so `pnpm serve` can read the key.
+      - ${CADENCE_DATA_DIR:-./.cadence-data}:/data
+    # The image's own unprivileged user owns nothing on the host, so on Linux it
+    # cannot write into the bind-mounted data folder. scripts/serve.mjs sets this
+    # to the host user's uid:gid. A bare `docker compose up` keeps the image
+    # default, which is fine on Docker Desktop, where bind mounts are remapped.
+    user: ${CADENCE_RUN_AS:-1001:1001}
+    depends_on:
+      ai-engine:
+        condition: service_started
+      coach-engine:
+        condition: service_started
+    ports:
+      # Bound on every interface on purpose: a phone on the same Wi-Fi has to
+      # be able to reach this. Nothing here is exposed beyond the LAN unless
+      # the router is forwarding the port.
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((res)=>{if(!res.ok) process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  ai-engine:
+    env_file:
+      - .env.local
+    build:
+      # The shared src/backend/data folder has to be in the build context.
+      context: ./src/backend
+      dockerfile: ai-engine/Dockerfile
+    environment:
+      AI_ENGINE_HOST: 0.0.0.0
+      AI_ENGINE_PORT: 8000
+      HF_HOME: /models/huggingface
+      TRANSFORMERS_CACHE: /models/huggingface
+      CADENCE_LOG_LEVEL: ${CADENCE_LOG_LEVEL:-INFO}
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - hf-cache:/models/huggingface
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  coach-engine:
+    env_file:
+      - .env.local
+    build:
+      context: ./src/backend/coach-engine
+      dockerfile: Dockerfile
+    environment:
+      COACH_ENGINE_HOST: 0.0.0.0
+      COACH_ENGINE_PORT: 8001
+      COACH_LLM_MODEL_ID: ${COACH_LLM_MODEL_ID:-Qwen/Qwen2.5-3B-Instruct}
+      COACH_LLM_DEVICE: ${COACH_LLM_DEVICE:-cpu}
+      HF_HOME: /models/huggingface
+      TRANSFORMERS_CACHE: /models/huggingface
+      CADENCE_LOG_LEVEL: ${CADENCE_LOG_LEVEL:-INFO}
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - hf-cache:/models/huggingface
+    expose:
+      - "8001"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health')"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  hf-cache:

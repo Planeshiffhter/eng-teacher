@@ -1,0 +1,163 @@
+// FILE: src/components/learn/ModuleCard.tsx
+"use client";
+
+import Link from "next/link";
+import { ArrowRight, CheckCircle, Lock } from "griddy-icons";
+import type { ModuleWithProgress } from "@/lib/learn";
+import { cn } from "@/lib/utils";
+
+interface ModuleCardProps {
+  module: ModuleWithProgress;
+}
+
+export function ModuleCard({ module }: ModuleCardProps) {
+  const focusChips = Array.isArray(module.phoneme_focus)
+    ? module.phoneme_focus.filter(
+        (p): p is string => typeof p === "string" && p.trim().length > 0,
+      )
+    : [];
+
+  const progress = module.progress;
+  const isUnlocked = progress?.is_unlocked === true;
+  const isCompleted = progress?.is_completed === true;
+  const bestScore = progress?.best_exam_score ?? null;
+  const statusLabel = isCompleted
+    ? "Completed"
+    : isUnlocked
+      ? "Unlocked"
+      : "Locked";
+  const ctaLabel = isCompleted ? "Review module" : "Start module";
+
+  const content = (
+    <div
+      className={cn(
+        "flex h-full min-h-[22rem] flex-col rounded-[28px] px-6 py-6",
+        isCompleted
+          ? "bg-white text-carbon-black"
+          : isUnlocked
+            ? "bg-bright-snow"
+            : "bg-platinum/70 select-none",
+      )}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <span
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold",
+              isCompleted
+                ? "bg-hunter-green text-white"
+                : isUnlocked
+                  ? "bg-hunter-green text-white"
+                  : "bg-pale-slate-2 text-carbon-black",
+            )}
+          >
+            {module.sort_order}
+          </span>
+          <span
+            className={cn(
+              "rounded-full px-3 py-1 text-xs font-semibold",
+              isCompleted
+                ? "bg-page text-carbon-black"
+                : isUnlocked
+                  ? "bg-page text-carbon-black"
+                  : "bg-pale-slate text-slate-grey",
+            )}
+          >
+            {statusLabel}
+          </span>
+        </div>
+
+        {isCompleted ? (
+          <CheckCircle size={20} color="currentColor" className="text-slate-grey" />
+        ) : !isUnlocked ? (
+          <Lock size={20} color="currentColor" className="text-pale-slate-2" />
+        ) : bestScore !== null ? (
+          <span className="rounded-full bg-page px-3 py-1 text-xs font-semibold text-carbon-black">
+            {bestScore}/100
+          </span>
+        ) : null}
+      </div>
+
+      <div className="mt-5 space-y-3">
+        <h3
+          className={cn(
+            "text-2xl font-semibold leading-tight",
+            isCompleted ? "text-carbon-black" : "text-carbon-black",
+          )}
+        >
+          {module.title}
+        </h3>
+        <p
+          className={cn(
+            "text-sm leading-7",
+            isCompleted ? "text-iron-grey" : "text-iron-grey",
+          )}
+        >
+          {module.description}
+        </p>
+      </div>
+
+      {focusChips.length > 0 ? (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {focusChips.slice(0, 4).map((phoneme, index) => (
+            <span
+              key={`${module.id}-focus-${index}`}
+              className={cn(
+                "rounded-full px-3 py-1 text-xs font-mono font-semibold",
+                isCompleted
+                  ? "bg-page text-carbon-black"
+                  : isUnlocked
+                    ? "bg-page text-carbon-black"
+                    : "bg-pale-slate text-slate-grey",
+              )}
+            >
+              {phoneme}
+            </span>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="mt-auto space-y-3 pt-6">
+        {isUnlocked ? (
+          <div
+            className={cn(
+              "flex min-h-12 w-full items-center justify-between rounded-[1.5rem] px-4 py-3 text-sm font-semibold",
+              isCompleted
+                ? "bg-page text-carbon-black"
+                : "bg-hunter-green text-white",
+            )}
+          >
+            <span>{ctaLabel}</span>
+            <ArrowRight size={16} color="currentColor" />
+          </div>
+        ) : (
+          <div className="rounded-[1.5rem] bg-white/55 px-4 py-3 text-sm leading-6 text-slate-grey">
+            Complete the previous module to unlock this part of the route.
+          </div>
+        )}
+
+        {bestScore !== null && !isCompleted ? (
+          <p className="text-xs font-medium text-iron-grey">
+            Best exam score: {bestScore}/100
+          </p>
+        ) : null}
+
+        {isCompleted ? (
+          <p className="text-xs font-medium text-iron-grey">
+            Reopen the module any time to revisit theory, practice, and the exam.
+          </p>
+        ) : null}
+      </div>
+    </div>
+  );
+
+  if (!isUnlocked) {
+    return content;
+  }
+
+  return (
+    <Link href={`/learn/${module.slug}`} className="block h-full">
+      {content}
+    </Link>
+  );
+}

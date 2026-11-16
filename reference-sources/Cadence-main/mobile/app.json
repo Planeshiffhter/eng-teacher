@@ -1,0 +1,128 @@
+{
+  "expo": {
+    "name": "Cadence",
+    "slug": "cadence",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "cadence",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#ffffff",
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Cadence records your voice to score your pronunciation.",
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        },
+        "NSLocalNetworkUsageDescription": "Cadence uses your local network to find the Cadence app running on your computer so your phone can practise without sending your voice to the internet.",
+        "NSBonjourServices": [
+          "_cadence._tcp",
+          "_http._tcp"
+        ]
+      },
+      "bundleIdentifier": "dev.pstepanov.cadence",
+      "buildNumber": "8",
+      "icon": "./assets/images/ios-icon.png",
+      "privacyManifests": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "CA92.1",
+              "1C8F.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "C617.1"
+            ]
+          },
+          {
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+            "NSPrivacyAccessedAPITypeReasons": [
+              "35F9.1"
+            ]
+          }
+        ]
+      },
+      "appleTeamId": "V7H9Y9K6Z7",
+      "usesAppleSignIn": true,
+      "entitlements": {
+        "com.apple.security.application-groups": [
+          "group.dev.pstepanov.cadence"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f2e8cf",
+        "foregroundImage": "./assets/images/icon.png"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/images/splash-mark.png",
+          "imageWidth": 140,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#16191c",
+            "image": "./assets/images/splash-mark-dark.png"
+          }
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Cadence records your voice to score your pronunciation.",
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "enableSceneSupport": true
+          }
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Cadence uses the camera to scan the code shown by Cadence on your computer.",
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-asset",
+      "expo-sharing",
+      [
+        "expo-notifications",
+        {
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      "@bacons/apple-targets",
+      "expo-apple-authentication"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

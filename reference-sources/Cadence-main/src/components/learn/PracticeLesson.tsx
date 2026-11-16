@@ -1,0 +1,303 @@
+// FILE: src/components/learn/PracticeLesson.tsx
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { Lesson, LessonWord } from "@/lib/learn";
+import type { PronunciationAssessment } from "@/lib/pronunciation";
+import { createCorrectAudio, createIncorrectAudio, createCompleteAudio } from "@/lib/audio-feedback";
+import { endLessonSession, recordAttempt, startLessonSession } from "@/lib/lesson-progress-client";
+import { useEngineReady } from "@/hooks/useEngineReady";
+import { AudioRecorder } from "@/components/audio/AudioRecorder";
+import { AssessmentResult } from "@/components/learn/AssessmentResult";
+import { LessonSummary } from "@/components/learn/LessonSummary";
+import { WordQueue } from "@/components/learn/WordQueue";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { aiErrorText, cloudFetch } from "@/hooks/cloud-fetch";
+
+interface PracticeLessonProps {
+  lesson: Lesson;
+  moduleSlug: string;
+}
+
+type Phase = "recording" | "assessing" | "result" | "done";
+
+export function PracticeLesson({ lesson, moduleSlug }: PracticeLessonProps) {
+  const words = lesson.words;
+  const [wordIndex, setWordIndex] = useState(0);
+  const [phase, setPhase] = useState<Phase>("recording");
+  const [assessment, setAssessment] = useState<PronunciationAssessment | null>(null);
+  const [scores, setScores] = useState<number[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const engineReady = useEngineReady();
+  const [attemptNumber, setAttemptNumber] = useState(1);
+  const sessionIdRef = useRef<string | null>(null);
+  const correctAudioRef = useRef<HTMLAudioElement | null>(null);
+  const incorrectAudioRef = useRef<HTMLAudioElement | null>(null);
+  const completeAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const currentWord: LessonWord | undefined = words[wordIndex];
+  const lessonId = lesson.id;
+  const lessonModuleId = lesson.module_id;
+
+  useEffect(() => {
+    let cancelled = false;
+    void startLessonSession({ id: lessonId, module_id: lessonModuleId }).then((sessionId) => {
+      if (!cancelled) sessionIdRef.current = sessionId;
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lessonId, lessonModuleId]);
+
+  useEffect(() => {
+    correctAudioRef.current = createCorrectAudio();
+    incorrectAudioRef.current = createIncorrectAudio();
+    completeAudioRef.current = createCompleteAudio();
+
+    return () => {
+      correctAudioRef.current?.pause();
+      correctAudioRef.current = null;
+      incorrectAudioRef.current?.pause();
+      incorrectAudioRef.current = null;
+      completeAudioRef.current?.pause();
+      completeAudioRef.current = null;
+    };
+  }, []);
+
+  const endSession = useCallback(async (finalScores: number[], passed: boolean) => {
+    if (!sessionIdRef.current) {
+      return;
+    }
+
+    const avg = finalScores.length
+      ? finalScores.reduce((sum, value) => sum + value, 0) / finalScores.length
+      : 0;
+
+    await endLessonSession(sessionIdRef.current, {
+      word_count: finalScores.length,
+      avg_score: avg,
+      passed,
+    });
+  }, []);
+
+  async function runAssessment(blob: Blob) {
+    if (!currentWord) {
+      return;
+    }
+
+    setPhase("assessing");
+    setError(null);
+
+    try {
+      const formData = new FormData();
+      formData.set("audio", blob, `${currentWord.word}-attempt.wav`);
+      formData.set("text", currentWord.word);
+
+      const response = await cloudFetch("/api/assess", { ai: true, method: "POST", body: formData });
+      const payload = (await response.json()) as PronunciationAssessment | { error?: string };
+
+      if (!response.ok || ("error" in payload && payload.error)) {
+        throw new Error(aiErrorText(payload, "Assessment failed."));
+      }
+
+      const result = payload as PronunciationAssessment;
+      setAssessment(result);
+      setPhase("result");
+
+      void recordAttempt({
+        lesson_id: lesson.id,
+        lesson_word_id: currentWord.id,
+        word: currentWord.word,
+        score: result.overallScore,
+        ipa_target: currentWord.ipa,
+        ipa_transcript: result.transcript,
+        phoneme_detail: { ...result },
+        attempt_number: attemptNumber,
+      });
+
+      const wordAudio =
+        result.overallScore > 50 ? correctAudioRef.current : incorrectAudioRef.current;
+      wordAudio?.play().catch(() => {});
+    } catch (nextError) {
+      setError(nextError instanceof Error ? nextError.message : "Assessment failed.");
+      setPhase("recording");
+    }
+  }
+
+  function handleRetry() {
+    setAssessment(null);
+    setError(null);
+    setAttemptNumber((value) => value + 1);
+    setPhase("recording");
+  }
+
+  function handleNext() {
+    const nextScores = [...scores, assessment?.overallScore ?? 0];
+    setScores(nextScores);
+    setAssessment(null);
+    setError(null);
+    setAttemptNumber(1);
+
+    if (wordIndex + 1 >= words.length) {
+      void endSession(nextScores, true);
+      const avg = nextScores.length
+        ? nextScores.reduce((sum, s) => sum + s, 0) / nextScores.length
+        : 0;
+      if (avg >= 80) {
+        completeAudioRef.current?.play().catch(() => {});
+      }
+      setPhase("done");
+      return;
+    }
+
+    setWordIndex((value) => value + 1);
+    setPhase("recording");
+  }
+
+  function handleRetryLesson() {
+    setWordIndex(0);
+    setPhase("recording");
+    setScores([]);
+    setAssessment(null);
+    setAttemptNumber(1);
+
+    sessionIdRef.current = null;
+    void startLessonSession({ id: lessonId, module_id: lessonModuleId }).then((sessionId) => {
+      sessionIdRef.current = sessionId;
+    });
+  }
+
+  if (phase === "done") {
+    return (
+      <Card className="bg-white">
+        <LessonSummary
+          scores={scores}
+          moduleSlug={moduleSlug}
+          onRetry={handleRetryLesson}
+        />
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+        <Card className="bg-white">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <p className="eyebrow text-sm text-slate-grey">Guided practice</p>
+              <CardTitle className="text-4xl capitalize sm:text-5xl">
+                {currentWord?.word}
+              </CardTitle>
+              <p className="text-lg text-iron-grey">{currentWord?.ipa}</p>
+            </div>
+
+            <div className="rounded-[20px] bg-page px-4 py-4">
+              <p className="eyebrow text-xs text-slate-grey">Practice cue</p>
+              <p className="mt-2 text-sm leading-7 text-iron-grey">
+                Keep this take focused. Say the target word once, stop the
+                recorder, and let the phoneme check show the exact mismatch to fix
+                next.
+              </p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="bg-white">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <p className="eyebrow text-sm text-slate-grey">Round progress</p>
+              <WordQueue total={words.length} current={wordIndex} />
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[20px] bg-page px-4 py-4">
+                <p className="eyebrow text-xs text-slate-grey">Current word</p>
+                <p className="mt-2 text-2xl font-semibold capitalize text-carbon-black">
+                  {wordIndex + 1}
+                </p>
+              </div>
+              <div className="rounded-[20px] bg-page px-4 py-4">
+                <p className="eyebrow text-xs text-slate-grey">Attempts</p>
+                <p className="mt-2 text-2xl font-semibold text-carbon-black">
+                  {attemptNumber}
+                </p>
+              </div>
+              <div className="rounded-[20px] bg-page px-4 py-4">
+                <p className="eyebrow text-xs text-slate-grey">Left in lesson</p>
+                <p className="mt-2 text-2xl font-semibold text-carbon-black">
+                  {Math.max(words.length - wordIndex - 1, 0)}
+                </p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      <div className="grid gap-4 xl:grid-cols-[0.96fr_1.04fr]">
+        <Card className="bg-bright-snow">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <p className="eyebrow text-sm text-slate-grey">Recorder</p>
+              <CardTitle className="text-2xl">
+                Capture one steady pronunciation take.
+              </CardTitle>
+              <CardDescription>
+                Use the reference playback if needed, then record the word once and
+                send it straight into the assessment flow.
+              </CardDescription>
+            </div>
+
+            <AudioRecorder
+              targetWord={currentWord?.word}
+              disabled={!engineReady || phase === "assessing"}
+              onRecordingComplete={(blob) => void runAssessment(blob)}
+              onClear={() => {
+                setAssessment(null);
+                setError(null);
+              }}
+            />
+
+            {!engineReady ? (
+              <div className="rounded-[20px] bg-white px-4 py-4 text-sm leading-6 text-iron-grey">
+                The pronunciation engine is warming up. Recording unlocks as soon
+                as it is ready.
+              </div>
+            ) : null}
+
+            {phase === "assessing" ? (
+              <div className="rounded-[20px] bg-white px-4 py-4 text-sm leading-6 text-carbon-black">
+                Assessing the current take against the target phonemes.
+              </div>
+            ) : null}
+
+            {error ? (
+              <div className="rounded-[20px] bg-blushed-brick px-4 py-4 text-sm leading-6 text-bright-snow">
+                {error}
+              </div>
+            ) : null}
+          </div>
+        </Card>
+
+        <Card className="bg-white">
+          {assessment ? (
+            <AssessmentResult
+              assessment={assessment}
+              onRetry={handleRetry}
+              onNext={handleNext}
+              nextLabel={wordIndex + 1 >= words.length ? "Finish Lesson" : "Next Word"}
+            />
+          ) : (
+            <div className="flex h-full min-h-[26rem] flex-col justify-center rounded-[28px] bg-page px-5 py-5 text-center sm:px-6 sm:py-6">
+              <CardTitle className="text-3xl">Ready for the first take.</CardTitle>
+              <CardDescription className="mt-3">
+                The assessment panel stays clear until a real pronunciation sample
+                comes in from the recorder.
+              </CardDescription>
+            </div>
+          )}
+        </Card>
+      </div>
+    </div>
+  );
+}

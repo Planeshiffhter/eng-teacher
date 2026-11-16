@@ -273,4 +273,21 @@ SOFTWARE.
 
 Next.js, React, React DOM, Pydantic and ONNX Runtime declare MIT licenses; python-dotenv declares BSD-3-Clause. Their copyright and license files remain in their installed package distributions. Development-only test/build tools and transitive packages retain their respective licenses. This file is a focused record for adopted foundations and key runtime dependencies, not a complete generated distribution notice for every transitive package. Produce and review that inventory for the exact artifacts before a commercial binary deployment.
 
-Hosted LiveKit and OpenAI services, model access and generated speech are subject to their service terms and account permissions, separately from SDK licenses. No hosted model weights, proprietary voices, third-party avatar assets, competitor curriculum or learner recordings are copied into this repository.
+Hosted LiveKit and OpenAI services, model access and generated speech are subject to their service terms and account permissions, separately from SDK licenses. The running voice-tutor implementation does not include hosted model weights, proprietary voices or learner recordings.
+
+## Preserved uploaded project archives
+
+At the owner's request, the uploaded Cadence and Talking Avatar ZIPs are also
+preserved as extracted snapshots under [reference-sources](reference-sources/README.md).
+Their bundled source, content, model artifacts and avatar assets are retained for
+future owner-directed work; they are not integrated into the running voice tutor.
+
+- Cadence: [LICENSE](reference-sources/Cadence-main/LICENSE),
+  [NOTICE](reference-sources/Cadence-main/NOTICE), and
+  [CREDITS.md](reference-sources/Cadence-main/CREDITS.md).
+- Talking Avatar: [LICENSE](reference-sources/talking-avatar-master/LICENSE) and
+  Microsoft Rocketbox [avatar license](reference-sources/talking-avatar-master/avatars/LICENSE).
+
+These upstream notices remain unchanged. Project-level license declarations do not
+replace review of the selected dependencies, models, assets and content before
+future integration or distribution in a product.

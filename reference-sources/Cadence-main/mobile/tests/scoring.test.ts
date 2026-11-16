@@ -1,0 +1,89 @@
+// Run with: npm test  (node --test, native TypeScript type stripping)
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+
+import {
+  averageScore,
+  bestScore,
+  normalizeScore,
+  phonemeCaption,
+  scoreLabel,
+  scoreStatus,
+} from "../src/practice/scoring.ts";
+
+describe("normalizeScore", () => {
+  it("rounds to a whole number", () => {
+    assert.equal(normalizeScore(72.4), 72);
+    assert.equal(normalizeScore(72.6), 73);
+  });
+
+  it("clamps out-of-range engine output", () => {
+    assert.equal(normalizeScore(-10), 0);
+    assert.equal(normalizeScore(140), 100);
+  });
+
+  it("treats non-finite input as zero rather than rendering NaN", () => {
+    assert.equal(normalizeScore(Number.NaN), 0);
+    assert.equal(normalizeScore(Number.POSITIVE_INFINITY), 100);
+  });
+});
+
+describe("scoreStatus", () => {
+  it("uses the web app's 70 / 50 thresholds, inclusive", () => {
+    assert.equal(scoreStatus(100), "correct");
+    assert.equal(scoreStatus(70), "correct");
+    assert.equal(scoreStatus(69.5), "correct", "69.5 rounds to 70");
+    assert.equal(scoreStatus(69), "mixed");
+    assert.equal(scoreStatus(50), "mixed");
+    assert.equal(scoreStatus(49), "needs-work");
+    assert.equal(scoreStatus(0), "needs-work");
+  });
+});
+
+describe("scoreLabel", () => {
+  it("gives one headline per band", () => {
+    assert.equal(scoreLabel(90), "Sounds great");
+    assert.equal(scoreLabel(60), "Close — tighten it up");
+    assert.equal(scoreLabel(20), "Needs work");
+  });
+});
+
+describe("averageScore / bestScore", () => {
+  it("returns 0 for an empty run instead of NaN", () => {
+    assert.equal(averageScore([]), 0);
+    assert.equal(bestScore([]), 0);
+  });
+
+  it("rounds the mean the same way the server stores it", () => {
+    assert.equal(averageScore([80, 81]), 81);
+    assert.equal(averageScore([70, 71, 72]), 71);
+  });
+
+  it("normalises each entry before averaging", () => {
+    assert.equal(averageScore([120, 80]), 90);
+    assert.equal(bestScore([120, 80]), 100);
+  });
+});
+
+describe("phonemeCaption", () => {
+  it("names what was heard when the phoneme missed", () => {
+    assert.equal(
+      phonemeCaption({ symbol: "θ", heard: "s", accuracy: 12, status: "needs-work" }),
+      "heard s",
+    );
+  });
+
+  it("falls back to accuracy when the engine sends no substitution", () => {
+    assert.equal(
+      phonemeCaption({ symbol: "θ", heard: "   ", accuracy: 12.4, status: "needs-work" }),
+      "12%",
+    );
+  });
+
+  it("shows accuracy for phonemes that did not miss", () => {
+    assert.equal(
+      phonemeCaption({ symbol: "iː", heard: "iː", accuracy: 97.5, status: "correct" }),
+      "98%",
+    );
+  });
+});

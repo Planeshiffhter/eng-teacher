@@ -1,0 +1,126 @@
+// FILE: src/app/api/conversation-progress/route.ts
+import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { getAppSession } from "@/lib/app-session";
+import {
+  CONVERSATION_PROGRESS_COOKIE,
+  getConversationModule,
+  getConversationModulesWithProgress,
+  serializeConversationProgress,
+} from "@/lib/conversation";
+import { loadConversationProgressForMode } from "@/lib/conversation-progress-sync";
+import { saveConversationProgress } from "@/lib/cloud/store";
+
+export const runtime = "nodejs";
+
+export async function GET() {
+  try {
+    const session = await getAppSession();
+
+    if (!session.mode || !session.user) {
+      return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    const cookieStore = await cookies();
+    const progress = await loadConversationProgressForMode(
+      session.mode,
+      session.user.id,
+      cookieStore.get(CONVERSATION_PROGRESS_COOKIE)?.value,
+    );
+
+    return NextResponse.json({
+      modules: getConversationModulesWithProgress(progress),
+    });
+  } catch (error) {
+    // The message can carry Firestore paths or credential details; log it only.
+    console.error("/api/conversation-progress failed:", error instanceof Error ? error.message : error);
+    return NextResponse.json({ error: "Failed to load conversation progress." }, { status: 500 });
+  }
+}
+
+export async function PATCH(request: Request) {
+  try {
+    const session = await getAppSession();
+
+    if (!session.mode || !session.user) {
+      return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+    }
+
+    const body = (await request.json()) as {
+      moduleSlug?: string;
+      score?: number;
+      passed?: boolean;
+    };
+
+    const moduleSlug = body.moduleSlug?.trim();
+    const score = typeof body.score === "number" ? Math.round(body.score) : null;
+    const passed = body.passed === true;
+
+    if (!moduleSlug || score === null) {
+      return NextResponse.json(
+        { error: "moduleSlug and score are required." },
+        { status: 400 },
+      );
+    }
+
+    const conversationModule = getConversationModule(moduleSlug);
+    if (!conversationModule) {
+      return NextResponse.json({ error: "Unknown module." }, { status: 404 });
+    }
+
+    const cookieStore = await cookies();
+    // In cloud mode the saved scores count too, so a phone with no cookie jar
+    // never lowers a best score.
+    const progress = await loadConversationProgressForMode(
+      session.mode,
+      session.user.id,
+      cookieStore.get(CONVERSATION_PROGRESS_COOKIE)?.value,
+    );
+
+    const previous = progress[moduleSlug];
+    progress[moduleSlug] = {
+      bestScore: Math.max(score, previous?.bestScore ?? 0),
+      lastScore: score,
+      passed: previous?.passed === true || passed,
+      completedAt:
+        previous?.passed === true || passed
+          ? previous?.completedAt ?? new Date().toISOString()
+          : null,
+      updatedAt: new Date().toISOString(),
+    };
+
+    cookieStore.set(
+      CONVERSATION_PROGRESS_COOKIE,
+      serializeConversationProgress(progress),
+      {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        path: "/",
+        maxAge: 60 * 60 * 24 * 365,
+      },
+    );
+
+    if (session.mode === "cloud") {
+      try {
+        await saveConversationProgress(session.user.id, moduleSlug, progress[moduleSlug]);
+      } catch (saveError) {
+        console.error("Conversation progress save failed:", saveError);
+        return NextResponse.json(
+          { error: "Could not save conversation progress to the database." },
+          { status: 500 },
+        );
+      }
+    }
+
+    return NextResponse.json({
+      ok: true,
+      moduleSlug,
+      progress: progress[moduleSlug],
+    });
+  } catch (error) {
+    // The message can carry Firestore paths or credential details; log it only.
+    console.error("/api/conversation-progress failed:", error instanceof Error ? error.message : error);
+    return NextResponse.json({ error: "Failed to update conversation progress." }, { status: 500 });
+  }
+}
