@@ -1,4 +1,5 @@
 """Recognize short, explicit lesson-control requests without consuming speaking retries."""
+
 import re
 
 
@@ -10,10 +11,30 @@ def explicit_control(text: str) -> tuple[str, str] | None:
     value = re.sub(r"^(?:please\s+)?(?:(?:can|could|would|will)\s+you\s+)?", "", value)
     value = re.sub(r"[,\s]+please$", "", value)
     patterns = (
-        ("next", r"(?:skip(?: this| the| current)? question|skip it|next question|move on|continue|let'?s continue)"),
-        ("again", r"(?:one more try|another (?:try|attempt)|let me try again|i(?: want to| would like to)? try again|give me another try|(?:can|could) i try again|फिर से कोशिश|एक बार और)"),
-        ("repeat", r"(?:repeat(?: (?:it|that|the (?:correct )?sentence|the correction))?(?: (?:again|slowly))?|say (?:it|that|the (?:correct )?sentence) again|फिर से (?:बोलो|कहो)|दोबारा बोलो)"),
-        ("explain", r"(?:explain(?: (?:that|this|it|the correction|the (?:correct )?sentence|the grammar))?(?: (?:to me )?in (?:hindi|english))?|tell me why(?: in (?:hindi|english))?|what does (?:this|that|it) mean(?: in (?:hindi|english))?|hindi (?:mein|me) samjhao|(?:हिंदी|हिन्दी) में समझाओ|समझाओ)"),
+        (
+            "next",
+            r"(?:skip(?: this| the| current)? question|skip it|next question|move on|continue|let'?s continue)",
+        ),
+        (
+            "again",
+            r"(?:one more try|another (?:try|attempt)|let me try again|i(?: want to| would like to)? try again|give me another try|(?:can|could) i try again|फिर से कोशिश|एक बार और)",
+        ),
+        (
+            "repeat",
+            r"(?:repeat(?: (?:it|that|the (?:correct )?sentence|the correction))?(?: (?:again|slowly))?|say (?:it|that|the (?:correct )?sentence) again|फिर से (?:बोलो|कहो)|दोबारा बोलो)",
+        ),
+        (
+            "example",
+            r"(?:give me (?:an?|one|another) example|show me (?:an?|one|another) example|(?:another|one) example|example please|(?:can|could) you (?:give|show) me (?:an?|one) example|(?:ek|एक) (?:example|उदाहरण)(?: (?:do|दो))?)",
+        ),
+        (
+            "translate",
+            r"(?:translate(?: (?:it|this|that|the (?:corrected|correct )?sentence))? (?:into|to) hindi|(?:what is|what's) (?:the )?hindi (?:translation|meaning)(?: of (?:this|that|it|the sentence))?|(?:hindi|हिंदी|हिन्दी) (?:translation|अनुवाद)(?: please)?|इसका (?:हिंदी|हिन्दी) (?:अनुवाद|मतलब)(?: बताओ)?)",
+        ),
+        (
+            "explain",
+            r"(?:explain(?: (?:that|this|it|the correction|the (?:correct )?sentence|the grammar))?(?: (?:to me )?in (?:hindi|english))?|tell me why(?: in (?:hindi|english))?|what does (?:this|that|it) mean(?: in (?:hindi|english))?|hindi (?:mein|me) samjhao|(?:हिंदी|हिन्दी) में समझाओ|समझाओ)",
+        ),
     )
     for intent, pattern in patterns:
         if re.fullmatch(pattern, value):

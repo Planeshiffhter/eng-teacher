@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { TokenVerifier } from 'livekit-server-sdk';
-import { issueSession, readConfig, RequestBudget, SessionError, type SessionConfig } from '../lib/server/session';
+import { issueSession, readConfig, RequestBudget, SessionError, type SessionConfig } from '../server/session';
 
 const config: SessionConfig = {
   serverUrl: 'wss://test.livekit.cloud',

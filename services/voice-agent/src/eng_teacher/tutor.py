@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from typing import Literal, Protocol
 from uuid import uuid4
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
 
 from .controls import explicit_control
 
@@ -35,8 +35,8 @@ class ModelDecision(BaseModel):
     corrected: str | None = Field(max_length=1200)
     explanation: str | None = Field(max_length=500)
     reply: str = Field(min_length=1, max_length=600)
-    uncertain: bool
-    meaning_preserved: bool
+    uncertain: StrictBool
+    meaning_preserved: StrictBool
 
     @model_validator(mode="after")
     def correction_is_complete(self):
@@ -45,6 +45,15 @@ class ModelDecision(BaseModel):
         if self.action != "correct" and self.corrected is not None:
             raise ValueError("Only corrections may contain a corrected sentence")
         return self
+
+
+class RetryDecision(BaseModel):
+    """Text-only semantic check of a retry, never a pronunciation assessment."""
+
+    model_config = ConfigDict(extra="forbid")
+    action: Literal["accept", "retry", "clarify"]
+    uncertain: StrictBool
+    meaning_preserved: StrictBool
 
 
 class Feedback(BaseModel):
@@ -64,6 +73,12 @@ class TutorModel(Protocol):
     ) -> ModelDecision: ...
 
     async def explain_correction(self, corrected: str, explanation: str, language: str) -> str: ...
+
+    async def help_with_correction(self, corrected: str, explanation: str, kind: str) -> str: ...
+
+    async def assess_retry(
+        self, original: str, corrected: str, explanation: str
+    ) -> RetryDecision: ...
 
 
 _NEGATION = re.compile(
@@ -111,6 +126,27 @@ def risky_change(original: str, corrected: str) -> bool:
     return any(not re.search(rf"\b{re.escape(name)}\b", b, flags=re.IGNORECASE) for name in names)
 
 
+def looks_like_question(text: str) -> bool:
+    """Prefer preserving a pending correction to misclassifying a help question as a retry."""
+    value = text.strip().casefold()
+    return "?" in value or bool(
+        re.match(
+            r"^(?:what|why|how|when|where|which|who|can|could|would|should|is|are|do|does|did|may|"
+            r"tell me|i wonder|i have a question|mujhe|iska matlab|ये|यह|क्या|कैसे|क्यों)\b",
+            value,
+        )
+    )
+
+
+def normalized_retry(text: str) -> str:
+    """Ignore presentation differences without joining words or changing their meaning."""
+    value = text.strip().casefold().replace("’", "'")
+    # Apostrophes, hyphens, decimal separators and word boundaries can carry
+    # meaning. Only sentence-final punctuation is safe to ignore here.
+    value = re.sub(r"[\s.,!?;:।]+$", "", value)
+    return " ".join(value.split())
+
+
 class InterviewTutor:
     def __init__(self, model: TutorModel):
         self.model = model
@@ -126,27 +162,64 @@ class InterviewTutor:
             return QUESTIONS[self.question_index]
         return "Tell me more about a specific example from your experience."
 
-
     async def _assist(self, original: str, command: str, language: str) -> Feedback:
         target = self.pending_retry
         if command == "next":
             self.pending_retry = None
             self.pending_explanation = None
-            return Feedback(original=original, action="continue", spoken_response=self._next_question())
+            return Feedback(
+                original=original, action="continue", spoken_response=self._next_question()
+            )
         if command == "repeat":
             reply = (
                 f"The corrected sentence is: {target}. Please try saying it when ready."
-                if target else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS)-1)]}"
+                if target
+                else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS) - 1)]}"
             )
-            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+            return Feedback(
+                original=original, action="assist", corrected=target, spoken_response=reply
+            )
         if command == "again":
             reply = (
                 f"Of course, take another try. You can say: {target}."
-                if target else "Of course. Take your time answering the current question."
+                if target
+                else "Of course. Take your time answering the current question."
             )
-            return Feedback(original=original, action="assist", corrected=target, spoken_response=reply)
+            return Feedback(
+                original=original, action="assist", corrected=target, spoken_response=reply
+            )
+        if command in {"example", "translate"}:
+            if not target:
+                return Feedback(
+                    original=original,
+                    action="assist",
+                    spoken_response="Let's answer the current question first, then we can work on an example or translation.",
+                )
+            try:
+                explanation = await self.model.help_with_correction(
+                    target, self.pending_explanation or "", command
+                )
+                if not isinstance(explanation, str) or not explanation.strip():
+                    raise ValueError("Empty teaching assistance")
+            except Exception:
+                explanation = (
+                    "I cannot translate that right now. The English sentence is: " + target
+                    if command == "translate"
+                    else "For practice, you can say: " + target
+                )
+            return Feedback(
+                original=original,
+                action="assist",
+                corrected=target,
+                explanation=explanation,
+                spoken_response=explanation + " Try the corrected sentence when you're ready.",
+            )
         if not target:
-            return Feedback(original=original, action="assist", spoken_response="Which sentence would you like me to explain?")
+            return Feedback(
+                original=original,
+                action="assist",
+                spoken_response="Which sentence would you like me to explain?",
+            )
         explanation = self.pending_explanation or "Let's practice this sentence."
         if language == "hi":
             try:
@@ -174,19 +247,71 @@ class InterviewTutor:
             feedback = await self._assist(original, *control)
         elif self.pending_retry:
             target = self.pending_retry
-            self.pending_retry = None
-            self.pending_explanation = None
-            normalize = lambda value: re.sub(r"[^\w]", "", value.casefold())  # noqa: E731
-            if normalize(original) == normalize(target):
-                reply = "That matches the phrase we practiced. "
-            else:
-                # Do not pretend to grade pronunciation or demand an identical paraphrase.
-                reply = (
-                    "Thanks for trying. You can keep practicing that phrase after our interview. "
+            if normalized_retry(original) == normalized_retry(target) and not risky_change(
+                target, original
+            ):
+                self.pending_retry = None
+                self.pending_explanation = None
+                feedback = Feedback(
+                    original=original,
+                    action="retry",
+                    spoken_response="That matches the phrase we practiced. "
+                    + self._next_question(),
                 )
-            feedback = Feedback(
-                original=original, action="retry", spoken_response=reply + self._next_question()
-            )
+            elif looks_like_question(original):
+                feedback = Feedback(
+                    original=original,
+                    action="assist",
+                    corrected=target,
+                    spoken_response=(
+                        "We can stay with this correction. Ask me to explain it, translate it "
+                        "into Hindi, or give an example. When ready, try saying: " + target
+                    ),
+                )
+            else:
+                try:
+                    assessment = await self.model.assess_retry(
+                        original, target, self.pending_explanation or ""
+                    )
+                except Exception:
+                    self.last_provider_failed = True
+                    return Feedback(
+                        original=original,
+                        action="clarify",
+                        spoken_response=(
+                            "I couldn't check that retry just now. Your correction is still here. "
+                            "Please try again."
+                        ),
+                    )
+                if assessment.uncertain or assessment.action == "clarify":
+                    feedback = Feedback(
+                        original=original,
+                        action="clarify",
+                        spoken_response="I may have misheard the retry. Could you say it again?",
+                    )
+                elif (
+                    assessment.action != "accept"
+                    or not assessment.meaning_preserved
+                    or risky_change(target, original)
+                ):
+                    feedback = Feedback(
+                        original=original,
+                        action="assist",
+                        corrected=target,
+                        spoken_response=(
+                            "Let's practice the same idea without changing its meaning. "
+                            "Try saying: " + target
+                        ),
+                    )
+                else:
+                    self.pending_retry = None
+                    self.pending_explanation = None
+                    feedback = Feedback(
+                        original=original,
+                        action="retry",
+                        spoken_response="Thanks for trying. That expresses the idea. "
+                        + self._next_question(),
+                    )
         else:
             try:
                 decision = await self.model.decide(

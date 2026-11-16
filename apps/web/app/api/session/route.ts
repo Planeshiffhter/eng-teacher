@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { issueSession, readConfig, RequestBudget, SessionError } from '../../../lib/server/session';
+import { issueSession, readConfig, RequestBudget, SessionError } from '../../../features/session/server/session';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

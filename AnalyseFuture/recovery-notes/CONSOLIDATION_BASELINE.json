@@ -55,6 +55,12 @@
       "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/apps/web/tests/tutor-events.test.ts",
       "sha256": "0459b33cf53b1913dfdc3876ebfd1e4379b88ffa23cfb063aa1143ca1c4e6db0",
       "reason": "Superseded by reviewed retry and recoverable-error consolidation from da2796e; starting version retained for comparison."
+    },
+    {
+      "original_path": ".github/workflows/checks.yml",
+      "preserved_path": "AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/.github/workflows/checks.yml",
+      "sha256": "a20e47f503a1b8ab6bb436f423e336f3c07c53cd67db854eb18a7c8349d95843",
+      "reason": "Original CI before recovered Ruff formatting gate; retained for comparison."
     }
   ]
 }
