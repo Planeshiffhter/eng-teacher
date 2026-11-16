@@ -181,7 +181,7 @@ flowchart LR
 
 ## 7. The 16 November two-reference deep research
 
-**Selection rule:** Study **exactly two additional primary repositories**, Cadence and Talking Avatar, alongside the already integrated LiveKit starter foundation. See the detailed [pinned-source report in PR #1](https://github.com/Planeshiffhter/eng-teacher/blob/feat/tutor-retry-intents-and-reference-audit/docs/TWO_PRIMARY_REFERENCE_REPOS.md). If PR is merged, use the corresponding [main report](TWO_PRIMARY_REFERENCE_REPOS.md). Avoid importing unrelated second voice engines or infrastructure.
+**Selection rule:** Study **exactly two additional primary repositories**, Cadence and Talking Avatar, alongside the already integrated LiveKit starter foundation. See the detailed [pinned-source report in PR #1](https://github.com/Planeshiffhter/eng-teacher/blob/feat/tutor-retry-intents-and-reference-audit/docs/TWO_PRIMARY_REFERENCE_REPOS.md). If PR is merged, the same report will be available at docs/TWO_PRIMARY_REFERENCE_REPOS.md on main. Avoid importing unrelated second voice engines or infrastructure.
 
 ### A. Cadence — ADOPT teaching patterns, DEFER heavyweight scoring
 
