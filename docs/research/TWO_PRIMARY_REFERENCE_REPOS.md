@@ -28,7 +28,7 @@ Inspected: **16 November 2026**. Scope: source, maintenance, declared licenses a
 
 ## Selection over the other 19 references
 
-The [21-repo inventory](docs/research/OPEN_SOURCE_REPOSITORIES.txt) includes two official LiveKit starters (already integrated), and 17 other candidates for narrower or later needs: parallel voice transports, TTS/STT alternatives, standalone tutor apps, scoring alternatives, FSRS, QA, authentication, fine-tuning, inference and native mobile. Of the additional candidates, Cadence gives the clearest structured-teaching reference, while Talking Avatar addresses the missing visual tutor. Neither requires replacing the voice transport. License restrictions of other references (e.g. ThirtyTutors noncommercial, FreeSurf GPL with extra terms) reinforce studying concepts instead of bulk code imports.
+The [21-repo inventory](OPEN_SOURCE_REPOSITORIES.txt) includes two official LiveKit starters (already integrated), and 17 other candidates for narrower or later needs: parallel voice transports, TTS/STT alternatives, standalone tutor apps, scoring alternatives, FSRS, QA, authentication, fine-tuning, inference and native mobile. Of the additional candidates, Cadence gives the clearest structured-teaching reference, while Talking Avatar addresses the missing visual tutor. Neither requires replacing the voice transport. License restrictions of other references (e.g. ThirtyTutors noncommercial, FreeSurf GPL with extra terms) reinforce studying concepts instead of bulk code imports.
 
 ## Prioritized next actions
 

@@ -98,7 +98,9 @@ import rather than relying on a flat test folder.
 All **1,567 starting tracked files** were read and given an explicit destination
 or a reason to stay. **1,525 original payloads moved**; **42 initial paths stayed**
 where their existing functional or framework role was already correct. New index,
-package-boundary and navigation files supplement the organization.
+package-boundary and navigation files supplement the organization. The final tracked
+index contains **1,580 files**, including those new navigation, package and
+preservation records.
 
 The complete old/new record is
 [FILE_RELOCATION_MAP.json](AnalyseFuture/recovery/migration/functional-sort-2026-11-17/FILE_RELOCATION_MAP.json).

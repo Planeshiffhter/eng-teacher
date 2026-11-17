@@ -1,11 +1,29 @@
 FUNCTIONAL REORGANIZATION — 17 NOVEMBER 2026
-Starting commit: 05269aec2449605756a6bfa2beadc98ce714b9a3
-Backup: recovery/pre-functional-sort-20261117-05269ae (pushed)
-All 1,567 starting tracked files read and mapped by purpose.
-1,525 payloads relocated; 42 conventional/functional locations retained.
-Teaching/provider/runtime modules and their fixture collections are grouped.
-Docs and recovery evidence are collected by role; original projects remain intact.
-Current task: repair navigation/script roots and write PROJECT_STRUCTURE.md.
-Validation policy: no tests, builds, installations, application imports or startup.
-Only static path/import syntax and payload preservation inspection is authorized.
-Commits use [skip ci] to avoid starting the existing GitHub test workflow.
+Starting main: 05269aec2449605756a6bfa2beadc98ce714b9a3
+Remote backup: recovery/pre-functional-sort-20261117-05269ae
+First published organization checkpoint: 4e33517 [skip ci]
+
+COMPLETED
+All 1,567 initial tracked payloads read, classified and mapped. 1,525 moved;
+42 initial locations retained by responsibility/tool convention. Documentation,
+recovery evidence, future ideas, upstream projects and Python service modules
+have explicit functional collections. No initial file is missing or overwritten
+by another implementation. Ten old snapshots and 1,478 original import payloads
+remain byte-identical through the relocation map.
+
+PROJECT_STRUCTURE.md and docs/README.md are current navigation. Earlier reports
+remain dated evidence. Package markers and imports follow runtime/teaching/provider
+owners; an explicit compatibility entrypoint retains the CLI declaration. Only
+module imports changed in the seven moved service/fixture bodies.
+
+STATIC REVIEW ONLY
+Canonical Markdown destinations, Python syntax/internal module paths, manifests,
+whole-file mapping, original hashes and the complete Git diff were inspected.
+No tests, collection, lint runner, build, installation, application import or
+startup ran. Commits carry [skip ci] to avoid starting the existing test workflow.
+
+DELIVERY
+Normal commits are pushed directly to main, without a PR, force push, reset or
+branch/tag deletion. The final response records the exact remote-verified commit.
+Runtime/test readiness must be evaluated in a later authorized task. Earlier
+validation reports do not validate this relocated module layout.

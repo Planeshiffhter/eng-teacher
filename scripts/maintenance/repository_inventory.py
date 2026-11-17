@@ -36,6 +36,8 @@ def ownership(path: str) -> tuple[str, str, str]:
             "archived; not an active dependency",
             "retain SDK/model/assets with notices",
         )
+    if path.startswith("AnalyseFuture/original-projects/"):
+        return "Original upload and import provenance", "preserved source input/archive, not execution", "keep complete project wrapper and ZIP relationships"
     if path.startswith("AnalyseFuture/historical-implementations/"):
         return (
             "Pre-consolidation tutor",
@@ -103,6 +105,8 @@ def ownership(path: str) -> tuple[str, str, str]:
             "active root workflow",
             "explicit active-project targets only",
         )
+    if path in {"README.md", "PROJECT_STRUCTURE.md", "AGENTS.md"}:
+        return "Repository navigation and working agreement", "maintainer documentation", "root entrypoint"
     if path.startswith("docs/"):
         return "Documentation: " + path.split("/")[1], "documentation, not implementation", "retain by product/architecture/development/research/continuity/legal purpose"
     if path.endswith((".md", ".txt")):

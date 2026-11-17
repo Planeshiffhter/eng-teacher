@@ -2,7 +2,7 @@ COMPLETE TRACKED FILE INVENTORY
 
 Baseline commit: 05269aec2449605756a6bfa2beadc98ce714b9a3 (1,567 paths)
 Inventory source: current tracked index paths; current working payloads
-Tracked paths classified: 1579
+Tracked paths classified: 1580
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
 Binary assets are byte-inventoried, not claims of model/media semantic verification.
 Imports are static, partial evidence; dynamic references require component review.
@@ -37,13 +37,13 @@ PATH: .nvmrc
   Recommendation/location: retain supported tool entrypoint
 
 PATH: AGENTS.md
-  Owner: Project research and specification
+  Owner: Repository navigation and working agreement
   Purpose: Documentation: Agent Instructions — Eng Teacher
-  Use/status: documentation, not implementation
+  Use/status: maintainer documentation
   Format: UTF-8 text; bytes=5269; sha256=95da0b4a6dc87d0c85e067af5e0b3537cdbad89a4004f37b2cfaf5a767eb24b9
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain canonical history and evidence
+  Recommendation/location: root entrypoint
 
 PATH: AnalyseFuture/README.md
   Owner: Recovery evidence and future work
@@ -154,22 +154,22 @@ PATH: AnalyseFuture/historical-implementations/pre-consolidation-98cfcd7/service
   Recommendation/location: compare with recovered active tutor
 
 PATH: AnalyseFuture/original-projects/Cadence-main.zip
-  Owner: Recovery evidence and future work
+  Owner: Original upload and import provenance
   Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
-  Use/status: documentation/data; not application execution
+  Use/status: preserved source input/archive, not execution
   Format: binary; bytes=20584244; sha256=4283248ff73eceaf117adde7e67e58bd957f17811d8972cfc8916eaf78f613a0
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain audit provenance
+  Recommendation/location: keep complete project wrapper and ZIP relationships
 
 PATH: AnalyseFuture/original-projects/reference-sources/ARCHIVES.json
-  Owner: Recovery evidence and future work
+  Owner: Original upload and import provenance
   Purpose: Structured configuration/content/fixture: ARCHIVES.json
-  Use/status: documentation/data; not application execution
+  Use/status: preserved source input/archive, not execution
   Format: UTF-8 text; bytes=515; sha256=b3f8a49c3e947fc879a67ede30b0eef95c6acefbe1c67c0839b09af1422baf0f
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain audit provenance
+  Recommendation/location: keep complete project wrapper and ZIP relationships
 
 PATH: AnalyseFuture/original-projects/reference-sources/Cadence-main/.dockerignore
   Owner: Cadence reference: .dockerignore
@@ -13159,13 +13159,13 @@ PATH: AnalyseFuture/original-projects/reference-sources/Cadence-main/vercel.json
   Recommendation/location: retain for selective future evaluation
 
 PATH: AnalyseFuture/original-projects/reference-sources/README.md
-  Owner: Recovery evidence and future work
+  Owner: Original upload and import provenance
   Purpose: Documentation: Preserved project sources
-  Use/status: documentation/data; not application execution
+  Use/status: preserved source input/archive, not execution
   Format: UTF-8 text; bytes=1775; sha256=ddf0a15ff42b3a51352c55f56e826eefb0c054e282df739f7fcc7f19f6c1c467
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain audit provenance
+  Recommendation/location: keep complete project wrapper and ZIP relationships
 
 PATH: AnalyseFuture/original-projects/reference-sources/talking-avatar-master/.github/workflows/ci.yml
   Owner: Avatar SDK reference
@@ -13447,13 +13447,13 @@ PATH: AnalyseFuture/original-projects/reference-sources/talking-avatar-master/vi
   Recommendation/location: retain SDK/model/assets with notices
 
 PATH: AnalyseFuture/original-projects/talking-avatar-master.zip
-  Owner: Recovery evidence and future work
+  Owner: Original upload and import provenance
   Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
-  Use/status: documentation/data; not application execution
+  Use/status: preserved source input/archive, not execution
   Format: binary; bytes=2226395; sha256=4ab3f6385415c873e8e019a4b5e1cad870ae8efcaf41152dffc1611a8c5da6cd
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain audit provenance
+  Recommendation/location: keep complete project wrapper and ZIP relationships
 
 PATH: AnalyseFuture/recovery/continuation/NEXT_DEVELOPER_INSTRUCTIONS.txt
   Owner: Recovery continuation
@@ -13529,7 +13529,7 @@ PATH: AnalyseFuture/recovery/inventory/COMPLETE_FILE_INVENTORY.txt
 
 PATH: AnalyseFuture/recovery/inventory/FUNCTIONAL_FILE_INVENTORY.txt
   Owner: Recovery inventory
-  Purpose: Documentation: FUNCTIONAL FILE INVENTORY
+  Purpose: Documentation: COMPLETE TRACKED FILE INVENTORY
   Use/status: historical evidence or current maintenance metadata
   Format: UTF-8 text; generated report (digest/size omitted)
   Dependencies: no static imports found / see containing component manifest
@@ -13603,7 +13603,16 @@ PATH: AnalyseFuture/recovery/migration/functional-sort-2026-11-17/FILE_RELOCATIO
   Owner: Recovery migration
   Purpose: Structured configuration/content/fixture: FILE_RELOCATION_MAP.json
   Use/status: historical evidence or current maintenance metadata
-  Format: UTF-8 text; bytes=597760; sha256=d23658fd53d8639033f7bdbb93d7b14bae04ab4832a24c83b199b0793fb5d93c
+  Format: UTF-8 text; bytes=896361; sha256=75512667a22b08aab02cd75521b3d69bd5948bae255291e6a43a851a50276710
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by report responsibility
+
+PATH: AnalyseFuture/recovery/migration/functional-sort-2026-11-17/ORGANIZATION_RECORD.md
+  Owner: Recovery migration
+  Purpose: Documentation: Functional organization record
+  Use/status: historical evidence or current maintenance metadata
+  Format: UTF-8 text; bytes=4164; sha256=c0f067f81233474be7f7786f26e234bce660bf0f6f043afcdb58ce65a1015d17
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by report responsibility
@@ -13645,22 +13654,22 @@ PATH: AnalyseFuture/recovery/validation/TEST_AND_VALIDATION_REPORT.txt
   Recommendation/location: retain by report responsibility
 
 PATH: PROJECT_STRUCTURE.md
-  Owner: Project research and specification
+  Owner: Repository navigation and working agreement
   Purpose: Documentation: Project structure
-  Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=10141; sha256=8f8006432fef8dade9d401af0819e3acf33cd3b492495d0027b30ad72dc9923a
+  Use/status: maintainer documentation
+  Format: UTF-8 text; bytes=10257; sha256=e59087fc6e3ac02604a59b476f31ad68b763a79bd34299e4b3d7034689c54e27
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain canonical history and evidence
+  Recommendation/location: root entrypoint
 
 PATH: README.md
-  Owner: Project research and specification
+  Owner: Repository navigation and working agreement
   Purpose: Documentation: Eng Teacher — AI English Speaking Tutor
-  Use/status: documentation, not implementation
+  Use/status: maintainer documentation
   Format: UTF-8 text; bytes=8110; sha256=aa61182f5ed95d2330b50c6b9c6f5246b401ee1802f473d20f4e4866ee336dde
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
-  Recommendation/location: retain canonical history and evidence
+  Recommendation/location: root entrypoint
 
 PATH: apps/web/.env.example
   Owner: Web shell/build configuration
@@ -13891,7 +13900,7 @@ PATH: docs/legal/DEPENDENCY_AUDIT.md
   Owner: Documentation: legal
   Purpose: Documentation: Voice MVP dependency audit
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=8923; sha256=56a6876f10c1bb861c97cfded9233b42658a95a8e7ceab3efbd6043ea9b263f5
+  Format: UTF-8 text; bytes=8912; sha256=ea325a7950cb9c4ed1acc94d9e844ab8d3e70340cacfd4cab11463a426483265
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13972,7 +13981,7 @@ PATH: docs/research/TWO_PRIMARY_REFERENCE_REPOS.md
   Owner: Documentation: research
   Purpose: Documentation: Two primary reference repositories for Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=9331; sha256=c6187436262173e9bde7ef7890934d3a17ca4b725b71bee621ef674db43d22e2
+  Format: UTF-8 text; bytes=9317; sha256=9cedc4d8616fea43716da42260abb15d4111828898838559744ea35586ec2904
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -14017,7 +14026,7 @@ PATH: scripts/maintenance/repository_inventory.py
   Owner: Repository maintenance
   Purpose: Defines git, ownership, describe, main
   Use/status: explicit maintenance command
-  Format: UTF-8 text; bytes=12473; sha256=862301d31ab22f31ca96176e7db44f48afa3e012766605c8b3cda842dca93a8d
+  Format: UTF-8 text; bytes=12867; sha256=93e6b41c5f31d41321f67aa647f7577f24110818bbc06ee896a3e154d142580f
   Dependencies: __future__, argparse, ast, collections, hashlib, pathlib, re, subprocess
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: scripts
@@ -14080,7 +14089,7 @@ PATH: services/voice-agent/src/eng_teacher/agent.py
   Owner: Voice tutor: agent
   Purpose: Component resource/configuration: agent.py
   Use/status: active Python service
-  Format: UTF-8 text; bytes=303; sha256=3e02ccc9ac3208b1e344c0ceb7d3170b0066760f43cb3ff3269f45e5ed83b5e7
+  Format: UTF-8 text; bytes=375; sha256=9b5c6b5c4231f9871868ebfc4c5c38218c26c6be74eeec75089d20cfac32b754
   Dependencies: runtime.agent
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: services/voice-agent
@@ -14221,7 +14230,7 @@ PATH: tests/browser/lesson.spec.ts
   Recommendation/location: tests/browser
 
 SUMMARY
-UTF-8 text: 1534
+UTF-8 text: 1535
 binary: 45
 
 ADDITIONAL ACCESSIBLE BRANCH-HEAD PATHS AT DISCOVERY
