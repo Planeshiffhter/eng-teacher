@@ -1,4 +1,21 @@
-TEST AND VALIDATION REPORT
+CURRENT MODULE VALIDATION — 17 November 2026 (Asia/Calcutta)
+See docs/development/MODULE_VALIDATION.md and its committed evidence directory.
+Passed: 24 web + 136 voice + 8 maintenance + 8 browser = 176 active cases;
+470 Cadence + 16 Talking Avatar = 486 isolated-reference cases. Total: 662.
+Production build, typecheck, scoped Ruff lint/format, active npm advisory audit,
+configured HTTP, avatar browser/audio and native CPU VAD smoke checks passed.
+Root Python's 144 results are the same 136 service + 8 maintenance cases.
+No active failure remains. Live providers, physical-device/language acceptance,
+full archived native/cloud/ML deployments, Python dependency advisory scan and
+remote Actions/security certification were not executed; prerequisites are in
+the current report. The archived avatar is not integrated into the active app.
+Original 1,478 import payloads and 10 historical payloads remain byte-identical.
+
+The following report is the earlier consolidation record. It is retained as
+historical evidence; its counts and archived-execution limits are superseded
+by the current module report above.
+
+HISTORICAL TEST AND VALIDATION REPORT
 17 November 2026 (Asia/Calcutta); consolidated code checkpoint8f1c988
 
 PASSED — COMMANDS EXECUTED FOR THIS RECOVERY

@@ -1,4 +1,35 @@
-RECOVERY WORK PROGRESS
+CURRENT MODULE VALIDATION — 17 November 2026 (Asia/Calcutta)
+Task starting main: eeb15dbd8240ae96ed76a94c8518fb122cbb10b3
+Delivered code: ca5ceb4 worker cleanup; 0650864 API/maintenance regressions.
+Detailed results/evidence: docs/development/MODULE_VALIDATION.md
+
+COMPLETED IN THIS PASS
+- 24 web, 136 voice-service, 8 maintenance and 8 browser cases passed (176).
+- Isolated references: 470 Cadence and 16 Talking Avatar cases passed (486).
+- Total unique automated cases: 662; no active test/build/type/lint failure remains.
+- Production HTTP 10-scenario, avatar WebGL/audio lifecycle 7-scenario and native
+  Silero synthetic-silence inference smoke checks passed. These are separate
+  smoke checks, not extra cases counted in the 662 framework results.
+- Fixed guarded worker initialization, best-effort resource closure, cancellation,
+  private task-error handling and normalized exact JSON media-type admission.
+- Added maintenance CLI and real Next handler regression coverage to CI.
+- All 1,478 imported and 10 historical payload hashes remain unchanged.
+- Evidence and current documentation pushed directly to main at b1cb1e8.
+  The final inventory checkpoint follows; verify current remote main for its SHA.
+
+REMAINING / NEXT ACTION
+- Operator-configured real LiveKit/OpenAI voice acceptance, language/physical-device
+  evaluation and human review. No actual credentials were present for this run.
+- Avatar remains an isolated SDK reference: React/LiveKit integration is not done.
+- Archived native/cloud/ML deployments require their own platforms and services;
+  Python advisory database and remote Actions/security audit were not executed.
+- Preserve reference snapshots; use isolated copies for future reference checks.
+
+The following is the earlier recovery record, retained as dated history. Its test
+counts, file counts and pending features are superseded by the current report,
+implementation status and refreshed functional inventory.
+
+HISTORICAL RECOVERY WORK PROGRESS
 17 November 2026 (Asia/Calcutta)
 Starting main: 98cfcd77b814848f5637b590b0e05843d69c8d84
 Remote backup tags:

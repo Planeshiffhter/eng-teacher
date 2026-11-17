@@ -2,9 +2,10 @@ ENG TEACHER — NEXT DEVELOPER INSTRUCTIONS
 Recovery-aware working guide, 17 November 2026
 
 1. Start from the existing /workspace/eng-teacher checkout. Read AGENTS.md,
-   README.md, the current recovery report and manifests, docs/DEVELOPMENT.md,
-   docs/VALIDATION.md, docs/PROJECT_CONTINUITY_HANDOFF.md, and PROJECT_IDEA.txt.
-   Read AnalyseFuture/PROJECT_VISION_AND_FUTURE_ROADMAP.txt for future scope.
+   README.md, the current recovery report and manifests,
+   docs/development/DEVELOPMENT.md, docs/development/MODULE_VALIDATION.md,
+   docs/continuity/PROJECT_CONTINUITY_HANDOFF.md, and docs/product/PROJECT_IDEA.txt.
+   Read AnalyseFuture/future-ideas/PROJECT_VISION_AND_FUTURE_ROADMAP.txt for scope.
    Treat older handoff/PR status as dated history, not current source truth.
 
 2. Inspect git status, HEAD, remote main, all refs relevant to the task, and
@@ -39,6 +40,7 @@ Recovery-aware working guide, 17 November 2026
    From repository root:
      npm test
      UV_CACHE_DIR=/workspace/.cache/uv npm run test:agent
+     UV_CACHE_DIR=/workspace/.cache/uv npm run test:maintenance
      UV_CACHE_DIR=/workspace/.cache/uv uv run --frozen --project
        services/voice-agent ruff check services/voice-agent
      NEXT_TELEMETRY_DISABLED=1 npm run build

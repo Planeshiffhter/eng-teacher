@@ -1,8 +1,8 @@
 COMPLETE TRACKED FILE INVENTORY
 
-Baseline commit: 9c94c842023fcae28ba0f414f6207582c318027a (1,580 paths)
+Baseline commit: eeb15dbd8240ae96ed76a94c8518fb122cbb10b3 (1,588 paths)
 Inventory source: current tracked index paths; current working payloads
-Tracked paths classified: 1588
+Tracked paths classified: 1600
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
 Binary assets are byte-inventoried, not claims of model/media semantic verification.
 Imports are static, partial evidence; dynamic references require component review.
@@ -13,7 +13,7 @@ PATH: .github/workflows/checks.yml
   Owner: Continuous integration
   Purpose: Component resource/configuration: checks.yml
   Use/status: active root workflow
-  Format: UTF-8 text; bytes=975; sha256=bbea51c8218c20199d8b69268badd7f1376975e7d6996ddcdb860d8a7a25ea74
+  Format: UTF-8 text; bytes=1240; sha256=58a22672d0e189750a366c81ccf08d3f657042f7e82f70f4550663904223d0c8
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: explicit active-project targets only
@@ -13466,7 +13466,7 @@ PATH: AnalyseFuture/recovery/continuation/NEXT_DEVELOPER_INSTRUCTIONS.txt
 
 PATH: AnalyseFuture/recovery/continuation/WORK_PROGRESS.txt
   Owner: Recovery continuation
-  Purpose: Documentation: RECOVERY WORK PROGRESS
+  Purpose: Documentation: CURRENT MODULE VALIDATION — 17 November 2026 (Asia/Calcutta)
   Use/status: historical evidence or current maintenance metadata
   Format: UTF-8 text; generated report (digest/size omitted)
   Dependencies: no static imports found / see containing component manifest
@@ -13646,7 +13646,7 @@ PATH: AnalyseFuture/recovery/security/SECURITY_SCAN_RESULTS.json
 
 PATH: AnalyseFuture/recovery/validation/TEST_AND_VALIDATION_REPORT.txt
   Owner: Recovery validation
-  Purpose: Documentation: TEST AND VALIDATION REPORT
+  Purpose: Documentation: CURRENT MODULE VALIDATION — 17 November 2026 (Asia/Calcutta)
   Use/status: historical evidence or current maintenance metadata
   Format: UTF-8 text; generated report (digest/size omitted)
   Dependencies: no static imports found / see containing component manifest
@@ -13657,7 +13657,7 @@ PATH: PROJECT_STRUCTURE.md
   Owner: Repository navigation and working agreement
   Purpose: Documentation: Project structure
   Use/status: maintainer documentation
-  Format: UTF-8 text; bytes=10859; sha256=c9714c18ab5efedbc7a77094002dcedd462756f968ec881f9ddd9e2159fb2649
+  Format: UTF-8 text; bytes=10932; sha256=bd3a545305552a0fa5029218a0370286a580218cd7661a772ced13454e5d588e
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: root entrypoint
@@ -13666,7 +13666,7 @@ PATH: README.md
   Owner: Repository navigation and working agreement
   Purpose: Documentation: Eng Teacher — AI English Speaking Tutor
   Use/status: maintainer documentation
-  Format: UTF-8 text; bytes=8742; sha256=aad0d326a462d1692847c1bd2833120154022cb74f5a31d60b123ce661f50710
+  Format: UTF-8 text; bytes=8966; sha256=4366afd629fa4876ef50ea7e0cc45f5b3df28c3318db36eed210281a9859b605
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: root entrypoint
@@ -13774,8 +13774,17 @@ PATH: apps/web/features/session/server/session.ts
   Owner: Session admission and token signing
   Purpose: Defines SessionConfig, SessionError, readConfig, secureEqual, RequestBudget, boundedJson, issueSession
   Use/status: active server feature
-  Format: UTF-8 text; bytes=4944; sha256=700a764b917c314df368ae5c7f11a0a41d3596a6939c1063d0e9686342c047ac
+  Format: UTF-8 text; bytes=5004; sha256=f5eb4216967198bec30d62aaff032cb4e094e3cdfcbe55168306d824e63ec6f5
   Dependencies: ../../lesson/catalog, livekit-server-sdk, node:crypto
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: feature module with thin Next.js API route
+
+PATH: apps/web/features/session/tests/route.test.ts
+  Owner: Session admission and token signing
+  Purpose: Test/fixture for route.test
+  Use/status: active server feature
+  Format: UTF-8 text; bytes=3783; sha256=87917aeafd24ad6e896194a362e019b329ce6aea559b9393035a48d7e6b5075c
+  Dependencies: livekit-server-sdk, vitest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: feature module with thin Next.js API route
 
@@ -13783,7 +13792,7 @@ PATH: apps/web/features/session/tests/session.test.ts
   Owner: Session admission and token signing
   Purpose: Test/fixture for session.test
   Use/status: active server feature
-  Format: UTF-8 text; bytes=5300; sha256=853b6888db9146fe6b9adcef9ffa1eb5b7bca2cd534cbdc561f338a91ac4939b
+  Format: UTF-8 text; bytes=6326; sha256=f2c1c144aa607f118125dcf607740999378207ff7bc4e2a8e664206fdef5d1be
   Dependencies: ../server/session, livekit-server-sdk, vitest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: feature module with thin Next.js API route
@@ -13828,7 +13837,7 @@ PATH: docs/README.md
   Owner: Documentation: README.md
   Purpose: Documentation: Documentation collections
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=1498; sha256=ae2948f08875e00f7323d85b0b6086935d4246780f6a5e0cf0cb532ab79f51c9
+  Format: UTF-8 text; bytes=1568; sha256=6171cd17ddecf97e249eef34ea3ca24c50dec15a270f51c8551320735b89141e
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13864,7 +13873,7 @@ PATH: docs/continuity/PROJECT_CONTINUITY_HANDOFF.md
   Owner: Documentation: continuity
   Purpose: Documentation: ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=50669; sha256=c2e45f23dda547ba9a5d04d8b0048fab2ea2b1367cfe0ce6dfdfe04ca8ed0c3a
+  Format: UTF-8 text; bytes=51207; sha256=faf6d8e65a8b54b4ed129558d0984a6f2d42ace09c41bfc3efbc8c44240952b9
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13891,7 +13900,7 @@ PATH: docs/development/DEVELOPMENT.md
   Owner: Documentation: development
   Purpose: Documentation: Run the first voice-tutor implementation
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=7979; sha256=b875733f411f7db6201bf64ac646bb99bcbf97325436a3dd782b52922b913846
+  Format: UTF-8 text; bytes=8416; sha256=fdaba690c277076462ec588711ce45e626d4309c74220c623f0dc7c2156d9db2
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13909,7 +13918,16 @@ PATH: docs/development/IMPLEMENTATION_STATUS.md
   Owner: Documentation: development
   Purpose: Documentation: Current implementation and next integrations
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=6692; sha256=476992a7f1755f2f7ff8740aa3a4bd2cbecf26c4c0fe4194b0575ea2f688087c
+  Format: UTF-8 text; bytes=7023; sha256=6609131ac78525d8f64d26192646539a8d97077b2d87b27ed9c42a6949ac77b1
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/MODULE_VALIDATION.md
+  Owner: Documentation: development
+  Purpose: Documentation: Module validation and fixes
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=11166; sha256=75b9d598cc6407af574182af433b57c0febf644fe1165acdda14dd45911c7a39
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13918,7 +13936,88 @@ PATH: docs/development/VALIDATION.md
   Owner: Documentation: development
   Purpose: Documentation: Validation record — first voice-tutor slice
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=8136; sha256=c5cb1e80673e5a125bcb18fe632c13a13728535952a132697c3c2db028f88051
+  Format: UTF-8 text; bytes=9045; sha256=99b421efa6a76cb4da45574b9dec82991f15fba760ee49945f849cde446baeec
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/active-browser.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: active-browser.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=360; sha256=1d91a8557e67c7a5c339c99799f3acb57ac9fe382dab5adc629660853a5f863c
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/active-vad.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: active-vad.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=204; sha256=1891e4e7947ff01914c43e30ae053554c47912e657951d506d9f28400882055c
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/avatar-browser.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: avatar-browser.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=1965; sha256=f571e726fd151efa77c36171b244775a366386694e1d11d1b7c999f5c94f540c
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/avatar-female.png
+  Owner: Documentation: development
+  Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
+  Use/status: documentation, not implementation
+  Format: binary; bytes=123866; sha256=e977fbf3ccc2b633efcddddfefc60fb510e9d326a27113840c63bdd7faeecb7e
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/avatar-male.png
+  Owner: Documentation: development
+  Purpose: Binary asset/archive; bytes hashed, not executed or semantically decoded
+  Use/status: documentation, not implementation
+  Format: binary; bytes=128532; sha256=d257cdf2eb1207176d98691d303e04f9c2558a80f661eb141d6d4510ef87d2cc
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/avatar-package.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: avatar-package.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=2637; sha256=3f280b2485db61c54537794d10786d9ec4735c002627f538f9122d985c7baf86
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/cadence-pure-modules.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: cadence-pure-modules.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=2317; sha256=3a755bd38a0a9ce9db890b45a7095bcb2a54f12b5f04599235f38f72ef901fc0
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/configured-http.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: configured-http.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=1611; sha256=894c4f62264a07cd94aefb6a8769638c55238b071f54c6040af70f7293a29b57
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/evidence/module-validation-2026-11-17/npm-advisories.json
+  Owner: Documentation: development
+  Purpose: Structured configuration/content/fixture: npm-advisories.json
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=363; sha256=c88ad9fb17c743935d6a1ee12a452534e8fe239e383db51fd1c73f740179bbb6
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -14026,7 +14125,7 @@ PATH: package.json
   Owner: Workspace/build configuration
   Purpose: Package, dependency and command declarations for its containing component
   Use/status: root configuration
-  Format: UTF-8 text; bytes=679; sha256=baa92f9aa44ecb8c4684dabeb69afc4e7a8ddfca24cbbdba9bc51d5e777be9ab
+  Format: UTF-8 text; bytes=778; sha256=efe57596600d8bfaeb7aa57133a98b167e2280f320add7335f992493db513ddc
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain supported tool entrypoint
@@ -14044,7 +14143,7 @@ PATH: pytest.ini
   Owner: Workspace/build configuration
   Purpose: Component resource/configuration: pytest.ini
   Use/status: root configuration
-  Format: UTF-8 text; bytes=168; sha256=37bbe91d3b240512c6a167792a08dbddf94ffb4f5091caf62e1552328f217dc3
+  Format: UTF-8 text; bytes=186; sha256=d1574a6ba3b123fd1f21d1d23a0de28ab1874123d9dc15e8d13ac807427adc64
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain supported tool entrypoint
@@ -14053,7 +14152,7 @@ PATH: scripts/maintenance/repository_inventory.py
   Owner: Repository maintenance
   Purpose: Defines git, ownership, describe, main
   Use/status: explicit maintenance command
-  Format: UTF-8 text; bytes=13081; sha256=d51a1b7cc587e55a486c14fc71bcff0b5d3c768dc1d88da7e0091d962fff3726
+  Format: UTF-8 text; bytes=13742; sha256=2b60cb4d432ddfff28971db666f9bac889a3ceb3c1ba21e492faac07d4809d49
   Dependencies: __future__, argparse, ast, collections, hashlib, pathlib, re, subprocess
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: scripts
@@ -14152,7 +14251,7 @@ PATH: services/voice-agent/src/eng_teacher/runtime/agent.py
   Owner: Voice runtime and lifecycle
   Purpose: Defines lesson_deadline_ms, InterviewAgent, interview, configure_private_logging, main
   Use/status: active LiveKit worker
-  Format: UTF-8 text; bytes=9877; sha256=81566d05775f5561a6ba9bb394e13cf0f8b68d621d96298e30269999bc2a838c
+  Format: UTF-8 text; bytes=11483; sha256=11d080ce479e81e344dd106aa42e3ab2fe5b20ef8d5f49fef3795747f1399661
   Dependencies: __future__, asyncio, collections.abc, contextlib, dotenv, json, livekit, livekit.agents, livekit.plugins, logging, providers.openai, teaching.lessons, teaching.tutor, time, usage
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: runtime
@@ -14205,7 +14304,7 @@ PATH: services/voice-agent/src/eng_teacher/teaching/tutor.py
 PATH: services/voice-agent/tests/__init__.py
   Owner: Voice fixtures: __init__.py
   Purpose: Test/fixture for __init__
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=75; sha256=51ea0b80226fe44d7764ac3d9638b6316ad4e4b0639c4bbadf757215520e3745
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14214,7 +14313,7 @@ PATH: services/voice-agent/tests/__init__.py
 PATH: services/voice-agent/tests/runtime/__init__.py
   Owner: Voice fixtures: runtime
   Purpose: Test/fixture for __init__
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=71; sha256=0a5d9d5f4ff2800d1dffc4b475571e7440eaee450a38db1e1e92c44a06ef029b
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14223,7 +14322,7 @@ PATH: services/voice-agent/tests/runtime/__init__.py
 PATH: services/voice-agent/tests/runtime/test_agent.py
   Owner: Voice fixtures: runtime
   Purpose: Test/fixture for test_agent
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=3835; sha256=5388cec9bb9d3ff51cf907718e32693d0494d67712d8fcd0c614a1e3feb6d1a1
   Dependencies: asyncio, eng_teacher.runtime.agent, eng_teacher.teaching.tutor, json, livekit, livekit.agents, livekit.agents.voice, livekit.plugins, pytest, teaching.test_tutor
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14232,8 +14331,8 @@ PATH: services/voice-agent/tests/runtime/test_agent.py
 PATH: services/voice-agent/tests/runtime/test_lifecycle.py
   Owner: Voice fixtures: runtime
   Purpose: Test/fixture for test_lifecycle
-  Use/status: retained tests; not run in this organization task
-  Format: UTF-8 text; bytes=7503; sha256=8c8264a08413b43db92f4dda864a6a67a39ab7cb7e490fd7992f247faf955a39
+  Use/status: active service verification fixtures; execution recorded in validation reports
+  Format: UTF-8 text; bytes=11826; sha256=9eb31d2084cf950b59798c628dad07bfd8095f1f579fc5268fdb75307d0167d2
   Dependencies: asyncio, eng_teacher.runtime, eng_teacher.teaching.lessons, json, logging, pytest, time, types, unittest.mock
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: tests grouped by matching runtime/teaching owner
@@ -14241,7 +14340,7 @@ PATH: services/voice-agent/tests/runtime/test_lifecycle.py
 PATH: services/voice-agent/tests/runtime/test_usage.py
   Owner: Voice fixtures: runtime
   Purpose: Test/fixture for test_usage
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=9875; sha256=b8a2104eb46b269b01abd98e04d1705b6cd0b19f5c00cdece8a2c3f1c3678fd6
   Dependencies: asyncio, dataclasses, eng_teacher.providers.openai, eng_teacher.runtime, eng_teacher.runtime.usage, json, livekit.agents, logging, pytest, test_lifecycle, time, types, unittest.mock
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14250,7 +14349,7 @@ PATH: services/voice-agent/tests/runtime/test_usage.py
 PATH: services/voice-agent/tests/teaching/__init__.py
   Owner: Voice fixtures: teaching
   Purpose: Test/fixture for __init__
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=72; sha256=8f899c28fd920a836c2ecfee8971710d5e719b039a375f4334c898ed33cbf5ec
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14259,7 +14358,7 @@ PATH: services/voice-agent/tests/teaching/__init__.py
 PATH: services/voice-agent/tests/teaching/test_lessons.py
   Owner: Voice fixtures: teaching
   Purpose: Test/fixture for test_lessons
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=3536; sha256=93f388cd0566d12258d35d4a4f6672cb7cfdde1cbc3b5016c23990b2b3f98ae0
   Dependencies: dataclasses, eng_teacher.teaching.lessons, eng_teacher.teaching.tutor, json, pathlib, pytest, test_tutor
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14268,7 +14367,7 @@ PATH: services/voice-agent/tests/teaching/test_lessons.py
 PATH: services/voice-agent/tests/teaching/test_tutor.py
   Owner: Voice fixtures: teaching
   Purpose: Test/fixture for test_tutor
-  Use/status: retained tests; not run in this organization task
+  Use/status: active service verification fixtures; execution recorded in validation reports
   Format: UTF-8 text; bytes=18856; sha256=1cf15d666d18ce23cc93122c7c2b2dbffe374c9c9b3b1a83f41142bf8077fe66
   Dependencies: eng_teacher.providers.openai, eng_teacher.teaching.controls, eng_teacher.teaching.tutor, pydantic, pytest, types
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
@@ -14301,9 +14400,18 @@ PATH: tests/contracts/lesson-catalog.json
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: tests/contracts
 
+PATH: tests/maintenance/test_repository_tools.py
+  Owner: Repository maintenance regression fixtures
+  Purpose: Defines git, repo, run_tool, test_inventory_covers_staged_paths_and_does_not_import_source, test_inventory_ref_reads_immutable_payloads, test_inventory_missing_git_root_fails_instead_of_claiming_coverage, test_history_scanner_reports_clean_real_git_fixture, test_scanner_detects_new_staged_candidate_without_printing_value, test_scanner_keeps_historical_evidence_after_value_is_replaced, test_scanner_reads_zip_members_without_extracting_or_printing_values, test_corrupt_zip_is_a_failed_scan_not_a_false_clean_result
+  Use/status: active CLI fixtures using disposable Git repositories
+  Format: UTF-8 text; bytes=6731; sha256=16ed196943b8ed0bfcbb1e3bfd7007d8580ba724a8fa6516b25d82331ac3e119
+  Dependencies: hashlib, json, pathlib, pytest, shutil, subprocess, sys, zipfile
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: tests/maintenance
+
 SUMMARY
-UTF-8 text: 1543
-binary: 45
+UTF-8 text: 1553
+binary: 47
 
 ADDITIONAL ACCESSIBLE BRANCH-HEAD PATHS AT DISCOVERY
 docs/research/TWO_PRIMARY_REFERENCE_REPOS.md — retry branch da2796e; pinned research recovered into canonical docs during consolidation.
