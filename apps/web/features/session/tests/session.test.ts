@@ -58,6 +58,24 @@ describe('session token boundary (real local signing; no LiveKit service)', () =
     await expect(issueSession(request({ accessCode: 'wrong' }), config)).rejects.toMatchObject({ status: 401 });
     await expect(issueSession(request(undefined, 'https://evil.example'), config)).rejects.toMatchObject({ status: 403 });
   });
+  it('rejects lookalike JSON media types', async () => {
+    for (const contentType of ['application/jsonp', 'application/json-invalid', 'text/plain']) {
+      const input = new Request('http://localhost:3000/api/session', {
+        method: 'POST', headers: { origin: 'http://localhost:3000', 'content-type': contentType },
+        body: JSON.stringify({ accessCode: config.accessCode }),
+      });
+      await expect(issueSession(input, config)).rejects.toMatchObject({ status: 415 });
+    }
+  });
+  it('accepts case-insensitive JSON media types with charset parameters', async () => {
+    for (const contentType of ['application/json; charset=utf-8', 'Application/JSON']) {
+      const input = new Request('http://localhost:3000/api/session', {
+        method: 'POST', headers: { origin: 'http://localhost:3000', 'content-type': contentType },
+        body: JSON.stringify({ accessCode: config.accessCode }),
+      });
+      await expect(issueSession(input, config)).resolves.toHaveProperty('participantToken');
+    }
+  });
   it('supports an explicitly configured deployed origin', async () => {
     await expect(issueSession(request(undefined, 'https://tutor.example'), { ...config, appOrigin: 'https://tutor.example' })).resolves.toHaveProperty('participantToken');
   });

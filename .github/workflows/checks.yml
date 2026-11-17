@@ -24,8 +24,11 @@ jobs:
       - run: uv sync --frozen --project services/voice-agent
       - run: npm test
       - run: npm run test:agent
+      - run: npm run test:maintenance
       - run: uv run --frozen --project services/voice-agent ruff check services/voice-agent
       - run: uv run --frozen --project services/voice-agent ruff format --check services/voice-agent
+      - run: uv run --frozen --project services/voice-agent ruff check scripts/maintenance tests/maintenance
+      - run: uv run --frozen --project services/voice-agent ruff format --check scripts/maintenance tests/maintenance
       - run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: '1'

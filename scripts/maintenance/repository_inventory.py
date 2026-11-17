@@ -16,7 +16,9 @@ def git(root: Path, *args: str) -> bytes:
 
 
 def ownership(path: str) -> tuple[str, str, str]:
-    if path.startswith("AnalyseFuture/original-projects/reference-sources/Cadence-main/"):
+    if path.startswith(
+        "AnalyseFuture/original-projects/reference-sources/Cadence-main/"
+    ):
         rel = path.split("/Cadence-main/", 1)[1]
         area = rel.split("/")[0]
         if rel.startswith("src/backend/"):
@@ -30,14 +32,20 @@ def ownership(path: str) -> tuple[str, str, str]:
             "archived; not an active dependency",
             "retain for selective future evaluation",
         )
-    if path.startswith("AnalyseFuture/original-projects/reference-sources/talking-avatar-master/"):
+    if path.startswith(
+        "AnalyseFuture/original-projects/reference-sources/talking-avatar-master/"
+    ):
         return (
             "Avatar SDK reference",
             "archived; not an active dependency",
             "retain SDK/model/assets with notices",
         )
     if path.startswith("AnalyseFuture/original-projects/"):
-        return "Original upload and import provenance", "preserved source input/archive, not execution", "keep complete project wrapper and ZIP relationships"
+        return (
+            "Original upload and import provenance",
+            "preserved source input/archive, not execution",
+            "keep complete project wrapper and ZIP relationships",
+        )
     if path.startswith("AnalyseFuture/historical-implementations/"):
         return (
             "Pre-consolidation tutor",
@@ -46,9 +54,17 @@ def ownership(path: str) -> tuple[str, str, str]:
         )
     if path.startswith("AnalyseFuture/recovery/"):
         category = path.split("/")[2]
-        return "Recovery " + category, "historical evidence or current maintenance metadata", "retain by report responsibility"
+        return (
+            "Recovery " + category,
+            "historical evidence or current maintenance metadata",
+            "retain by report responsibility",
+        )
     if path.startswith("AnalyseFuture/future-ideas/"):
-        return "Future product vision", "planning, not implemented product", "retain speculative scope separately"
+        return (
+            "Future product vision",
+            "planning, not implemented product",
+            "retain speculative scope separately",
+        )
     if path.startswith("AnalyseFuture/"):
         return (
             "Recovery evidence and future work",
@@ -82,18 +98,32 @@ def ownership(path: str) -> tuple[str, str, str]:
             "keep framework conventions",
         )
     if path.startswith("services/voice-agent/src/eng_teacher/teaching/"):
-        return "Teaching policy and learner controls", "active Python teaching module", "teaching"
+        return (
+            "Teaching policy and learner controls",
+            "active Python teaching module",
+            "teaching",
+        )
     if path.startswith("services/voice-agent/src/eng_teacher/runtime/"):
         return "Voice runtime and lifecycle", "active LiveKit worker", "runtime"
     if path.startswith("services/voice-agent/src/eng_teacher/providers/"):
         return "Speech/text provider adapters", "active provider boundary", "providers"
     if path.startswith("services/voice-agent/tests/"):
-        return "Voice fixtures: " + path.split("/")[3], "retained tests; not run in this organization task", "tests grouped by matching runtime/teaching owner"
+        return (
+            "Voice fixtures: " + path.split("/")[3],
+            "active service verification fixtures; execution recorded in validation reports",
+            "tests grouped by matching runtime/teaching owner",
+        )
     if path.startswith("services/voice-agent/"):
         return (
             "Voice tutor: " + Path(path).stem,
             "active Python service",
             "services/voice-agent",
+        )
+    if path.startswith("tests/maintenance/"):
+        return (
+            "Repository maintenance regression fixtures",
+            "active CLI fixtures using disposable Git repositories",
+            "tests/maintenance",
         )
     if path.startswith("tests/contracts/"):
         return (
@@ -112,9 +142,17 @@ def ownership(path: str) -> tuple[str, str, str]:
             "explicit active-project targets only",
         )
     if path in {"README.md", "PROJECT_STRUCTURE.md", "AGENTS.md"}:
-        return "Repository navigation and working agreement", "maintainer documentation", "root entrypoint"
+        return (
+            "Repository navigation and working agreement",
+            "maintainer documentation",
+            "root entrypoint",
+        )
     if path.startswith("docs/"):
-        return "Documentation: " + path.split("/")[1], "documentation, not implementation", "retain by product/architecture/development/research/continuity/legal purpose"
+        return (
+            "Documentation: " + path.split("/")[1],
+            "documentation, not implementation",
+            "retain by product/architecture/development/research/continuity/legal purpose",
+        )
     if path.endswith((".md", ".txt")):
         return (
             "Project research and specification",
@@ -209,12 +247,16 @@ def main() -> None:
     parser.add_argument(
         "--ref", help="Inspect an immutable Git tree instead of working files"
     )
-    parser.add_argument("--baseline", default="HEAD", help="Git tree whose initial count is recorded")
+    parser.add_argument(
+        "--baseline", default="HEAD", help="Git tree whose initial count is recorded"
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     root = args.root.resolve()
     baseline = git(root, "rev-parse", args.baseline).decode().strip()
-    baseline_count = len(git(root, "ls-tree", "-r", "--name-only", args.baseline).splitlines())
+    baseline_count = len(
+        git(root, "ls-tree", "-r", "--name-only", args.baseline).splitlines()
+    )
     paths = (
         (
             git(root, "ls-tree", "-r", "--name-only", "-z", args.ref)

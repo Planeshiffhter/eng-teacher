@@ -82,7 +82,8 @@ export async function issueSession(request: Request, config: SessionConfig) {
   const origin = request.headers.get('origin');
   const expectedOrigin = config.appOrigin || new URL(request.url).origin;
   if (!origin || origin !== expectedOrigin) throw new SessionError(403, 'Start the lesson from this application.');
-  if (!request.headers.get('content-type')?.startsWith('application/json')) {
+  const mediaType = request.headers.get('content-type')?.split(';', 1)[0].trim().toLowerCase();
+  if (mediaType !== 'application/json') {
     throw new SessionError(415, 'Send a JSON session request.');
   }
   const body = await boundedJson(request);
