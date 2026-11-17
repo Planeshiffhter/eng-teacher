@@ -1,5 +1,16 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
+> **Cloud setup checkpoint — 17 November 2026:** The owner reaffirmed direct
+> `main` pushes, no new branches or PRs, and pushed checkpoints before new tasks.
+> The clean restored checkout was preserved at
+> [`8ef1006`](https://github.com/Planeshiffhter/eng-teacher/commit/8ef1006dd28d201c3b36bd3df09daced789a934a)
+> before further work.
+> The active cloud rerun passed 24 web, 136 worker, 8 maintenance and 8 browser
+> tests, plus build/type/lint/format. Reusable cache, install, startup and complete
+> check commands are in [DEVELOPMENT.md](../development/DEVELOPMENT.md#managed-cloud-environment).
+> Provider credentials remain absent; real voice and media connectivity are
+> unvalidated. Historical reference results below were not rerun in this pass.
+
 > **Latest module validation:** 24 web/API, 136 service Python, 8 maintenance and
 > 8 browser cases passed, plus build/type/lint/format and production HTTP checks.
 > Worker startup/shutdown/cancellation cleanup and JSON media admission were fixed.
@@ -60,7 +71,7 @@ as dated evidence, not current implementation instructions.
 4. The retry/help/error behavior formerly on PR #1 is now selectively recovered on main; inspect current code rather than reimplementing it from the historical PR status. The branch itself was not merged by this task.
 5. Preserve an **honest separation** between offline passing tests, real browser/device/provider tests and unimplemented features.
 6. Change one useful vertical slice at a time, with focused regression tests, no secrets and measured status.
-7. Update this handoff's snapshot and the existing checklist/validation whenever a milestone materially changes. Add a commit and PR link.
+7. Update this handoff's snapshot and the existing checklist/validation whenever a milestone materially changes. Add the pushed `main` commit link; do not create a new branch or PR.
 8. Prefer the next unblocked engineering task: privacy-safe model usage and error counters, then real bilingual speech acceptance. Do not spend entire work sessions inventing new plans.
 
 **Owner's recurring request:** Make the project self-contained in GitHub because long ChatGPT conversations can become inaccessible. A new engineer should learn the goal, work done, evidence and next steps from the repository alone. The owner wants working commits and reproducible tests, not a perpetual planning-only effort.
@@ -165,7 +176,7 @@ flowchart LR
 | [services/voice-agent/src/eng_teacher/teaching/controls.py](../../services/voice-agent/src/eng_teacher/teaching/controls.py) | Explicit Hindi/English teaching assistance, retry, repeat and skip controls; PR #1 adds example and Hindi-translation requests. |
 | [services/voice-agent/src/eng_teacher/providers/openai.py](../../services/voice-agent/src/eng_teacher/providers/openai.py) | Replaceable OpenAI STT, TTS and structured tutor decision adapter; no production support for a second provider yet. PR #1 adds semantic retry check and example/translation help. |
 | [services/voice-agent/tests/](../../services/voice-agent/tests) | Python tutor, provider/SDK scheduler and worker lifecycle tests; tests use fakes/silent synthetic audio, not live speech. |
-| [apps/web/tests/](../../apps/web/tests) | Vitest token/session boundary and versioned event/unit tests. |
+| [lesson tests](../../apps/web/features/lesson/tests) and [session tests](../../apps/web/features/session/tests) | Vitest token/session boundary and versioned event/unit tests. |
 | [tests/browser/lesson.spec.ts](../../tests/browser/lesson.spec.ts) | Playwright desktop/mobile viewport smoke, synthetic Chromium microphone, expected missing-config and failed-room recovery. |
 | [.github/workflows/checks.yml](../../.github/workflows/checks.yml) | npm install/tests/build/typecheck, frozen uv + pytest, Ruff, Playwright; PR #1 adds Ruff formatting check. |
 | [package.json](../../package.json), [apps/web/package.json](../../apps/web/package.json), [services/voice-agent/pyproject.toml](../../services/voice-agent/pyproject.toml) | Node 24 workspaces / Next.js 15 / React 19 / LiveKit packages, Python >=3.11,<3.14 and pinned SDK via uv lock. Consult actual lockfiles. |
@@ -307,16 +318,18 @@ Read [DEVELOPMENT.md](../development/DEVELOPMENT.md) for current setup. Validate
 From repo root, using Node.js **24.x**, Python **3.12 recommended** and uv:
 
 ~~~bash
+# For the managed cloud checkout, first export the writable cache paths in DEVELOPMENT.md.
 npm ci
 uv sync --frozen --project services/voice-agent
 npm test
 npm run test:agent
-uv run --frozen --project services/voice-agent ruff check services/voice-agent
-uv run --frozen --project services/voice-agent ruff format --check services/voice-agent
+npm run test:maintenance
+uv run --frozen --project services/voice-agent ruff check services/voice-agent scripts/maintenance tests/maintenance
+uv run --frozen --project services/voice-agent ruff format --check services/voice-agent scripts/maintenance tests/maintenance
+NEXT_TELEMETRY_DISABLED=1 npm run build
 npm run typecheck
-npm run build
 npx playwright install chromium
-npm run test:browser
+CI=1 npm run test:browser
 ~~~
 
 To operate a **real** lesson, separately configure ignored environment files using [apps/web/.env.example](../../apps/web/.env.example) and [services/voice-agent/.env.example](../../services/voice-agent/.env.example). Do **not** put values into README, issues, Git commits, PR logs or this handoff. Expected server-side names include LIVEKIT_URL, LIVEKIT_API_KEY, LIVEKIT_API_SECRET, OPENAI_API_KEY and PILOT_ACCESS_CODE, plus APP_ORIGIN when deployed. Start web and voice agent as separate supervised processes using the documented scripts.
