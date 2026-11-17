@@ -1,0 +1,72 @@
+{
+  "checks": {
+    "page": {
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "selected_lesson_visible": true
+    },
+    "configured_session": {
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "signature_verified": true,
+      "algorithm_hs256": true,
+      "issuer_verified": true,
+      "everyday_lesson_verified": true,
+      "microphone_only_verified": true,
+      "cannot_publish_data": true,
+      "room_scope_verified": true,
+      "learner_identity_generated": true,
+      "agent_dispatch_verified": true,
+      "two_participants_verified": true,
+      "deadline_verified": true,
+      "token_ttl_bounded": true,
+      "private_no_store": true
+    },
+    "invalid_media": {
+      "status": 415,
+      "expected": 415,
+      "passed": true
+    },
+    "mixed_case_json": {
+      "status": 200,
+      "expected": 200,
+      "passed": true
+    },
+    "wrong_access_code": {
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    "wrong_origin": {
+      "status": 403,
+      "expected": 403,
+      "passed": true
+    },
+    "unknown_lesson": {
+      "status": 400,
+      "expected": 400,
+      "passed": true
+    },
+    "malformed_json": {
+      "status": 400,
+      "expected": 400,
+      "passed": true
+    },
+    "oversized_body": {
+      "status": 413,
+      "expected": 413,
+      "passed": true
+    },
+    "request_budget": {
+      "status": 429,
+      "expected": 429,
+      "passed": true,
+      "retry_after_present": true
+    }
+  },
+  "no_external_provider_calls": true,
+  "owned_process_group_stopped": true,
+  "passed": true
+}

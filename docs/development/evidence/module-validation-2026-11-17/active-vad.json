@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "force_cpu": true,
+  "input": "one second synthetic16kHz mono silence",
+  "inference_events": 31,
+  "speech_start_events": 0,
+  "live_microphone": false,
+  "provider_calls": false
+}

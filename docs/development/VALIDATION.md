@@ -1,5 +1,20 @@
 # Validation record — first voice-tutor slice
 
+## Complete module pass — 17 November 2026
+
+Current local checks passed: **24 web/API tests, 136 voice-service tests,
+8 maintenance CLI tests and 8 active browser tests**. The root Python invocation
+reports 144, which is the same 136 service plus 8 maintenance cases.
+Build, typecheck, lint/format and production HTTP checks passed. Fixed worker
+construction/shutdown cleanup, background exception privacy, exact JSON media
+admission and maintenance formatting/verification. Maintenance checks now run in CI.
+
+In read-only-original isolated copies, **470 Cadence pure-module cases and
+16 avatar package cases** passed, plus a real local avatar WebGL/AudioWorklet
+smoke with synthetic audio. Neither is an integration of those apps into the tutor.
+See [MODULE_VALIDATION.md](MODULE_VALIDATION.md) and its saved evidence for exact
+commands, counts, fixed regressions and unexecuted live/native/cloud checks.
+
 ## Guided practice and private usage — 17 November 2026
 
 Implementation/testing resumed from organized `main` at `9c94c84`. The new

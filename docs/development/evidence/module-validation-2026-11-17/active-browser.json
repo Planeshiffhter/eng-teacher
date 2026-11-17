@@ -1,0 +1,17 @@
+{
+  "source_commit": "065086478e1751b2bbdc70c3228c58950ff82e5f",
+  "stats": {
+    "startTime": "2026-11-17T05:00:07.683Z",
+    "duration": 8504.576,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "projects": [
+    "desktop-chromium",
+    "mobile-chromium"
+  ],
+  "synthetic_microphone": true,
+  "live_provider_lesson": false
+}

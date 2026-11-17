@@ -1,5 +1,13 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
+> **Latest module validation:** 24 web/API, 136 service Python, 8 maintenance and
+> 8 browser cases passed, plus build/type/lint/format and production HTTP checks.
+> Worker startup/shutdown/cancellation cleanup and JSON media admission were fixed.
+> Isolated reference checks passed 470 Cadence and 16 avatar cases, plus basic
+> WebGL/AudioWorklet smoke. Read [MODULE_VALIDATION.md](../development/MODULE_VALIDATION.md)
+> for the evidence and real voice/native/cloud prerequisites; historical counts
+> below retain their original scope.
+
 > **Latest implementation:** The owner authorized testing again after organization.
 > Original Everyday English and mock-interview lessons are selectable through
 > signed metadata; private known token/request/error and speech totals are

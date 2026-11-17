@@ -70,9 +70,12 @@ being consumed as a speaking retry.
 
 ## Validation and limits
 
-Current automated checks: **18 JavaScript tests, 126 Python tests and 8 desktop/
-mobile Chromium tests passed**, plus production build, TypeScript, Ruff lint and
-formatting. The prior reorganized Python tree first passed its existing 71 tests;
+Current automated checks: **24 JavaScript tests, 136 service Python tests,
+8 maintenance tests and 8 desktop/mobile Chromium tests passed**, plus production
+build, TypeScript, Ruff lint and formatting. Isolated reference validation passed
+470 Cadence cases, 16 avatar cases and basic avatar browser rendering/audio smoke.
+See [MODULE_VALIDATION.md](MODULE_VALIDATION.md) for scope, fixes and limitations.
+The prior reorganized Python tree first passed its existing 71 tests;
 two import-order lint issues left by the no-test organization were corrected.
 The installed worker CLI also imports successfully through its compatibility
 entrypoint. Production HTTP startup serves the lesson picker and retains the
@@ -86,8 +89,9 @@ is synthetic; model and room fixtures are fake. A successful real voice lesson
 has not been demonstrated by these checks.
 
 No LiveKit/OpenAI/pilot credentials were present when checked. Bengali support,
-physical Android behavior, speech quality, actual latency/cost, and avatar animation
-remain unverified. Hindi-English speech adapters are present in source; the new
+physical Android behavior, speech quality, actual latency/cost, and app-integrated
+avatar behavior remain unverified. Isolated SDK graphics/audio smoke is not a
+LiveKit lesson integration. Hindi-English speech adapters are present in source; the new
 lesson catalog is not evidence of additional language support.
 
 ## What remains, in order
@@ -105,8 +109,8 @@ lesson catalog is not evidence of additional language support.
 4. Add reviewed original exercises, then opt-in progress/history with proper
    authentication, retention/export/deletion and distributed spending safeguards.
 5. Extend speech/provider failure and retry observability where the SDK exposes
-   actual events. Repair startup resource cleanup if construction fails before
-   lifecycle callbacks are registered. Do not log private provider payloads.
+   actual events. Startup/cancellation/close-failure resource cleanup has now been
+   repaired and covered by lifecycle regressions. Do not log private provider payloads.
 
 Work continues directly on `main` with normal tested checkpoints. The original
 archives, historical reports and the organization mapping retain their recorded

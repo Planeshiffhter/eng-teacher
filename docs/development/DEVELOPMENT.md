@@ -78,6 +78,13 @@ Both browser and worker enforce a ten-minute cap; the token carries a fixed serv
 
 ## Validation
 
+`npm run test:maintenance` exercises the inventory/security utilities against
+disposable local Git fixtures. It is included in CI with lint/format for those
+tools. Default root pytest now discovers service and maintenance tests, while
+the service's own command below remains scoped to the voice worker. Keep
+`AnalyseFuture` outside default discovery. See
+[MODULE_VALIDATION.md](MODULE_VALIDATION.md) for the current full module matrix.
+
 ```sh
 npm test
 npm run typecheck

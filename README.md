@@ -13,9 +13,11 @@ remaining integrations are recorded in
 **Implemented next:** choose **Everyday English** for a relaxed guided chat or
 **Mock interview** for work-related practice. The selected lesson controls the
 worker's greeting and questions. Private numeric usage totals are now integrated.
-Current local checks: **18 JavaScript / 126 Python / 8 browser tests**, build,
-typecheck, lint and formatting passed. Real provider calls, Bengali quality and
-avatar animation still need validation; see the
+Current local checks: **24 JavaScript / 136 service Python / 8 maintenance /
+8 browser tests**, build, typecheck, lint and formatting passed. Isolated reference
+checks also passed: **470 Cadence tests**, **16 avatar tests** and a local avatar
+browser smoke. Real provider calls, Bengali quality and app-integrated avatar
+behavior still need validation; see the [module validation report](docs/development/MODULE_VALIDATION.md) and
 [current implementation status](docs/development/IMPLEMENTATION_STATUS.md).
 
 Read [docs/product/PROJECT_IDEA.txt](docs/product/PROJECT_IDEA.txt) for the detailed vision: a friendly male or

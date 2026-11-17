@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "assertions": [
+    "Built ESM entry loads local female GLB, creates nonzero canvas, obtains WebGL2 and resolves public ready promise.",
+    "User click resumes synthetic 48kHz AudioContext, attaches audio stream, runs AudioWorklet capture and bundled viseme model, and receives timed viseme events.",
+    "Public detachStream clears capture/timeline while preserving caller-owned source track.",
+    "Reattaching the caller-owned stream restarts capture and model events.",
+    "Public setAvatar swaps to locally bundled male GLB with active audio stream.",
+    "Calling dispose twice removes canvas, detaches stream and closes SDK AudioContext; harness also stops its own oscillator/track/context.",
+    "Model and both avatars return local HTTP 200; no external asset/service request and no uncaught page/SDK error."
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "blockedExternal": [],
+  "assets": [
+    {
+      "url": "/avatars/female.glb",
+      "status": 200
+    },
+    {
+      "url": "/model/viseme-model.bin",
+      "status": 200
+    },
+    {
+      "url": "/avatars/male.glb",
+      "status": 200
+    }
+  ],
+  "syntheticAudioOnly": true,
+  "physicalDevice": false,
+  "livekitIntegration": false,
+  "initial": {
+    "phase": "ready",
+    "errors": [],
+    "canvas": {
+      "width": 640,
+      "height": 480
+    },
+    "meshCount": 9,
+    "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "audio": {
+    "phase": "attached",
+    "sourceContext": "running",
+    "sdkContext": "running",
+    "capturedUntilSeconds": 0.35410430839002266,
+    "detectorStarted": true,
+    "visemeEvents": 6,
+    "track": "live"
+  },
+  "detached": {
+    "phase": "detached",
+    "streamNull": true,
+    "eventCount": 0,
+    "inputTrack": "live"
+  },
+  "disposed": {
+    "phase": "disposed",
+    "canvasCount": 0,
+    "sdkContext": "closed",
+    "streamNull": true,
+    "producerContext": "closed",
+    "inputTrack": "ended",
+    "errors": []
+  }
+}

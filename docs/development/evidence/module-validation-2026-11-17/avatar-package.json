@@ -1,0 +1,59 @@
+{
+  "module": "@interviewflowai/talking-avatar",
+  "version": "0.3.0",
+  "source": "AnalyseFuture/original-projects/reference-sources/talking-avatar-master",
+  "validation_copy": "/workspace/.module-validation/talking-avatar-eeb15db",
+  "original_read_only": true,
+  "original_file_count": 31,
+  "runtime": {
+    "node": "v24.22.1",
+    "npm": "11.9.0"
+  },
+  "dependency_install": {
+    "command": "npm ci --ignore-scripts --cache /workspace/.cache/npm --no-audit --no-fund",
+    "exit_code": 0,
+    "packages_added": 33,
+    "preflight": "All root scripts and test files inspected; lockfile 3 has 106 package records, all resolved packages use registry.npmjs.org; only install-hook flags esbuild/fsevents (ignored). Tests use only bundled local model and fixtures."
+  },
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "log": "/workspace/.module-validation/talking-avatar-typecheck.log"
+    },
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "tests": 16,
+      "passed": 16,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "log": "/workspace/.module-validation/talking-avatar-test.log",
+      "coverage": "coarticulation 5, resampler 7 (parameter loops), viseme detector 3, stored model/PyTorch-reference fixture parity 1"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "log": "/workspace/.module-validation/talking-avatar-build.log",
+      "artifacts": "dist ESM entries/chunk/sourcemaps/declarations plus model and avatars"
+    },
+    {
+      "command": "npm pack --dry-run --ignore-scripts --json --cache /workspace/.cache/npm",
+      "exit_code": 0,
+      "entry_count": 22,
+      "log": "/workspace/.module-validation/talking-avatar-pack-dry-run.log",
+      "notes": "Dry-run only, no publishing. All package exports, model, avatars, root MIT and Microsoft avatar notices included."
+    }
+  ],
+  "asset_integrity": "Built model, both GLBs and avatar license byte-identical to source; all 31 original source files and copied source files match baseline hashes.",
+  "source_hashes": "/workspace/.module-validation/talking-avatar-source-hashes.json",
+  "failures": [],
+  "patches": [],
+  "unrun": [
+    "No browser/WebGL rendering, real/synthetic AudioWorklet stream playback, autoplay gesture, React mount/dispose/reconnect, or LiveKit teacher-track integration tests are defined in upstream package suite; not validated by Node test run.",
+    "No real device/Android performance or Hinglish lip-sync accuracy test.",
+    "No npm publish, external service requests, credential operations or model downloads."
+  ]
+}

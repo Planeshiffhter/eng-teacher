@@ -14,5 +14,6 @@ See [PROJECT_STRUCTURE.md](../PROJECT_STRUCTURE.md) for the whole repository.
 Earlier documents retain their historical dates and product goals. The preceding
 organization-only task ran no tests; implementation/testing has now resumed.
 Read [current implementation status](development/IMPLEMENTATION_STATUS.md) and
+the [module validation report](development/MODULE_VALIDATION.md), and
 follow the root structure map for present paths. Keep historical evidence distinct
 from each new validation run.

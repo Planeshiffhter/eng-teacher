@@ -61,6 +61,7 @@ eng-teacher/
 
   tests/browser/                    Cross-component browser scenarios
   tests/contracts/                  Shared lesson-ID/default contract fixtures
+  tests/maintenance/                Isolated Git-fixture CLI regressions
   scripts/maintenance/               Read-only inventory and security utilities
 
   docs/
