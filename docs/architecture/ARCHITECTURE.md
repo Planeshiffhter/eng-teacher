@@ -2,7 +2,7 @@
 
 ## Latest integrated slice
 
-The web lesson catalog offers mock interview and original Everyday English.
+The web lesson catalog offers Mock interview, Everyday English and Café order.
 The admission feature allowlists the choice and signs `lesson_id` beside the
 fixed deadline. The worker resolves its trusted curriculum from
 `teaching/lessons.py`; tutor questions, instructions and greeting follow that
@@ -14,13 +14,16 @@ speech metrics, then supplies the private final lesson log. It keeps no text or
 provider payloads and distinguishes missing usage from reported totals. These
 are logical requests and known units, not inferred HTTP retries or billing cost.
 See [implementation status](../development/IMPLEMENTATION_STATUS.md) for tests
-and remaining real voice, Bengali and avatar acceptance.
+and remaining provider and device acceptance.
 
 ## Current ownership after consolidation
 
-The active web app has two feature owners: `features/session` owns server-side
-admission/signing and tests; `features/lesson` owns call UI, event parsing and
-tests. Next `app/page.tsx` and `app/api/session/route.ts` delegate to those owners.
+The web app keeps server-side admission in `features/session` and call UI and
+events in `features/lesson`. `features/avatar` reads the remote teacher track
+for animation, while LiveKit renders audible playback. `features/practice`
+runs short exercises independently of room admission. Its optional,
+tab-local recorder lives in `features/pronunciation`. Next page and API
+entrypoints delegate to the feature owners.
 The existing Python package owns controls, tutor policy and provider adapters,
 with the worker coordinating SDK audio and lifecycle. Version 1 room packets
 remain the cross-runtime contract; there is no new public API or database.
@@ -32,7 +35,12 @@ still contains future modules that are not implemented. See the
 [feature inventory](../../AnalyseFuture/recovery/features/FEATURE_INVENTORY.txt) and
 [consolidation report](../../AnalyseFuture/recovery/migration/CONSOLIDATION_REPORT.txt) for actual code.
 
-**Status:** the target architecture below remains the product plan. The first audio-only slice now has `apps/web` (Next.js + LiveKit React) and `services/voice-agent` (LiveKit Python Agents, official OpenAI STT/TTS, Silero VAD, and a separate structured tutor-model adapter). Web tokens dispatch the named agent into a private room; versioned reliable data events carry correction cards. Both services enforce a fixed ten-minute lesson deadline. No database, avatar, mobile-native app or training service is implemented. Live-provider acceptance remains pending; see [development instructions](../development/DEVELOPMENT.md) and [validation](../development/VALIDATION.md).
+The live slice uses Next.js, LiveKit React, LiveKit Python Agents, OpenAI STT/TTS
+and Silero VAD. Web tokens dispatch the named agent into a private room.
+Versioned reliable data events carry correction cards. Both services enforce a
+fixed ten-minute lesson deadline. Provider acceptance remains pending. See the
+[development instructions](../development/DEVELOPMENT.md) and
+[validation](../development/VALIDATION.md) for how to run it.
 
 ## System flow
 

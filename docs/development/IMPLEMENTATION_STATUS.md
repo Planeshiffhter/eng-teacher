@@ -1,117 +1,91 @@
-# Current implementation and next integrations
+# Current implementation and validation
 
-Updated: **17 November 2026 (Asia/Calcutta)**.
+Updated **18 November 2026 (Asia/Calcutta)**. This page is the current delivery
+record. Dated validation and recovery reports retain their original scope.
 
-The owner has resumed implementation and testing after the organization-only
-phase. The existing TypeScript/Next.js and Python/LiveKit foundation remains the
-active product. Reference projects remain preserved; they were not installed as
-competing applications.
+| Capability | Status | Evidence and limits |
+| --- | --- | --- |
+| Mock interview and Everyday English | Implemented, partially verified | Signed selection, worker progression, private numeric usage totals, ten-minute deadline logic, subtitles and recaps have automated coverage. Live speech and provider reliability still need a pilot. |
+| Café order | Implemented, partially verified | The original role-play introduces a drink order, follow-up details and a new order for independent practice. Live speech and educator review are pending. |
+| Tutor correction and help | Verified with scripted text | Policy preserves ordered quantities, signs and repeated numbers, accepts equivalent numeral scripts and keeps the pending target during help. Seven authored scenarios cover 21 scripted turns. Full meaning preservation still depends on recognition and model quality. |
+| Quick exercises | Working and verified offline | Original work-update and train scenarios give grammar, vocabulary and dialogue feedback and finish with an ungraded speaking prompt. No room or credentials are required. |
+| Optional teacher avatar | Verified with synthetic audio over local LiveKit | An audio analyzer drives two original lightweight portraits from the remote teacher track. LiveKit owns playback. The audio-only default and fallback are available. This amplitude-driven animation has no phoneme-level visemes. Live speech and physical-device performance still need testing. |
+| Self-listening | Working and verified with synthetic browser audio | An explicit browser recording lets the learner replay a short example attempt. It makes no uploads and releases the microphone and clip on exit. Physical-device compatibility remains to be tested. |
+| Pronunciation assessment, Bengali–English support and learner accounts | Not implemented | Model and educator validation are required for pronunciation and language support. Persistent learner progress requires consent and account and deletion controls. |
 
-## Delivered: selectable guided conversation
+The runtime boundaries are `apps/web/features/lesson` for the live experience,
+`session` for restricted admission and token signing, `avatar` for the visual
+adapter, and `practice` and `pronunciation` for offline learning and self-listening.
+The Python worker owns the tutor policy under `teaching`, the speech/model
+boundary under `providers` and the timed room and private usage under `runtime`.
+The public session route, feedback version, legacy default lesson and
+microphone-only grants remain compatible. Deploy the web app and worker from
+the same revision so their catalogs agree.
 
-Before a lesson, **Practice focus** offers **Mock interview** and **Everyday
-English**. Everyday practice is an original, relaxed conversation about the
-learner's day, hobbies and ordinary experiences. The teacher identifies itself
-as AI, offers one useful correction, allows help/repeat/skip, and continues with
-the selected lesson's questions. It remains an audio-only guided lesson.
+## Validation
 
-| Responsibility | Implementation |
-| --- | --- |
-| Accessible picker and matching entry/live copy | `apps/web/features/lesson/components/tutor-app.tsx` |
-| Public lesson IDs and display data | `apps/web/features/lesson/catalog.ts` |
-| Allowlisted admission and signed `lesson_id` | `apps/web/features/session/server/session.ts` |
-| Original immutable curriculum | `services/voice-agent/src/eng_teacher/teaching/lessons.py` |
-| Selected question/retry/help progression | `services/voice-agent/src/eng_teacher/teaching/tutor.py` |
-| Selected worker instructions and greeting | `services/voice-agent/src/eng_teacher/runtime/agent.py` |
-| Cross-runtime lesson-ID/default contract | `tests/contracts/lesson-catalog.json` |
+The pre-change checkpoint
+[`600a361`](https://github.com/Planeshiffhter/eng-teacher/commit/600a361e9f97a76603aa260141ce3876d7b94c62)
+passed **24 web, 136 worker, 8 maintenance and 8 Chromium tests**. After the
+changes, **30 web, 168 worker, 8 maintenance and 18 desktop/mobile Chromium
+tests** passed. Production build, TypeScript, Ruff lint and formatting passed.
+Browser coverage checks lesson selection, simulated connection failure, avatar
+selection and fallback, synthetic audio analysis and recording cleanup.
 
-Only catalog IDs are accepted: `mock-interview` and `everyday-conversation`.
-An omitted selection preserves the existing interview default for older clients
-and signed metadata. Explicit null, wrong types, unknown strings and prototype
-property names are rejected. Client input cannot provide prompts, greetings,
-questions, worker names or a longer deadline. The public `/api/session`, ten-minute
-cap, named worker, microphone-only grants and version 1 feedback remain intact.
+A separate local smoke check used checksum-verified LiveKit 1.13.11. The web app
+rejected an incorrect pilot code and issued a valid token for Everyday English.
+Both a native learner and managed Chromium reached the named synthetic worker
+over real WebRTC. Chromium used LiveKit's loopback TCP media configuration
+(`rtc.force_tcp` and `rtc.enable_loopback_candidate`) with the existing browser
+policy. The test exercised audio in
+both directions, both avatar choices, muted and unmuted microphone, audio-only
+fallback, separate original and corrected text, recap, and disconnect. Only the
+teacher's audio moved the avatar. One audio element handled playback throughout.
+This run used synthesized audio and a test worker. OpenAI speech, barge-in,
+reconnect and physical-device performance still need testing.
 
-Restart/deploy the web server and voice worker from the same implementation
-revision. An older worker does not understand the new selection, and the new web
-client requires the server's canonical lesson ID in its response before joining.
+The [development guide](DEVELOPMENT.md) lists commands. The
+[live acceptance checklist](VALIDATION.md#live-acceptance-still-required)
+covers provider and physical-device testing.
 
-The worker validates lesson metadata before starting audio. Separate tutor
-instances keep separate progress, and repeating the last question uses the
-selected lesson's continuation instead of falling back to interview text.
+## Repository integrity and dependencies
 
-## Delivered: private usage totals
+Git object integrity passed for the advertised GitHub branches and tags. The
+redacted credential-pattern scan covered 63 reachable commits, 1,727 unique
+blobs and 1,474 ZIP members at the starting remote state and found no matches.
+A historical workflow at
+[`2bf1868`](https://github.com/Planeshiffhter/eng-teacher/commit/2bf1868)
+printed six tracked Python files in CI. That step was removed at
+[`da2796e`](https://github.com/Planeshiffhter/eng-teacher/commit/da2796e).
+Run visibility and account access history could not be verified here. The owner
+can check GitHub access history, installed apps, keys and Actions logs, and
+rotate credentials with plausible exposure.
 
-`runtime/usage.py` provides fixed-size, in-memory counters. The OpenAI text adapter
-reports one logical request outcome for each decision, explanation, semantic retry
-assessment or teaching-help call. Totals include:
+The npm production advisory scan returned zero results. The full development
+tree contains an unresolved high-severity
+[picomatch advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf) through
+Vitest. No fixed version was published at the time of the check. PyPI metadata
+returned no active advisories for the 85 locked Python releases. Access to
+uv's separate OSV feed was blocked.
 
-- Reported prompt/completion tokens, including responses whose output fails
-  validation.
-- Logical request, response and error counts, per operation and in total.
-- Responses with missing/invalid token usage, kept distinct from known totals.
-- Validated speech-recognition seconds and synthesized character totals.
+Both original reference ZIPs passed byte-for-byte recovery checks before the
+duplicate extracted trees were removed. The Cadence desktop runtime downloader
+extracts a network or cached artifact without an independent integrity check.
+It remained outside the active app and was not run. The active product uses
+original exercise and visual implementations. See the
+[reference decisions](../research/TWO_PRIMARY_REFERENCE_REPOS.md) and
+[recovery instructions](../../AnalyseFuture/original-projects/reference-sources/README.md).
 
-The worker writes the bounded numeric snapshot to its existing private lesson-end
-log. Counters retain no utterances, prompts, response text, provider exceptions,
-model/request identifiers, audio or credentials. Snapshot copies cannot mutate
-live counters. Callback failures do not interrupt teaching; cancellation propagates.
+## Next acceptance checks
 
-These are known reported units, not a billing estimate. SDK-internal HTTP retries,
-unreported usage, full media/hosting cost and measured lesson pricing remain
-unverified. No artificial token total or price is substituted for missing data.
-
-## Delivered: recoverable assistance failures
-
-Failed example, translation or Hindi explanation calls keep the practice target
-and signal the existing recoverable-error path. Short natural requests such as
-"Give an example" and "Please show an example" are recognized as help instead of
-being consumed as a speaking retry.
-
-## Validation and limits
-
-Current automated checks: **24 JavaScript tests, 136 service Python tests,
-8 maintenance tests and 8 desktop/mobile Chromium tests passed**, plus production
-build, TypeScript, Ruff lint and formatting. Isolated reference validation passed
-470 Cadence cases, 16 avatar cases and basic avatar browser rendering/audio smoke.
-See [MODULE_VALIDATION.md](MODULE_VALIDATION.md) for scope, fixes and limitations.
-The prior reorganized Python tree first passed its existing 71 tests;
-two import-order lint issues left by the no-test organization were corrected.
-The installed worker CLI also imports successfully through its compatibility
-entrypoint. Production HTTP startup serves the lesson picker and retains the
-expected no-token response when voice configuration is missing.
-
-Coverage includes signed JWT lesson selection, rejection of unsupported IDs,
-worker metadata/greeting selection, correction -> help -> retry -> next question,
-independent lesson state, private numeric accounting, malformed output/failures,
-and browser selection/submission/disabled controls/failure recovery. Browser audio
-is synthetic; model and room fixtures are fake. A successful real voice lesson
-has not been demonstrated by these checks.
-
-No LiveKit/OpenAI/pilot credentials were present when checked. Bengali support,
-physical Android behavior, speech quality, actual latency/cost, and app-integrated
-avatar behavior remain unverified. Isolated SDK graphics/audio smoke is not a
-LiveKit lesson integration. Hindi-English speech adapters are present in source; the new
-lesson catalog is not evidence of additional language support.
-
-## What remains, in order
-
-1. Configure actual provider access securely and validate one complete real voice
-   lesson: greeting, learner speech, correction/help/retry, interruptions, reconnect
-   and the original ten-minute deadline. Compare private usage with provider bills.
-2. Run a small Bengali-English recognition/translation/explanation trial with fluent
-   reviewers. Add a tested language preference only after its supported behavior
-   and uncertainty fallback are defined; do not advertise all languages.
-3. Trial the preserved browser avatar through a narrow lesson feature adapter.
-   Select only the remote teacher track and exactly one audio playback owner;
-   verify permissions/autoplay, barge-in, cleanup, fallback and ordinary phones.
-   Review exact model/asset notices before selecting dependencies.
-4. Add reviewed original exercises, then opt-in progress/history with proper
-   authentication, retention/export/deletion and distributed spending safeguards.
-5. Extend speech/provider failure and retry observability where the SDK exposes
-   actual events. Startup/cancellation/close-failure resource cleanup has now been
-   repaired and covered by lifecycle regressions. Do not log private provider payloads.
-
-Work continues directly on `main` with normal tested checkpoints. The original
-archives, historical reports and the organization mapping retain their recorded
-scope; new behavior belongs in the active feature folders described above.
+1. Run a complete ten-minute voice lesson on desktop and physical Android with
+   authorized LiveKit and OpenAI access. Verify greeting, speech, help, retry,
+   captions, interruption, audio-only fallback, reconnect and cleanup. Measure
+   latency and usage with actual provider audio.
+2. Have bilingual reviewers evaluate the held-out Hindi–English turns and correct
+   English controls. Review Bengali recognition, explanation and synthesis
+   separately before offering a language preference.
+3. Measure avatar behavior and performance on a physical phone. Evaluate
+   candidate audio-based pronunciation feedback with qualified teachers before
+   presenting scores. Individual accounts and privacy controls come before
+   persistent progress and personalized review.

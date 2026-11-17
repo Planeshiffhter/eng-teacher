@@ -91,6 +91,24 @@ def ownership(path: str) -> tuple[str, str, str]:
             "active server feature",
             "feature module with thin Next.js API route",
         )
+    if path.startswith("apps/web/features/avatar/"):
+        return (
+            "Remote teacher avatar and audio analysis",
+            "optional active web feature",
+            "apps/web/features/avatar",
+        )
+    if path.startswith(("apps/web/features/practice/", "apps/web/app/practice/")):
+        return (
+            "Standalone English practice and feedback",
+            "active web feature with a thin Next.js page",
+            "apps/web/features/practice",
+        )
+    if path.startswith("apps/web/features/pronunciation/"):
+        return (
+            "Local microphone recording and self-listening",
+            "optional active web feature",
+            "apps/web/features/pronunciation",
+        )
     if path.startswith("apps/web/"):
         return (
             "Web shell/build configuration",

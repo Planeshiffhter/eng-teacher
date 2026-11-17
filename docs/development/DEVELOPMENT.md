@@ -24,13 +24,12 @@ tests from `AnalyseFuture` as part of normal setup. The model adapter implements
 `assess_retry` and `help_with_correction`; any separately maintained adapter must follow that
 validated protocol. No additional adapter was found here.
 
-Current local validation is **24 JavaScript / 136 service Python / 8 maintenance /
-8 browser tests**, plus build, typecheck, Ruff lint and formatting. See the
-[cloud validation record](#managed-cloud-environment) below for the latest rerun
-and [MODULE_VALIDATION.md](MODULE_VALIDATION.md) for the earlier detailed checks.
-Refresh the inventory explicitly with
-`python3 scripts/maintenance/repository_inventory.py --output AnalyseFuture/recovery/inventory/COMPLETE_FILE_INVENTORY.txt`
-after staging intended new tracked files.
+See the [implementation status](IMPLEMENTATION_STATUS.md) for current test
+results and the [cloud validation record](#managed-cloud-environment) for the
+previous cloud rerun.
+To inspect current tracked-file ownership locally, run
+`python3 scripts/maintenance/repository_inventory.py --output /tmp/eng-teacher-inventory.txt`.
+The checked-in recovery inventories describe earlier revisions.
 
 This branch contains a real LiveKit browser/agent integration. Automated tests use explicitly fake tutor/speech inputs; live provider calls and human speech quality have not been validated without credentials. The existing product and acceptance documents remain requirements, not proof of acceptance.
 
@@ -179,4 +178,9 @@ GitHub Actions or publication of the cloud environment.
 
 Access is gated by a shared pilot code and a small process-local request budget. This is an invited-pilot implementation, not a public SaaS authentication or billing system. Before public launch add individual authentication, distributed rate limits/quotas, provider spending limits, deployment monitoring, retention review, and the acceptance evaluations. A token is not a provider credential, but treat it as a short-lived bearer credential.
 
-The application starts no audio recording or egress. The worker disables LiveKit session recording and cloud session transcript/trace uploads; no lesson text or audio is written to a database or browser storage. LiveKit and OpenAI still process audio/text to provide the call. Review their retention, region and commercial terms separately. No avatar, pronunciation assessor, fine-tuning, mobile-native client or gamification is included.
+The live lesson starts no audio recording or egress. The worker disables
+LiveKit session recording and cloud session transcript and trace uploads. LiveKit
+and OpenAI process the audio and text needed for the call. Review provider
+retention, regions and commercial terms separately. The standalone exercises
+offer an explicit, tab-local recording for self-listening. The clip is released
+when the learner closes the recorder or leaves the exercise.

@@ -1,63 +1,19 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
-> **New current continuation entrypoint — 17 November 2026:** Read the root
-> [PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md) for implemented features,
-> detailed remaining tasks and every-file/folder navigation. The maintaining
-> agent still pushes directly to `main`; the owner now authorizes other tools
-> to submit focused PRs for review. That actor-scoped exception supersedes older
-> blanket no-PR wording in this dated history and its copied resume prompts.
-> No background PR watcher or automatic merge is configured.
+## Continue from the current implementation
 
-> **Cloud setup checkpoint — 17 November 2026:** The owner reaffirmed direct
-> `main` pushes, no new branches or PRs, and pushed checkpoints before new tasks.
-> The clean restored checkout was preserved at
-> [`8ef1006`](https://github.com/Planeshiffhter/eng-teacher/commit/8ef1006dd28d201c3b36bd3df09daced789a934a)
-> before further work.
-> The active cloud rerun passed 24 web, 136 worker, 8 maintenance and 8 browser
-> tests, plus build/type/lint/format. Reusable cache, install, startup and complete
-> check commands are in [DEVELOPMENT.md](../development/DEVELOPMENT.md#managed-cloud-environment).
-> Provider credentials remain absent; real voice and media connectivity are
-> unvalidated. Historical reference results below were not rerun in this pass.
+The [implementation status](../development/IMPLEMENTATION_STATUS.md) records
+the current features, verified checks, security findings and remaining gates.
+Start with [AGENTS.md](../../AGENTS.md) and compare your checkout against
+`origin/main` before editing. The maintainer pushes reviewed checkpoints
+directly to `main`. [PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md) describes
+the contributor review workflow and the longer-term tasks.
 
-> **Latest module validation:** 24 web/API, 136 service Python, 8 maintenance and
-> 8 browser cases passed, plus build/type/lint/format and production HTTP checks.
-> Worker startup/shutdown/cancellation cleanup and JSON media admission were fixed.
-> Isolated reference checks passed 470 Cadence and 16 avatar cases, plus basic
-> WebGL/AudioWorklet smoke. Read [MODULE_VALIDATION.md](../development/MODULE_VALIDATION.md)
-> for the evidence and real voice/native/cloud prerequisites; historical counts
-> below retain their original scope.
-
-> **Latest implementation:** The owner authorized testing again after organization.
-> Original Everyday English and mock-interview lessons are selectable through
-> signed metadata; private known token/request/error and speech totals are
-> integrated. Current local checks: 18 JS / 126 Python / 8 browser tests, build,
-> typecheck, lint and formatting. See
-> [IMPLEMENTATION_STATUS.md](../development/IMPLEMENTATION_STATUS.md) for source
-> ownership and next live voice, Bengali and avatar steps. No real provider call
-> or additional language/visual quality is claimed by these offline checks.
-
-> **Current path guide:** [PROJECT_STRUCTURE.md](../../PROJECT_STRUCTURE.md). The
-> functional organization started at `05269ae`, groups Python teaching/providers/
-> runtime and documentation/recovery collections, and preserves every original
-> tracked payload. No tests were run in this organization task. Earlier run
-> results and historical PR details below retain their original scope.
-
-**Latest organization update:** 17 November 2026 (Asia/Calcutta)
-
-**Current consolidation update:** Starting from `98cfcd7`, all advertised branches
-and reachable history were reviewed. Compatible retry/help/recoverable-error work
-from `da2796e` is now selectively integrated at `8f1c988`, with a new repair for
-number/punctuation changes in retries. The old PR branch remains intact; this was
-not a PR merge or a reset to its older tree. Current local checks are **14 JS /
-71 Python / 6 browser tests**, build, typecheck, lint, formatting and real local
-HTTP startup. Web owners are now `apps/web/features/lesson` and
-`apps/web/features/session`; root `pytest.ini` isolates archived tests. Read
-[the complete recovery audit](../../AnalyseFuture/recovery/migration/REPOSITORY_AUDIT.txt),
-[feature inventory](../../AnalyseFuture/recovery/features/FEATURE_INVENTORY.txt),
-[validation](../../AnalyseFuture/recovery/validation/TEST_AND_VALIDATION_REPORT.txt) and
-[continuation guide](../../AnalyseFuture/recovery/continuation/NEXT_DEVELOPER_INSTRUCTIONS.txt).
-Historical organization-only 14/42/6 results and old PR states below are retained
-as dated evidence, not current implementation instructions.
+Use the [development guide](../development/DEVELOPMENT.md) for cloud setup and
+the [live checklist](../development/VALIDATION.md#live-acceptance-still-required)
+for the next acceptance task. The [preserved references](../../AnalyseFuture/README.md)
+have immutable recovery links. The sections below preserve the dated research,
+earlier engineering decisions and evaluation examples.
 
 **Historical research snapshot:** 16 November 2026
 **Main repository:** https://github.com/Planeshiffhter/eng-teacher  
@@ -80,7 +36,7 @@ as dated evidence, not current implementation instructions.
 5. Preserve an **honest separation** between offline passing tests, real browser/device/provider tests and unimplemented features.
 6. Change one useful vertical slice at a time, with focused regression tests, no secrets and measured status.
 7. Update this handoff's snapshot and the existing checklist/validation whenever a milestone materially changes. Add the pushed `main` commit link; do not create a new branch or PR.
-8. Prefer the next unblocked engineering task: privacy-safe model usage and error counters, then real bilingual speech acceptance. Do not spend entire work sessions inventing new plans.
+8. Prioritize the live ten-minute desktop and Android check, followed by bilingual review. Use the current status page to identify work that can proceed offline.
 
 **Owner's recurring request:** Make the project self-contained in GitHub because long ChatGPT conversations can become inaccessible. A new engineer should learn the goal, work done, evidence and next steps from the repository alone. The owner wants working commits and reproducible tests, not a perpetual planning-only effort.
 
@@ -201,7 +157,7 @@ flowchart LR
 - Raw audio and recordings are not persisted by the app by default; current session transcript/feedback is bounded and in memory. External provider retention and terms must be reviewed separately.
 - Only an actual teacher-audio track may drive a future avatar; **never attach the learner mic** to it, and never play one track through two audio outputs.
 
-## 5. Implementation status — do not interpret roadmap tasks as shipped
+## 5. Implementation status at the 16 November research snapshot
 
 | Capability | Main as of 88f600d | PR #1 | Live/production acceptance |
 | --- | --- | --- | --- |
@@ -385,7 +341,7 @@ flowchart TD
 - Before public paid launch: secure auth, distributed quotas/spending caps, reliable retry/error metrics, retention/deletion, regulatory/age/accessibility review and infrastructure monitoring.
 - No fake learning completion, invented spoken quality scores or training claims.
 
-## 12. Ordered development path and gates
+## 12. Development sequence proposed in the research snapshot
 
 ~~~mermaid
 flowchart TD
@@ -442,7 +398,7 @@ flowchart TD
 - [CODEX_MASTER_BUILD_PROMPT.md](../development/CODEX_MASTER_BUILD_PROMPT.md) described Hindi “explain that” pending-retry handling as the *next* immediate bug. Source and tests **already fixed this on main**; the newer general retry/intent improvement is in PR #1.
 - [ROADMAP.md](../product/ROADMAP.md) describes a repository “initially documentation only”. The project has an implemented Next.js UI, session server and LiveKit agent. Roadmap remains useful as a future milestone list.
 - The early handoff suggested Sarvam as a first-pass speech provider. The current code actually uses OpenAI speech plugins; Sarvam remains a candidate **until measured**.
-- Product goals describe an animated face, saved learner progression and pronunciation scoring; **none are currently live product features**.
+- The visual teacher has since gained an optional audio-driven portrait. Production learner history and calibrated pronunciation scoring remain open.
 - A passing CI run does not show that the actual educator conversation, voices, avatars, costs or phones have been successfully tested.
 - Plans and specific dated cost examples are not purchase quotes, licensing approval or implementation proof.
 - The PR #1 branch state changes only when actually merged; this file's status must not silently reclassify it as part of main.

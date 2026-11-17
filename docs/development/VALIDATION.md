@@ -1,5 +1,8 @@
 # Validation record — first voice-tutor slice
 
+See the [implementation status](IMPLEMENTATION_STATUS.md) for current test
+counts, verified features and remaining acceptance checks.
+
 ## Complete module pass — 17 November 2026
 
 Current local checks passed: **24 web/API tests, 136 voice-service tests,
@@ -89,7 +92,10 @@ The SDK-session test uses the real LiveKit scheduler and a fake audio sink, but 
 
 ## Live acceptance still required
 
-No LiveKit or OpenAI credentials were configured in the execution environment. There was no real microphone → LiveKit → recognition → tutor → voice-provider call. No teaching-quality, code-switching accuracy, interruption-latency, cost or pronunciation benchmark is claimed. No avatar is implemented or tested.
+Live acceptance requires configured LiveKit and OpenAI access and a real
+microphone-to-provider lesson. Teaching quality, code-switching accuracy,
+interruption latency, cost, pronunciation and avatar behavior with live speech
+still require measurement.
 
 After securely configuring the examples described in [DEVELOPMENT.md](DEVELOPMENT.md):
 

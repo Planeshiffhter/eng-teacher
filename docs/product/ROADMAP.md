@@ -2,12 +2,8 @@
 
 **Status:** planned milestones; dates are estimates, not delivery commitments.
 
-**17 November implementation update:** original Everyday English and existing mock
-interview practice are selectable end to end through signed session metadata.
-Private model-token/error counters and speech totals are integrated. Current local
-checks are 18 JS / 126 Python / 8 browser tests plus build/typecheck/lint/format.
-This does not complete live voice, Bengali, avatar or public-service acceptance.
-See [current delivery and next steps](../development/IMPLEMENTATION_STATUS.md).
+See the [implementation status](../development/IMPLEMENTATION_STATUS.md) for
+current delivery and test results.
 
 ## Milestone 0 — Audit the starting point
 
@@ -53,6 +49,17 @@ See [current delivery and next steps](../development/IMPLEMENTATION_STATUS.md).
 - Fine-tune a suitably licensed Qwen model with LoRA only if it beats baseline on cost/quality.
 - Evaluate hosted versus self-hosted STT/TTS/LLM under concurrent load.
 - Add native Android app and production scaling after core web behavior is stable.
+
+## Longer-term research
+
+- Over the next year, use the invited pilot to establish speech quality,
+  retention and cost per completed lesson. Add learner-approved review history
+  once deletion and account controls work.
+- Over roughly two years, compare hosted and self-hosted models against the same
+  bilingual cases. Use measured outcomes to decide which languages, expressive
+  avatars and offline mobile exercises to expand.
+- Over roughly five years, test longer lessons and concurrent classrooms against
+  measured capacity, latency and privacy constraints.
 
 ## Avoid wasting Codex credits
 

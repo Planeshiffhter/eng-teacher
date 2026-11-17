@@ -39,6 +39,10 @@ def repo(tmp_path):
         'import math\nraise RuntimeError("must never import fixture source")\n'
     )
     (root / "payload.bin").write_bytes(b"\0\xff\x00")
+    for feature in ("avatar", "practice", "pronunciation"):
+        web_feature = root / "apps/web/features" / feature
+        web_feature.mkdir(parents=True)
+        (web_feature / "feature.ts").write_text("export {};\n")
     git(root, "add", ".")
     git(root, "commit", "--quiet", "-m", "synthetic fixture")
     return root
@@ -77,6 +81,9 @@ def test_inventory_covers_staged_paths_and_does_not_import_source(repo, tmp_path
     assert "untracked.txt" not in paths
     assert "staged.txt" in paths
     assert "Teaching policy and learner controls" in text
+    assert "Remote teacher avatar and audio analysis" in text
+    assert "Standalone English practice and feedback" in text
+    assert "Local microphone recording and self-listening" in text
     assert "binary" in text
     assert original_head in text
 

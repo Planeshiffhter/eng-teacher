@@ -41,6 +41,9 @@ eng-teacher/
       session/
         server/                     Admission, pilot code, origin/budget and JWTs
         tests/                      Session policy fixtures
+      avatar/                      Optional remote-audio teacher animation
+      practice/                    Standalone scenario exercises and feedback
+      pronunciation/               Local self-listening recorder and tests
     package.json / tsconfig.json    App-local build and type configuration
     .env.example / LICENSE          App configuration example and attribution
 
@@ -60,6 +63,7 @@ eng-teacher/
     tests/
       teaching/                     Tutor, control and provider-contract fixtures
       runtime/                      SDK scheduling and lifecycle fixtures
+      evaluations/                  Scripted teaching-policy evaluations
     pyproject.toml / uv.lock         Service packaging, CLI and frozen dependencies
     .python-version / .env.example   Runtime pin and service configuration names
     LICENSE                         Service attribution

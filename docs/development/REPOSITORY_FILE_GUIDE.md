@@ -7,7 +7,7 @@ validation.
 
 | Collection | Where to look |
 | --- | --- |
-| Web application | [Next.js entrypoints](../../apps/web/app/), [lesson UI and events](../../apps/web/features/lesson/), [session admission](../../apps/web/features/session/) |
+| Web application | [Next.js entrypoints](../../apps/web/app/), [lesson UI and events](../../apps/web/features/lesson/), [session admission](../../apps/web/features/session/), [avatar](../../apps/web/features/avatar/), [exercises](../../apps/web/features/practice/), [self-listening](../../apps/web/features/pronunciation/) |
 | Voice worker | [CLI, teaching, providers and runtime](../../services/voice-agent/src/eng_teacher/), [worker tests](../../services/voice-agent/tests/) |
 | Shared checks | [browser, contracts and maintenance tests](../../tests/), [GitHub Actions](../../.github/workflows/) |
 | Maintenance tools | [static inventory and secret-pattern scan](../../scripts/maintenance/) |
