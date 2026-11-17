@@ -1,5 +1,14 @@
 # Full Ordered Implementation Checklist — Eng Teacher
 
+> **Current continuation guide — 17 November 2026:** Use the root
+> [PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md) for current status, detailed
+> task IDs and contributor PR instructions. This original P0–P9 checklist retains
+> historical acceptance requirements. Its old “immediate next task” paragraphs
+> are superseded: help/retry recovery, two guided lessons and numeric usage
+> counters are already implemented. Live quality, complete billing/latency,
+> Bengali, avatars and public-platform gates remain open. Inspect source before
+> treating an unchecked item as wholly unimplemented.
+
 > **17 November 2026 recovery update:** The retry/help/recoverable-error behavior
 > formerly isolated on `da2796e` is consolidated on `main` at `8f1c988`, with
 > additional punctuation/number regressions repaired. Current local checks are

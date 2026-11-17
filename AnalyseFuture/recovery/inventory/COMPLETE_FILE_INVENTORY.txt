@@ -1,13 +1,22 @@
 COMPLETE TRACKED FILE INVENTORY
 
-Baseline commit: 8ef1006dd28d201c3b36bd3df09daced789a934a (1,600 paths)
+Baseline commit: d25992f2f521478a9aa935d7967d11ad37bdc4bf (1,600 paths)
 Inventory source: current tracked index paths; current working payloads
-Tracked paths classified: 1600
+Tracked paths classified: 1603
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
 Binary assets are byte-inventoried, not claims of model/media semantic verification.
 Imports are static, partial evidence; dynamic references require component review.
 Generated recovery reports omit sizes/digests to avoid circular self-inventory claims.
 Feature/duplicate/security reports provide semantic review and runtime boundaries.
+
+PATH: .github/pull_request_template.md
+  Owner: Continuous integration
+  Purpose: Documentation: Task and behavior
+  Use/status: active root workflow
+  Format: UTF-8 text; bytes=1063; sha256=003a046717983255b69bb2ddb96602df6ba331ca52e553af1403822a82dd09a2
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: explicit active-project targets only
 
 PATH: .github/workflows/checks.yml
   Owner: Continuous integration
@@ -40,7 +49,7 @@ PATH: AGENTS.md
   Owner: Repository navigation and working agreement
   Purpose: Documentation: Agent Instructions — Eng Teacher
   Use/status: maintainer documentation
-  Format: UTF-8 text; bytes=5849; sha256=2b72b626f6ce743e26320868210b5143cfb6cede113120f310f465e696b564be
+  Format: UTF-8 text; bytes=6602; sha256=fef29270771ec4aea83bbbb0e48152ec0c7adf0a11626f64ea83ebc2628ef595
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: root entrypoint
@@ -13653,11 +13662,20 @@ PATH: AnalyseFuture/recovery/validation/TEST_AND_VALIDATION_REPORT.txt
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by report responsibility
 
+PATH: PROJECT_HANDOFF.md
+  Owner: Project research and specification
+  Purpose: Documentation: Eng Teacher: project status, repository guide and continuation tasks
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=54164; sha256=47ae0bda32d67e0dbe603c7f42d8f09912fcf0aec9d6d8523c28f6aae236381d
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain canonical history and evidence
+
 PATH: PROJECT_STRUCTURE.md
   Owner: Repository navigation and working agreement
   Purpose: Documentation: Project structure
   Use/status: maintainer documentation
-  Format: UTF-8 text; bytes=10932; sha256=bd3a545305552a0fa5029218a0370286a580218cd7661a772ced13454e5d588e
+  Format: UTF-8 text; bytes=11229; sha256=088a4e897ea72a767f0785a53e9d8d66705b07f36ed3a54b50fa6f28637b86ed
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: root entrypoint
@@ -13666,7 +13684,7 @@ PATH: README.md
   Owner: Repository navigation and working agreement
   Purpose: Documentation: Eng Teacher — AI English Speaking Tutor
   Use/status: maintainer documentation
-  Format: UTF-8 text; bytes=8966; sha256=4366afd629fa4876ef50ea7e0cc45f5b3df28c3318db36eed210281a9859b605
+  Format: UTF-8 text; bytes=9322; sha256=f75abbc75b77e9016407ae6b8f5a2d9284a8f7a24cb16a59a675c55fc16555e9
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: root entrypoint
@@ -13837,7 +13855,7 @@ PATH: docs/README.md
   Owner: Documentation: README.md
   Purpose: Documentation: Documentation collections
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=1568; sha256=6171cd17ddecf97e249eef34ea3ca24c50dec15a270f51c8551320735b89141e
+  Format: UTF-8 text; bytes=1867; sha256=3b6b24edc7922d7e90ee9c2c66a34aba1f7c26f7bf21d964fb5028056692cbfb
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13873,7 +13891,7 @@ PATH: docs/continuity/PROJECT_CONTINUITY_HANDOFF.md
   Owner: Documentation: continuity
   Purpose: Documentation: ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=52304; sha256=6c313a1267f7d336b47d505e318e5a0586f1527d805fedbfb1688b23c3a6c4ac
+  Format: UTF-8 text; bytes=52832; sha256=a77ea0f0287b0a34390ae2d7bef4792bca9b621d0c28e6497ce418c6b85c8d6a
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13891,7 +13909,7 @@ PATH: docs/development/CODEX_MASTER_BUILD_PROMPT.md
   Owner: Documentation: development
   Purpose: Documentation: MASTER BUILD DIRECTIVE FOR CODEX — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=12293; sha256=f839a54443a5570a33d9553433bd8f571ca4acad1f8593ee818db101cf9e9573
+  Format: UTF-8 text; bytes=12706; sha256=d36d017443dae9f5280aa8d0bfc52a1e5653c4dc8d131337c98bcbc4e81a9341
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13900,7 +13918,7 @@ PATH: docs/development/DEVELOPMENT.md
   Owner: Documentation: development
   Purpose: Documentation: Run the first voice-tutor implementation
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=12373; sha256=70c47592aff4b3172a1a6ef012d0c166a2642e67302fac1ed1e2b9a8d0358035
+  Format: UTF-8 text; bytes=12567; sha256=4c1a6784ccb1ba0b64c434e661ad65f9e2da79de245b1586176c5a0aaf2b6b97
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13909,7 +13927,7 @@ PATH: docs/development/IMPLEMENTATION_CHECKLIST.md
   Owner: Documentation: development
   Purpose: Documentation: Full Ordered Implementation Checklist — Eng Teacher
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=15861; sha256=4acb74918ffc52099c727833c19a00028e73c85cc7309ce5c153cb7287d13b0e
+  Format: UTF-8 text; bytes=16461; sha256=be99125dd8eb1de48d4ce27d9943b5aecfd6dd6175e70bc9b7fa82bd985475b9
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -13928,6 +13946,15 @@ PATH: docs/development/MODULE_VALIDATION.md
   Purpose: Documentation: Module validation and fixes
   Use/status: documentation, not implementation
   Format: UTF-8 text; bytes=11166; sha256=75b9d598cc6407af574182af433b57c0febf644fe1165acdda14dd45911c7a39
+  Dependencies: no static imports found / see containing component manifest
+  Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
+  Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
+
+PATH: docs/development/REPOSITORY_FILE_GUIDE.md
+  Owner: Documentation: development
+  Purpose: Documentation: Complete repository file and folder guide
+  Use/status: documentation, not implementation
+  Format: UTF-8 text; bytes=634146; sha256=9581eb9c8e618ae2e72870ae6f827730f874e9055e7ecb9fa68ba6fa6450f788
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
@@ -14410,7 +14437,7 @@ PATH: tests/maintenance/test_repository_tools.py
   Recommendation/location: tests/maintenance
 
 SUMMARY
-UTF-8 text: 1553
+UTF-8 text: 1556
 binary: 47
 
 ADDITIONAL ACCESSIBLE BRANCH-HEAD PATHS AT DISCOVERY

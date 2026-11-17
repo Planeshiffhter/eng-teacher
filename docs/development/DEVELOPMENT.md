@@ -126,7 +126,10 @@ See [validation status and the live checklist](VALIDATION.md) for results and un
 Use the existing checkout at `/workspace/eng-teacher`. Each cloud task is already
 isolated; do not create a Git worktree for setup. Before starting a new task,
 follow [AGENTS.md](../../AGENTS.md): review existing work, commit safe changes and
-push directly to `main`. Keep dependencies, generated builds, environment files
+push the maintainer's checkpoints directly to `main`. Owner-authorized external
+tools may instead submit focused PRs under
+[PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md#8-instructions-for-the-other-tool-and-pr-review).
+Keep dependencies, generated builds, environment files
 and credentials out of Git.
 
 Some managed home directories are read-only. Use writable caches before installs

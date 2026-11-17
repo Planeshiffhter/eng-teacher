@@ -4,6 +4,11 @@ This is the current map of the AI English-speaking companion. Files are grouped
 by the responsibility they serve, with framework entrypoints and complete upstream
 projects kept intact where their internal paths matter.
 
+For current delivery status, detailed continuation tasks and contributor PR
+instructions, read [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md). The
+[complete Markdown appendix](docs/development/REPOSITORY_FILE_GUIDE.md) explains
+every tracked file and ancestor folder, including the preserved projects.
+
 Organization date: **17 November 2026 (Asia/Calcutta)**. Starting commit:
 `05269aec2449605756a6bfa2beadc98ce714b9a3`.
 

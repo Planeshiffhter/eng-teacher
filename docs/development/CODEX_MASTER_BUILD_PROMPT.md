@@ -1,5 +1,11 @@
 # MASTER BUILD DIRECTIVE FOR CODEX — Eng Teacher
 
+> **Continuation update — 17 November 2026:** The current assignment source is
+> [PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md). Its detailed tasks and actor-scoped
+> PR workflow supersede old “implement now/next output” instructions below.
+> Retry/help state preservation, two lesson choices and numeric usage counters
+> already exist. Preserve them; do not restart Release A from this historical prompt.
+
 > **Current recovery note (17 November 2026):** The immediate retry/help/error
 > work described below is now recovered and tested on `main`; do not rebuild it
 > from this older directive. Read AGENTS.md and

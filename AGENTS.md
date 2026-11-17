@@ -17,8 +17,8 @@ This file applies to coding agents working in this repository.
   do not rebuild them from older historical TODOs.
 
 
-- Work directly on `main`; do not create feature branches or new PRs for this project unless the owner changes this instruction. Never force-push shared history.
-- Before starting a new task, check for existing work and commit and push any reviewed, safe changes to `main` first so they survive workspace loss. If the checkout is clean, report the existing checkpoint; do not create an empty commit. Never include credentials, private learner data, generated dependencies or local environment files in a checkpoint.
+- The maintaining Codex agent works directly on `main` without creating a feature branch or PR. The owner also authorizes other continuation tools/contributors to use focused branches and submit PRs for maintainer review; follow `PROJECT_HANDOFF.md` and the PR template. This scoped exception supersedes older blanket no-PR guidance for those contributors. Never force-push shared history; PR review does not itself authorize a merge.
+- Before starting a new task, check for existing work and commit and push reviewed, safe changes so they survive workspace loss. The maintaining agent pushes to `main`; PR contributors preserve their work on their task branch and submit it for review without bypassing that review by pushing to `main`. If the checkout is clean, report the existing checkpoint; do not create an empty commit. Never include credentials, private learner data, generated dependencies or local environment files in a checkpoint.
 - Commit and push useful checkpoints at least every five minutes while editing when there are changes to save. Local commits alone do not protect against workspace loss.
 - Stay within the owner's requested task. Keep prior work; move material set aside for future analysis into `AnalyseFuture/` instead of deleting it. Never commit discovered credentials or private learner data there.
 - `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/original-projects/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
@@ -27,6 +27,11 @@ This file applies to coding agents working in this repository.
 - The retry/help/recoverable-error improvements from `da2796e` are integrated, with punctuation/decimal retry regressions repaired. Do not reimplement them from an older prompt. The preceding recovery task reported 14 JS / 71 Python / 6 browser tests; live voice/language/avatar quality remains unverified.
 
 ## First read
+
+Read [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md) for the current implemented/planned
+distinction, detailed task IDs, complete file/folder appendix and collaboration
+workflow before assigning a continuation task. Older unchecked tasks can already
+be partly or fully implemented; do not repeat them without inspecting the source.
 
 **Continuity-first rule:** Read [docs/continuity/PROJECT_CONTINUITY_HANDOFF.md](docs/continuity/PROJECT_CONTINUITY_HANDOFF.md) **before** relying on any old chat prompt or rebuilding features. It includes previous project research, source map, implementation history, Mermaid diagrams, 21 study repositories, current-versus-PR distinction, live-test blockers and the next unblocked task. The handoff is a dated snapshot: inspect current GitHub main, PRs, CI and actual code before acting. Update it after significant changes without committing personal data, secrets or learner recordings.
 

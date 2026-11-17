@@ -1,5 +1,13 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
+> **New current continuation entrypoint — 17 November 2026:** Read the root
+> [PROJECT_HANDOFF.md](../../PROJECT_HANDOFF.md) for implemented features,
+> detailed remaining tasks and every-file/folder navigation. The maintaining
+> agent still pushes directly to `main`; the owner now authorizes other tools
+> to submit focused PRs for review. That actor-scoped exception supersedes older
+> blanket no-PR wording in this dated history and its copied resume prompts.
+> No background PR watcher or automatic merge is configured.
+
 > **Cloud setup checkpoint — 17 November 2026:** The owner reaffirmed direct
 > `main` pushes, no new branches or PRs, and pushed checkpoints before new tasks.
 > The clean restored checkout was preserved at

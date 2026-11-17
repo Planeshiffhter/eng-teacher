@@ -1,5 +1,11 @@
 # Eng Teacher — AI English Speaking Tutor
 
+**Continuing with another tool? Start with
+[PROJECT_HANDOFF.md](PROJECT_HANDOFF.md)** for the current goal, implemented
+features, detailed remaining tasks, file/folder responsibilities and PR review
+workflow. The [complete file guide](docs/development/REPOSITORY_FILE_GUIDE.md)
+also explains every tracked file and folder, including preserved references.
+
 Start with [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for the current functional
 collections and [docs/README.md](docs/README.md) for the documentation catalogue.
 The organization-only phase is historical. Current tested feature delivery and
