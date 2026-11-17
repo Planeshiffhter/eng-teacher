@@ -1,0 +1,136 @@
+.view {
+  display: grid;
+  justify-items: center;
+  gap: 19px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.control select {
+  min-height: 44px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.failure {
+  max-width: 28ch;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.portrait {
+  --skin: #bb7750;
+  --hair: #392724;
+  --clothing: #6e4255;
+  position: relative;
+  width: 112px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #dce9db;
+  border-radius: 50%;
+  background: radial-gradient(circle at 47% 40%, #fcfbf1, #d5e6d6);
+  box-shadow: 0 0 0 10px #f4f8ef, 0 0 0 11px #e6eee1;
+}
+
+.portrait[data-appearance="man"] {
+  --skin: #98613f;
+  --hair: #222b2a;
+  --clothing: #346562;
+}
+
+.portrait span {
+  position: absolute;
+}
+
+.hair {
+  inset: 14px 28px 18px;
+  border-radius: 48% 48% 33% 36%;
+  background: var(--hair);
+}
+
+.portrait[data-appearance="man"] .hair {
+  inset: 15px 29px 43px;
+}
+
+.shoulders {
+  inset: 84px 13px -24px;
+  border-radius: 50% 50% 0 0;
+  background: var(--clothing);
+}
+
+.neck {
+  inset: 63px 45px 17px;
+  border-radius: 0 0 45% 45%;
+  background: var(--skin);
+}
+
+.face {
+  inset: 21px 32px 28px;
+  border-radius: 46% 46% 45% 45%;
+  background: var(--skin);
+}
+
+.fringe {
+  inset: 17px 39px 66px 29px;
+  transform: rotate(-15deg);
+  border-radius: 90% 42% 85% 26%;
+  background: var(--hair);
+}
+
+.portrait[data-appearance="man"] .fringe {
+  inset: 17px 31px 72px 31px;
+  transform: rotate(-7deg);
+  border-radius: 70% 50% 25% 15%;
+}
+
+.brow,
+.eyes {
+  left: 40px;
+  color: var(--hair);
+  background: currentColor;
+  box-shadow: 24px 0 currentColor;
+}
+
+.brow {
+  top: 44px;
+  width: 7px;
+  height: 1.5px;
+  border-radius: 50%;
+}
+
+.eyes {
+  top: 50px;
+  width: 5px;
+  height: 5px;
+  margin-left: 1px;
+  border-radius: 50%;
+  animation: blink 6.2s infinite;
+}
+
+.nose {
+  inset: 54px 54px 50px 52px;
+  border-bottom: 1px solid #0004;
+  border-radius: 45%;
+}
+
+.mouth {
+  inset: 63px 47px 32px;
+  transform: scaleY(0.15);
+  border-radius: 40% 40% 50% 50%;
+  background: #46232b;
+}
+
+@keyframes blink {
+  0%, 42%, 45%, 91%, 94%, 100% { transform: scaleY(1); }
+  43.5%, 92.5% { transform: scaleY(0.08); }
+}

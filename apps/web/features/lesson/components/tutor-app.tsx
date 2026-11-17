@@ -2,9 +2,11 @@
 
 // Audio-room composition adapted from the MIT-licensed LiveKit React starter.
 // The original notice is retained in apps/web/LICENSE.
-import { LiveKitRoom, RoomAudioRenderer, StartAudio, useConnectionState, useLocalParticipant, useRoomContext, useTranscriptions, useVoiceAssistant } from '@livekit/components-react';
+import { LiveKitRoom, RoomAudioRenderer, StartAudio, useAudioPlayback, useConnectionState, useLocalParticipant, useRoomContext, useTranscriptions, useVoiceAssistant } from '@livekit/components-react';
 import { ConnectionState, RoomEvent, type RemoteParticipant } from 'livekit-client';
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { TeacherAvatar } from '@/features/avatar/teacher-avatar';
 import { LESSON_SECONDS, lessonDeadline, mergeFeedback, parseTutorEvent, secondsRemaining, type TutorFeedback } from '@/features/lesson/tutor-events';
 import { DEFAULT_LESSON_ID, LESSONS, findLesson, type LessonChoice, type LessonId } from '@/features/lesson/catalog';
 
@@ -89,7 +91,7 @@ export function TutorApp() {
   return <main className="app-shell">
     <header className="site-header">
       <a className="wordmark" href="/" aria-label="Eng Teacher home"><span className="brand-icon" aria-hidden="true">e<span>˙</span></span> eng teacher<span className="pilot-tag">PILOT</span></a>
-      <span className="header-note"><span className="tiny-dot" /> A little practice. More confidence.</span>
+      {!connection && !joining && <Link className="button button-mic" href="/practice">Quick exercises</Link>}
     </header>
     <div className="page-heading"><div><p className="eyebrow">YOUR SPEAKING SPACE</p><h1>Find your voice.</h1><p className="intro">A real conversation. One helpful correction at a time.</p></div><div className="lesson-chip"><span aria-hidden="true">◷</span> 10-minute lesson</div></div>
 
@@ -134,7 +136,8 @@ export function TutorApp() {
 function LessonRoom({ lesson, feedback, onFeedback, onFinish }: { lesson: LessonChoice; feedback: TutorFeedback[]; onFeedback: (event: TutorFeedback) => void; onFinish: (reason: string) => void }) {
   const room = useRoomContext();
   const connectionState = useConnectionState();
-  const { agent, state } = useVoiceAssistant();
+  const { agent, state, audioTrack } = useVoiceAssistant();
+  const { canPlayAudio } = useAudioPlayback(room);
   const { localParticipant, isMicrophoneEnabled } = useLocalParticipant();
   const transcriptions = useTranscriptions();
   const [remaining, setRemaining] = useState(LESSON_SECONDS);
@@ -208,13 +211,17 @@ function LessonRoom({ lesson, feedback, onFeedback, onFinish }: { lesson: Lesson
   }
 
   const stateLabel = connectionState !== ConnectionState.Connected ? 'Connecting to your lesson…' : !agent ? 'Waiting for your tutor…' : state === 'speaking' ? 'Your tutor is speaking' : state === 'thinking' ? 'Your tutor is thinking' : state === 'listening' ? 'Your turn. We’re listening.' : 'Your tutor is getting ready…';
+  const teacherAudio = connectionState === ConnectionState.Connected && canPlayAudio && agent &&
+    audioTrack?.participant === agent && !audioTrack.participant.isLocal
+    ? audioTrack.publication.audioTrack?.mediaStreamTrack ?? null
+    : null;
   const latest = feedback[feedback.length - 1];
   const visibleTranscripts = transcriptions.filter((item) => item.text.trim()).slice(-80);
 
   return <div className="lesson-grid">
     <section className="practice-card active-card" aria-label={`Live ${lesson.title.toLowerCase()} lesson`}>
       <div className="card-topline"><span className="soft-tag"><span className="tiny-dot" />{lesson.badge}</span><span className="time-remaining" aria-label={`${remaining} seconds remaining`}>{Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')} <span>remaining</span></span></div>
-      <div className="active-presence"><SoundMark active={state === 'speaking'} /><h2 role="status">{stateLabel}</h2><p>Speak naturally. English and Hindi–English are welcome.</p><span className="audio-only">Audio only · You can interrupt at any time</span></div>
+      <div className="active-presence"><TeacherAvatar track={teacherAudio} fallback={<SoundMark active={state === 'speaking'} />} /><h2 role="status">{stateLabel}</h2><p>Speak naturally. English and Hindi–English are welcome.</p><span className="audio-only">You can interrupt at any time</span></div>
       <StartAudio className="button button-primary enable-audio" label="Enable tutor audio" />
       <div className="transcript-panel" aria-label="Live subtitles"><div className="section-title"><h3>Live subtitles</h3><span>Speech recognition may make mistakes</span></div><div className="transcript-scroll" role="log" aria-live="polite" aria-relevant="additions text">{visibleTranscripts.length ? visibleTranscripts.map((item) => <p key={item.streamInfo.id} className={item.participantInfo.identity === localParticipant.identity ? 'transcript-student' : 'transcript-tutor'}><span>{item.participantInfo.identity === localParticipant.identity ? 'You' : 'Tutor'}</span>{item.text}</p>) : <p className="transcript-placeholder">Your conversation will appear here as you speak.</p>}<div ref={transcriptEnd} /></div></div>
       {serviceError && <p className="notice" role="alert">{serviceError}</p>}
