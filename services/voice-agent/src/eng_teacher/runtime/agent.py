@@ -89,31 +89,14 @@ server = AgentServer()
 @server.rtc_session(agent_name=AGENT_NAME)
 async def interview(ctx: JobContext):
     configure_private_logging()
-    settings = Settings.from_env()
-    settings.validate_credentials()
     usage = LessonUsage()
-    model = create_model(settings)
-    model.usage_callback = usage.record_model
-    session = AgentSession(
-        # SDK gates automatic microphone replies on a configured LLM. The
-        # custom llm_node below performs the validated structured model call.
-        llm=create_llm(settings),
-        stt=create_stt(settings),
-        tts=create_tts(settings),
-        vad=silero.VAD.load(min_silence_duration=1.2, force_cpu=True),
-        turn_handling={
-            "turn_detection": "vad",
-            "endpointing": {"min_delay": 0.2, "max_delay": 3.0},
-            "interruption": {"enabled": True, "mode": "vad", "min_duration": 0.4, "min_words": 0},
-            # Speculative generations must not consume correction/retry state.
-            "preemptive_generation": {"enabled": False},
-        },
-        # Avoid unsupported, automatic away/goodbye generations in this lesson.
-        user_away_timeout=None,
-    )
-    # Factories can register plugins lazily; the dev CLI assigns their loggers
-    # DEBUG on registration. Reset levels after those imports, before any speech.
-    configure_private_logging()
+    resources: list[object] = []
+    closed_resources: set[int] = set()
+
+    def keep(resource):
+        resources.append(resource)
+        return resource
+
     tasks: set[asyncio.Task] = set()
     finished = False
     deadline_ms = 0
@@ -121,7 +104,15 @@ async def interview(ctx: JobContext):
     def spawn(coroutine):
         task = asyncio.create_task(coroutine)
         tasks.add(task)
-        task.add_done_callback(tasks.discard)
+
+        def completed(done):
+            tasks.discard(done)
+            if not done.cancelled():
+                # Retrieve background transport failures without logging provider
+                # exceptions, which may contain credentials or learner text.
+                done.exception()
+
+        task.add_done_callback(completed)
         return task
 
     async def publish(topic: str, body: dict) -> None:
@@ -141,7 +132,7 @@ async def interview(ctx: JobContext):
                     "tutor.lesson",
                     {"version": 1, "state": "ended", "deadline_ms": deadline_ms, "reason": reason},
                 )
-            await session.aclose()
+            await cleanup()
             # Delete the room as a server action, so reconnecting a browser cannot
             # continue a paid lesson beyond its server deadline.
             with suppress(Exception):
@@ -155,46 +146,91 @@ async def interview(ctx: JobContext):
         await asyncio.sleep(max(0.0, (deadline_ms - time.time() * 1000) / 1000))
         await finish("time_limit")
 
-    @session.on("metrics_collected")
-    def collect_usage(event):
-        item = event.metrics
-        if isinstance(item, metrics.STTMetrics):
-            usage.record_stt(item.audio_duration)
-        elif isinstance(item, metrics.TTSMetrics):
-            usage.record_tts(item.characters_count)
-
-    @session.on("error")
-    def provider_error(event):
-        spawn(
-            publish(
-                "tutor.error",
-                {
-                    "version": 1,
-                    "message": "A speech service failed. Please try speaking again."
-                    if getattr(event.error, "recoverable", False)
-                    else "A speech service is unavailable. Please end the session and try again.",
-                    "recoverable": bool(getattr(event.error, "recoverable", False)),
-                },
-            )
-        )
-        if not getattr(event.error, "recoverable", False):
-            spawn(finish("provider_error"))
-
-    @session.on("close")
-    def session_closed(_event):
-        spawn(finish("session_closed"))
-
     async def cleanup() -> None:
         current = asyncio.current_task()
         pending = [task for task in tasks if task is not current]
         for task in pending:
             task.cancel()
         await asyncio.gather(*pending, return_exceptions=True)
-        await session.aclose()
-        await model.aclose()
+        # Close the session first, then every constructed provider. A failed
+        # constructor or close must not strand earlier clients or skip cleanup.
+        for resource in reversed(resources):
+            identity = id(resource)
+            if identity in closed_resources:
+                continue
+            closed_resources.add(identity)
+            close = getattr(resource, "aclose", None)
+            if close is not None:
+                with suppress(Exception):
+                    await close()
 
     ctx.add_shutdown_callback(cleanup)
     try:
+        settings = Settings.from_env()
+        settings.validate_credentials()
+        model = keep(create_model(settings))
+        model.usage_callback = usage.record_model
+        routed_llm = keep(create_llm(settings))
+        recognizer = keep(create_stt(settings))
+        synthesizer = keep(create_tts(settings))
+        vad = keep(silero.VAD.load(min_silence_duration=1.2, force_cpu=True))
+        session = keep(
+            AgentSession(
+                # SDK gates automatic microphone replies on a configured LLM. The
+                # custom llm_node below performs the validated structured model call.
+                llm=routed_llm,
+                stt=recognizer,
+                tts=synthesizer,
+                vad=vad,
+                turn_handling={
+                    "turn_detection": "vad",
+                    "endpointing": {"min_delay": 0.2, "max_delay": 3.0},
+                    "interruption": {
+                        "enabled": True,
+                        "mode": "vad",
+                        "min_duration": 0.4,
+                        "min_words": 0,
+                    },
+                    # Speculative generations must not consume correction/retry state.
+                    "preemptive_generation": {"enabled": False},
+                },
+                # Avoid unsupported, automatic away/goodbye generations in this lesson.
+                user_away_timeout=None,
+            )
+        )
+        # Factories can register plugins lazily; the dev CLI assigns their loggers
+        # DEBUG on registration. Reset levels after those imports, before any speech.
+        configure_private_logging()
+
+        @session.on("metrics_collected")
+        def collect_usage(event):
+            item = event.metrics
+            if isinstance(item, metrics.STTMetrics):
+                usage.record_stt(item.audio_duration)
+            elif isinstance(item, metrics.TTSMetrics):
+                usage.record_tts(item.characters_count)
+
+        @session.on("error")
+        def provider_error(event):
+            spawn(
+                publish(
+                    "tutor.error",
+                    {
+                        "version": 1,
+                        "message": "A speech service failed. Please try speaking again."
+                        if getattr(event.error, "recoverable", False)
+                        else "A speech service is unavailable. Please end the session and try again.",
+                        "recoverable": bool(getattr(event.error, "recoverable", False)),
+                    },
+                )
+            )
+            if not getattr(event.error, "recoverable", False):
+                spawn(finish("provider_error"))
+
+        @session.on("close")
+        def session_closed(_event):
+            spawn(finish("session_closed"))
+
         await ctx.connect()
         # The web server signs this in RoomConfiguration.metadata. Reusing a
         # still-valid join token cannot mint a fresh ten minutes in the worker.
@@ -229,7 +265,12 @@ async def interview(ctx: JobContext):
         )
         # say() bypasses the correction pipeline for the initial greeting.
         await session.say(lesson.greeting, allow_interruptions=True)
+    except asyncio.CancelledError:
+        configure_private_logging()
+        await finish("cancelled")
+        raise
     except Exception:
+        configure_private_logging()
         with suppress(Exception):
             await publish(
                 "tutor.error",

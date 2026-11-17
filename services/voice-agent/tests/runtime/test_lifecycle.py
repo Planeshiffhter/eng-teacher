@@ -225,3 +225,111 @@ async def test_fatal_speech_error_ends_call(worker):
     )
     for shutdown in ctx.callbacks:
         await shutdown()
+
+
+@pytest.mark.parametrize("stage", ["model", "llm", "stt", "tts", "vad", "session"])
+async def test_startup_factory_failure_closes_created_resources_and_hides_payload(
+    monkeypatch, caplog, stage
+):
+    created = []
+    private = "private-key-and-provider-payload"
+
+    def factory(name):
+        def create(*_args, **_kwargs):
+            logging.getLogger("livekit.plugins.openai").setLevel(logging.DEBUG)
+            if name == stage:
+                raise RuntimeError(private)
+            resource = SimpleNamespace(aclose=AsyncMock())
+            created.append(resource)
+            return resource
+
+        return create
+
+    for name in ("LIVEKIT_URL", "LIVEKIT_API_KEY", "LIVEKIT_API_SECRET", "OPENAI_API_KEY"):
+        monkeypatch.setenv(name, "offline-only")
+    for name in ("model", "llm", "stt", "tts"):
+        monkeypatch.setattr(module, "create_" + name, factory(name))
+    monkeypatch.setattr(module.silero.VAD, "load", factory("vad"))
+    monkeypatch.setattr(module, "AgentSession", factory("session"))
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    assert ctx.reason == "startup_error"
+    ctx.delete.assert_awaited_once()
+    for shutdown in ctx.callbacks:
+        await shutdown()
+    for resource in created:
+        resource.aclose.assert_awaited_once()
+    assert logging.getLogger("livekit.plugins.openai").level == logging.WARNING
+    assert private not in caplog.text
+    assert private not in json.dumps(ctx.room.packets)
+
+
+async def test_missing_credentials_shuts_down_without_building_resources(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    create = AsyncMock()
+    monkeypatch.setattr(module, "create_model", create)
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    assert ctx.reason == "startup_error"
+    create.assert_not_called()
+    ctx.delete.assert_awaited_once()
+
+
+async def test_session_close_failure_still_deletes_room_and_closes_model(worker):
+    model, sessions = worker
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    sessions[0].aclose = AsyncMock(side_effect=RuntimeError("private-close-failure"))
+    sessions[0].callbacks["error"](SimpleNamespace(error=SimpleNamespace(recoverable=False)))
+    await asyncio.wait_for(ctx.stopped.wait(), timeout=1)
+    assert ctx.reason == "provider_error"
+    ctx.delete.assert_awaited_once()
+    for shutdown in ctx.callbacks:
+        await shutdown()
+    model.aclose.assert_awaited_once()
+
+
+async def test_worker_startup_cancellation_releases_resources_and_propagates(worker):
+    model, sessions = worker
+    waiting = asyncio.Event()
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+
+    async def wait_for_learner():
+        waiting.set()
+        await asyncio.Future()
+
+    ctx.wait_for_participant = wait_for_learner
+    task = asyncio.create_task(module.interview(ctx))
+    await asyncio.wait_for(waiting.wait(), timeout=1)
+    task.cancel()
+    with pytest.raises(asyncio.CancelledError):
+        await task
+    assert ctx.reason == "cancelled"
+    assert sessions[0].closed
+    ctx.delete.assert_awaited_once()
+    for shutdown in ctx.callbacks:
+        await shutdown()
+    model.aclose.assert_awaited_once()
+
+
+async def test_background_packet_failure_does_not_log_private_transport_exception(worker, caplog):
+    _, sessions = worker
+    ctx = FakeContext(json.dumps({"lesson_deadline_ms": int(time.time() * 1000) + 10000}))
+    await module.interview(ctx)
+    private = "private-packet-provider-payload"
+    failed = asyncio.Event()
+
+    async def publish_failure(*_args, **_kwargs):
+        failed.set()
+        raise RuntimeError(private)
+
+    ctx.room.local_participant.publish_data = publish_failure
+    sessions[0].callbacks["error"](SimpleNamespace(error=SimpleNamespace(recoverable=True)))
+    await asyncio.wait_for(failed.wait(), timeout=1)
+    # Let the task's completion callback retrieve the exception before shutdown.
+    await asyncio.sleep(0)
+    await asyncio.sleep(0)
+    assert ctx.reason is None
+    for shutdown in ctx.callbacks:
+        await shutdown()
+    assert private not in caplog.text
