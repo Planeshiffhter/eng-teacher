@@ -3,8 +3,8 @@ from types import SimpleNamespace
 import pytest
 from pydantic import ValidationError
 
-from eng_teacher.teaching.controls import explicit_control
 from eng_teacher.providers.openai import OpenAITutorModel, Settings
+from eng_teacher.teaching.controls import explicit_control
 from eng_teacher.teaching.tutor import InterviewTutor, ModelDecision, RetryDecision, risky_change
 
 

@@ -4,11 +4,10 @@ This file applies to coding agents working in this repository.
 
 ## Current owner instructions
 
-- The current task is functional organization only: do not run tests, builds,
-  installations, application imports or startup. Use static file/path/import and
-  preservation analysis. Commit organization work with `[skip ci]` so pushing does
-  not start the existing test workflow. This task-specific constraint supersedes
-  older validation instructions for this organization task.
+- The owner has now authorized incremental implementation and testing. Run the
+  relevant tests, lint, format, build and browser checks for each feature. The
+  preceding organization-only/no-test constraint was task-specific and is over.
+  Implementation commits should run the normal CI workflow (no `[skip ci]`).
 - `PROJECT_STRUCTURE.md` is the current path/ownership guide. Documentation is
   grouped by purpose under `docs`; earlier audit reports are grouped under
   `AnalyseFuture/recovery` and retain their recorded historical paths.

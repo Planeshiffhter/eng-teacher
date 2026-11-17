@@ -8,10 +8,11 @@ from livekit import rtc
 from livekit.agents import AgentSession
 from livekit.agents.voice import io
 from livekit.plugins import openai
-from ..teaching.test_tutor import FakeModel, decision
 
 from eng_teacher.runtime.agent import InterviewAgent, lesson_deadline_ms
 from eng_teacher.teaching.tutor import InterviewTutor
+
+from ..teaching.test_tutor import FakeModel, decision
 
 
 @pytest.mark.parametrize(
