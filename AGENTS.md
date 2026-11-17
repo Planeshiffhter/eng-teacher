@@ -18,6 +18,7 @@ This file applies to coding agents working in this repository.
 
 
 - Work directly on `main`; do not create feature branches or new PRs for this project unless the owner changes this instruction. Never force-push shared history.
+- Before starting a new task, check for existing work and commit and push any reviewed, safe changes to `main` first so they survive workspace loss. If the checkout is clean, report the existing checkpoint; do not create an empty commit. Never include credentials, private learner data, generated dependencies or local environment files in a checkpoint.
 - Commit and push useful checkpoints at least every five minutes while editing when there are changes to save. Local commits alone do not protect against workspace loss.
 - Stay within the owner's requested task. Keep prior work; move material set aside for future analysis into `AnalyseFuture/` instead of deleting it. Never commit discovered credentials or private learner data there.
 - `apps/web` and `services/voice-agent` are the active application. `AnalyseFuture/original-projects/reference-sources` contains preserved upstream snapshots, not integrated features or extra setup targets. Do not execute their scripts as part of normal setup.
