@@ -126,11 +126,12 @@ async def test_server_deadline_closes_session_and_deletes_room(worker):
     model.aclose.assert_awaited_once()
 
 
-async def test_selected_everyday_lesson_reaches_worker_and_greeting(worker):
+@pytest.mark.parametrize("lesson_id", ["everyday-conversation", "cafe-order"])
+async def test_selected_lesson_reaches_worker_and_greeting(worker, lesson_id):
     from eng_teacher.teaching.lessons import get_lesson
 
     _, sessions = worker
-    lesson = get_lesson("everyday-conversation")
+    lesson = get_lesson(lesson_id)
     ctx = FakeContext(
         json.dumps(
             {

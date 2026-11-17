@@ -46,28 +46,33 @@ test('a failed voice-room connection returns control to the learner', async ({ p
   await expect(page.getByRole('button', { name: 'End lesson' })).toHaveCount(0);
 });
 
-test('everyday practice selection changes the lesson and survives connection failure', async ({ page }) => {
-  let submitted: unknown;
-  let release: () => void = () => {};
-  const pending = new Promise<void>((resolve) => { release = resolve; });
-  await page.route('**/api/session', async (route) => {
-    submitted = route.request().postDataJSON();
-    await pending;
-    await route.fulfill({ json: {
-      serverUrl: 'ws://localhost:1', participantToken: 'invalid-test-token', roomName: 'test-room', lessonId: 'everyday-conversation',
-    } });
+for (const { lessonId, heading } of [
+  { lessonId: 'everyday-conversation', heading: 'A friendly chat. A little more confidence.' },
+  { lessonId: 'cafe-order', heading: 'Order at a café in English.' },
+]) {
+  test(`${lessonId} selection changes the lesson and survives connection failure`, async ({ page }) => {
+    let submitted: unknown;
+    let release: () => void = () => {};
+    const pending = new Promise<void>((resolve) => { release = resolve; });
+    await page.route('**/api/session', async (route) => {
+      submitted = route.request().postDataJSON();
+      await pending;
+      await route.fulfill({ json: {
+        serverUrl: 'ws://localhost:1', participantToken: 'invalid-test-token', roomName: 'test-room', lessonId,
+      } });
+    });
+    await page.goto('/');
+    const picker = page.getByLabel('Practice focus');
+    await picker.selectOption(lessonId);
+    await expect(page.getByRole('heading', { name: heading })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.getByLabel('Pilot access code').fill('test-only-pilot-code');
+    await page.getByRole('button', { name: 'Start my lesson' }).click();
+    await expect(picker).toBeDisabled();
+    await expect.poll(() => submitted).toEqual({ accessCode: 'test-only-pilot-code', lessonId });
+    release();
+    await expect(page.getByRole('button', { name: 'Practice again' })).toBeVisible({ timeout: 25_000 });
+    await expect(picker).toHaveValue(lessonId);
+    await expect(picker).toBeEnabled();
   });
-  await page.goto('/');
-  const picker = page.getByLabel('Practice focus');
-  await picker.selectOption('everyday-conversation');
-  await expect(page.getByRole('heading', { name: 'A friendly chat. A little more confidence.' })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.getByLabel('Pilot access code').fill('test-only-pilot-code');
-  await page.getByRole('button', { name: 'Start my lesson' }).click();
-  await expect(picker).toBeDisabled();
-  await expect.poll(() => submitted).toEqual({ accessCode: 'test-only-pilot-code', lessonId: 'everyday-conversation' });
-  release();
-  await expect(page.getByRole('button', { name: 'Practice again' })).toBeVisible({ timeout: 25_000 });
-  await expect(picker).toHaveValue('everyday-conversation');
-  await expect(picker).toBeEnabled();
-});
+}

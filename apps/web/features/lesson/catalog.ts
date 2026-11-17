@@ -14,6 +14,13 @@ export const LESSONS = [
     description: 'Talk about your day, hobbies, and small everyday moments with a patient AI practice partner.',
     badge: 'EVERYDAY ENGLISH',
   },
+  {
+    id: 'cafe-order',
+    title: 'Café order',
+    heading: 'Order at a café in English.',
+    description: 'Ask for a drink, explain how you’d like it, and choose another option if it’s sold out.',
+    badge: 'CAFÉ ORDER',
+  },
 ] as const;
 
 export type LessonId = typeof LESSONS[number]['id'];

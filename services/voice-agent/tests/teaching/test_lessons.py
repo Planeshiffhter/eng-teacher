@@ -80,6 +80,53 @@ async def test_everyday_help_retry_and_continuation_keep_the_selected_lesson():
     assert lesson.continuation in (await tutor.turn("Repeat that")).spoken_response
 
 
+async def test_cafe_order_progresses_from_clarification_and_retry_to_a_new_order():
+    lesson = lesson_from_metadata('{"lesson_id":"cafe-order"}')
+    model = FakeModel(decision(action="clarify", uncertain=True))
+    tutor = InterviewTutor(model, lesson=lesson)
+
+    unclear = await tutor.turn("Two [unclear], please.")
+    assert unclear.action == "clarify"
+    assert tutor.current_question == lesson.questions[0]
+
+    target = "I'd like 2 teas with no sugar, please."
+    model.result = decision(
+        action="correct", corrected=target, explanation="Use the plural form after 2."
+    )
+    original = "I want 2 tea with no sugar."
+    corrected = await tutor.turn(original)
+    assert corrected.original == original
+    assert corrected.corrected == target
+    assert corrected.action == "correct"
+
+    help_turn = await tutor.turn("Can you please explain the correction?")
+    assert help_turn.action == "assist"
+    assert help_turn.explanation == "Use the plural form after 2."
+    assert tutor.pending_retry == target
+    assert tutor.current_question == lesson.questions[0]
+
+    retry = await tutor.turn(target)
+    assert retry.action == "retry"
+    assert lesson.questions[1] in retry.spoken_response
+    assert tutor.pending_retry is None
+
+    model.result = decision()
+    for response, next_question in zip(
+        (
+            "With a little milk, please.",
+            "Nothing to eat today, thank you.",
+            "To go, please.",
+            "Could I have coffee instead?",
+            "I'd like two coffees to go, one with milk and one black, please.",
+        ),
+        (*lesson.questions[2:], lesson.continuation),
+        strict=True,
+    ):
+        accepted = await tutor.turn(response)
+        assert accepted.action == "continue"
+        assert next_question in accepted.spoken_response
+
+
 async def test_instances_do_not_share_lesson_or_progress():
     interview = InterviewTutor(FakeModel())
     everyday = InterviewTutor(FakeModel(), lesson=get_lesson("everyday-conversation"))

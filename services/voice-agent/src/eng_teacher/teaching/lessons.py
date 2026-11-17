@@ -37,6 +37,14 @@ _EVERYDAY_QUESTIONS = (
     "What are you looking forward to tomorrow?",
     "What would you like to ask me about everyday English?",
 )
+_CAFE_QUESTIONS = (
+    "Welcome to the café. What would you like to drink?",
+    "How would you like your drink prepared?",
+    "Would you like anything to eat with that?",
+    "Is that for here or to go?",
+    "Imagine we're out of your first choice. What would you ask for instead?",
+    "Let's try a new order to go. Could you order two drinks and say how you'd like one prepared?",
+)
 
 # Original content written for this tutor, not copied from the reference projects.
 LESSONS = MappingProxyType(
@@ -64,6 +72,18 @@ LESSONS = MappingProxyType(
             ),
             questions=_EVERYDAY_QUESTIONS,
             continuation="Tell me a little more about that, or choose another everyday topic.",
+        ),
+        "cafe-order": LessonDefinition(
+            id="cafe-order",
+            title="Café order",
+            goal="Practice a polite café order, add details and ask for an alternative.",
+            greeting=(
+                "Hi! I'm your AI English practice partner. I'll take your order in this role-play. "
+                "You can answer in English, Hindi, or a mix. Say give me an example if you need help. "
+                + _CAFE_QUESTIONS[0]
+            ),
+            questions=_CAFE_QUESTIONS,
+            continuation="Try one more order. This time, ask how much it costs before paying.",
         ),
     }
 )

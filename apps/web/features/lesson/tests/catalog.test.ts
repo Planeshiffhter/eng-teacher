@@ -7,6 +7,7 @@ describe('public practice lesson catalog', () => {
     expect(LESSONS.map((lesson) => lesson.id)).toEqual(contract.lesson_ids);
     expect(DEFAULT_LESSON_ID).toBe(contract.default_lesson_id);
     expect(findLesson('everyday-conversation')?.title).toBe('Everyday English');
+    expect(findLesson('cafe-order')?.title).toBe('Café order');
   });
   it('does not accept user-defined prompts or prototype property names', () => {
     for (const value of [null, undefined, true, 1, {}, [], '', 'constructor', '__proto__', 'unknown']) {

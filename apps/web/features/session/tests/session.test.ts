@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { TokenVerifier } from 'livekit-server-sdk';
+import contract from '../../../../../tests/contracts/lesson-catalog.json';
 import { issueSession, readConfig, RequestBudget, SessionError, type SessionConfig } from '../server/session';
 
 const config: SessionConfig = {
@@ -38,7 +39,7 @@ describe('session token boundary (real local signing; no LiveKit service)', () =
     expect(a.roomName).not.toBe(b.roomName);
   });
   it('signs only the selected catalog lesson while retaining grants and deadline', async () => {
-    for (const lessonId of ['mock-interview', 'everyday-conversation']) {
+    for (const lessonId of contract.lesson_ids) {
       const response = await issueSession(request({ accessCode: config.accessCode, lessonId, greeting: 'injected prompt' }), config);
       const claims = await new TokenVerifier(config.apiKey, config.apiSecret).verify(response.participantToken);
       const metadata = JSON.parse(claims.roomConfig!.metadata!);
