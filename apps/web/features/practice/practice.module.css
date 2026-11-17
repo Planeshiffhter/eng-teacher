@@ -14,6 +14,40 @@
   margin: 20px 0 0;
 }
 
+.progressControls {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+}
+
+.progressControls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  width: fit-content;
+}
+
+.progressControls input {
+  accent-color: var(--teal);
+}
+
+.progressControls input:focus-visible {
+  outline-offset: 2px;
+}
+
+.progressControls p,
+.activities .progressNote {
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+
+.progressControls [role='status'] {
+  margin-top: 8px;
+  color: var(--danger);
+}
+
 .activities p,
 .session p {
   margin-top: 8px;
@@ -75,6 +109,15 @@
 .session summary {
   cursor: pointer;
   width: fit-content;
+}
+
+.review {
+  padding-inline-start: 24px;
+  line-height: 1.55;
+}
+
+.review li + li {
+  margin-top: 12px;
 }
 
 .actions {

@@ -501,6 +501,9 @@ their historical checkboxes blindly.
 
 ### T15 — Next-session review and honest progress (P6.36–38)
 
+- **Delivered locally:** Opt-in Quick exercises checkpoints, latest results,
+  completion counts and a recap of missed answers. The browser stores answer
+  correctness only. Turning saving off clears these records.
 - **Depends on:** T14 and educator-defined learning events.
 - **Work:** Reuse an audited FSRS implementation if appropriate, schedule saved
   phrases in different contexts, and show completed practice/real review history.

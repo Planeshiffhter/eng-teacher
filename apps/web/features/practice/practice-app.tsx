@@ -4,12 +4,34 @@ import Link from 'next/link';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { SelfListeningPractice } from '@/features/pronunciation/self-listening-practice';
 import { ACTIVITIES, type Activity } from './activities';
+import { clearProgress, enableProgress, PROGRESS_KEY, readProgress, saveProgress, type PracticeProgress } from './progress';
 import styles from './practice.module.css';
 
 export function PracticeApp() {
   const [activity, setActivity] = useState<Activity | null>(null);
+  const [progress, setProgress] = useState<PracticeProgress | null>(null);
+  const [storageError, setStorageError] = useState('');
   const activityList = useRef<HTMLHeadingElement>(null);
   const returning = useRef(false);
+
+  useEffect(() => {
+    function syncProgress() {
+      try {
+        setProgress(readProgress(window.localStorage));
+        setStorageError('');
+      } catch {
+        setStorageError('This browser is blocking saved progress.');
+      }
+    }
+
+    function onStorage(event: StorageEvent) {
+      if (event.key === PROGRESS_KEY || event.key === null) syncProgress();
+    }
+
+    syncProgress();
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   useEffect(() => {
     if (!activity && returning.current) {
@@ -21,6 +43,30 @@ export function PracticeApp() {
   function changeActivity() {
     returning.current = true;
     setActivity(null);
+  }
+
+  function toggleProgress(enabled: boolean) {
+    try {
+      if (enabled) {
+        setProgress(enableProgress(window.localStorage));
+      } else {
+        clearProgress(window.localStorage);
+        setProgress(null);
+      }
+      setStorageError('');
+    } catch {
+      setStorageError(enabled ? 'Progress could not be enabled in this browser.' : 'Progress could not be cleared. Try again or clear this site’s data.');
+    }
+  }
+
+  function checkpoint(activityId: string, results: boolean[], completed: boolean) {
+    if (!progress) return;
+    try {
+      setProgress(saveProgress(window.localStorage, activityId, results, completed));
+      setStorageError('');
+    } catch {
+      setStorageError('This update could not be saved. You can still finish the exercises.');
+    }
   }
 
   return (
@@ -36,21 +82,45 @@ export function PracticeApp() {
         </div>
       </div>
       <section className="practice-card" aria-labelledby="activity-heading">
+        <div className={styles.progressControls}>
+          <label>
+            <input type="checkbox" checked={progress !== null} onChange={(event) => toggleProgress(event.target.checked)} aria-describedby="progress-note" />
+            Save progress on this browser
+          </label>
+          <p id="progress-note">Save your place when you go to the next question, and keep your latest scores. Turning this off clears saved progress.</p>
+          {storageError && <p role="status">{storageError}</p>}
+        </div>
         <h2 id="activity-heading" ref={activityList} tabIndex={-1}>
           {activity ? activity.title : 'Choose a situation'}
         </h2>
         {activity ? (
-          <ExerciseSession key={activity.id} activity={activity} onExit={changeActivity} />
+          <ExerciseSession
+            key={activity.id}
+            activity={activity}
+            draft={progress?.activities[activity.id]?.draft}
+            onCheckpoint={(results, completed) => checkpoint(activity.id, results, completed)}
+            onExit={changeActivity}
+          />
         ) : (
           <ul className={styles.activities}>
-            {ACTIVITIES.map((item) => (
-              <li key={item.id}>
-                <button className="button button-mic" type="button" onClick={() => setActivity(item)}>
-                  {item.title}
-                </button>
-                <p>{item.description}</p>
-              </li>
-            ))}
+            {ACTIVITIES.map((item) => {
+              const saved = progress?.activities[item.id];
+              return (
+                <li key={item.id}>
+                  <button className="button button-mic" type="button" onClick={() => setActivity(item)}>
+                    {item.title}
+                  </button>
+                  <p>{item.description}</p>
+                  {saved?.draft && <p className={styles.progressNote}>In progress · {saved.draft.length} of {item.exercises.length} answered</p>}
+                  {saved?.latestScore != null && (
+                    <p className={styles.progressNote}>
+                      Latest result: {saved.latestScore} of {item.exercises.length} correct
+                      {' · '}{saved.attempts} {saved.attempts === 1 ? 'completion' : 'completions'}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         )}
       </section>
@@ -58,10 +128,15 @@ export function PracticeApp() {
   );
 }
 
-function ExerciseSession({ activity, onExit }: { activity: Activity; onExit: () => void }) {
-  const [step, setStep] = useState(0);
+function ExerciseSession({ activity, draft, onCheckpoint, onExit }: {
+  activity: Activity;
+  draft?: boolean[] | null;
+  onCheckpoint: (results: boolean[], completed: boolean) => void;
+  onExit: () => void;
+}) {
+  const [step, setStep] = useState(draft?.length ?? 0);
   const [selected, setSelected] = useState<number | null>(null);
-  const [results, setResults] = useState<boolean[]>([]);
+  const [results, setResults] = useState<boolean[]>(draft ?? []);
   const [listening, setListening] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const current = activity.exercises[step];
@@ -72,6 +147,7 @@ function ExerciseSession({ activity, onExit }: { activity: Activity; onExit: () 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (checked) {
+      onCheckpoint(results, step + 1 === activity.exercises.length);
       setSelected(null);
       setStep(step + 1);
     } else if (selected !== null) {
@@ -87,10 +163,24 @@ function ExerciseSession({ activity, onExit }: { activity: Activity; onExit: () 
 
   if (!current) {
     const correct = results.filter(Boolean).length;
+    const missed = activity.exercises.filter((_, index) => !results[index]);
     return (
       <div className={styles.session}>
         <h3 ref={heading} tabIndex={-1}>Try it aloud</h3>
         <p>You got {correct} of {activity.exercises.length} correct on your first try.</p>
+        {missed.length > 0 && (
+          <details>
+            <summary>Review missed answers</summary>
+            <ul className={styles.review}>
+              {missed.map((exercise) => (
+                <li key={exercise.prompt}>
+                  <strong>{exercise.prompt}</strong>
+                  <p>{exercise.options[exercise.correct]} {exercise.explanation}</p>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
         <p>{activity.speakingPrompt}</p>
         <details>
           <summary>See an example</summary>

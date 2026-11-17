@@ -8,6 +8,8 @@ explanation and speaking retry when useful.
 **Quick exercises** offers standalone grammar, vocabulary and conversation
 practice. You can open it without a pilot code or a voice service. Optional
 self-listening records a short clip locally for playback in the current tab.
+Enable **Save progress on this browser** to resume an exercise and keep its
+latest score. Turning it off clears saved exercise progress.
 
 ## Run locally
 

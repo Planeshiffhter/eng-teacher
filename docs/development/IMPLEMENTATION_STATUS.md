@@ -9,9 +9,10 @@ record. Dated validation and recovery reports retain their original scope.
 | Café order | Implemented, partially verified | The original role-play introduces a drink order, follow-up details and a new order for independent practice. Live speech and educator review are pending. |
 | Tutor correction and help | Verified with scripted text | Policy preserves ordered quantities, signs and repeated numbers, accepts equivalent numeral scripts and keeps the pending target during help. Seven authored scenarios cover 21 scripted turns. Full meaning preservation still depends on recognition and model quality. |
 | Quick exercises | Working and verified offline | Original work-update and train scenarios give grammar, vocabulary and dialogue feedback and finish with an ungraded speaking prompt. No room or credentials are required. |
+| Optional exercise progress | Verified in desktop and mobile Chromium | After opt-in, answer correctness is saved when the learner advances. They can resume, see the latest result and completion count, and review missed answers at the end. Turning saving off clears the data in this browser. |
 | Optional teacher avatar | Verified with synthetic audio over local LiveKit | An audio analyzer drives two original lightweight portraits from the remote teacher track. LiveKit owns playback. The audio-only default and fallback are available. This amplitude-driven animation has no phoneme-level visemes. Live speech and physical-device performance still need testing. |
 | Self-listening | Working and verified with synthetic browser audio | An explicit browser recording lets the learner replay a short example attempt. It makes no uploads and releases the microphone and clip on exit. Physical-device compatibility remains to be tested. |
-| Pronunciation assessment, Bengali–English support and learner accounts | Not implemented | Model and educator validation are required for pronunciation and language support. Persistent learner progress requires consent and account and deletion controls. |
+| Pronunciation assessment, Bengali–English support and learner accounts | Not implemented | Model and educator validation are required for pronunciation and language support. Synced learner progress requires consent, accounts and deletion controls. |
 
 The runtime boundaries are `apps/web/features/lesson` for the live experience,
 `session` for restricted admission and token signing, `avatar` for the visual
@@ -31,6 +32,11 @@ changes, **30 web, 168 worker, 8 maintenance and 18 desktop/mobile Chromium
 tests** passed. Production build, TypeScript, Ruff lint and formatting passed.
 Browser coverage checks lesson selection, simulated connection failure, avatar
 selection and fallback, synthetic audio analysis and recording cleanup.
+
+The exercise progress update passed **50 web, 168 worker, 8 maintenance and
+24 desktop/mobile Chromium tests**. Production build, TypeScript and Ruff checks
+passed. The new browser cases cover no storage by default, checkpoint and resume,
+missed-answer review and deletion across open tabs.
 
 A separate local smoke check used checksum-verified LiveKit 1.13.11. The web app
 rejected an incorrect pilot code and issued a valid token for Everyday English.
@@ -88,4 +94,4 @@ original exercise and visual implementations. See the
 3. Measure avatar behavior and performance on a physical phone. Evaluate
    candidate audio-based pronunciation feedback with qualified teachers before
    presenting scores. Individual accounts and privacy controls come before
-   persistent progress and personalized review.
+   cross-device progress and saved speaking history.
