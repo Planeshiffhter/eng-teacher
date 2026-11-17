@@ -10,20 +10,11 @@ from uuid import uuid4
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
 
 from .controls import explicit_control
+from .lessons import LessonDefinition, get_lesson
 
-QUESTIONS = (
-    "Tell me a little about yourself and the kind of job you want.",
-    "What did you do in your most recent role or project?",
-    "Tell me about a time you helped a customer or teammate.",
-    "What is one challenge you faced, and how did you handle it?",
-    "What is one of your strengths? Can you give an example?",
-    "Why are you interested in this role?",
-    "What would you like to ask the interviewer?",
-)
-GREETING = (
-    "Welcome! I'm your AI English practice teacher. We have ten minutes for a mock interview. "
-    "You can answer in English, Hindi, or a mix, and interrupt me at any time. " + QUESTIONS[0]
-)
+# Retain these default aliases for callers using the original interview entrypoint.
+QUESTIONS = get_lesson().questions
+GREETING = get_lesson().greeting
 CLARIFICATION = "I want to keep your meaning. Could you say that again, in Hindi or English?"
 
 
@@ -148,19 +139,24 @@ def normalized_retry(text: str) -> str:
 
 
 class InterviewTutor:
-    def __init__(self, model: TutorModel):
+    def __init__(self, model: TutorModel, *, lesson: LessonDefinition | None = None):
         self.model = model
+        self.lesson = lesson or get_lesson()
         self.question_index = 0
         self.pending_retry: str | None = None
         self.pending_explanation: str | None = None
         self.history: list[tuple[str, str]] = []
         self.last_provider_failed = False
 
+    @property
+    def current_question(self) -> str:
+        if self.question_index < len(self.lesson.questions):
+            return self.lesson.questions[self.question_index]
+        return self.lesson.continuation
+
     def _next_question(self) -> str:
         self.question_index += 1
-        if self.question_index < len(QUESTIONS):
-            return QUESTIONS[self.question_index]
-        return "Tell me more about a specific example from your experience."
+        return self.current_question
 
     async def _assist(self, original: str, command: str, language: str) -> Feedback:
         target = self.pending_retry
@@ -174,7 +170,7 @@ class InterviewTutor:
             reply = (
                 f"The corrected sentence is: {target}. Please try saying it when ready."
                 if target
-                else f"The interview question is: {QUESTIONS[min(self.question_index, len(QUESTIONS) - 1)]}"
+                else f"Our practice question is: {self.current_question}"
             )
             return Feedback(
                 original=original, action="assist", corrected=target, spoken_response=reply
@@ -316,7 +312,7 @@ class InterviewTutor:
             try:
                 decision = await self.model.decide(
                     original,
-                    QUESTIONS[min(self.question_index, len(QUESTIONS) - 1)],
+                    self.current_question,
                     self.history[-8:],
                 )
             except Exception:

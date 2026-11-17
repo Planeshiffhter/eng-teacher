@@ -18,6 +18,7 @@ class FakeSession:
         self.callbacks = {}
         self.started = None
         self.closed = False
+        self.greetings = []
 
     def on(self, name):
         def register(callback):
@@ -30,7 +31,7 @@ class FakeSession:
         self.started = kwargs
 
     async def say(self, *args, **kwargs):
-        return None
+        self.greetings.append(args[0])
 
     async def aclose(self):
         self.closed = True
@@ -115,6 +116,7 @@ async def test_server_deadline_closes_session_and_deletes_room(worker):
     assert logging.getLogger("livekit.plugins.openai").level == logging.WARNING
     assert sessions[0].started["record"] is False
     assert sessions[0].options["llm"] is not None
+    assert sessions[0].started["agent"].tutor.lesson.id == "mock-interview"
     ctx.delete.assert_awaited_once()
     assert any(
         topic == "tutor.lesson" and value["state"] == "ended" for topic, value in ctx.room.packets
@@ -122,6 +124,46 @@ async def test_server_deadline_closes_session_and_deletes_room(worker):
     for callback in ctx.callbacks:
         await callback()
     model.aclose.assert_awaited_once()
+
+
+async def test_selected_everyday_lesson_reaches_worker_and_greeting(worker):
+    from eng_teacher.teaching.lessons import get_lesson
+
+    _, sessions = worker
+    lesson = get_lesson("everyday-conversation")
+    ctx = FakeContext(
+        json.dumps(
+            {
+                "lesson_deadline_ms": int(time.time() * 1000) + 10000,
+                "lesson_id": lesson.id,
+            }
+        )
+    )
+    await module.interview(ctx)
+    assert sessions[0].started["agent"].tutor.lesson is lesson
+    assert sessions[0].greetings == [lesson.greeting]
+    for shutdown in ctx.callbacks:
+        await shutdown()
+
+
+@pytest.mark.parametrize("lesson_id", [None, "unknown", [], 123])
+async def test_invalid_signed_lesson_never_starts_audio(worker, lesson_id):
+    _, sessions = worker
+    ctx = FakeContext(
+        json.dumps(
+            {
+                "lesson_deadline_ms": int(time.time() * 1000) + 10000,
+                "lesson_id": lesson_id,
+            }
+        )
+    )
+    await module.interview(ctx)
+    assert ctx.reason == "startup_error"
+    assert sessions[0].started is None
+    assert not sessions[0].greetings
+    assert sessions[0].closed
+    for shutdown in ctx.callbacks:
+        await shutdown()
 
 
 async def test_missing_deadline_rejected_without_starting_audio(worker):

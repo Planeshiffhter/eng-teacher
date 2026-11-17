@@ -6,8 +6,9 @@ import { LiveKitRoom, RoomAudioRenderer, StartAudio, useConnectionState, useLoca
 import { ConnectionState, RoomEvent, type RemoteParticipant } from 'livekit-client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { LESSON_SECONDS, lessonDeadline, mergeFeedback, parseTutorEvent, secondsRemaining, type TutorFeedback } from '@/features/lesson/tutor-events';
+import { DEFAULT_LESSON_ID, LESSONS, findLesson, type LessonChoice, type LessonId } from '@/features/lesson/catalog';
 
-interface ConnectionDetails { serverUrl: string; participantToken: string; roomName: string }
+interface ConnectionDetails { serverUrl: string; participantToken: string; roomName: string; lessonId: LessonId }
 
 function MicIcon({ muted = false }: { muted?: boolean }) {
   return <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="13" rx="3" /><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8" />{muted && <path d="M3 3l18 18" />}</svg>;
@@ -23,11 +24,13 @@ export function TutorApp() {
   const [connection, setConnection] = useState<ConnectionDetails | null>(null);
   const [joining, setJoining] = useState(false);
   const [accessCode, setAccessCode] = useState('');
+  const [lessonId, setLessonId] = useState<LessonId>(DEFAULT_LESSON_ID);
   const [message, setMessage] = useState('');
   const [finished, setFinished] = useState(false);
   const [feedback, setFeedback] = useState<TutorFeedback[]>([]);
   const ended = useRef(false);
   const joinAbort = useRef<AbortController | null>(null);
+  const lesson = findLesson(lessonId) ?? LESSONS[0];
 
   useEffect(() => () => joinAbort.current?.abort(), []);
 
@@ -59,7 +62,7 @@ export function TutorApp() {
     try {
       const response = await fetch('/api/session', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accessCode }), signal: controller.signal,
+        body: JSON.stringify({ accessCode, lessonId: lesson.id }), signal: controller.signal,
       });
       const data: unknown = await response.json();
       if (!response.ok) {
@@ -67,7 +70,8 @@ export function TutorApp() {
         throw new Error(serverMessage);
       }
       if (!data || typeof data !== 'object' || !('serverUrl' in data) || !('participantToken' in data) || !('roomName' in data) ||
-        typeof data.serverUrl !== 'string' || typeof data.participantToken !== 'string' || typeof data.roomName !== 'string') {
+        typeof data.serverUrl !== 'string' || typeof data.participantToken !== 'string' || typeof data.roomName !== 'string' ||
+        !('lessonId' in data) || data.lessonId !== lesson.id) {
         throw new Error('The voice session returned an invalid connection. Please try again.');
       }
       setConnection(data as ConnectionDetails);
@@ -98,22 +102,28 @@ export function TutorApp() {
       onMediaDeviceFailure={() => finish('Microphone access is unavailable. Allow microphone permission, check your input device, and try again.')}
       className="live-room"
     >
-      <LessonRoom feedback={feedback} onFeedback={receiveFeedback} onFinish={finish} />
+      <LessonRoom lesson={findLesson(connection.lessonId) ?? LESSONS[0]} feedback={feedback} onFeedback={receiveFeedback} onFinish={finish} />
       <RoomAudioRenderer />
     </LiveKitRoom> : <div className="lesson-grid">
       <section className="practice-card welcome-card" aria-labelledby="lesson-title">
-        <div className="card-topline"><span className="soft-tag">MOCK INTERVIEW</span><span className="audio-label"><MicIcon /> Audio lesson</span></div>
+        <div className="card-topline"><span className="soft-tag">{lesson.badge}</span><span className="audio-label"><MicIcon /> Audio lesson</span></div>
         <div className="tutor-presence"><SoundMark /><span className="presence-caption">Your next step starts with a conversation</span></div>
-        <div className="welcome-copy"><h2 id="lesson-title">A little more interview-ready.</h2><p>Meet your AI speaking tutor. Talk about your experience, practice your answers, and build confidence for your next interview.</p></div>
+        <div className="welcome-copy"><h2 id="lesson-title">{lesson.heading}</h2><p>Meet your AI speaking tutor. {lesson.description}</p></div>
         <div className="language-note"><span aria-hidden="true">अ / A</span><div><strong>English or Hindi–English. Your choice.</strong><p>Mix languages when you need to. We’ll help you find the English.</p></div></div>
         <form onSubmit={startLesson} className="start-form">
+          <div className="lesson-picker">
+            <label htmlFor="practice-lesson">Practice focus</label>
+            <select id="practice-lesson" name="lessonId" value={lesson.id} disabled={joining} onChange={(event) => { const choice = findLesson(event.target.value); if (choice) setLessonId(choice.id); }}>
+              {LESSONS.map((choice) => <option key={choice.id} value={choice.id}>{choice.title}</option>)}
+            </select>
+          </div>
           <label htmlFor="pilot-access">Pilot access code</label>
           <div className="start-controls"><input id="pilot-access" name="pilot-access" type="password" autoComplete="off" required value={accessCode} onChange={(event) => setAccessCode(event.target.value)} placeholder="Enter your access code" maxLength={256} disabled={joining} /><button className="button button-primary" disabled={joining} type="submit"><MicIcon />{joining ? 'Connecting…' : finished ? 'Practice again' : 'Start my lesson'}<ArrowIcon /></button></div>
           <p className="permission-note">Allow microphone access when your browser asks. Headphones work best.</p>
         </form>
         {message && <p className="notice" role={finished ? 'status' : 'alert'}>{message}</p>}
       </section>
-      <aside className="side-stack"><section className="info-card"><p className="eyebrow">A SIMPLE WAY TO IMPROVE</p><h2>Speak. Refine. Try again.</h2><ol className="lesson-steps"><li><span>01</span><div><strong>Make it a conversation</strong><p>Answer one interview question at a time. Take your time.</p></div></li><li><span>02</span><div><strong>Find a clearer way to say it</strong><p>See your original words and one useful suggestion, side by side.</p></div></li><li><span>03</span><div><strong>Say it with confidence</strong><p>Try the phrase aloud, then keep the interview going.</p></div></li></ol></section><div className="small-note"><span aria-hidden="true">↳</span><p>You can interrupt your tutor. This is your conversation, too.</p></div></aside>
+      <aside className="side-stack"><section className="info-card"><p className="eyebrow">A SIMPLE WAY TO IMPROVE</p><h2>Speak. Refine. Try again.</h2><ol className="lesson-steps"><li><span>01</span><div><strong>Make it a conversation</strong><p>Choose interview practice or a relaxed everyday chat. Take your time.</p></div></li><li><span>02</span><div><strong>Find a clearer way to say it</strong><p>See your original words and one useful suggestion, side by side.</p></div></li><li><span>03</span><div><strong>Say it with confidence</strong><p>Try the phrase aloud, then keep the conversation going.</p></div></li></ol></section><div className="small-note"><span aria-hidden="true">↳</span><p>You can interrupt your tutor. This is your conversation, too.</p></div></aside>
     </div>}
 
     {!connection && finished && <section className="recap-section" aria-labelledby="recap-title"><p className="eyebrow">TODAY’S PRACTICE</p><h2 id="recap-title">Your lesson recap</h2>{corrections.length ? <div className="recap-grid">{corrections.map((item) => <FeedbackCard key={item.turn_id} feedback={item} />)}</div> : <p>No correction cards were received in this session. Live voice quality still depends on the connected services.</p>}<p className="muted small">Your recap stays in this page’s memory. Refreshing the page clears it.</p></section>}
@@ -121,7 +131,7 @@ export function TutorApp() {
   </main>;
 }
 
-function LessonRoom({ feedback, onFeedback, onFinish }: { feedback: TutorFeedback[]; onFeedback: (event: TutorFeedback) => void; onFinish: (reason: string) => void }) {
+function LessonRoom({ lesson, feedback, onFeedback, onFinish }: { lesson: LessonChoice; feedback: TutorFeedback[]; onFeedback: (event: TutorFeedback) => void; onFinish: (reason: string) => void }) {
   const room = useRoomContext();
   const connectionState = useConnectionState();
   const { agent, state } = useVoiceAssistant();
@@ -202,8 +212,8 @@ function LessonRoom({ feedback, onFeedback, onFinish }: { feedback: TutorFeedbac
   const visibleTranscripts = transcriptions.filter((item) => item.text.trim()).slice(-80);
 
   return <div className="lesson-grid">
-    <section className="practice-card active-card" aria-label="Live interview lesson">
-      <div className="card-topline"><span className="soft-tag"><span className="tiny-dot" /> LIVE INTERVIEW</span><span className="time-remaining" aria-label={`${remaining} seconds remaining`}>{Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')} <span>remaining</span></span></div>
+    <section className="practice-card active-card" aria-label={`Live ${lesson.title.toLowerCase()} lesson`}>
+      <div className="card-topline"><span className="soft-tag"><span className="tiny-dot" />{lesson.badge}</span><span className="time-remaining" aria-label={`${remaining} seconds remaining`}>{Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')} <span>remaining</span></span></div>
       <div className="active-presence"><SoundMark active={state === 'speaking'} /><h2 role="status">{stateLabel}</h2><p>Speak naturally. English and Hindi–English are welcome.</p><span className="audio-only">Audio only · You can interrupt at any time</span></div>
       <StartAudio className="button button-primary enable-audio" label="Enable tutor audio" />
       <div className="transcript-panel" aria-label="Live subtitles"><div className="section-title"><h3>Live subtitles</h3><span>Speech recognition may make mistakes</span></div><div className="transcript-scroll" role="log" aria-live="polite" aria-relevant="additions text">{visibleTranscripts.length ? visibleTranscripts.map((item) => <p key={item.streamInfo.id} className={item.participantInfo.identity === localParticipant.identity ? 'transcript-student' : 'transcript-tutor'}><span>{item.participantInfo.identity === localParticipant.identity ? 'You' : 'Tutor'}</span>{item.text}</p>) : <p className="transcript-placeholder">Your conversation will appear here as you speak.</p>}<div ref={transcriptEnd} /></div></div>

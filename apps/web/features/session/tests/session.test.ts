@@ -24,6 +24,8 @@ describe('session token boundary (real local signing; no LiveKit service)', () =
     expect(claims.roomConfig).toMatchObject({ maxParticipants: 2, agents: [{ agentName: 'eng-teacher' }] });
     expect(claims.roomConfig?.egress).toBeUndefined();
     const deadline = JSON.parse(claims.roomConfig!.metadata!).lesson_deadline_ms;
+    expect(JSON.parse(claims.roomConfig!.metadata!).lesson_id).toBe('mock-interview');
+    expect(response.lessonId).toBe('mock-interview');
     expect(deadline).toBeGreaterThan(Date.now() + 590_000);
     expect(deadline).toBeLessThanOrEqual(Date.now() + 600_000);
     expect(claims.sub).toMatch(/^learner-/);
@@ -34,6 +36,23 @@ describe('session token boundary (real local signing; no LiveKit service)', () =
     const a = await issueSession(request(), config);
     const b = await issueSession(request(), config);
     expect(a.roomName).not.toBe(b.roomName);
+  });
+  it('signs only the selected catalog lesson while retaining grants and deadline', async () => {
+    for (const lessonId of ['mock-interview', 'everyday-conversation']) {
+      const response = await issueSession(request({ accessCode: config.accessCode, lessonId, greeting: 'injected prompt' }), config);
+      const claims = await new TokenVerifier(config.apiKey, config.apiSecret).verify(response.participantToken);
+      const metadata = JSON.parse(claims.roomConfig!.metadata!);
+      expect(response.lessonId).toBe(lessonId);
+      expect(metadata).toEqual({ lesson_id: lessonId, lesson_deadline_ms: expect.any(Number) });
+      expect(metadata.lesson_deadline_ms).toBeGreaterThan(Date.now() + 590_000);
+      expect(claims.video).toMatchObject({ canPublishSources: ['microphone'], canPublishData: false });
+      expect(claims.roomConfig!.agents[0].agentName).toBe('eng-teacher');
+    }
+  });
+  it('rejects explicit invalid lesson selections rather than falling back', async () => {
+    for (const lessonId of [null, false, 42, [], {}, '', 'unknown', 'constructor', '__proto__']) {
+      await expect(issueSession(request({ accessCode: config.accessCode, lessonId }), config)).rejects.toMatchObject({ status: 400 });
+    }
   });
   it('rejects incorrect access codes and cross-origin requests', async () => {
     await expect(issueSession(request({ accessCode: 'wrong' }), config)).rejects.toMatchObject({ status: 401 });

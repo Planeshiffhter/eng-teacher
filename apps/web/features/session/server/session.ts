@@ -1,5 +1,6 @@
 import { createHash, randomUUID, timingSafeEqual } from 'node:crypto';
 import { AccessToken, RoomAgentDispatch, RoomConfiguration, TrackSource } from 'livekit-server-sdk';
+import { DEFAULT_LESSON_ID, findLesson } from '../../lesson/catalog';
 
 export type SessionConfig = {
   serverUrl: string;
@@ -89,6 +90,8 @@ export async function issueSession(request: Request, config: SessionConfig) {
     throw new SessionError(400, 'Enter your pilot access code.');
   }
   if (!secureEqual(body.accessCode, config.accessCode)) throw new SessionError(401, 'The pilot access code is incorrect.');
+  const lesson = findLesson('lessonId' in body ? body.lessonId : DEFAULT_LESSON_ID);
+  if (!lesson) throw new SessionError(400, 'Choose an available practice lesson.');
 
   // Neither room names, identities nor dispatch can be chosen by a caller.
   const roomName = `interview-${randomUUID()}`;
@@ -108,11 +111,11 @@ export async function issueSession(request: Request, config: SessionConfig) {
   // The server admits only this learner and the named agent. No room recording is started.
   token.roomConfig = new RoomConfiguration({
     name: roomName,
-    metadata: JSON.stringify({ lesson_deadline_ms: Date.now() + 600_000 }),
+    metadata: JSON.stringify({ lesson_deadline_ms: Date.now() + 600_000, lesson_id: lesson.id }),
     maxParticipants: 2,
     emptyTimeout: 60,
     departureTimeout: 20,
     agents: [new RoomAgentDispatch({ agentName: 'eng-teacher' })],
   });
-  return { serverUrl: config.serverUrl, roomName, participantToken: await token.toJwt() };
+  return { serverUrl: config.serverUrl, roomName, participantToken: await token.toJwt(), lessonId: lesson.id };
 }

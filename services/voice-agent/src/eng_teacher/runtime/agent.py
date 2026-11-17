@@ -26,7 +26,9 @@ from livekit.agents import (
 from livekit.plugins import silero
 
 from ..providers.openai import Settings, create_llm, create_model, create_stt, create_tts
-from ..teaching.tutor import GREETING, InterviewTutor
+from ..teaching.lessons import lesson_from_metadata
+from ..teaching.tutor import InterviewTutor
+from .usage import LessonUsage
 
 logger = logging.getLogger("eng_teacher")
 LESSON_SECONDS = 600
@@ -50,7 +52,7 @@ class InterviewAgent(Agent):
     def __init__(self, tutor: InterviewTutor, publish: Publish):
         # The SDK's llm_node extension point allows a validated, replaceable text
         # adapter while retaining official STT, turn-taking, TTS and WebRTC.
-        super().__init__(instructions="Conduct the ten-minute Hindi-English interview.")
+        super().__init__(instructions=f"Guide a ten-minute speaking practice. {tutor.lesson.goal}")
         self.tutor = tutor
         self.publish = publish
 
@@ -89,7 +91,9 @@ async def interview(ctx: JobContext):
     configure_private_logging()
     settings = Settings.from_env()
     settings.validate_credentials()
+    usage = LessonUsage()
     model = create_model(settings)
+    model.usage_callback = usage.record_model
     session = AgentSession(
         # SDK gates automatic microphone replies on a configured LLM. The
         # custom llm_node below performs the validated structured model call.
@@ -113,7 +117,6 @@ async def interview(ctx: JobContext):
     tasks: set[asyncio.Task] = set()
     finished = False
     deadline_ms = 0
-    usage = {"stt_seconds": 0.0, "tts_characters": 0}
 
     def spawn(coroutine):
         task = asyncio.create_task(coroutine)
@@ -145,7 +148,7 @@ async def interview(ctx: JobContext):
                 await ctx.api.room.delete_room(api.DeleteRoomRequest(room=ctx.room.name))
         finally:
             # Only aggregate units; no text, raw audio, keys or provider payloads.
-            logger.info("lesson_finished reason=%s usage=%s", reason, json.dumps(usage))
+            logger.info("lesson_finished reason=%s usage=%s", reason, json.dumps(usage.snapshot()))
             ctx.shutdown(reason)
 
     async def deadline() -> None:
@@ -156,9 +159,9 @@ async def interview(ctx: JobContext):
     def collect_usage(event):
         item = event.metrics
         if isinstance(item, metrics.STTMetrics):
-            usage["stt_seconds"] += item.audio_duration
+            usage.record_stt(item.audio_duration)
         elif isinstance(item, metrics.TTSMetrics):
-            usage["tts_characters"] += item.characters_count
+            usage.record_tts(item.characters_count)
 
     @session.on("error")
     def provider_error(event):
@@ -196,6 +199,7 @@ async def interview(ctx: JobContext):
         # The web server signs this in RoomConfiguration.metadata. Reusing a
         # still-valid join token cannot mint a fresh ten minutes in the worker.
         deadline_ms = lesson_deadline_ms(ctx.room.metadata)
+        lesson = lesson_from_metadata(ctx.room.metadata)
         spawn(deadline())
         remaining = max(0.0, (deadline_ms - time.time() * 1000) / 1000)
         learner = await asyncio.wait_for(ctx.wait_for_participant(), timeout=min(30, remaining))
@@ -206,7 +210,7 @@ async def interview(ctx: JobContext):
                 spawn(finish("learner_disconnected"))
 
         await session.start(
-            agent=InterviewAgent(InterviewTutor(model), publish),
+            agent=InterviewAgent(InterviewTutor(model, lesson=lesson), publish),
             room=ctx.room,
             room_options=room_io.RoomOptions(
                 participant_identity=learner.identity,
@@ -224,7 +228,7 @@ async def interview(ctx: JobContext):
             "tutor.lesson", {"version": 1, "state": "started", "deadline_ms": deadline_ms}
         )
         # say() bypasses the correction pipeline for the initial greeting.
-        await session.say(GREETING, allow_interruptions=True)
+        await session.say(lesson.greeting, allow_interruptions=True)
     except Exception:
         with suppress(Exception):
             await publish(
@@ -242,6 +246,7 @@ def configure_private_logging() -> None:
     # CLI dev otherwise enables debug logs, which can include recognized text.
     logging.getLogger("livekit.agents").setLevel(logging.WARNING)
     logging.getLogger("livekit.plugins").setLevel(logging.WARNING)
+    logging.getLogger("livekit.plugins.openai").setLevel(logging.WARNING)
     for plugin in Plugin.registered_plugins:
         if plugin.logger is not None:
             plugin.logger.setLevel(logging.WARNING)
