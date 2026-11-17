@@ -132,6 +132,24 @@ async def test_failed_provider_does_not_leak_error_or_mutate_retry_state():
     assert not tutor.pending_retry
 
 
+@pytest.mark.parametrize("command", ["Give an example", "Translate that into Hindi"])
+async def test_failed_teaching_help_reports_recoverable_failure_without_advancing(command):
+    class FailingHelp(FakeModel):
+        async def help_with_correction(self, corrected, explanation, kind):
+            raise RuntimeError("private-provider-payload")
+
+    tutor = InterviewTutor(
+        FailingHelp(decision(action="correct", corrected="I worked.", explanation="Past tense."))
+    )
+    await tutor.turn("I work yesterday")
+    feedback = await tutor.turn(command)
+    assert tutor.last_provider_failed
+    assert tutor.pending_retry == "I worked."
+    assert tutor.question_index == 0
+    assert feedback.action == "assist"
+    assert "private-provider-payload" not in feedback.model_dump_json()
+
+
 async def test_nonidentical_retry_continues_without_claiming_pronunciation_grade():
     tutor = InterviewTutor(
         FakeModel(
@@ -281,6 +299,12 @@ async def test_explanation_provider_failure_does_not_consume_retry():
     assert tutor.pending_retry == "I worked."
     assert tutor.question_index == 0
     assert "secret" not in result.model_dump_json()
+    assert tutor.last_provider_failed
+
+
+@pytest.mark.parametrize("command", ["Give an example", "Please show an example"])
+def test_example_controls_accept_short_natural_requests(command):
+    assert explicit_control(command) == ("example", "en")
 
 
 async def test_help_followups_never_advance_or_consume_retry():

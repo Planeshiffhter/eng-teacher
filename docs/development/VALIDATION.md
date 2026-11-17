@@ -1,5 +1,20 @@
 # Validation record — first voice-tutor slice
 
+## Guided practice and private usage — 17 November 2026
+
+Implementation/testing resumed from organized `main` at `9c94c84`. The new
+Everyday English lesson, signed lesson selection and private usage accounting
+passed **18 JavaScript tests, 126 Python tests and 8 Chromium browser tests**, plus
+production build, TypeScript, Ruff lint and formatting. New browser coverage checks
+the chosen mode, signed-request selection, joining controls and failure recovery.
+Existing deadline, meaning-preservation and authentication checks remain.
+
+Fixtures use fake models/rooms and synthetic audio. Missing service credentials
+prevent a real provider lesson; no new Bengali, device, avatar, speech-quality or
+billing claim is made. See [implementation status](IMPLEMENTATION_STATUS.md) for
+exact ownership, metric limits and remaining integrations. Earlier sections below
+retain their own recorded validation scope.
+
 ## Consolidation validation — 17 November 2026
 
 Starting at `98cfcd7`, reviewed retry/help/recoverable-error work from `da2796e`

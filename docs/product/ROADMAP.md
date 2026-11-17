@@ -2,6 +2,13 @@
 
 **Status:** planned milestones; dates are estimates, not delivery commitments.
 
+**17 November implementation update:** original Everyday English and existing mock
+interview practice are selectable end to end through signed session metadata.
+Private model-token/error counters and speech totals are integrated. Current local
+checks are 18 JS / 126 Python / 8 browser tests plus build/typecheck/lint/format.
+This does not complete live voice, Bengali, avatar or public-service acceptance.
+See [current delivery and next steps](../development/IMPLEMENTATION_STATUS.md).
+
 ## Milestone 0 — Audit the starting point
 
 - Inspect repository status (initially documentation only) and upstream LiveKit/Avatar components.

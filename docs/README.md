@@ -11,6 +11,8 @@ See [PROJECT_STRUCTURE.md](../PROJECT_STRUCTURE.md) for the whole repository.
 | [continuity](continuity/) | [Project history and handoff](continuity/PROJECT_CONTINUITY_HANDOFF.md) |
 | [legal](legal/) | [Third-party notices](legal/THIRD_PARTY_NOTICES.md), [dependency review](legal/DEPENDENCY_AUDIT.md) |
 
-Earlier documents retain their historical dates and product goals. The current
-organization task ran no tests. Follow the root structure map for present paths
-and distinguish archived validation evidence from a new runtime check.
+Earlier documents retain their historical dates and product goals. The preceding
+organization-only task ran no tests; implementation/testing has now resumed.
+Read [current implementation status](development/IMPLEMENTATION_STATUS.md) and
+follow the root structure map for present paths. Keep historical evidence distinct
+from each new validation run.

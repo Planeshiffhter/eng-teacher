@@ -1,5 +1,14 @@
 # ENG TEACHER — PROJECT CONTINUITY, RESEARCH AND CHAT HANDOFF
 
+> **Latest implementation:** The owner authorized testing again after organization.
+> Original Everyday English and mock-interview lessons are selectable through
+> signed metadata; private known token/request/error and speech totals are
+> integrated. Current local checks: 18 JS / 126 Python / 8 browser tests, build,
+> typecheck, lint and formatting. See
+> [IMPLEMENTATION_STATUS.md](../development/IMPLEMENTATION_STATUS.md) for source
+> ownership and next live voice, Bengali and avatar steps. No real provider call
+> or additional language/visual quality is claimed by these offline checks.
+
 > **Current path guide:** [PROJECT_STRUCTURE.md](../../PROJECT_STRUCTURE.md). The
 > functional organization started at `05269ae`, groups Python teaching/providers/
 > runtime and documentation/recovery collections, and preserves every original

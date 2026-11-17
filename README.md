@@ -2,11 +2,21 @@
 
 Start with [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for the current functional
 collections and [docs/README.md](docs/README.md) for the documentation catalogue.
-This organization task runs no tests; earlier validation figures are historical.
+The organization-only phase is historical. Current tested feature delivery and
+remaining integrations are recorded in
+[IMPLEMENTATION_STATUS.md](docs/development/IMPLEMENTATION_STATUS.md).
 
 > **Status: First voice-tutor implementation (13 November 2026), awaiting live-provider validation.** This repository now includes a mobile-responsive Next.js client and a LiveKit Python voice agent. Automated checks use fake inputs where noted; a real microphone-to-provider call, Hindi–English quality, and avatar behavior have not been validated. The planning documents remain the product goals.
 
 ## Project idea and repository map
+
+**Implemented next:** choose **Everyday English** for a relaxed guided chat or
+**Mock interview** for work-related practice. The selected lesson controls the
+worker's greeting and questions. Private numeric usage totals are now integrated.
+Current local checks: **18 JavaScript / 126 Python / 8 browser tests**, build,
+typecheck, lint and formatting passed. Real provider calls, Bengali quality and
+avatar animation still need validation; see the
+[current implementation status](docs/development/IMPLEMENTATION_STATUS.md).
 
 Read [docs/product/PROJECT_IDEA.txt](docs/product/PROJECT_IDEA.txt) for the detailed vision: a friendly male or
 female on-screen AI English tutor, gentle corrections and alternatives, Bengali

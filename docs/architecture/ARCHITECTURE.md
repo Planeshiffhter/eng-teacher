@@ -1,5 +1,21 @@
 # Proposed Technical Architecture
 
+## Latest integrated slice
+
+The web lesson catalog offers mock interview and original Everyday English.
+The admission feature allowlists the choice and signs `lesson_id` beside the
+fixed deadline. The worker resolves its trusted curriculum from
+`teaching/lessons.py`; tutor questions, instructions and greeting follow that
+selection. Older omitted IDs retain the interview default. No client-provided
+prompt or curriculum is accepted.
+
+`runtime/usage.py` receives bounded numeric events from the text adapter and SDK
+speech metrics, then supplies the private final lesson log. It keeps no text or
+provider payloads and distinguishes missing usage from reported totals. These
+are logical requests and known units, not inferred HTTP retries or billing cost.
+See [implementation status](../development/IMPLEMENTATION_STATUS.md) for tests
+and remaining real voice, Bengali and avatar acceptance.
+
 ## Current ownership after consolidation
 
 The active web app has two feature owners: `features/session` owns server-side

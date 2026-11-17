@@ -7,6 +7,11 @@ projects kept intact where their internal paths matter.
 Organization date: **17 November 2026 (Asia/Calcutta)**. Starting commit:
 `05269aec2449605756a6bfa2beadc98ce714b9a3`.
 
+**Implementation has resumed with testing.** The organization-only policy below
+records that completed phase. See
+[IMPLEMENTATION_STATUS.md](docs/development/IMPLEMENTATION_STATUS.md) for current
+lesson selection, private usage accounting and the latest executed checks.
+
 ## Main collections
 
 ```text
@@ -24,6 +29,7 @@ eng-teacher/
     app/                            Next.js page/layout/styles/API entrypoints
     features/
       lesson/
+        catalog.ts                  Public lesson choices and safe lookup
         components/                 Call UI, microphone/audio, captions and recap
         tutor-events.ts             Untrusted event contract and bounded state
         tests/                      Event and lesson helper fixtures
@@ -38,12 +44,14 @@ eng-teacher/
       __init__.py                   Package identity
       agent.py                      Stable CLI compatibility entrypoint only
       teaching/
+        lessons.py                  Original immutable guided lesson curriculum
         tutor.py                    Interview policy, correction/retry and guards
         controls.py                 Learner help/repeat/example/skip recognition
       providers/
         openai.py                   Settings and current speech/text adapters
       runtime/
         agent.py                    SDK audio pipeline, privacy and room lifecycle
+        usage.py                    Bounded private numeric usage totals
     tests/
       teaching/                     Tutor, control and provider-contract fixtures
       runtime/                      SDK scheduling and lifecycle fixtures
@@ -52,6 +60,7 @@ eng-teacher/
     LICENSE                         Service attribution
 
   tests/browser/                    Cross-component browser scenarios
+  tests/contracts/                  Shared lesson-ID/default contract fixtures
   scripts/maintenance/               Read-only inventory and security utilities
 
   docs/
@@ -99,7 +108,7 @@ All **1,567 starting tracked files** were read and given an explicit destination
 or a reason to stay. **1,525 original payloads moved**; **42 initial paths stayed**
 where their existing functional or framework role was already correct. New index,
 package-boundary and navigation files supplement the organization. The final tracked
-index contains **1,580 files**, including those new navigation, package and
+organization index contained **1,580 files**, including those new navigation, package and
 preservation records.
 
 The complete old/new record is
@@ -156,7 +165,7 @@ They are classified as generated/local state and preserved at tool-required path
 they are not recommitted, flattened into source folders or represented as original
 project code. No untracked non-ignored user files were present at discovery.
 
-## Verification policy for this task
+## Historical organization verification policy
 
 **No tests, builds, installations, application imports or startup were run.**
 The owner explicitly requested organization only. Earlier test results retained

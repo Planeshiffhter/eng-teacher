@@ -25,7 +25,7 @@ def explicit_control(text: str) -> tuple[str, str] | None:
         ),
         (
             "example",
-            r"(?:give me (?:an?|one|another) example|show me (?:an?|one|another) example|(?:another|one) example|example please|(?:can|could) you (?:give|show) me (?:an?|one) example|(?:ek|एक) (?:example|उदाहरण)(?: (?:do|दो))?)",
+            r"(?:give(?: me)? (?:an?|one|another) example|show(?: me)? (?:an?|one|another) example|(?:another|one) example|example please|(?:can|could) you (?:give|show) me (?:an?|one) example|(?:ek|एक) (?:example|उदाहरण)(?: (?:do|दो))?)",
         ),
         (
             "translate",

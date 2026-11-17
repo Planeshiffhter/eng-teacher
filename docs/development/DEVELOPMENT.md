@@ -1,7 +1,9 @@
 # Run the first voice-tutor implementation
 
-> This is setup guidance for a later authorized execution task. During the current
-> organization, no installs, tests, builds, app imports or startup were run. See
+> Implementation and testing have resumed; see
+> [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for current results.
+> During the preceding organization-only phase, no installs, tests, builds,
+> app imports or startup were run. See
 > [PROJECT_STRUCTURE.md](../../PROJECT_STRUCTURE.md) for current module locations.
 > The `eng-teacher-agent` console command still enters `eng_teacher.agent:main`;
 > that compatibility module delegates to `eng_teacher.runtime.agent`.

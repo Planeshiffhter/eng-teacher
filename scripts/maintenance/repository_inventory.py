@@ -95,6 +95,12 @@ def ownership(path: str) -> tuple[str, str, str]:
             "active Python service",
             "services/voice-agent",
         )
+    if path.startswith("tests/contracts/"):
+        return (
+            "Cross-runtime lesson contract",
+            "active verification fixture, not runtime curriculum",
+            "tests/contracts",
+        )
     if path.startswith("tests/"):
         return "Cross-component browser smoke", "active scoped tests", "tests/browser"
     if path.startswith("scripts/"):

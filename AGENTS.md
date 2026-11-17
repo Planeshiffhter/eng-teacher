@@ -11,6 +11,10 @@ This file applies to coding agents working in this repository.
 - `PROJECT_STRUCTURE.md` is the current path/ownership guide. Documentation is
   grouped by purpose under `docs`; earlier audit reports are grouped under
   `AnalyseFuture/recovery` and retain their recorded historical paths.
+- Read `docs/development/IMPLEMENTATION_STATUS.md` for current delivered features,
+  local validation and remaining integration work. Guided Everyday English and
+  private usage counters now live in the active catalog/runtime feature modules;
+  do not rebuild them from older historical TODOs.
 
 
 - Work directly on `main`; do not create feature branches or new PRs for this project unless the owner changes this instruction. Never force-push shared history.

@@ -198,6 +198,7 @@ class InterviewTutor:
                 if not isinstance(explanation, str) or not explanation.strip():
                     raise ValueError("Empty teaching assistance")
             except Exception:
+                self.last_provider_failed = True
                 explanation = (
                     "I cannot translate that right now. The English sentence is: " + target
                     if command == "translate"
@@ -224,6 +225,7 @@ class InterviewTutor:
                     raise ValueError("Empty explanation")
             except Exception:
                 # A failed explanation must not advance the question or end the paid call.
+                self.last_provider_failed = True
                 explanation = "माफ़ कीजिए, हिंदी में विस्तार से समझाने में समस्या हुई। सही वाक्य है: " + target
         return Feedback(
             original=original,
