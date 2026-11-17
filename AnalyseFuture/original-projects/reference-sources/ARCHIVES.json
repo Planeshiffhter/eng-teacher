@@ -1,5 +1,7 @@
 {
-  "purpose": "Preserved ZIP snapshots; not integrated into the running Eng Teacher application.",
+  "purpose": "Original ZIPs and recovery metadata for the extracted reference snapshots.",
+  "expanded_source_baseline": "600a361e9f97a76603aa260141ce3876d7b94c62",
+  "expanded_source_parent": "AnalyseFuture/original-projects/reference-sources",
   "archives": [
     {
       "archive": "Cadence-main.zip",

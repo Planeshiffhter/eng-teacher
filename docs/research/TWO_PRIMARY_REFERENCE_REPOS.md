@@ -30,10 +30,27 @@ Inspected: **16 November 2026**. Scope: source, maintenance, declared licenses a
 
 The [21-repo inventory](OPEN_SOURCE_REPOSITORIES.txt) includes two official LiveKit starters (already integrated), and 17 other candidates for narrower or later needs: parallel voice transports, TTS/STT alternatives, standalone tutor apps, scoring alternatives, FSRS, QA, authentication, fine-tuning, inference and native mobile. Of the additional candidates, Cadence gives the clearest structured-teaching reference, while Talking Avatar addresses the missing visual tutor. Neither requires replacing the voice transport. License restrictions of other references (e.g. ThirtyTutors noncommercial, FreeSurf GPL with extra terms) reinforce studying concepts instead of bulk code imports.
 
-## Prioritized next actions
+## Adoption decisions
 
-1. Keep the stateful teacher: reviewed help/retry/recoverable-error changes are consolidated on main at `8f1c988`, with additional punctuation regressions. Do not repeat this completed recovery.
-2. Add privacy-safe model-token and failure counters, then validate real Hindi/English speech and interruption with service credentials.
-3. Implement one ORIGINAL structured learning exercise using Cadence-style metadata, with educator review.
-4. On physical Android and desktop, trial a single-owner teacher-audio avatar adapter and audio-only fallback before committing avatar dependencies.
-5. Later: teacher-calibrated audio pronunciation scoring, learner-controlled retention, accounts and self-hosted models only when measurements justify them.
+Use the [core Cadence audit](../../AnalyseFuture/recovery/features/CADENCE_WEB_SEMANTIC_AUDIT.json)
+and [client and avatar audit](../../AnalyseFuture/recovery/features/CLIENTS_AND_AVATAR_SEMANTIC_AUDIT.json)
+for component locations, responsibilities, dependencies, test scope and risks.
+The [recorded reference checks](../development/MODULE_VALIDATION.md#isolated-reference-validation)
+covered 470 isolated Cadence pure-module tests and 16 isolated Talking Avatar
+DSP/model tests. Those results describe the preserved revisions.
+
+| Reference capability | Decision and Eng Teacher destination |
+| --- | --- |
+| Cadence scenario focus, ordered turns and short feedback loops | **ADAPT.** Original work-update and train exercises live in [web practice](../../apps/web/features/practice/). Café order uses the existing [signed lesson catalog](../../services/voice-agent/src/eng_teacher/teaching/lessons.py) and its worker-owned prompts. No Cadence curriculum or code is imported. |
+| Cadence guided retries, captions and summaries | **MERGE.** The active [teaching policy](../../services/voice-agent/src/eng_teacher/teaching/) and [lesson UI](../../apps/web/features/lesson/) already own these behaviors. Keep one event contract and tutor state machine. |
+| Cadence progress model, native lesson packs, placement and spaced review | **RESEARCH.** Revisit pure scheduling and progress logic after educator review and consent design. Local and cloud clients remain recovery references. |
+| Cadence phoneme scoring, local transcription and speech synthesis | **DEFER.** Evaluate scoring on consented recordings with alignment and human judgments. The archived English-only ASR, Torch/model dependencies and separate model/content rights require review. |
+| Cadence desktop downloader, Firebase/Electron/native stacks and shared assets | **DEFER** the downloader pending independent integrity verification. Keep the standalone stacks and content in provenance archives. The documented asset and data terms apply independently of MIT. |
+| Avatar stream isolation, mouth motion and cleanup | **ADAPT.** The [Eng Teacher avatar feature](../../apps/web/features/avatar/) analyzes remote teacher audio while LiveKit owns playback. It uses original visuals and imports no upstream SDK, weights or characters. |
+| Avatar WebGL renderer, visual-speech inference and GLB characters | **DEFER.** Review model and training provenance, attribution and low-end device performance before integrating these bundled components. |
+| Expanded reference projects | **REMOVE** the duplicate working-tree expansions. Both original ZIPs, license notices and the exact [Git recovery revision](../../AnalyseFuture/original-projects/reference-sources/README.md) preserve every source payload. |
+
+Next, measure a real Hindi-English lesson and verify avatar audio ownership,
+interruption and fallback on desktop and physical Android. Use
+[implementation status](../development/IMPLEMENTATION_STATUS.md) for current
+Eng Teacher evidence.

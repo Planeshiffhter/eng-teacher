@@ -4,8 +4,8 @@ See [PROJECT_STRUCTURE.md](../PROJECT_STRUCTURE.md) for the whole repository.
 
 Start continuation work with the root [PROJECT_HANDOFF.md](../PROJECT_HANDOFF.md)
 for implemented features, task acceptance criteria and PR review. The
-[complete file/folder guide](development/REPOSITORY_FILE_GUIDE.md) includes all
-tracked application, documentation and preserved reference paths.
+[file guide](development/REPOSITORY_FILE_GUIDE.md) links active collections and
+the historical per-file appendix.
 
 | Collection | Responsibility and starting points |
 | --- | --- |

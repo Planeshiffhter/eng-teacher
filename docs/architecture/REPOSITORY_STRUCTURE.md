@@ -6,6 +6,10 @@
 > CLI retains a compatibility entrypoint. Documents and recovery records are now
 > grouped by purpose. This task ran no tests or builds; the earlier results below
 > are historical evidence.
+>
+> The reference layout below describes the recorded consolidation. See
+> [source recovery](../../AnalyseFuture/original-projects/reference-sources/README.md)
+> for the current ZIPs and immutable extracted-tree revision.
 
 Updated: **17 November 2026 (Asia/Calcutta)**.
 

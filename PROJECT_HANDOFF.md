@@ -17,7 +17,7 @@ process. Recheck current `main` and the code before acting on this snapshot.
 3. Choose one task ID from section 6, inspect its existing implementation, and
    deliver one complete, tested slice. Do not rebuild working foundations.
 4. Use the file map below and the
-   [complete file and folder appendix](docs/development/REPOSITORY_FILE_GUIDE.md).
+   [file guide and historical appendix](docs/development/REPOSITORY_FILE_GUIDE.md).
 5. Follow section 8 when handing work back or submitting a PR. Update evidence
    and task status with the actual commit, checks and limitations.
 
@@ -152,10 +152,10 @@ service, training pipeline or native application in the active product.
 | `scripts/maintenance/` | Explicit static inventory/security utilities; never auto-run archived applications |
 | `docs/product/`, `architecture/`, `development/` | Product requirements, runtime decisions, setup, actual feature status and validation evidence |
 | `docs/research/`, `legal/`, `continuity/` | Reuse studies, obligations/notices, and dated history for future sessions |
-| `AnalyseFuture/` | Preserved uploads, upstream source, superseded implementations and recovery evidence; outside default execution |
+| `AnalyseFuture/` | Original ZIPs, source recovery details, superseded implementations and recovery evidence |
 
-Every nested directory, including the preserved projects, has its own linked
-entry in the [complete appendix](docs/development/REPOSITORY_FILE_GUIDE.md).
+The [file guide](docs/development/REPOSITORY_FILE_GUIDE.md) links active collections
+and the dated per-file appendix.
 Ignored `.git/`, `node_modules/`, `.next/`, `.venv/`, `__pycache__/`, caches,
 `*.egg-info`, test outputs and `.env.local` are local/generated state. They are
 not authored features, not part of the tracked-file catalog, and must not be
@@ -164,11 +164,8 @@ added to commits to preserve a workspace.
 ## 5. File-by-file guide
 
 The tables here explain every active source/config/test file and the document
-collections needed to continue. The companion
-[REPOSITORY_FILE_GUIDE.md](docs/development/REPOSITORY_FILE_GUIDE.md) lists **every
-tracked file and every ancestor folder**, including all archived assets/configs,
-with purpose/status and links. It is a static navigation index, not a claim that
-all archived code has been integrated, executed or reviewed for adoption.
+collections needed to continue. Use the [file guide](docs/development/REPOSITORY_FILE_GUIDE.md)
+to locate the immutable 1,603-file inventory from the earlier recovery revision.
 
 ### Root, CI and verification tools
 
@@ -274,7 +271,7 @@ this hosted-model/CPU-VAD workflow.
 | [IMPLEMENTATION_CHECKLIST.md](docs/development/IMPLEMENTATION_CHECKLIST.md) | Original P0–P9 requirement IDs; unchecked entries can already be partly implemented, so use section 6 here for current assignments |
 | [CODEX_IMPLEMENTATION_BRIEF.md](docs/development/CODEX_IMPLEMENTATION_BRIEF.md) | Earlier project brief; foundational scope, not a new order to rebuild |
 | [CODEX_MASTER_BUILD_PROMPT.md](docs/development/CODEX_MASTER_BUILD_PROMPT.md) | Long-term releases A–F; its old immediate retry/metrics orders are superseded |
-| [REPOSITORY_FILE_GUIDE.md](docs/development/REPOSITORY_FILE_GUIDE.md) | Complete Markdown catalog of every tracked file and folder, including reference snapshots |
+| [REPOSITORY_FILE_GUIDE.md](docs/development/REPOSITORY_FILE_GUIDE.md) | Current navigation and immutable per-file catalog from the recovery revision |
 | [PROJECT_CONTINUITY_HANDOFF.md](docs/continuity/PROJECT_CONTINUITY_HANDOFF.md) | Dated conversation/research/recovery history; source overrides historical PR-only descriptions |
 | [ASTRA_HANDOFF.md](docs/research/ASTRA_HANDOFF.md) | Prior feasibility reasoning and constraints |
 | [OPEN_SOURCE_STACK.md](docs/research/OPEN_SOURCE_STACK.md) | Candidate reuse plan, not an installed component list |
@@ -298,9 +295,7 @@ app avatar integration.
 | Collection | Purpose and safe use |
 | --- | --- |
 | [README.md](AnalyseFuture/README.md) | Archive navigation and preservation scope |
-| [original-projects/](AnalyseFuture/original-projects/) | Original Cadence/Talking Avatar ZIPs, full reference snapshots and source provenance; retain wrappers/notices/assets |
-| [reference-sources/Cadence-main/](AnalyseFuture/original-projects/reference-sources/Cadence-main/) | Content/domain/web/mobile/desktop/backend/ML/operations study material; not an active second product |
-| [reference-sources/talking-avatar-master/](AnalyseFuture/original-projects/reference-sources/talking-avatar-master/) | SDK/audio DSP/model/avatar reference with separate asset rights; not imported by the current lesson UI |
+| [original-projects/](AnalyseFuture/original-projects/reference-sources/README.md) | Original Cadence/Talking Avatar ZIPs, hash verification, recovery revision and links to the previously expanded trees |
 | [historical-implementations/](AnalyseFuture/historical-implementations/) | Ten superseded pre-consolidation payloads for comparison; not current entrypoints |
 | [recovery/migration/](AnalyseFuture/recovery/migration/) | Audits, baseline/manifests, relocation map and consolidation evidence |
 | [recovery/features/](AnalyseFuture/recovery/features/) | Feature/duplicate/reuse analysis and cross-language reference comparisons |
@@ -310,10 +305,9 @@ app avatar integration.
 | [recovery/continuation/](AnalyseFuture/recovery/continuation/) | Older resume instructions and post-recovery direction; read with current handoff |
 | [future-ideas/](AnalyseFuture/future-ideas/) | Speculative roadmap and broader product ideas |
 
-Archive files are individually catalogued in the appendix. Do not execute their
-installers or collect their tests as normal setup. Selective reuse requires
-current API/dependency/license review and active tests. Retain original ZIP/source
-bytes and notices; never bulk-merge Cadence or replace this app with an older tree.
+Use the recovery revision to look up individual archive files. Keep their
+installers and tests outside normal setup. Selective reuse requires current API,
+dependency and license review plus active tests.
 
 ## 6. Detailed remaining task backlog
 

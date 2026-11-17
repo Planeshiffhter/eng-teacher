@@ -277,16 +277,15 @@ Hosted LiveKit and OpenAI services, model access and generated speech are subjec
 
 ## Preserved uploaded project archives
 
-At the owner's request, the uploaded Cadence and Talking Avatar ZIPs are also
-preserved as extracted snapshots under [AnalyseFuture/reference-sources](../../AnalyseFuture/original-projects/reference-sources/README.md).
-Their bundled source, content, model artifacts and avatar assets are retained for
-future owner-directed work; they are not integrated into the running voice tutor.
+The original [Cadence and Talking Avatar ZIPs](../../AnalyseFuture/original-projects/reference-sources/README.md)
+retain their bundled source, content, model artifacts, avatar assets and notices.
+The following links point to the exact copies verified against the ZIP members.
 
-- Cadence: [LICENSE](../../AnalyseFuture/original-projects/reference-sources/Cadence-main/LICENSE),
-  [NOTICE](../../AnalyseFuture/original-projects/reference-sources/Cadence-main/NOTICE), and
-  [CREDITS.md](../../AnalyseFuture/original-projects/reference-sources/Cadence-main/CREDITS.md).
-- Talking Avatar: [LICENSE](../../AnalyseFuture/original-projects/reference-sources/talking-avatar-master/LICENSE) and
-  Microsoft Rocketbox [avatar license](../../AnalyseFuture/original-projects/reference-sources/talking-avatar-master/avatars/LICENSE).
+- Cadence: [LICENSE](https://github.com/Planeshiffhter/eng-teacher/blob/600a361e9f97a76603aa260141ce3876d7b94c62/AnalyseFuture/original-projects/reference-sources/Cadence-main/LICENSE),
+  [NOTICE](https://github.com/Planeshiffhter/eng-teacher/blob/600a361e9f97a76603aa260141ce3876d7b94c62/AnalyseFuture/original-projects/reference-sources/Cadence-main/NOTICE), and
+  [CREDITS.md](https://github.com/Planeshiffhter/eng-teacher/blob/600a361e9f97a76603aa260141ce3876d7b94c62/AnalyseFuture/original-projects/reference-sources/Cadence-main/CREDITS.md).
+- Talking Avatar: [LICENSE](https://github.com/Planeshiffhter/eng-teacher/blob/600a361e9f97a76603aa260141ce3876d7b94c62/AnalyseFuture/original-projects/reference-sources/talking-avatar-master/LICENSE) and
+  Microsoft Rocketbox [avatar license](https://github.com/Planeshiffhter/eng-teacher/blob/600a361e9f97a76603aa260141ce3876d7b94c62/AnalyseFuture/original-projects/reference-sources/talking-avatar-master/avatars/LICENSE).
 
 These upstream notices remain unchanged. Project-level license declarations do not
 replace review of the selected dependencies, models, assets and content before

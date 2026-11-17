@@ -1,8 +1,0 @@
-appId: dev.pstepanov.cadence
-name: Screenshots, mouth map
----
-- openLink: "cadence:///sounds/sound.th"
-- extendedWaitUntil:
-    visible: "Replay the shape.*"
-    timeout: 10000
-- waitForAnimationToEnd

@@ -1,13 +1,13 @@
 # Project structure
 
 This is the current map of the AI English-speaking companion. Files are grouped
-by the responsibility they serve, with framework entrypoints and complete upstream
-projects kept intact where their internal paths matter.
+by the responsibility they serve. Reference ZIPs preserve complete upstream
+project layouts.
 
 For current delivery status, detailed continuation tasks and contributor PR
 instructions, read [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md). The
-[complete Markdown appendix](docs/development/REPOSITORY_FILE_GUIDE.md) explains
-every tracked file and ancestor folder, including the preserved projects.
+[file guide](docs/development/REPOSITORY_FILE_GUIDE.md) links the active collections
+and the historical per-file appendix.
 
 Organization date: **17 November 2026 (Asia/Calcutta)**. Starting commit:
 `05269aec2449605756a6bfa2beadc98ce714b9a3`.
@@ -84,9 +84,7 @@ eng-teacher/
       Cadence-main.zip              Original uploaded archive
       talking-avatar-master.zip    Original uploaded archive
       reference-sources/
-        Cadence-main/               Complete upstream project, unchanged internally
-        talking-avatar-master/      Complete SDK/model/asset snapshot
-        README.md / ARCHIVES.json  Original import navigation and provenance
+        README.md / ARCHIVES.json  ZIP integrity, source recovery and provenance
     historical-implementations/
       pre-consolidation-98cfcd7/     Ten superseded source/test/CI payloads
     future-ideas/                   Detailed long-term vision and research roadmap
@@ -108,7 +106,7 @@ working directory and `.env.local` lookup are unchanged. Runtime fixture imports
 now refer to the runtime owner; shared teaching fixtures use a package-relative
 import rather than relying on a flat test folder.
 
-## How each file was assigned
+## Organization record from 17 November 2026
 
 All **1,567 starting tracked files** were read and given an explicit destination
 or a reason to stay. **1,525 original payloads moved**; **42 initial paths stayed**
@@ -120,7 +118,7 @@ preservation records.
 The complete old/new record is
 [FILE_RELOCATION_MAP.json](AnalyseFuture/recovery/migration/functional-sort-2026-11-17/FILE_RELOCATION_MAP.json).
 It covers every starting path, including deeply nested files; it is not only a
-list of top-level directories. The current per-file ownership/import inventory is
+list of top-level directories. That phase's per-file ownership/import inventory is
 [FUNCTIONAL_FILE_INVENTORY.txt](AnalyseFuture/recovery/inventory/FUNCTIONAL_FILE_INVENTORY.txt).
 
 - Product documents explain who learns, what the teacher should do and what is
@@ -138,12 +136,12 @@ list of top-level directories. The current per-file ownership/import inventory i
 
 ## Why some things remain together
 
-Cadence and Talking Avatar are preserved complete projects, not additional active
-Eng Teacher services. Each owns related source, configuration, assets, tests,
-documentation and notices. Breaking those snapshots into loose language/extension
-folders would damage their imports, asset references and provenance. Their internal
-functional structure is retained; their feature and duplicate analyses are in
-[recovery/features](AnalyseFuture/recovery/features/).
+The original Cadence and Talking Avatar ZIPs preserve source, configuration,
+assets, tests, documentation and notices. Each formerly extracted copy matched
+its corresponding ZIP byte for byte before the duplicate copies were removed.
+See [source recovery](AnalyseFuture/original-projects/reference-sources/README.md)
+for the Git recovery revision and [feature analyses](AnalyseFuture/recovery/features/)
+for component findings.
 
 Likewise, root package manifests, framework configuration, app-local licenses,
 environment examples and GitHub's root workflow directory are conventional tool
@@ -151,19 +149,17 @@ entrypoints. They stay at the paths those tools expect. This organization is by
 responsibility, not by extension and not by moving every configuration into one
 unrelated global folder.
 
-The original snapshot README and both ZIPs moved within one wrapper. Its `../ZIP`
-links still work. All 1,478 original import payloads and ten historical implementation
-payloads are preserved. Previous hash manifests retain their original recorded
-paths; use the new relocation map to locate those payloads today.
+Prior hash manifests retain their recorded paths. The recovery revision contains
+the 1,478 original import payloads and ten historical implementation payloads.
+The ten historical implementation payloads also remain in the working tree.
 
 ## Execution boundaries and local state
 
 The active npm workspace remains only `apps/web`; app TypeScript stays app-local.
 Python packaging still finds the service under `src`, with explicit subpackages.
 Root `pytest.ini` continues to exclude all `AnalyseFuture`; Playwright still owns
-only `tests/browser`. Archived Actions remain below the archive, outside root
-`.github/workflows`. Moving an uncertain file is not a security sandbox: do not
-explicitly execute archived installers as normal setup.
+only `tests/browser`. Historical workflows stay outside root `.github/workflows`.
+Keep reference installers outside normal setup.
 
 There were **24,622 ignored local/generated files** at discovery: installed npm
 dependencies, Python dependencies/cache, Next output and runner caches/results.
@@ -187,7 +183,7 @@ Before claiming runtime readiness, a later task should install/refresh only as
 needed and run the existing scoped checks for the reorganized paths. Current CLI
 compatibility is maintained structurally, but execution was deliberately deferred.
 
-## Preservation and delivery
+## Pre-organization preservation
 
 The pre-change backup tag is
 `recovery/pre-functional-sort-20261117-05269ae`, pushed before editing. Moves use

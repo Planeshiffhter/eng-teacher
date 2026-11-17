@@ -142,9 +142,8 @@ requests, SDK/page errors or browser console errors.
 [Female render](evidence/module-validation-2026-11-17/avatar-female.png) and
 [male render](evidence/module-validation-2026-11-17/avatar-male.png) were visually
 inspected. This is isolated SDK evidence, not an avatar integration in Eng Teacher.
-The supplied characters derive from Microsoft Rocketbox; preserve the
-[Microsoft avatar notice](../../AnalyseFuture/original-projects/reference-sources/talking-avatar-master/avatars/LICENSE)
-and the [SDK/model notice](../../AnalyseFuture/original-projects/reference-sources/talking-avatar-master/LICENSE).
+The supplied characters derive from Microsoft Rocketbox. See the
+[Microsoft avatar and SDK/model notices](../legal/THIRD_PARTY_NOTICES.md#preserved-uploaded-project-archives).
 
 ## Not run and remaining prerequisites
 
