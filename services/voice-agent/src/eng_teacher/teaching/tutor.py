@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from collections.abc import Sequence
 from typing import Literal, Protocol
+from unicodedata import decimal
 from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
@@ -31,7 +32,9 @@ class ModelDecision(BaseModel):
 
     @model_validator(mode="after")
     def correction_is_complete(self):
-        if self.action == "correct" and (not self.corrected or not self.explanation):
+        if self.action == "correct" and (
+            not (self.corrected or "").strip() or not (self.explanation or "").strip()
+        ):
             raise ValueError("A correction requires a sentence and explanation")
         if self.action != "correct" and self.corrected is not None:
             raise ValueError("Only corrections may contain a corrected sentence")
@@ -73,9 +76,11 @@ class TutorModel(Protocol):
 
 
 _NEGATION = re.compile(
-    r"\b(?:not|no|never|cannot|can't|won't|isn't|aren't|wasn't|weren't|don't|doesn't|didn't|haven't|hasn't|hadn't|wouldn't|shouldn't|couldn't|nahi|nahin)\b|नहीं|नही|मत",
+    r"\b(?:not|no|never|cannot|\w+n't|nahi|nahin|nhi)\b"
+    r"|(?<![\w\u0900-\u0963\u0970-\u097f])(?:नहीं|नही|मत)(?![\w\u0900-\u0963\u0970-\u097f])",
     re.IGNORECASE,
 )
+_NUMBER = re.compile(r"(?:(?<![\w.,])[-+−])?(?:\d+(?:[.,:/-]\d+)*|(?<!\w)\.\d+)")
 # Conservative guard, not a linguistic proof: suspicious changes trigger clarification.
 _NON_NAMES = {
     "I",
@@ -105,15 +110,29 @@ _NON_NAMES = {
 }
 
 
+def _number_tokens(text: str) -> list[str]:
+    """Preserve number order, repetitions and signs across numeral scripts."""
+    return [
+        "".join(str(decimal(char)) if char.isdecimal() else char for char in token).replace(
+            "−", "-"
+        )
+        for token in _NUMBER.findall(text)
+    ]
+
+
 def risky_change(original: str, corrected: str) -> bool:
     a, b = original.replace("’", "'"), corrected.replace("’", "'")
     if bool(_NEGATION.search(a)) != bool(_NEGATION.search(b)):
         return True
-    if set(re.findall(r"\d+(?:\.\d+)?", a)) != set(re.findall(r"\d+(?:\.\d+)?", b)):
+    if _number_tokens(a) != _number_tokens(b):
         return True
     # Keep distinctive capitalized names/acronyms verbatim. May conservatively reject
     # legitimate rewrites; it does not detect every name or semantic change.
-    names = {word for word in re.findall(r"\b[A-Z][A-Za-z'-]*\b", a) if word not in _NON_NAMES}
+    # In a Romanized Hindi opener such as "Kal maine", the first word marks time.
+    name_text = re.sub(r"^\s*(?:aaj|kal)(?=\s+maine\b)", "", a, flags=re.IGNORECASE)
+    names = {
+        word for word in re.findall(r"\b[A-Z][A-Za-z'-]*\b", name_text) if word not in _NON_NAMES
+    }
     return any(not re.search(rf"\b{re.escape(name)}\b", b, flags=re.IGNORECASE) for name in names)
 
 
@@ -337,7 +356,9 @@ class InterviewTutor:
                 feedback = Feedback(
                     original=original, action="clarify", spoken_response=CLARIFICATION
                 )
-            elif decision.action == "correct":
+            elif decision.corrected and normalized_retry(original) != normalized_retry(
+                decision.corrected
+            ):
                 self.pending_retry = decision.corrected
                 self.pending_explanation = decision.explanation
                 feedback = Feedback(
@@ -351,10 +372,11 @@ class InterviewTutor:
                     ),
                 )
             else:
+                reply = "Your wording works." if decision.action == "correct" else decision.reply
                 feedback = Feedback(
                     original=original,
                     action="continue",
-                    spoken_response=decision.reply + " " + self._next_question(),
+                    spoken_response=reply + " " + self._next_question(),
                 )
         self.history.append((original, feedback.spoken_response))
         # Only retain a bounded conversation in process memory, never on disk.

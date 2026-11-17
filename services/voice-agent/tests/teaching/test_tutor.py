@@ -89,14 +89,41 @@ async def test_acceptable_regional_english_is_not_forced_into_correction():
     assert tutor.question_index == 1
 
 
+async def test_presentation_only_correction_does_not_require_retry():
+    original = "  I’ve completed the course! "
+    tutor = InterviewTutor(
+        FakeModel(
+            decision(
+                action="correct",
+                corrected="I've completed the course.",
+                explanation="End the sentence with a period.",
+            )
+        )
+    )
+    result = await tutor.turn(original)
+    assert result.original == original
+    assert result.action == "continue"
+    assert result.corrected is None
+    assert result.explanation is None
+    assert tutor.pending_retry is None
+    assert tutor.question_index == 1
+
+
 @pytest.mark.parametrize(
     "original,corrected",
     [
         ("I didn't handle calls", "I handled calls"),
+        ("I mustn't handle calls", "I must handle calls"),
         ("Maine calls nahi handle kiye", "I handled calls"),
+        ("Maine calls nhi handle kiye", "I handled calls"),
         ("मैंने काम नहीं किया", "I did the work"),
         ("I helped Rohan in Pune", "I helped Rahul in Mumbai"),
+        ("Kal helped me in Pune", "A friend helped me in Pune"),
         ("I handled 12 tickets", "I handled 20 tickets"),
+        ("I worked from 9 to 5", "I worked from 5 to 9"),
+        ("I packed 2 red pens and 2 blue pens", "I packed 2 red pens and blue pens"),
+        ("It was −5 degrees", "It was 5 degrees"),
+        ("I used .5 of a litre", "I used 5 litres"),
     ],
 )
 async def test_suspicious_rewrite_clarifies(original, corrected):
@@ -113,6 +140,18 @@ def test_guard_allows_name_negation_and_number_preserving_fix():
     assert not risky_change(
         "I didn't handled 12 calls for Rohan", "I didn't handle 12 calls for Rohan."
     )
+
+
+@pytest.mark.parametrize(
+    "original,corrected",
+    [
+        ("इसका मतलब मैंने कल सीखा।", "I learned what this means yesterday."),
+        ("मुझे १२ टिकट मिले।", "I received 12 tickets."),
+        ("I measured −5 degrees", "I measured -5 degrees."),
+    ],
+)
+def test_guard_allows_preserved_meaning_across_scripts(original, corrected):
+    assert not risky_change(original, corrected)
 
 
 async def test_uncertainty_clarifies_without_advancing_question():
@@ -172,6 +211,8 @@ async def test_nonidentical_retry_continues_without_claiming_pronunciation_grade
     "changes",
     [
         {"action": "correct", "corrected": None},
+        {"action": "correct", "corrected": " ", "explanation": "Reason"},
+        {"action": "correct", "corrected": "I worked.", "explanation": " "},
         {"action": "correct", "corrected": "I work", "explanation": None},
         {"corrected": "invented correction"},
         {"original": "model may not overwrite transcript"},
@@ -238,7 +279,16 @@ async def test_provider_rejects_malformed_or_empty_json(content):
         ("Could you give me an example?", ("example", "en")),
         ("Translate that into Hindi", ("translate", "hi")),
         ("What is the Hindi meaning of that?", ("translate", "hi")),
+        ("Can you please give me another example?", ("example", "en")),
+        ("Mujhe isko Hindi mein samjhaiye", ("explain", "hi")),
+        ("मुझे यह हिंदी में समझाइए।", ("explain", "hi")),
+        ("Ek example dikhao, please", ("example", "en")),
+        ("Dobara boliye.", ("repeat", "en")),
+        ("Ek baar aur", ("again", "en")),
+        ("Iska Hindi matlab batao", ("translate", "hi")),
+        ("Why is this sentence correct?", ("explain", "en")),
         ("I explained the situation yesterday", None),
+        ("My teacher asked me to explain that in Hindi", None),
     ],
 )
 def test_voice_control_recognition(input_text, expected):
@@ -257,7 +307,7 @@ async def test_explain_repeat_another_try_keeps_same_pending_correction():
     initial = await tutor.turn("Maine customer calls handle kiye")
     assert initial.action == "correct"
     for command in (
-        "Please explain that in Hindi",
+        "Mujhe isko Hindi mein samjhaiye",
         "Can you repeat the correct sentence?",
         "One more try, please.",
     ):
@@ -333,6 +383,7 @@ async def test_help_followups_never_advance_or_consume_retry():
         assert tutor.question_index == 0
     assert "For example" in assist_responses[1].spoken_response
     assert "एक उदाहरण" in assist_responses[2].spoken_response
+    assert "Use past tense for completed work." in assist_responses[3].spoken_response
     assert not model.retry_inputs
     result = await tutor.turn("I handled customer calls.")
     assert result.action == "retry"
@@ -403,6 +454,18 @@ async def test_decimal_retry_cannot_bypass_numeric_guard_even_if_model_accepts()
     assert tutor.question_index == 0
 
 
+async def test_reversed_quantities_cannot_advance_retry_even_if_model_accepts():
+    target = "I gave 2 books to Rohan and 3 books to Rahul."
+    model = FakeModel(decision(action="correct", corrected=target, explanation="Past tense."))
+    tutor = InterviewTutor(model)
+    await tutor.turn("I give 2 books to Rohan and 3 books to Rahul yesterday")
+    retry = "I gave 3 books to Rohan and 2 books to Rahul."
+    feedback = await tutor.turn(retry)
+    assert feedback.action == "assist"
+    assert tutor.pending_retry == target
+    assert tutor.question_index == 0
+
+
 @pytest.mark.parametrize(
     "original,target,retry",
     [
@@ -432,22 +495,30 @@ async def test_meaningful_punctuation_and_word_boundaries_require_semantic_retry
 
 
 @pytest.mark.parametrize(
-    "target,retry",
+    "original,target,retry",
     [
-        ("I handled calls.", "  i   handled calls!  "),
-        ("I handled 1.2 million calls.", "I handled 1.2 million calls?"),
-        ("I re-sign contracts.", "I re-sign contracts।"),
-        ("We're ready for the interview.", "We’re ready for the interview!"),
+        ("I handle calls yesterday.", "I handled calls.", "  i   handled calls!  "),
+        (
+            "I handle 1.2 million calls yesterday.",
+            "I handled 1.2 million calls.",
+            "I handled 1.2 million calls?",
+        ),
+        ("I re-sign contract.", "I re-sign contracts.", "I re-sign contracts।"),
+        (
+            "We're ready for interview.",
+            "We're ready for the interview.",
+            "We’re ready for the interview!",
+        ),
     ],
 )
 async def test_equivalent_retry_allows_terminal_punctuation_spacing_and_typographic_apostrophe(
-    target, retry
+    original, target, retry
 ):
     model = FakeModel(
         decision(action="correct", corrected=target, explanation="Practice this phrase.")
     )
     tutor = InterviewTutor(model)
-    await tutor.turn(target)
+    await tutor.turn(original)
     result = await tutor.turn(retry)
     assert result.action == "retry"
     assert tutor.pending_retry is None
