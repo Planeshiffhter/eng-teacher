@@ -1,6 +1,6 @@
 COMPLETE TRACKED FILE INVENTORY
 
-Baseline commit: d25992f2f521478a9aa935d7967d11ad37bdc4bf (1,600 paths)
+Baseline commit: b311ff8d1a00b29e1bed6312a048741753eab03e (1,603 paths)
 Inventory source: current tracked index paths; current working payloads
 Tracked paths classified: 1603
 Every listed payload was read; text parsed statically where supported; no imported code was executed.
@@ -13954,7 +13954,7 @@ PATH: docs/development/REPOSITORY_FILE_GUIDE.md
   Owner: Documentation: development
   Purpose: Documentation: Complete repository file and folder guide
   Use/status: documentation, not implementation
-  Format: UTF-8 text; bytes=634146; sha256=9581eb9c8e618ae2e72870ae6f827730f874e9055e7ecb9fa68ba6fa6450f788
+  Format: UTF-8 text; bytes=496149; sha256=35ce8a2d96b9e6a35e50f89cd1abce4e4452ab752631decb57f8fe9b46948ebb
   Dependencies: no static imports found / see containing component manifest
   Duplicate evidence: no exact tracked-payload duplicate; semantic overlap assessed separately
   Recommendation/location: retain by product/architecture/development/research/continuity/legal purpose
